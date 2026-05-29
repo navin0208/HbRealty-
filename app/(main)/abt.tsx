@@ -7,14 +7,14 @@ import Link from 'next/link'
 import { ArrowRight, ArrowLeft } from 'lucide-react'
 
 // ── Reusable animated line ────────────────────────────────────
-function AnimLine({ delay = 0, className = '' }: { delay?: number; className?: string }) {
+function AnimLine({ delay = 0, className = '', style }: { delay?: number; className?: string; style?: React.CSSProperties }) {
     return (
         <motion.div
             initial={{ scaleX: 0 }}
             whileInView={{ scaleX: 1 }}
             viewport={{ once: true }}
             transition={{ delay, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformOrigin: 'left' }}
+            style={{ transformOrigin: 'left', ...style }}
             className={`h-px bg-white/20 ${className}`}
         />
     )
