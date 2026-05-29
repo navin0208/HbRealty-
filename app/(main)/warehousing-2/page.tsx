@@ -1,0 +1,292 @@
+"use client";
+
+import { motion } from "framer-motion";
+import Image from "next/image";
+import Link from "next/link";
+import { ArrowRight, Building2, ShieldCheck, ThermometerSnowflake, Truck, Scale, ChevronDown } from "lucide-react";
+import { useState } from "react";
+
+const services = [
+  {
+    title: "Warehouse Construction in Nashik",
+    desc: "Custom-designed facilities built to optimize storage, operations, and safety. We handle every stage: planning, permissions, and construction.",
+    icon: <Building2 className="w-8 h-8" />,
+    img: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Warehouse Leasing & Sales",
+    desc: "Get access to premium ready-to-use warehouses or long-term warehouse land for lease in Nashik to build your own facility.",
+    icon: <ShieldCheck className="w-8 h-8" />,
+    img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Cold Storage Warehouse Builder",
+    desc: "Specialized design and construction for temperature-controlled storage, ideal for food processing, pharma, and agriculture.",
+    icon: <ThermometerSnowflake className="w-8 h-8" />,
+    img: "https://images.unsplash.com/photo-1518112390430-f4ab02e9c2c8?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Logistics Park Development",
+    desc: "Large-scale industrial and logistics park planning with integrated warehousing, transport access, and utilities in Maharashtra.",
+    icon: <Truck className="w-8 h-8" />,
+    img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
+  },
+  {
+    title: "Land Development & Legal Liaisoning",
+    desc: "From land identification to government clearances, our legal team ensures a smooth setup process for all warehousing projects.",
+    icon: <Scale className="w-8 h-8" />,
+    img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800"
+  }
+];
+
+const testimonials = [
+  {
+    text: "HB Realty developed our plot in Chandwad into a proper industrial layout. Their end-to-end support with legal approvals saved us months of effort.",
+    name: "Amit Khanna",
+    location: "Chandwad, Nashik"
+  },
+  {
+    text: "Our warehouse project in Trimbak was completed on schedule with HB Realty's guidance. Their liaisoning and advisory services were truly professional.",
+    name: "Neha Desai",
+    location: "Trimbak, Nashik"
+  },
+  {
+    text: "We partnered with HB Realty for a project in Lasalgaon. Their knowledge of legal procedures and development standards was a huge advantage for us.",
+    name: "Prakash Bhosale",
+    location: "Lasalgaon, Nashik"
+  },
+  {
+    text: "Our commercial land in Manmad is now fully utilized thanks to HB Realty. Their advisory team provided excellent guidance and managed approvals smoothly.",
+    name: "Mehul Shah",
+    location: "Manmad, Nashik"
+  },
+  {
+    text: "Professional, responsive, and highly skilled – the best choice for warehouse construction and logistics park development in Maharashtra.",
+    name: "Sneha Patil",
+    location: "Peth, Nashik"
+  }
+];
+
+const faqs = [
+  {
+    q: "What warehousing services do you provide in Nashik?",
+    a: "We offer end-to-end Warehousing Development Services in Nashik, including construction, leasing, cold storage setup, and facility management for various industries."
+  },
+  {
+    q: "Do you handle warehouse construction in Nashik?",
+    a: "Yes. We specialize in warehouse construction in Nashik, delivering custom-built facilities designed for logistics, manufacturing, e-commerce, and more."
+  },
+  {
+    q: "Can I lease warehouse land in Nashik through HB Realty?",
+    a: "Absolutely. We provide premium warehouse land for lease in Nashik as well as ready-to-use warehouse spaces in prime industrial zones."
+  },
+  {
+    q: "Do you only work in certain areas of Maharashtra?",
+    a: "We operate across all major growth hubs in Maharashtra including Nashik, Pune, Aurangabad, and Mumbai outskirts, as well as emerging industrial zones."
+  },
+  {
+    q: "How do I choose the right warehouse location in Nashik?",
+    a: "Our team assesses your operational needs, industry type, and transport access to recommend the best warehousing options in Nashik for your business."
+  },
+  {
+    q: "Can you manage legal clearances for warehouses?",
+    a: "Yes. We handle all permissions, government clearances, and compliance required for smooth warehouse setup in Maharashtra."
+  }
+];
+
+export default function WarehousingPage() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
+  return (
+    <main className="min-h-screen bg-[#020202] font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden pb-20">
+
+      {/* ═══ HERO SECTION (EDITORIAL) ═══ */}
+      <section className="relative h-[85vh] overflow-hidden flex items-end">
+        <div className="absolute inset-0">
+          <Image 
+            src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" 
+            alt="Warehousing Nashik" fill className="object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite] grayscale-[20%]" priority 
+          />
+          <div className="absolute inset-0 bg-[#080808]/40 mix-blend-multiply" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-transparent" />
+        </div>
+
+        <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-24 w-full">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
+            <div className="w-12 h-px bg-white/20 mb-8" />
+            
+            <h1 className="text-4xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9] mb-8 max-w-5xl">
+              Warehousing & <span className="font-serif italic text-white/50">land development.</span>
+            </h1>
+            
+            <div className="pl-0 md:pl-10 border-l-0 md:border-l border-white/20">
+              <p className="text-white/50 font-light text-xl leading-relaxed max-w-2xl pl-0 md:pl-8 mb-12">
+                From warehouse construction in Nashik to cold storage facilities and logistics park development across Maharashtra, we deliver end-to-end solutions for your industrial and storage needs.
+              </p>
+            </div>
+            
+            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group md:ml-[72px]">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Contact Us</span>
+              <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ INTRODUCTION (EDITORIAL) ═══ */}
+      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
+          <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }} className="lg:col-span-5 lg:sticky lg:top-40">
+            <div className="w-12 h-px bg-white/20 mb-8" />
+            <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1] mb-8">
+              Trusted <br/>
+              <span className="font-serif italic text-white/50">development.</span>
+            </h2>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }} className="lg:col-span-7 space-y-8 mt-0 md:mt-24">
+            <p className="text-white/60 font-light text-xl leading-relaxed">
+              At HB Realty India, we specialize in <strong className="text-white font-medium">Warehousing Development Services in Nashik</strong> providing businesses with strategically located facilities, legal compliance support, and turnkey construction solutions.
+            </p>
+            <p className="text-white/50 font-light text-lg leading-relaxed mb-12">
+              As a leading warehousing company in Maharashtra, we help clients secure warehouse land for lease in Nashik, build custom storage facilities, and develop large-scale logistics parks tailored to industry demands. From concept to completion, our expert team ensures your warehousing project is delivered on time, within budget, and in full compliance with local regulations.
+            </p>
+            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group w-fit">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Talk to Nashik's Experts</span>
+              <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ═══ SERVICES CARDS (MINIMAL) ═══ */}
+      <section className="relative py-32 px-6 md:px-12 bg-[#080808] border-t border-b border-white/5">
+        <div className="max-w-[1600px] mx-auto">
+          <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-24 border-b border-white/5 pb-16">
+            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
+              Our <span className="font-serif italic text-white/50">Services</span>
+            </h2>
+            <p className="text-white/40 text-lg font-light max-w-md">Comprehensive solutions covering every aspect of warehousing and industrial land development.</p>
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-x-12 md:gap-y-20">
+            {services.map((service, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="group flex flex-col"
+              >
+                <div className="relative h-[300px] md:h-[400px] w-full mb-8 overflow-hidden">
+                  <Image src={service.img} alt={service.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[20s] ease-out group-hover:scale-105" />
+                  <div className="absolute inset-0 bg-[#080808]/40 mix-blend-multiply" />
+                </div>
+                
+                <h3 className="text-2xl font-medium text-white tracking-tight mb-4 group-hover:text-white/80 transition-colors">{service.title}</h3>
+                <p className="text-white/40 font-light text-base leading-relaxed">{service.desc}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ TESTIMONIALS (EDITORIAL) ═══ */}
+      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto overflow-hidden">
+        <div className="text-center mb-20 relative z-10">
+          <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
+          <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">
+            Client <span className="font-serif italic text-white/50">testimonials.</span>
+          </h2>
+        </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 relative z-10">
+          {testimonials.map((t, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              className="p-8 md:p-10 border border-white/5 group hover:border-white/10 transition-colors"
+            >
+              <p className="text-white/60 font-light leading-relaxed mb-8 text-base">"{t.text}"</p>
+              <div>
+                <h4 className="text-white font-medium text-sm mb-1">{t.name}</h4>
+                <p className="text-white/30 text-[10px] uppercase tracking-[0.2em]">{t.location}</p>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </section>
+
+      {/* ═══ FAQ SECTION (MINIMAL) ═══ */}
+      <section className="relative py-32 px-6 md:px-12 bg-[#080808] border-t border-white/5">
+        <div className="max-w-4xl mx-auto">
+          <div className="text-center mb-20">
+            <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
+            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">Frequently asked <span className="font-serif italic text-white/50">questions.</span></h2>
+          </div>
+
+          <div className="space-y-0 divide-y divide-white/5">
+            {faqs.map((faq, i) => (
+              <motion.div 
+                key={i}
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                className="group"
+              >
+                <button 
+                  onClick={() => setOpenFaq(openFaq === i ? null : i)}
+                  className="w-full py-8 flex items-center justify-between text-left"
+                >
+                  <h4 className="text-white font-medium tracking-wide pr-8 group-hover:opacity-70 transition-opacity">{faq.q}</h4>
+                  <ChevronDown className={`text-white/30 transition-transform duration-500 ${openFaq === i ? "rotate-180" : ""}`} size={20} strokeWidth={1} />
+                </button>
+                {openFaq === i && (
+                  <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} transition={{ duration: 0.4, ease: [0.16, 1, 0.3, 1] }} className="pb-8 text-white/50 font-light leading-relaxed max-w-2xl">
+                    {faq.a}
+                  </motion.div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══ GLOBAL & LEGAL CTA (EDITORIAL) ═══ */}
+      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-white/5 mt-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-start border-l border-white/5 pl-8 md:pl-12"
+          >
+            <span className="text-white/30 text-[10px] font-medium uppercase tracking-[0.4em] block mb-6">Legal Advisory by Adv. Manoj Bafana</span>
+            <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Complete legal support for <span className="font-serif italic text-white/50">real estate.</span></h3>
+            <p className="text-white/40 font-light mb-12 max-w-md">27+ Years of Trusted Legal Expertise in Land, Revenue & Real Estate Law ensuring full compliance and peace of mind.</p>
+            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Consult Now</span>
+              <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
+            </Link>
+          </motion.div>
+
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex flex-col items-start border-l border-white/5 pl-8 md:pl-12"
+          >
+            <span className="text-white/30 text-[10px] font-medium uppercase tracking-[0.4em] block mb-6">Explore Strategic Growth</span>
+            <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Your gateway to global <span className="font-serif italic text-white/50">opportunities.</span></h3>
+            <p className="text-white/40 font-light mb-12 max-w-md">Gain access to global real estate acumen through Sanghavi & Bafana Consultants in Dubai for strategic cross-border success.</p>
+            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+              <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Explore Dubai</span>
+              <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
+            </Link>
+          </motion.div>
+        </div>
+      </section>
+
+    </main>
+  );
+}

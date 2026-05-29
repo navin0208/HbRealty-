@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* ═══ SATOSHI FONT — from Fontshare CDN ═══ */
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.fontshare.com/wf/RPGJFMYV6S5NVWG64NFADTSCLJDGGHON/UBKSQYWNZ3LZHJRCOGHBCCF3M5XQYF3K/YRFFLRYDFZ2AGJUEVGXMPYV6SH4RBVLY.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.fontshare.com/wf/RPGJFMYV6S5NVWG64NFADTSCLJDGGHON/32MEBIBCL6OHQFGIYDL56TRSDI73OUHF/CZJHHRWHNXWTUIU7F4HX64DODHXDRKFO.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.fontshare.com/wf/RPGJFMYV6S5NVWG64NFADTSCLJDGGHON/JG7LGFBIDTGV4STTGKQQISQZICXP7ESR/JFNMSMBKPQWKK7FVL22IUJZDVPBMEQW3.woff2') format('woff2');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.fontshare.com/wf/RPGJFMYV6S5NVWG64NFADTSCLJDGGHON/CMBFHNKFBM7KWYGGAYT4Z5B27M3AIS3X/YT5OEZ2C76JJFZ544RP5JOKBSF7BQXET.woff2') format('woff2');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Satoshi';
+  src: url('https://cdn.fontshare.com/wf/RPGJFMYV6S5NVWG64NFADTSCLJDGGHON/NM7HWLIMH5VVDS47LOKPLSPJXPJIV72U/XAPVJPKNAD4QNBV7SUJAEZ5Y6F5CLFFS.woff2') format('woff2');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --background: #080808; /* Softened from #020202 for a cinematic film look */
+  --foreground: #ededed;
+  --font-satoshi: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif;
+  --font-serif: var(--font-playfair);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-satoshi);
+  --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-satoshi);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+
+/* ═══ TYPOGRAPHY REFINEMENTS ═══ */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-satoshi);
+  font-feature-settings: 'ss01' on, 'ss02' on;
+}
+
+/* Serif accent class — for editorial headlines */
+.font-serif {
+  font-family: var(--font-playfair), 'Georgia', 'Times New Roman', serif;
+}
+
+/* ═══ UTILITY CLASSES ═══ */
+.glass {
+  background: rgba(255, 255, 255, 0.04);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* ═══ SELECTION ═══ */
+::selection {
+  background: rgba(245, 158, 11, 0.25);
+  color: #fcd34d;
+}
+
+/* ═══ SMOOTH SCROLL ═══ */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ═══ ANIMATIONS ═══ */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in {
+  animation: fadeIn 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-delayed {
+  opacity: 0;
+  animation: fadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+/* ═══ CINEMATIC EASING ═══ */
+.ease-cinematic {
+  transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══ 🚀 ANTIGRAVITY — ANIMATION KEYFRAMES ═══ */
+
+/* Custom cursor — hide native on desktop */
+@media (pointer: fine) {
+  html, html * {
+    cursor: none !important;
+  }
+}
+
+/* Will-change utility for parallax containers */
+.will-animate {
+  will-change: transform;
+}
+
+/* Ken Burns — slow zoom for hero backgrounds */
+@keyframes kenBurns {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.12); }
+}
+.animate-ken-burns {
+  animation: kenBurns 20s ease-in-out infinite alternate;
+}
+
+/* 🚀 ANTIGRAVITY — Disable heavy Ken Burns on mobile */
+@media (max-width: 768px) {
+  .animate-ken-burns {
+    animation: none;
+    transform: scale(1.05); /* Static slightly zoomed */
+  }
+}
+
+/* 🚀 ANTIGRAVITY — Touch active states for mobile */
+@media (hover: none) and (pointer: coarse) {
+  a:active, button:active, [role="button"]:active {
+    transform: scale(0.97);
+    transition: transform 0.1s ease;
+  }
+}
+
+/* Ambient floating shapes */
+@keyframes ambientFloat1 {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.04; }
+  100% { transform: translateY(-30px) rotate(3deg); opacity: 0.07; }
+}
+@keyframes ambientFloat2 {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.03; }
+  100% { transform: translateY(25px) rotate(-4deg); opacity: 0.06; }
+}
+@keyframes ambientFloat3 {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0.04; }
+  100% { transform: translateY(-40px) rotate(5deg); opacity: 0.08; }
+}
+@keyframes ambientFloat4 {
+  0% { transform: translateX(0); opacity: 0.03; }
+  100% { transform: translateX(20px); opacity: 0.06; }
+}
+@keyframes ambientFloat5 {
+  0% { transform: translateY(0); opacity: 0.03; }
+  100% { transform: translateY(-20px); opacity: 0.05; }
+}
+
+.animate-ambient-1 { animation: ambientFloat1 15s ease-in-out infinite alternate; }
+.animate-ambient-2 { animation: ambientFloat2 18s ease-in-out infinite alternate; }
+.animate-ambient-3 { animation: ambientFloat3 22s ease-in-out infinite alternate; }
+.animate-ambient-4 { animation: ambientFloat4 26s ease-in-out infinite alternate; }
+.animate-ambient-5 { animation: ambientFloat5 12s ease-in-out infinite alternate; }
+
+/* Pulse ring — virtual tour button */
+@keyframes pulseRing {
+  0% { transform: scale(1); opacity: 1; }
+  100% { transform: scale(1.4); opacity: 0; }
+}
+.animate-pulse-ring {
+  animation: pulseRing 2s ease-out infinite;
+}
+
+/* Smooth underline reveal */
+@keyframes underlineReveal {
+  0% { transform: scaleX(0); }
+  100% { transform: scaleX(1); }
+}
+.animate-underline {
+  animation: underlineReveal 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  transform-origin: left;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
