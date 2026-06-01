@@ -38,7 +38,7 @@
 }
 
 :root {
-  --background: #080808; /* Softened from #020202 for a cinematic film look */
+  --background: #062B4A; /* Softened from #020202 for a cinematic film look */
   --foreground: #ededed;
   --font-satoshi: 'Satoshi', ui-sans-serif, system-ui, -apple-system, sans-serif;
   --font-serif: var(--font-playfair);
@@ -90,8 +90,8 @@ h1, h2, h3, h4, h5, h6 {
 
 /* ═══ SELECTION ═══ */
 ::selection {
-  background: rgba(245, 158, 11, 0.25);
-  color: #fcd34d;
+  background: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
 }
 
 /* ═══ SMOOTH SCROLL ═══ */

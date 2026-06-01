@@ -4,11 +4,11 @@ import AdminPropertyForm from "@/components/admin/AdminPropertyForm";
 
 export default function AdminAddPropertyPage() {
   return (
-    <main className="min-h-screen bg-[#020202] font-sans selection:bg-emerald-500/30 selection:text-emerald-200">
+    <main className="min-h-screen bg-[#031525] font-sans selection:bg-emerald-500/30 selection:text-emerald-200">
       {/* Admin Navigation Header */}
-      <nav className="fixed top-0 inset-x-0 z-50 bg-black/50 backdrop-blur-xl border-b border-emerald-500/20 px-6 py-4">
+      <nav className="fixed top-0 inset-x-0 z-50 bg-[#062B4A]/50 backdrop-blur-xl border-b border-emerald-500/20 px-6 py-4">
         <div className="max-w-[1600px] mx-auto flex justify-between items-center">
-          <Link href="/properties" className="flex items-center gap-4 text-white/50 hover:text-white transition-colors group">
+          <Link href="/properties" className="flex items-center gap-4 text-white/50 hover:text-[#A98B55] transition-colors group">
             <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
               <ArrowLeft size={16} />
             </div>

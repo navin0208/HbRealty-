@@ -21,7 +21,7 @@ export default function AboutPage() {
   const heroOpacity = useTransform(heroScroll, [0, 0.5], [1, 0]);
 
   return (
-    <main className="min-h-screen bg-black font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <main className="min-h-screen bg-[#062B4A] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white overflow-x-hidden">
 
       {/* ═══ CINEMATIC HERO WITH PARALLAX ═══ */}
       <section ref={heroRef} className="relative h-screen overflow-hidden flex items-end">
@@ -33,7 +33,6 @@ export default function AboutPage() {
             className="object-cover" 
             priority 
           />
-          <div className="absolute inset-0 bg-black/40 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/50 to-transparent" />
         </motion.div>
 
@@ -135,16 +134,16 @@ export default function AboutPage() {
             fill 
             className="object-cover opacity-30" 
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/80 to-black" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#062B4A] via-[#062B4A]/80 to-[#062B4A]" />
         </div>
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
-              <span className="text-amber-500 text-[10px] font-bold uppercase tracking-[0.6em] block mb-6">Our Vision</span>
+              <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.6em] block mb-6">Our Vision</span>
               <p className="text-white/80 font-light text-3xl md:text-4xl leading-[1.6] italic">
                 &ldquo;To become Maharashtra&apos;s most trusted name in land development, warehousing consultancy, and real estate legal services, while contributing to sustainable and intelligent infrastructure growth.&rdquo;
               </p>
-              <div className="w-20 h-[2px] bg-amber-500 mt-12" />
+              <div className="w-20 h-[2px] bg-white text-[#062B4A] mt-12" />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -165,8 +164,8 @@ export default function AboutPage() {
                     transition={{ delay: i * 0.08 }}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="w-8 h-[2px] bg-amber-500/50 mt-3 group-hover:w-12 group-hover:bg-amber-500 transition-all shrink-0" />
-                    <p className="text-white/70 font-light text-lg group-hover:text-white transition-colors">{strength}</p>
+                    <div className="w-8 h-[2px] bg-white text-[#062B4A]/50 mt-3 group-hover:w-12 group-hover:bg-white text-[#062B4A] transition-all shrink-0" />
+                    <p className="text-white/70 font-light text-lg group-hover:text-[#A98B55] transition-colors">{strength}</p>
                   </motion.div>
                 ))}
               </div>
@@ -176,7 +175,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ WHY CHOOSE US — MINIMALIST ═══ */}
-      <section className="relative py-40 px-6 md:px-12 bg-[#080808]">
+      <section className="relative py-40 px-6 md:px-12 bg-[#041D34]">
         <div className="max-w-[1600px] mx-auto border-t border-white/5 pt-32">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-20">
             <div className="md:col-span-1">
@@ -200,7 +199,7 @@ export default function AboutPage() {
                   transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                   className="flex flex-col items-start group"
                 >
-                  <span className="text-white/20 font-serif italic text-2xl mb-6 group-hover:text-white/40 transition-colors">0{i+1}</span>
+                  <span className="text-white/20 font-serif italic text-2xl mb-6 group-hover:text-[#A98B55]/40 transition-colors">0{i+1}</span>
                   <h4 className="text-white text-lg font-medium tracking-wide mb-4">{reason.title}</h4>
                   <p className="text-white/50 text-sm md:text-base font-light leading-relaxed max-w-sm">{reason.desc}</p>
                 </motion.div>
@@ -212,8 +211,6 @@ export default function AboutPage() {
 
       {/* ═══ LEADERSHIP — CINEMATIC PORTRAIT ═══ */}
       <section className="relative py-40 px-6 md:px-12 max-w-[1600px] mx-auto overflow-hidden">
-        <div className="absolute top-0 left-1/3 w-[600px] h-[600px] bg-amber-500/5 blur-[200px] rounded-full pointer-events-none" />
-        
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           <motion.div 
             initial={{ opacity: 0, scale: 0.95 }} 
@@ -223,11 +220,11 @@ export default function AboutPage() {
             className="lg:col-span-5 relative h-[700px] rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
           >
             <Image src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&q=80&w=1600" alt="Mr. Hitesh Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
-            <div className="absolute bottom-0 inset-x-0 p-12 bg-gradient-to-t from-black/90 to-transparent">
+            <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-transparent" />
+            <div className="absolute bottom-0 inset-x-0 p-12 bg-gradient-to-t from-[#062B4A]/90 to-transparent">
               <div className="flex items-center gap-3 mb-4">
-                <div className="h-[2px] w-8 bg-amber-500" />
-                <span className="text-amber-500 text-[10px] font-bold uppercase tracking-[0.4em]">Visionary Leadership</span>
+                <div className="h-[2px] w-8 bg-white text-[#062B4A]" />
+                <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.4em]">Visionary Leadership</span>
               </div>
               <h3 className="text-4xl font-bold text-white uppercase tracking-tighter">Mr. Hitesh Bafana</h3>
               <p className="text-white/50 text-sm font-light uppercase tracking-widest mt-2">Founder & Managing Director</p>
@@ -251,7 +248,7 @@ export default function AboutPage() {
                 Under his leadership, HB Realty India has grown into a full-service firm known for its transparent processes, strategic execution, and client-focused approach. Mr. Bafana&apos;s vision is to bridge the gap between raw land and high-value infrastructure through legally sound, future-ready development solutions.
               </p>
             </div>
-            <a href="/contact" className="inline-flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-amber-500 hover:text-white transition-colors">
+            <a href="/contact" className="inline-flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs hover:bg-white text-[#062B4A] hover:text-[#A98B55] transition-colors">
               Connect With Us <ArrowRight size={16} />
             </a>
           </motion.div>
@@ -260,8 +257,6 @@ export default function AboutPage() {
 
       {/* ═══ THE TEAM — PREMIUM CARDS ═══ */}
       <section className="relative py-40 px-6 md:px-12 bg-zinc-950 border-t border-white/5 overflow-hidden">
-        <div className="absolute bottom-0 right-0 w-[500px] h-[500px] bg-purple-500/5 blur-[180px] rounded-full pointer-events-none" />
-        
         <div className="max-w-[1600px] mx-auto relative z-10">
           <div className="mb-24 flex flex-col md:flex-row items-start md:items-end justify-between gap-8">
             <div>
@@ -290,13 +285,13 @@ export default function AboutPage() {
                 transition={{ delay: i * 0.1 }}
                 className="group relative rounded-[30px] overflow-hidden border border-white/10 hover:border-white/20 transition-all"
               >
-                <div className="h-[350px] w-full relative bg-black">
+                <div className="h-[350px] w-full relative bg-[#062B4A]">
                   <Image src={`https://images.unsplash.com/photo-${member.img}?auto=format&fit=crop&q=80&w=800`} alt={member.name} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-700 opacity-50 group-hover:opacity-80" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/60 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-[#062B4A]/60 to-transparent" />
                 </div>
                 <div className="absolute bottom-0 inset-x-0 p-8">
                   <div className="flex items-center justify-between mb-3">
-                    <span className="text-amber-500 text-[9px] font-bold uppercase tracking-widest">{member.role}</span>
+                    <span className="text-white/90 text-[9px] font-bold uppercase tracking-widest">{member.role}</span>
                     <span className="text-white/20 text-[9px] font-bold uppercase tracking-widest">{member.exp}</span>
                   </div>
                   <h4 className="text-xl font-bold text-white uppercase tracking-wider mb-2">{member.name}</h4>

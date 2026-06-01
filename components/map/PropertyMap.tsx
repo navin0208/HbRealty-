@@ -75,7 +75,7 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
               <div className="w-[200px] overflow-hidden rounded-xl bg-zinc-900 border border-white/10 text-white p-0 m-0 shadow-2xl">
                 <img src={prop.image} alt={prop.title} className="w-full h-[120px] object-cover" />
                 <div className="p-3">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-amber-500">{prop.type}</span>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">{prop.type}</span>
                   <h4 className="text-sm font-bold mt-1 line-clamp-1">{prop.title}</h4>
                   <div className="flex justify-between items-center mt-2">
                     <span className="text-white/60 text-xs font-mono">{prop.size}</span>

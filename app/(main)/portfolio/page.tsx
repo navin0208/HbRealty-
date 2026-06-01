@@ -121,7 +121,7 @@ export default function PortfolioPage() {
   const heroOpacity = useTransform(scrollYProgress, [0, 0.6], [1, 0]);
 
   return (
-    <main className="min-h-screen bg-[#020202] font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <main className="min-h-screen bg-[#031525] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white overflow-x-hidden">
 
       {/* ═══ CINEMATIC HERO WITH PARALLAX (EDITORIAL) ═══ */}
       <section ref={heroRef} className="relative h-[80vh] overflow-hidden flex items-end">
@@ -130,7 +130,6 @@ export default function PortfolioPage() {
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" 
             alt="Portfolio" fill className="object-cover grayscale-[30%]" priority 
           />
-          <div className="absolute inset-0 bg-[#080808]/40 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/60 to-transparent" />
         </motion.div>
 
@@ -185,8 +184,7 @@ export default function PortfolioPage() {
             {/* Image Block */}
             <div className={`lg:col-span-7 relative h-[500px] md:h-[700px] overflow-hidden group ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'}`}>
               <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-[20s] ease-out group-hover:scale-105 grayscale-[20%]" />
-              <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
-            </div>
+              </div>
 
             {/* Text Block */}
             <div className={`lg:col-span-5 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>
@@ -206,12 +204,12 @@ export default function PortfolioPage() {
               </div>
 
               <div className="flex items-center gap-8">
-                <Link href={project.id === "osiyan" ? "/warehousing-2" : "/contact"} className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+                <Link href={project.id === "osiyan" ? "/warehousing-2" : "/contact"} className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
                   <span className="text-[11px] font-medium uppercase tracking-[0.2em]">{project.id === "osiyan" ? "Learn More" : "Interested"}</span>
                   <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
                 </Link>
                 {project.hasBrochure && (
-                  <button className="text-white/30 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+                  <button className="text-white/30 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
                     <Download size={14} className="group-hover:-translate-y-1 transition-transform ease-cinematic" />
                     <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Brochure</span>
                   </button>
@@ -253,7 +251,7 @@ export default function PortfolioPage() {
                 <div className="flex items-center gap-4 text-white/40 shrink-0">
                   <span className="text-[10px] font-medium uppercase tracking-[0.2em]">{project.location.split(',')[0]}</span>
                 </div>
-                <div className="text-white/30 shrink-0 group-hover:text-white transition-colors duration-500 hidden md:block">
+                <div className="text-white/30 shrink-0 group-hover:text-[#A98B55] transition-colors duration-500 hidden md:block">
                   {expandedId === project.id ? <ChevronUp size={20} strokeWidth={1} /> : <ChevronDown size={20} strokeWidth={1} />}
                 </div>
               </button>
@@ -270,7 +268,7 @@ export default function PortfolioPage() {
                     <div className="px-6 md:px-8 pb-8 grid grid-cols-1 lg:grid-cols-12 gap-8 border-t border-white/5 pt-8">
                       <div className="lg:col-span-5 relative h-[280px] rounded-2xl overflow-hidden border border-white/10">
                         <Image src={project.image} alt={project.title} fill className="object-cover" />
-                        <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A]/40 to-transparent" />
                       </div>
                       <div className="lg:col-span-7 space-y-6">
                         <p className="text-white/60 font-light text-base leading-relaxed">{project.overview}</p>
@@ -294,7 +292,7 @@ export default function PortfolioPage() {
                           </div>
                         </div>
                         <div className="flex items-center gap-4 pt-2">
-                          <Link href="/contact" className="px-6 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-amber-500 hover:text-white transition-colors">
+                          <Link href="/contact" className="px-6 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-white text-[#062B4A] hover:text-[#A98B55] transition-colors">
                             Contact Us
                           </Link>
                           {project.hasBrochure && (
@@ -324,7 +322,7 @@ export default function PortfolioPage() {
             Interested in a <br/> <span className="font-serif italic text-white/50">project?</span>
           </h2>
           <p className="text-white/40 font-light text-lg mb-12 max-w-md">Let us know and our team will get back to you within 24 hours.</p>
-          <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+          <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
             <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Contact Us</span>
             <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
           </Link>

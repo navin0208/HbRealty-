@@ -14,7 +14,7 @@ export default function ContactPage() {
   };
 
   return (
-    <main className="min-h-screen bg-[#020202] font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <main className="min-h-screen bg-[#031525] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white overflow-x-hidden">
 
       {/* ═══ CINEMATIC HERO (EDITORIAL) ═══ */}
       <section className="relative h-[70vh] overflow-hidden flex items-end">
@@ -26,7 +26,6 @@ export default function ContactPage() {
             className="object-cover grayscale-[30%]"
             priority 
           />
-          <div className="absolute inset-0 bg-[#080808]/40 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-transparent" />
         </div>
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-24 w-full">
@@ -122,7 +121,7 @@ export default function ContactPage() {
                     <CheckCircle2 size={40} className="text-white/50" strokeWidth={1} />
                     <h3 className="text-3xl font-medium text-white tracking-tight">Message <span className="font-serif italic text-white/50">sent.</span></h3>
                     <p className="text-white/40 font-light text-lg max-w-sm">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
-                    <button onClick={() => setSubmitted(false)} className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group mt-8">
+                    <button onClick={() => setSubmitted(false)} className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group mt-8">
                       <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Send another</span>
                       <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
                     </button>
@@ -173,7 +172,7 @@ export default function ContactPage() {
                         <label className="text-white/40 text-[10px] font-medium uppercase tracking-[0.2em]">Message</label>
                         <textarea required rows={4} className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors resize-none placeholder:text-white/20" placeholder="Tell us about your project requirements..." />
                       </div>
-                      <button type="submit" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group pt-8">
+                      <button type="submit" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group pt-8">
                         <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Send Message</span>
                         <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
                       </button>

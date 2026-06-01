@@ -15,7 +15,7 @@ export default function Footer() {
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       variants={fadeUpStagger}
-      className="relative bg-[#020202] border-t border-white/5 pt-24 pb-10 px-6 md:px-12"
+      className="relative bg-[#031525] border-t border-white/5 pt-24 pb-10 px-6 md:px-12"
     >
       <div className="max-w-[1600px] mx-auto">
         {/* Top Grid */}
@@ -54,7 +54,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/40 text-sm hover:text-white transition-colors"
+                    className="text-white/40 text-sm hover:text-[#A98B55] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -79,7 +79,7 @@ export default function Footer() {
                 <li key={service}>
                   <Link
                     href="/services"
-                    className="text-white/40 text-sm hover:text-white transition-colors"
+                    className="text-white/40 text-sm hover:text-[#A98B55] transition-colors"
                   >
                     {service}
                   </Link>
@@ -101,13 +101,13 @@ export default function Footer() {
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={16} className="text-white/30 shrink-0" />
-                <a href="tel:+919175848355" className="text-white/40 text-sm hover:text-white transition-colors">
+                <a href="tel:+919175848355" className="text-white/40 text-sm hover:text-[#A98B55] transition-colors">
                   +91 91758 48355
                 </a>
               </div>
               <div className="flex items-center gap-3">
                 <Mail size={16} className="text-white/30 shrink-0" />
-                <a href="mailto:info@hbrealtyindia.com" className="text-white/40 text-sm hover:text-white transition-colors">
+                <a href="mailto:info@hbrealtyindia.com" className="text-white/40 text-sm hover:text-[#A98B55] transition-colors">
                   info@hbrealtyindia.com
                 </a>
               </div>
@@ -138,11 +138,11 @@ export default function Footer() {
             © {new Date().getFullYear()} HB Realty India. All rights reserved.
           </p>
           <div className="flex gap-8 text-white/30 text-xs">
-            <Link href="/contact" className="hover:text-white transition-colors">Privacy Policy</Link>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Instagram</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">Facebook</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">LinkedIn</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">YouTube</a>
+            <Link href="/contact" className="hover:text-[#A98B55] transition-colors">Privacy Policy</Link>
+            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Instagram</a>
+            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Facebook</a>
+            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">LinkedIn</a>
+            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">YouTube</a>
           </div>
         </motion.div>
       </div>

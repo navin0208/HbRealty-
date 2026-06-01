@@ -1,434 +1,199 @@
 'use client'
 
-import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useInView, AnimatePresence } from 'framer-motion'
+import { useRef, useState } from 'react'
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowRight, ArrowLeft } from 'lucide-react'
+import { ArrowRight, Building2, Warehouse } from 'lucide-react'
 
-// ── Reusable animated line ────────────────────────────────────
-function AnimLine({ delay = 0, className = '', style }: { delay?: number; className?: string; style?: React.CSSProperties }) {
-    return (
-        <motion.div
-            initial={{ scaleX: 0 }}
-            whileInView={{ scaleX: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay, duration: 1, ease: [0.22, 1, 0.36, 1] }}
-            style={{ transformOrigin: 'left', ...style }}
-            className={`h-px bg-white/20 ${className}`}
-        />
-    )
-}
+// ── Color constants ───────────────────────────────────────────
+const GOLD = '#A98B55'
 
-// ── Floating label pill ───────────────────────────────────────
-function FloatingLabel({ text, delay = 0 }: { text: string; delay?: number }) {
-    return (
-        <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay, duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="inline-flex items-center gap-2 px-3 py-1.5 border border-white/10 bg-white/[0.03] backdrop-blur-sm"
-        >
-            <span className="w-1 h-1 rounded-full bg-amber-500/80 animate-pulse" />
-            <span className="text-[10px] uppercase tracking-[0.25em] text-white/40 font-medium">{text}</span>
-        </motion.div>
-    )
-}
-
-// ── Service row item ──────────────────────────────────────────
-function ServiceRow({ number, label, index }: { number: string; label: string; index: number }) {
-    const [hovered, setHovered] = useState(false)
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -16 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5 + index * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-            onMouseEnter={() => setHovered(true)}
-            onMouseLeave={() => setHovered(false)}
-            className="flex items-center gap-4 py-1 cursor-default"
-        >
-            <motion.span
-                animate={{ color: hovered ? '#f59e0b' : 'rgba(255,255,255,0.25)' }}
-                transition={{ duration: 0.3 }}
-                className="text-xs font-serif italic w-5 shrink-0"
-            >
-                {number}
-            </motion.span>
-            <motion.span
-                animate={{ color: hovered ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.8)', x: hovered ? 4 : 0 }}
-                transition={{ duration: 0.3 }}
-                className="text-[11px] uppercase tracking-[0.2em] font-medium"
-            >
-                {label}
-            </motion.span>
-            <motion.div
-                animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
-                transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                style={{ transformOrigin: 'left' }}
-                className="flex-1 h-px bg-amber-500/50"
-            />
-        </motion.div>
-    )
-}
+// ── Section data ──────────────────────────────────────────────
+const sections = [
+    {
+        id: 'industrial',
+        tag: 'Industrial Division',
+        icon: <Warehouse size={18} />,
+        headline: 'Industrial',
+        headlineAccent: 'Ecosystems',
+        body: 'We develop Grade-A warehousing infrastructure with absolute precision. Our spaces are engineered for the future of logistics, backed by decades of legal and operational mastery.',
+        services: [
+            { n: '01', label: 'Land Development' },
+            { n: '02', label: 'Legal Precision' },
+            { n: '03', label: 'Logistics Infrastructure' },
+        ],
+        image: '/warehousing.avif',
+        imageAlt: 'Grade-A Warehousing',
+        cta: { label: 'View Portfolio', href: '/portfolio' },
+        accent: 'Warehousing · 2024',
+    },
+    {
+        id: 'residential',
+        tag: 'Residential Division',
+        icon: <Building2 size={18} />,
+        headline: 'Residential',
+        headlineAccent: 'Living',
+        body: 'From luxury villas to premium apartments, we craft residential spaces that redefine modern living. Every detail is designed to elevate lifestyle while securing lasting value for discerning investors.',
+        services: [
+            { n: '01', label: 'Premium Apartments' },
+            { n: '02', label: 'Luxury Villas' },
+            { n: '03', label: 'Gated Communities' },
+        ],
+        image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2000',
+        imageAlt: 'Luxury Residential Living',
+        cta: { label: 'Explore Properties', href: '/properties' },
+        accent: 'Residential · 2024',
+    },
+]
 
 // ══════════════════════════════════════════════════════════════
-// SECTION 1 — INDUSTRIAL ECOSYSTEMS (Warehousing)
+// DYNAMIC SPLIT SCREEN SHOWCASE
 // ══════════════════════════════════════════════════════════════
 export function AboutSection() {
-    const sectionRef = useRef<HTMLDivElement>(null)
-    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
-    const imageY = useTransform(scrollYProgress, [0, 1], ['6%', '-6%'])
-    const textY = useTransform(scrollYProgress, [0, 1], ['3%', '-3%'])
+    const [hoveredPanel, setHoveredPanel] = useState<string | null>(null)
 
     return (
         <section
             id="about"
-            ref={sectionRef}
-            className="relative py-32 bg-[#080808] border-b border-white/5 overflow-hidden"
+            className="relative bg-[#031525] border-b border-white/5"
         >
-            {/* Ambient corner glow */}
-            <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/[0.03] rounded-full blur-[120px] pointer-events-none" />
-
-            <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0">
-
-                    {/* ── Image Side ── */}
-                    <div className="md:col-span-7 relative">
-                        {/* Floating label above image */}
-                        <div className="mb-4">
-                            <FloatingLabel text="Grade-A Infrastructure" delay={0.1} />
-                        </div>
-
-                        {/* Image container with parallax */}
+            <div className="flex flex-col md:flex-row w-full h-[1000px] md:h-[850px]">
+                {sections.map((data, index) => {
+                    const isHovered = hoveredPanel === data.id
+                    const isOtherHovered = hoveredPanel !== null && hoveredPanel !== data.id
+                    
+                    return (
                         <motion.div
-                            initial={{ opacity: 0, clipPath: 'inset(12% 8% 12% 8%)' }}
-                            whileInView={{ opacity: 1, clipPath: 'inset(0% 0% 0% 0%)' }}
-                            viewport={{ once: true, margin: '-80px' }}
-                            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative h-[520px] md:h-[780px] w-full overflow-hidden"
+                            key={data.id}
+                            onMouseEnter={() => setHoveredPanel(data.id)}
+                            onMouseLeave={() => setHoveredPanel(null)}
+                            animate={{
+                                // On desktop, width expands. On mobile, height expands.
+                                width: typeof window !== 'undefined' && window.innerWidth >= 768 
+                                    ? (isHovered ? '65%' : isOtherHovered ? '35%' : '50%') 
+                                    : '100%',
+                                height: typeof window !== 'undefined' && window.innerWidth < 768
+                                    ? (isHovered ? '65%' : isOtherHovered ? '35%' : '50%')
+                                    : '100%',
+                            }}
+                            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+                            className="relative overflow-hidden group cursor-pointer border-b md:border-b-0 md:border-r border-white/10 last:border-none"
                         >
-                            <motion.div style={{ y: imageY }} className="absolute inset-[-8%] w-[116%] h-[116%]">
+                            {/* ── Background Image ── */}
+                            <motion.div 
+                                className="absolute inset-0 w-full h-full"
+                                animate={{
+                                    scale: isHovered ? 1.05 : 1,
+                                    filter: isOtherHovered ? 'brightness(0.4) grayscale(50%)' : 'brightness(0.8) grayscale(0%)'
+                                }}
+                                transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+                            >
                                 <Image
-                                    src="/warehousing.avif"
-                                    alt="Grade-A Warehousing"
+                                    src={data.image}
+                                    alt={data.imageAlt}
                                     fill
                                     className="object-cover"
-                                    sizes="(max-width: 768px) 100vw, 60vw"
+                                    sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                             </motion.div>
-                            <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
 
-                            {/* Overlay corner accent */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.2, duration: 0.8 }}
-                                className="absolute bottom-6 left-6 flex items-end gap-3"
-                            >
-                                <div className="w-8 h-8 border border-amber-500/30" />
-                                <span className="text-white/20 text-[10px] uppercase tracking-[0.2em]">Warehousing · 2024</span>
-                            </motion.div>
-                        </motion.div>
+                            {/* Gradient Overlay for Text Readability */}
+                            <div className="absolute inset-0 bg-gradient-to-t from-[#031525]/90 via-[#031525]/20 to-transparent" />
 
-                        {/* Thin animated border accent below image */}
-                        <AnimLine delay={1.0} className="mt-4 w-1/3" />
-                    </div>
+                            {/* ── Content Container ── */}
+                            <div className="absolute inset-x-0 bottom-0 p-6 md:p-12 flex flex-col justify-end h-full">
+                                
+                                {/* Top Tag (Visible immediately, pushed up) */}
+                                <div className="absolute top-6 left-6 md:top-10 md:left-10 flex items-center gap-3">
+                                    <div className="w-8 h-px bg-[#A98B55]/50" />
+                                    <span className="text-white/80 text-[10px] md:text-xs font-bold uppercase tracking-[0.2em]">
+                                        {data.tag}
+                                    </span>
+                                </div>
+                                
+                                {/* Division Number Watermark */}
+                                <div className="absolute top-6 right-6 md:top-10 md:right-10">
+                                    <span className="text-white text-opacity-[0.15] text-5xl md:text-8xl font-bold tracking-tighter leading-none">
+                                        0{index + 1}
+                                    </span>
+                                </div>
 
-                    {/* ── Text Side ── */}
-                    <div className="md:col-span-5 relative z-10 flex flex-col justify-center md:-ml-24 md:mt-32">
-                        <motion.div
-                            style={{ y: textY }}
-                            initial={{ opacity: 0, x: 50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                            className="bg-[#080808] p-10 md:p-16 border border-white/10 relative"
-                        >
-                            {/* Corner accent dots */}
-                            <span className="absolute top-3 left-3 w-1 h-1 bg-amber-500/40 rounded-full" />
-                            <span className="absolute top-3 right-3 w-1 h-1 bg-white/10 rounded-full" />
-                            <span className="absolute bottom-3 left-3 w-1 h-1 bg-white/10 rounded-full" />
-                            <span className="absolute bottom-3 right-3 w-1 h-1 bg-amber-500/40 rounded-full" />
-
-                            {/* Animated top line */}
-                            <AnimLine delay={0.4} className="w-12 mb-12" />
-
-                            {/* Headline with word stagger */}
-                            <div className="mb-4 overflow-hidden">
-                                <motion.h2
-                                    initial={{ y: 40, opacity: 0 }}
-                                    whileInView={{ y: 0, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-4xl md:text-5xl font-medium text-white tracking-tight"
+                                {/* Text Content */}
+                                <motion.div 
+                                    className="relative z-10 max-w-xl"
+                                    animate={{
+                                        y: isHovered ? 0 : 20,
+                                        opacity: isHovered ? 1 : 0.8
+                                    }}
+                                    transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
                                 >
-                                    Industrial
-                                </motion.h2>
-                            </div>
-                            <div className="overflow-hidden mb-6">
-                                <motion.h2
-                                    initial={{ y: 40, opacity: 0 }}
-                                    whileInView={{ y: 0, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.52, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-4xl md:text-5xl font-serif italic text-white/60 tracking-tight"
-                                >
-                                    Ecosystems
-                                </motion.h2>
-                            </div>
-
-                            {/* Body text */}
-                            <motion.p
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                                className="text-white/50 text-sm md:text-base font-light leading-relaxed mb-10"
-                            >
-                                We develop Grade-A warehousing infrastructure with absolute precision. Our spaces are engineered
-                                for the future of logistics, backed by decades of legal and operational mastery.
-                            </motion.p>
-
-                            {/* Services list */}
-                            <div className="flex flex-col gap-5 pt-6 border-t border-white/5">
-                                <ServiceRow number="01" label="Land Development" index={0} />
-                                <ServiceRow number="02" label="Legal Precision" index={1} />
-                            </div>
-
-                            {/* CTA */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.85, duration: 0.8 }}
-                                className="mt-12"
-                            >
-                                <Link
-                                    href="/portfolio"
-                                    className="inline-flex items-center gap-4 text-white/40 hover:text-white transition-colors duration-500 group"
-                                >
-                                    <span className="text-[11px] uppercase tracking-[0.2em] font-medium">View Portfolio</span>
-                                    <motion.div
-                                        className="flex items-center"
-                                        whileHover={{ x: 4 }}
-                                        transition={{ duration: 0.3 }}
+                                    <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-2 flex flex-col md:flex-row md:gap-4 md:items-end">
+                                        {data.headline}
+                                        <span className="font-serif italic text-[#A98B55] text-3xl md:text-5xl">
+                                            {data.headlineAccent}
+                                        </span>
+                                    </h2>
+                                    
+                                    <motion.p 
+                                        className="text-white/60 text-xs md:text-sm font-light leading-relaxed mb-8 mt-4"
+                                        animate={{
+                                            opacity: isHovered ? 1 : 0,
+                                            height: isHovered ? 'auto' : 0,
+                                            marginTop: isHovered ? 16 : 0,
+                                            marginBottom: isHovered ? 32 : 0
+                                        }}
+                                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                                     >
-                                        <ArrowRight size={13} />
-                                    </motion.div>
-                                    {/* Underline */}
-                                    <motion.span
-                                        className="absolute bottom-0 left-0 h-px bg-amber-500/60 w-0 group-hover:w-full transition-all duration-500"
-                                    />
-                                </Link>
-                            </motion.div>
-                        </motion.div>
-                    </div>
+                                        {data.body}
+                                    </motion.p>
 
-                </div>
+                                    {/* Services List (Reveals on Hover) */}
+                                    <motion.div
+                                        className="flex flex-col gap-3 pt-4 border-t border-white/20 overflow-hidden"
+                                        animate={{
+                                            opacity: isHovered ? 1 : 0,
+                                            height: isHovered ? 'auto' : 0
+                                        }}
+                                        transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                                    >
+                                        {data.services.map((s, i) => (
+                                            <div key={s.n} className="flex items-center gap-3">
+                                                <span className="text-[#A98B55]/70 text-[10px] font-serif italic w-5 shrink-0">
+                                                    {s.n}
+                                                </span>
+                                                <span className="text-white/80 text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium">
+                                                    {s.label}
+                                                </span>
+                                            </div>
+                                        ))}
+                                    </motion.div>
+
+                                    {/* CTA */}
+                                    <div className="mt-8">
+                                        <Link
+                                            href={data.cta.href}
+                                            className="inline-flex items-center gap-3 text-white hover:text-[#A98B55] transition-colors duration-500 group/link"
+                                        >
+                                            <span className="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center group-hover/link:border-[#A98B55] transition-colors">
+                                                <ArrowRight size={12} className="group-hover/link:translate-x-0.5 transition-transform" />
+                                            </span>
+                                            <span className="text-[10px] md:text-xs uppercase tracking-[0.2em] font-bold">
+                                                {data.cta.label}
+                                            </span>
+                                        </Link>
+                                    </div>
+                                </motion.div>
+                            </div>
+                        </motion.div>
+                    )
+                })}
             </div>
         </section>
     )
 }
 
-
-// ══════════════════════════════════════════════════════════════
-// SECTION 2 — MASTER PLANNING (Land Development)
-// ══════════════════════════════════════════════════════════════
+// Export as named — LandDevelopmentSection is now merged into AboutSection
 export function LandDevelopmentSection() {
-    const sectionRef = useRef<HTMLDivElement>(null)
-    const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
-    const imageY = useTransform(scrollYProgress, [0, 1], ['6%', '-6%'])
-    const textY = useTransform(scrollYProgress, [0, 1], ['2%', '-2%'])
-
-    return (
-        <section
-            id="land-development"
-            ref={sectionRef}
-            className="relative py-32 bg-[#080808] border-b border-white/5 overflow-hidden"
-        >
-            {/* Ambient left glow */}
-            <div className="absolute top-1/2 left-0 -translate-y-1/2 w-[500px] h-[500px] bg-amber-500/[0.025] rounded-full blur-[100px] pointer-events-none" />
-
-            <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full">
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0">
-
-                    {/* ── Text Side (left, overlaps image) ── */}
-                    <div className="md:col-span-5 relative z-10 flex flex-col justify-center md:mb-32 md:order-1 order-2 md:mr-[-100px]">
-                        <motion.div
-                            style={{ y: textY }}
-                            initial={{ opacity: 0, x: -50 }}
-                            whileInView={{ opacity: 1, x: 0 }}
-                            viewport={{ once: true }}
-                            transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-                            className="bg-[#080808] p-10 md:p-16 border border-white/10 relative"
-                        >
-                            {/* Corner accent dots */}
-                            <span className="absolute top-3 left-3 w-1 h-1 bg-amber-500/40 rounded-full" />
-                            <span className="absolute top-3 right-3 w-1 h-1 bg-white/10 rounded-full" />
-                            <span className="absolute bottom-3 left-3 w-1 h-1 bg-white/10 rounded-full" />
-                            <span className="absolute bottom-3 right-3 w-1 h-1 bg-amber-500/40 rounded-full" />
-
-                            {/* Animated top line */}
-                            <AnimLine delay={0.4} className="w-12 mb-12" />
-
-                            {/* Headline */}
-                            <div className="mb-2 overflow-hidden">
-                                <motion.h2
-                                    initial={{ y: 40, opacity: 0 }}
-                                    whileInView={{ y: 0, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-4xl md:text-5xl font-medium text-white tracking-tight"
-                                >
-                                    Master
-                                </motion.h2>
-                            </div>
-                            <div className="overflow-hidden mb-6">
-                                <motion.h2
-                                    initial={{ y: 40, opacity: 0 }}
-                                    whileInView={{ y: 0, opacity: 1 }}
-                                    viewport={{ once: true }}
-                                    transition={{ delay: 0.52, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                                    className="text-4xl md:text-5xl font-serif italic text-white/60 tracking-tight"
-                                >
-                                    Planning
-                                </motion.h2>
-                            </div>
-
-                            {/* Body */}
-                            <motion.p
-                                initial={{ opacity: 0, y: 16 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.6, duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-                                className="text-white/50 text-sm md:text-base font-light leading-relaxed mb-10"
-                            >
-                                Transforming raw potential into strategic assets. Our land development expertise ensures
-                                absolute compliance, seamless approvals, and infrastructure-ready spaces for visionary investors.
-                            </motion.p>
-
-                            {/* Services — right-aligned numbers */}
-                            <div className="flex flex-col gap-5 pt-6 border-t border-white/5">
-                                {[
-                                    { n: '01', label: 'Acquisition & Zoning' },
-                                    { n: '02', label: 'Turnkey Infrastructure' },
-                                ].map((item, i) => {
-                                    const [hovered, setHovered] = useState(false)
-                                    return (
-                                        <motion.div
-                                            key={item.n}
-                                            initial={{ opacity: 0, x: 16 }}
-                                            whileInView={{ opacity: 1, x: 0 }}
-                                            viewport={{ once: true }}
-                                            transition={{ delay: 0.5 + i * 0.12, duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
-                                            onMouseEnter={() => setHovered(true)}
-                                            onMouseLeave={() => setHovered(false)}
-                                            className="flex items-center justify-between cursor-default"
-                                        >
-                                            <div className="flex items-center gap-3 flex-1">
-                                                <motion.div
-                                                    animate={{ scaleX: hovered ? 1 : 0, opacity: hovered ? 1 : 0 }}
-                                                    transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                                                    style={{ transformOrigin: 'left' }}
-                                                    className="h-px flex-1 bg-amber-500/50 max-w-[60px]"
-                                                />
-                                                <motion.span
-                                                    animate={{ color: hovered ? 'rgba(255,255,255,1)' : 'rgba(255,255,255,0.8)', x: hovered ? -4 : 0 }}
-                                                    transition={{ duration: 0.3 }}
-                                                    className="text-[11px] uppercase tracking-[0.2em] font-medium"
-                                                >
-                                                    {item.label}
-                                                </motion.span>
-                                            </div>
-                                            <motion.span
-                                                animate={{ color: hovered ? '#f59e0b' : 'rgba(255,255,255,0.25)' }}
-                                                transition={{ duration: 0.3 }}
-                                                className="text-xs font-serif italic ml-4 shrink-0"
-                                            >
-                                                {item.n}
-                                            </motion.span>
-                                        </motion.div>
-                                    )
-                                })}
-                            </div>
-
-                            {/* CTA — left arrow */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.85, duration: 0.8 }}
-                                className="mt-12"
-                            >
-                                <Link
-                                    href="/properties"
-                                    className="inline-flex items-center gap-4 text-white/40 hover:text-white transition-colors duration-500 group"
-                                >
-                                    <motion.div whileHover={{ x: -4 }} transition={{ duration: 0.3 }}>
-                                        <ArrowLeft size={13} />
-                                    </motion.div>
-                                    <span className="text-[11px] uppercase tracking-[0.2em] font-medium">Explore Opportunities</span>
-                                </Link>
-                            </motion.div>
-                        </motion.div>
-                    </div>
-
-                    {/* ── Image Side (right) ── */}
-                    <div className="md:col-span-7 relative md:order-2 order-1">
-                        {/* Floating label */}
-                        <div className="mb-4 flex justify-end">
-                            <FloatingLabel text="Strategic Land Assets" delay={0.15} />
-                        </div>
-
-                        <motion.div
-                            initial={{ opacity: 0, clipPath: 'inset(12% 8% 12% 8%)' }}
-                            whileInView={{ opacity: 1, clipPath: 'inset(0% 0% 0% 0%)' }}
-                            viewport={{ once: true, margin: '-80px' }}
-                            transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
-                            className="relative h-[520px] md:h-[780px] w-full overflow-hidden"
-                        >
-                            <motion.div style={{ y: imageY }} className="absolute inset-[-8%] w-[116%] h-[116%]">
-                                <Image
-                                    src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000"
-                                    alt="Land Development"
-                                    fill
-                                    className="object-cover grayscale-[20%]"
-                                    sizes="(max-width: 768px) 100vw, 60vw"
-                                />
-                            </motion.div>
-                            <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
-
-                            {/* Bottom-right corner accent */}
-                            <motion.div
-                                initial={{ opacity: 0 }}
-                                whileInView={{ opacity: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 1.2, duration: 0.8 }}
-                                className="absolute bottom-6 right-6 flex items-end gap-3"
-                            >
-                                <span className="text-white/20 text-[10px] uppercase tracking-[0.2em]">Land Dev · 2024</span>
-                                <div className="w-8 h-8 border border-amber-500/30" />
-                            </motion.div>
-
-                            {/* Vertical progress line on right edge */}
-                            <motion.div
-                                initial={{ scaleY: 0 }}
-                                whileInView={{ scaleY: 1 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: 0.8, duration: 1.6, ease: [0.22, 1, 0.36, 1] }}
-                                style={{ transformOrigin: 'top' }}
-                                className="absolute top-8 right-0 w-px h-[calc(100%-64px)] bg-gradient-to-b from-amber-500/40 via-white/10 to-transparent"
-                            />
-                        </motion.div>
-
-                        <AnimLine delay={1.0} className="mt-4 ml-auto w-1/3" style={{ transformOrigin: 'right' }} />
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    )
+    return null
 }

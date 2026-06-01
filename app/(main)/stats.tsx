@@ -1,7 +1,7 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import { motion, useInView, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useInView } from 'framer-motion'
 
 // ── CountUp Hook ──────────────────────────────────────────────
 function useCountUp(target: number, duration = 2200, startOnView = true) {
@@ -53,22 +53,22 @@ function StatItem({ value, suffix = '+', label, index, description }: StatProps)
         >
             {/* Ambient glow behind number */}
             <motion.div
-                animate={{ opacity: hovered ? 0.12 : 0, scale: hovered ? 1 : 0.6 }}
+                animate={{ opacity: hovered ? 0.4 : 0, scale: hovered ? 1 : 0.6 }}
                 transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                className="absolute -top-6 -left-4 w-48 h-48 md:w-72 md:h-72 rounded-full bg-amber-400 blur-3xl pointer-events-none"
+                className="absolute -top-6 -left-4 w-48 h-48 md:w-72 md:h-72 rounded-full bg-blue-100 blur-3xl pointer-events-none"
             />
 
             {/* Number */}
             <div className="relative flex items-end gap-1 md:gap-2 mb-3">
                 <motion.span
-                    animate={{ color: hovered ? '#f59e0b' : '#ffffff' }}
+                    animate={{ color: hovered ? '#041D34' : '#062B4A' }}
                     transition={{ duration: 0.5 }}
                     className="text-[72px] md:text-[148px] font-medium tracking-tighter leading-none font-sans"
                 >
                     {count}
                 </motion.span>
                 <motion.span
-                    animate={{ color: hovered ? '#f59e0b' : 'rgba(255,255,255,0.25)' }}
+                    animate={{ color: hovered ? '#041D34' : 'rgba(6, 43, 74, 0.4)' }}
                     transition={{ duration: 0.5 }}
                     className="text-[32px] md:text-[64px] font-medium leading-none mb-2 md:mb-4 font-sans"
                 >
@@ -79,7 +79,7 @@ function StatItem({ value, suffix = '+', label, index, description }: StatProps)
             {/* Animated divider line */}
             <div className="relative h-px w-full mb-5 overflow-hidden">
                 {/* Base dim line */}
-                <div className="absolute inset-0 bg-white/10" />
+                <div className="absolute inset-0 bg-[#062B4A]/10" />
                 {/* Animated fill */}
                 <motion.div
                     initial={{ scaleX: 0 }}
@@ -87,26 +87,26 @@ function StatItem({ value, suffix = '+', label, index, description }: StatProps)
                     viewport={{ once: true }}
                     transition={{ delay: index * 0.18 + 0.4, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
                     style={{ transformOrigin: 'left' }}
-                    className="absolute inset-0 bg-white/20"
+                    className="absolute inset-0 bg-[#062B4A]/30"
                 />
                 {/* Hover fill */}
                 <motion.div
                     animate={{ scaleX: hovered ? 1 : 0 }}
                     transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
                     style={{ transformOrigin: 'left' }}
-                    className="absolute inset-0 bg-amber-500"
+                    className="absolute inset-0 bg-[#062B4A]"
                 />
                 {/* Shimmer on hover */}
                 <motion.div
                     animate={{ x: hovered ? '100%' : '-100%' }}
                     transition={{ duration: 0.8, ease: 'easeInOut' }}
-                    className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/40 to-transparent"
+                    className="absolute inset-0 w-1/3 bg-gradient-to-r from-transparent via-white/80 to-transparent mix-blend-overlay"
                 />
             </div>
 
             {/* Label */}
             <motion.p
-                animate={{ color: hovered ? 'rgba(255,255,255,0.85)' : 'rgba(255,255,255,0.45)' }}
+                animate={{ color: hovered ? 'rgba(6, 43, 74, 1)' : 'rgba(6, 43, 74, 0.6)' }}
                 transition={{ duration: 0.4 }}
                 className="text-sm md:text-base font-medium tracking-wide uppercase"
             >
@@ -122,7 +122,7 @@ function StatItem({ value, suffix = '+', label, index, description }: StatProps)
                     marginTop: hovered ? 12 : 0,
                 }}
                 transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-                className="text-white/30 text-xs md:text-sm font-light leading-relaxed max-w-[200px] overflow-hidden"
+                className="text-[#062B4A]/50 text-xs md:text-sm font-light leading-relaxed max-w-[200px] overflow-hidden"
             >
                 {description}
             </motion.p>
@@ -138,10 +138,10 @@ function BackgroundTicker() {
             <motion.div
                 animate={{ x: ['0%', '-50%'] }}
                 transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                className="flex gap-16 whitespace-nowrap absolute bottom-8 opacity-[0.025]"
+                className="flex gap-16 whitespace-nowrap absolute bottom-8 opacity-[0.02]"
             >
                 {[...words, ...words, ...words, ...words].map((w, i) => (
-                    <span key={i} className="text-white text-6xl md:text-8xl font-sans font-bold tracking-widest uppercase">
+                    <span key={i} className="text-[#062B4A] text-6xl md:text-8xl font-sans font-bold tracking-widest uppercase">
                         {w}
                     </span>
                 ))}
@@ -159,7 +159,7 @@ function VerticalDivider({ delay }: { delay: number }) {
             viewport={{ once: true }}
             transition={{ delay, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: 'top' }}
-            className="hidden md:block w-px bg-gradient-to-b from-transparent via-white/10 to-transparent self-stretch"
+            className="hidden md:block w-px bg-gradient-to-b from-transparent via-[#062B4A]/10 to-transparent self-stretch"
         />
     )
 }
@@ -190,13 +190,13 @@ export default function StatsSection() {
     return (
         <section
             id="global"
-            className="relative py-24 md:py-40 px-6 md:px-12 bg-[#080808] overflow-hidden border-b border-white/5"
+            className="relative py-24 md:py-40 px-6 md:px-12 bg-white overflow-hidden border-b border-[#062B4A]/10"
         >
             {/* Background scrolling ticker */}
             <BackgroundTicker />
 
             {/* Ambient top gradient */}
-            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
+            <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#062B4A]/10 to-transparent" />
 
             {/* Content */}
             <div className="relative z-10 max-w-[1600px] mx-auto">
@@ -207,7 +207,7 @@ export default function StatsSection() {
                     whileInView={{ opacity: 1, letterSpacing: '0.2em' }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-white/20 text-xs uppercase tracking-[0.2em] mb-16 md:mb-24 font-medium"
+                    className="text-[#062B4A]/40 text-xs uppercase tracking-[0.2em] mb-16 md:mb-24 font-bold"
                 >
                     By the Numbers
                 </motion.p>
@@ -221,7 +221,7 @@ export default function StatsSection() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-white/35 font-serif italic text-2xl md:text-3xl max-w-xs leading-snug"
+                            className="text-[#062B4A]/70 font-serif italic text-2xl md:text-3xl max-w-xs leading-snug"
                         >
                             Building legacy through precision and architectural foresight.
                         </motion.p>
@@ -233,12 +233,12 @@ export default function StatsSection() {
                         {/* Desktop: horizontal row with dividers */}
                         <div className="hidden md:flex items-start gap-0">
                             {stats.map((stat, i) => (
-                                <>
-                                    <div key={stat.label} className="flex-1 px-10 first:pl-0 last:pr-0">
+                                <div key={stat.label} className="flex flex-1">
+                                    <div className="flex-1 px-10 first:pl-0 last:pr-0">
                                         <StatItem {...stat} index={i} />
                                     </div>
-                                    {i < stats.length - 1 && <VerticalDivider key={`div-${i}`} delay={i * 0.18 + 0.3} />}
-                                </>
+                                    {i < stats.length - 1 && <VerticalDivider delay={i * 0.18 + 0.3} />}
+                                </div>
                             ))}
                         </div>
 
@@ -254,7 +254,7 @@ export default function StatsSection() {
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.3, duration: 0.8 }}
                                             style={{ transformOrigin: 'left' }}
-                                            className="mt-12 h-px bg-white/8"
+                                            className="mt-12 h-px bg-[#062B4A]/10"
                                         />
                                     )}
                                 </div>
@@ -271,7 +271,7 @@ export default function StatsSection() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.8, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                     style={{ transformOrigin: 'left' }}
-                    className="mt-20 md:mt-32 h-px bg-gradient-to-r from-white/15 via-amber-500/30 to-transparent"
+                    className="mt-20 md:mt-32 h-px bg-gradient-to-r from-[#062B4A]/5 via-[#062B4A]/15 to-transparent"
                 />
             </div>
         </section>

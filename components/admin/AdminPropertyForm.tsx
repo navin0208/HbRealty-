@@ -74,8 +74,6 @@ export default function AdminPropertyForm() {
 
   return (
     <div className="bg-zinc-950 border border-white/10 p-8 md:p-12 rounded-[30px] max-w-5xl mx-auto w-full relative overflow-hidden shadow-2xl">
-      <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-emerald-500/5 blur-[120px] rounded-full pointer-events-none" />
-      
       <div className="relative z-10 mb-10">
         <h3 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-4">Admin: Add Listing</h3>
         <p className="text-white/50 font-light text-sm md:text-base">Enter property details and drop a pin on the map to publish it immediately.</p>

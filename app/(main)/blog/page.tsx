@@ -52,7 +52,7 @@ export default function BlogPage() {
   const otherPosts = posts.filter(p => !p.featured);
 
   return (
-    <main className="min-h-screen bg-black font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <main className="min-h-screen bg-[#062B4A] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white overflow-x-hidden">
 
       {/* ═══ HEADER (EDITORIAL) ═══ */}
       <section className="relative pt-40 pb-12 px-6 md:px-12 max-w-[1600px] mx-auto">
@@ -75,7 +75,6 @@ export default function BlogPage() {
             className="relative h-[500px] md:h-[600px] overflow-hidden group cursor-pointer"
           >
             <Image src={featuredPost.image} alt={featuredPost.title} fill className="object-cover grayscale-[30%] transition-transform duration-[20s] group-hover:scale-105" />
-            <div className="absolute inset-0 bg-[#080808]/20 mix-blend-multiply" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent" />
             
             <div className="absolute top-8 left-8 border border-white/20 px-4 py-1.5">
@@ -91,9 +90,9 @@ export default function BlogPage() {
                   <div className="w-px h-3 bg-white/20" />
                   <span className="flex items-center gap-2"><Clock size={12} /> {featuredPost.readTime}</span>
                 </div>
-                <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.1] mb-6 group-hover:text-white/80 transition-colors">{featuredPost.title}</h2>
+                <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.1] mb-6 group-hover:text-[#A98B55]/80 transition-colors">{featuredPost.title}</h2>
                 <p className="text-white/50 font-light text-lg leading-relaxed mb-8 hidden md:block max-w-xl">{featuredPost.excerpt}</p>
-                <div className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4">
+                <div className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4">
                   <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Read Article</span>
                   <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
                 </div>
@@ -117,7 +116,7 @@ export default function BlogPage() {
             >
               <div className="relative h-[300px] w-full overflow-hidden mb-8">
                 <Image src={post.image} alt={post.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[10s] group-hover:scale-105" />
-                <div className="absolute inset-0 bg-[#080808]/20 group-hover:bg-transparent transition-colors duration-700" />
+                <div className="absolute inset-0 bg-[#041D34]/20 group-hover:bg-transparent transition-colors duration-700" />
               </div>
               <div className="flex items-center gap-4 text-white/30 text-[10px] font-medium uppercase tracking-[0.2em] mb-5">
                 <span className="text-white/50">{post.category}</span>
@@ -126,9 +125,9 @@ export default function BlogPage() {
                 <div className="w-px h-3 bg-white/20" />
                 <span className="flex items-center gap-2"><Clock size={12} /> {post.readTime}</span>
               </div>
-              <h3 className="text-2xl font-medium text-white leading-[1.2] mb-4 group-hover:text-white/70 transition-colors tracking-tight">{post.title}</h3>
+              <h3 className="text-2xl font-medium text-white leading-[1.2] mb-4 group-hover:text-[#A98B55]/70 transition-colors tracking-tight">{post.title}</h3>
               <p className="text-white/40 text-base font-light leading-relaxed mb-8 flex-1">{post.excerpt}</p>
-              <div className="text-white/50 group-hover:text-white transition-colors duration-500 flex items-center gap-4">
+              <div className="text-white/50 group-hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4">
                 <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Read Article</span>
                 <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
               </div>
@@ -155,7 +154,7 @@ export default function BlogPage() {
                 <label className="text-white/30 text-[10px] font-medium uppercase tracking-[0.2em] block mb-3 pl-2">Email Address</label>
                 <input type="email" placeholder="Enter your email" className="w-full bg-transparent border-b border-white/10 px-2 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/20" />
               </div>
-              <button className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group pb-3 border-b border-transparent">
+              <button className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group pb-3 border-b border-transparent">
                 <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Subscribe</span>
                 <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
               </button>

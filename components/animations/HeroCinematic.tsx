@@ -100,14 +100,14 @@ export default function HeroCinematic() {
   const words = current.heading.split(" ");
 
   return (
-    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-black">
+    <section ref={containerRef} className="relative h-screen w-full overflow-hidden bg-[#062B4A]">
       
       {/* INITIAL CURTAIN WIPE (Only on mount) */}
       <motion.div 
         initial={{ y: 0 }}
         animate={{ y: "-100%" }}
         transition={{ duration: 1.2, ease: [0.76, 0, 0.24, 1], delay: 0.2 }}
-        className="absolute inset-0 z-50 bg-[#080808] origin-top pointer-events-none"
+        className="absolute inset-0 z-50 bg-[#041D34] origin-top pointer-events-none"
       />
 
       {/* LAYER 1: Ambient Floating Geometry */}
@@ -139,7 +139,7 @@ export default function HeroCinematic() {
             </div>
           </motion.div>
         </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/20 to-black z-20" />
+        <div className="absolute inset-0 bg-gradient-to-b from-[#062B4A]/80 via-[#062B4A]/20 to-[#062B4A] z-20" />
       </div>
 
       {/* LAYER 3: Mid-ground Texture/Grain */}
@@ -197,11 +197,11 @@ export default function HeroCinematic() {
               
               {/* CTAs */}
               <div className="flex items-center gap-6 mt-10 pl-0 md:pl-8">
-                <Link href="/portfolio" className="group flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-amber-500 hover:text-white transition-all">
+                <Link href="/portfolio" className="group flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white text-[#062B4A] hover:text-[#A98B55] transition-all">
                   Explore Portfolio
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
                 </Link>
-                <Link href="/contact" className="group flex items-center gap-4 text-white/50 hover:text-white transition-colors">
+                <Link href="/contact" className="group flex items-center gap-4 text-white/50 hover:text-[#A98B55] transition-colors">
                   <span className="text-[10px] font-bold uppercase tracking-widest">Contact Us</span>
                 </Link>
               </div>

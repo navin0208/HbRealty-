@@ -10,7 +10,7 @@ import { useElementScrollProgress, type ElementScrollOffset } from "@/components
 import HeroCinematic from "@/components/animations/HeroCinematic";
 import { cardHover, scaleIn } from "@/lib/animation-variants"; // 🚀 ANTIGRAVITY
 import StatsSection from "./stats";
-import { AboutSection } from "./abt";
+import { AboutSection, LandDevelopmentSection } from "./abt";
 
 const SCROLL_REVEAL_OFFSET: ElementScrollOffset = ["start 0.9", "start 0.4"];
 const WAREHOUSE_SCROLL_OFFSET: ElementScrollOffset = ["start end", "end start"];
@@ -155,11 +155,11 @@ export default function Home() {
   }, [activeService]);
 
   return (
-    <main className="relative min-h-screen w-full bg-black font-sans scroll-smooth overflow-x-hidden">
+    <main className="relative min-h-screen w-full bg-[#062B4A] font-sans scroll-smooth overflow-x-hidden">
       <HeroCinematic />
 
       {/* EDITORIAL IMPACT STATS */}
-      {/* <section id="global" className="relative py-24 md:py-40 px-6 md:px-12 bg-[#080808] overflow-hidden border-b border-white/5">
+      {/* <section id="global" className="relative py-24 md:py-40 px-6 md:px-12 bg-[#041D34] overflow-hidden border-b border-white/5">
         <div className="relative z-10 max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8">
             <div className="md:col-span-4 flex items-end pb-8">
@@ -170,20 +170,20 @@ export default function Home() {
             
             <div className="md:col-span-8 grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 md:pl-24">
               <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="flex flex-col items-start group">
-                <h3 className="text-white text-6xl md:text-[140px] font-light tracking-tighter mb-2 font-serif group-hover:text-amber-500 transition-colors duration-700">200<span className="text-4xl md:text-7xl text-white/30">+</span></h3>
-                <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full group-hover:bg-amber-500 transition-all duration-700 ease-cinematic" />
+                <h3 className="text-white text-6xl md:text-[140px] font-light tracking-tighter mb-2 font-serif group-hover:text-[#A98B55]/90 transition-colors duration-700">200<span className="text-4xl md:text-7xl text-white/30">+</span></h3>
+                <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full group-hover:bg-white text-[#062B4A] transition-all duration-700 ease-cinematic" />
                 <p className="text-white/50 text-sm md:text-base font-medium">Trusted Global Clients</p>
               </motion.div>
               
               <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.2, duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="flex flex-col items-start group md:mt-24">
-                <h3 className="text-white text-6xl md:text-[140px] font-light tracking-tighter mb-2 font-serif group-hover:text-amber-500 transition-colors duration-700">27<span className="text-4xl md:text-7xl text-white/30">+</span></h3>
-                <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full group-hover:bg-amber-500 transition-all duration-700 ease-cinematic" />
+                <h3 className="text-white text-6xl md:text-[140px] font-light tracking-tighter mb-2 font-serif group-hover:text-[#A98B55]/90 transition-colors duration-700">27<span className="text-4xl md:text-7xl text-white/30">+</span></h3>
+                <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full group-hover:bg-white text-[#062B4A] transition-all duration-700 ease-cinematic" />
                 <p className="text-white/50 text-sm md:text-base font-medium">Years of Legal Mastery</p>
               </motion.div>
               
               <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: 0.4, duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="flex flex-col items-start group">
-                <h3 className="text-white text-6xl md:text-[140px] font-light tracking-tighter mb-2 font-serif group-hover:text-amber-500 transition-colors duration-700">25<span className="text-4xl md:text-7xl text-white/30">+</span></h3>
-                <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full group-hover:bg-amber-500 transition-all duration-700 ease-cinematic" />
+                <h3 className="text-white text-6xl md:text-[140px] font-light tracking-tighter mb-2 font-serif group-hover:text-[#A98B55]/90 transition-colors duration-700">25<span className="text-4xl md:text-7xl text-white/30">+</span></h3>
+                <div className="w-12 h-px bg-white/20 mb-6 group-hover:w-full group-hover:bg-white text-[#062B4A] transition-all duration-700 ease-cinematic" />
                 <p className="text-white/50 text-sm md:text-base font-medium">Signature Projects</p>
               </motion.div>
             </div>
@@ -192,120 +192,11 @@ export default function Home() {
       </section> */}
       <StatsSection />
 
-      {/* ARCHITECTURAL WAREHOUSING SECTION */}
-      <section id="about" className="relative py-32 bg-[#080808] border-b border-white/5 overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0">
-
-            <div className="md:col-span-7 relative">
-              <motion.div
-                initial={{ opacity: 0, clipPath: "inset(10% 10% 10% 10%)" }}
-                whileInView={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)" }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[600px] md:h-[800px] w-full"
-              >
-                <Image src="/warehousing.avif" alt="Grade-A Warehousing" fill className="object-cover" sizes="(max-width: 768px) 100vw, 60vw" />
-                <div className="absolute inset-0 bg-black/20 mix-blend-multiply" />
-              </motion.div>
-            </div>
-
-
-            <div className="md:col-span-5 relative z-10 flex flex-col justify-center md:-ml-24 md:mt-32">
-              <motion.div
-                initial={{ opacity: 0, x: 40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className="bg-[#080808] p-10 md:p-16 border border-white/10"
-              >
-                <div className="w-12 h-px bg-white/20 mb-12" />
-                <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-4">
-                  Industrial <br /> <span className="font-serif italic text-white/60">Ecosystems</span>
-                </h2>
-                <p className="text-white/50 text-sm md:text-base font-light leading-relaxed mb-10">
-                  We develop Grade-A warehousing infrastructure with absolute precision. Our spaces are engineered for the future of logistics, backed by decades of legal and operational mastery.
-                </p>
-
-                <div className="flex flex-col gap-6 pt-4 border-t border-white/5">
-                  <div className="flex items-center gap-4">
-                    <span className="text-white/30 text-xs font-serif italic">01</span>
-                    <span className="text-white/80 text-[11px] uppercase tracking-[0.2em] font-medium">Land Development</span>
-                  </div>
-                  <div className="flex items-center gap-4">
-                    <span className="text-white/30 text-xs font-serif italic">02</span>
-                    <span className="text-white/80 text-[11px] uppercase tracking-[0.2em] font-medium">Legal Precision</span>
-                  </div>
-                </div>
-
-                <Link href="/portfolio" className="mt-12 inline-flex items-center gap-4 text-white/50 hover:text-white transition-colors group">
-                  <span className="text-[11px] uppercase tracking-[0.2em] font-medium">View Portfolio</span>
-                  <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
-                </Link>
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-      <section id="land-development" className="relative py-32 bg-[#080808] border-b border-white/5 overflow-hidden">
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 w-full">
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-0 flex-col-reverse md:flex-row">
-
-            <div className="md:col-span-5 relative z-10 flex flex-col justify-center md:mb-32 md:order-1 order-2 md:mr-[-100px]">
-              <motion.div
-                initial={{ opacity: 0, x: -40 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
-                className="bg-[#080808] p-10 md:p-16 border border-white/10"
-              >
-                <div className="w-12 h-px bg-white/20 mb-12" />
-                <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-4">
-                  Master <br /> <span className="font-serif italic text-white/60">Planning</span>
-                </h2>
-                <p className="text-white/50 text-sm md:text-base font-light leading-relaxed mb-10">
-                  Transforming raw potential into strategic assets. Our land development expertise ensures absolute compliance, seamless approvals, and infrastructure-ready spaces for visionary investors.
-                </p>
-
-                <div className="flex flex-col gap-6 pt-4 border-t border-white/5">
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-[11px] uppercase tracking-[0.2em] font-medium">Acquisition & Zoning</span>
-                    <span className="text-white/30 text-xs font-serif italic">01</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-white/80 text-[11px] uppercase tracking-[0.2em] font-medium">Turnkey Infrastructure</span>
-                    <span className="text-white/30 text-xs font-serif italic">02</span>
-                  </div>
-                </div>
-
-                <Link href="/properties" className="mt-12 inline-flex items-center gap-4 text-white/50 hover:text-white transition-colors group">
-                  <ArrowLeft size={14} className="group-hover:-translate-x-2 transition-transform ease-cinematic" />
-                  <span className="text-[11px] uppercase tracking-[0.2em] font-medium">Explore Opportunities</span>
-                </Link>
-              </motion.div>
-            </div>
-
-
-            <div className="md:col-span-7 relative md:order-2 order-1">
-              <motion.div
-                initial={{ opacity: 0, clipPath: "inset(10% 10% 10% 10%)" }}
-                whileInView={{ opacity: 1, clipPath: "inset(0% 0% 0% 0%)" }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 1.6, ease: [0.16, 1, 0.3, 1] }}
-                className="relative h-[600px] md:h-[800px] w-full"
-              >
-                <Image src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000" alt="Land Development" fill className="object-cover grayscale-[20%]" sizes="(max-width: 768px) 100vw, 60vw" />
-                <div className="absolute inset-0 bg-black/10 mix-blend-multiply" />
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
+      <AboutSection />
+      <LandDevelopmentSection />
 
       {/* IMMERSIVE CINEMATIC VIDEO */}
-      <section className="relative min-h-screen bg-black overflow-hidden flex flex-col justify-center py-20">
+      <section className="relative min-h-screen bg-[#062B4A] overflow-hidden flex flex-col justify-center py-20">
         <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full mb-12">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -353,8 +244,8 @@ export default function Home() {
           </video>
 
           {/* Cinematic Letterboxing Gradients */}
-          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-black to-transparent z-10" />
-          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-black to-transparent z-10" />
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#062B4A] to-transparent z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#062B4A] to-transparent z-10" />
 
           {/* Centered Play Button (Only on Pause) */}
           <div className="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
@@ -418,7 +309,7 @@ export default function Home() {
       </section>
 
       {/* STRATEGIC TRANSFORMATION SECTION */}
-      <section className="relative py-24 md:py-40 px-6 md:px-12 bg-black border-b border-white/5 overflow-hidden">
+      <section className="relative py-24 md:py-40 px-6 md:px-12 bg-[#062B4A] border-b border-white/5 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-32 space-y-4">
             <span className="text-white/30 text-xs font-bold uppercase tracking-[0.6em] block">Business Lifecycle</span>
@@ -428,16 +319,13 @@ export default function Home() {
             <div className="absolute top-1/2 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-white/5 to-transparent hidden md:block -translate-y-1/2 pointer-events-none" />
             <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} className="relative p-10 md:p-14 bg-zinc-950/50 border border-white/5 rounded-[40px] md:rounded-none md:rounded-l-[40px] group hover:bg-zinc-900/50 transition-all flex flex-col items-start text-left"><div className="mb-10 p-4 rounded-2xl bg-red-500/10 text-red-500 group-hover:scale-110 transition-transform"><AlertCircle size={28} /></div><h3 className="text-white text-2xl font-bold uppercase tracking-widest mb-8">The Challenge</h3><ul className="space-y-6">{["Unclear land titles.", "Delayed approvals.", "Poor layout planning.", "Hidden infrastructure costs."].map((item, i) => (<li key={i} className="text-white/40 text-sm font-light tracking-wide flex items-center gap-4"><div className="h-[1px] w-4 bg-red-500/30" /> {item}</li>))}</ul></motion.div>
             <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="relative p-10 md:p-14 bg-zinc-900 border-x border-white/5 md:z-10 shadow-2xl flex flex-col items-start text-left"><div className="mb-10 p-4 rounded-2xl bg-purple-500/10 text-purple-500"><RefreshCcw size={28} /></div><h3 className="text-white text-2xl font-bold uppercase tracking-widest mb-8">Our Approach</h3><ul className="space-y-6">{["Verified documentation.", "Approved master planning.", "Infrastructure-ready plots.", "Transparent development process."].map((item, i) => (<li key={i} className="text-white/60 text-sm font-light tracking-wide flex items-center gap-4"><div className="h-[1px] w-4 bg-purple-500/50" /> {item}</li>))}</ul></motion.div>
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="relative p-10 md:p-14 bg-white rounded-[40px] md:rounded-none md:rounded-r-[40px] shadow-2xl flex flex-col items-start text-left group"><div className="mb-10 p-4 rounded-2xl bg-black/5 text-black group-hover:scale-110 transition-transform"><TrendingUp size={28} /></div><h3 className="text-black text-2xl font-bold uppercase tracking-widest mb-8">Your Advantage</h3><ul className="space-y-6">{["Secure ownership", "Faster execution", "Operational efficiency", "Long-term capital growth"].map((item, i) => (<li key={i} className="text-black/60 text-sm font-bold tracking-wide flex items-center gap-4"><CheckCircle size={16} className="text-black" /> {item}</li>))}</ul></motion.div>
+            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="relative p-10 md:p-14 bg-white rounded-[40px] md:rounded-none md:rounded-r-[40px] shadow-2xl flex flex-col items-start text-left group"><div className="mb-10 p-4 rounded-2xl bg-[#062B4A]/5 text-black group-hover:scale-110 transition-transform"><TrendingUp size={28} /></div><h3 className="text-black text-2xl font-bold uppercase tracking-widest mb-8">Your Advantage</h3><ul className="space-y-6">{["Secure ownership", "Faster execution", "Operational efficiency", "Long-term capital growth"].map((item, i) => (<li key={i} className="text-black/60 text-sm font-bold tracking-wide flex items-center gap-4"><CheckCircle size={16} className="text-black" /> {item}</li>))}</ul></motion.div>
           </div>
         </div>
       </section>
 
       {/* ULTRA-PREMIUM CINEMATIC CAPABILITIES CAROUSEL */}
-      <section className="relative bg-black py-24 md:py-40 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-[500px] h-[500px] bg-purple-500/10 blur-[150px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-orange-500/10 blur-[150px] rounded-full pointer-events-none" />
-
+      <section className="relative bg-[#062B4A] py-24 md:py-40 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-6 md:px-20">
           <div className="flex flex-col md:flex-row items-end justify-between mb-24 gap-12">
             <div className="space-y-6">
@@ -465,11 +353,11 @@ export default function Home() {
                 ))}
               </div>
               <div className="flex gap-4">
-                <button onClick={() => { setActiveService(prev => (prev - 1 + services.length) % services.length); setTimerProgress(0); }} className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:border-white transition-all group overflow-hidden relative">
+                <button onClick={() => { setActiveService(prev => (prev - 1 + services.length) % services.length); setTimerProgress(0); }} className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all group overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full" />
                   <ArrowLeft size={24} className="relative z-10" />
                 </button>
-                <button onClick={() => { setActiveService(prev => (prev + 1) % services.length); setTimerProgress(0); }} className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-white hover:border-white transition-all group overflow-hidden relative">
+                <button onClick={() => { setActiveService(prev => (prev + 1) % services.length); setTimerProgress(0); }} className="w-16 h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all group overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full" />
                   <ArrowRight size={24} className="relative z-10" />
                 </button>
@@ -481,8 +369,8 @@ export default function Home() {
             <AnimatePresence mode="wait">
               <motion.div key={activeService} initial={{ opacity: 0, scale: 1.1, filter: "blur(20px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: 0.9, filter: "blur(20px)" }} transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
                 <Image src={services[activeService].image} alt={services[activeService].title} fill className="object-cover brightness-75 transition-transform duration-[20s] group-hover:scale-110 ease-out" sizes="100vw" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                <div className="absolute inset-0 bg-gradient-to-r from-black/60 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-[#062B4A]/20 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-r from-[#062B4A]/60 via-transparent to-transparent" />
                 <div className="absolute inset-0 p-12 md:p-24 flex flex-col justify-end items-start">
                   <motion.div initial={{ x: -50, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ delay: 0.4, duration: 0.8 }} className="max-w-4xl space-y-10">
                     <div className="space-y-4">
@@ -508,7 +396,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           DUBAI — ACT I: CINEMATIC VIDEO MOMENT
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative min-h-[90vh] md:h-screen bg-black overflow-hidden flex items-center justify-center py-10 md:py-20 px-4 md:px-12">
+      <section className="relative min-h-[90vh] md:h-screen bg-[#062B4A] overflow-hidden flex items-center justify-center py-10 md:py-20 px-4 md:px-12">
         <motion.div
           initial={{ scale: 0.9, opacity: 0 }}
           whileInView={{ scale: 1, opacity: 1 }}
@@ -529,8 +417,8 @@ export default function Home() {
 
           {/* Cinematic Vignette — soft fade on ALL edges within the rounded frame */}
           <div className="absolute inset-0 pointer-events-none z-10" style={{ boxShadow: 'inset 0 0 150px 50px rgba(0,0,0,0.8)' }} />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40 z-10" />
-          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/80 to-transparent z-10" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-[#062B4A]/40 z-10" />
+          <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#062B4A]/80 to-transparent z-10" />
 
           {/* Title Card — Bottom-aligned with staggered premium animations */}
           <div className="absolute inset-0 z-20 flex flex-col justify-end pb-16 md:pb-24 px-8 md:px-20">
@@ -604,8 +492,6 @@ export default function Home() {
           ═══════════════════════════════════════════════════════════ */}
       <section className="relative bg-[#030303] py-24 md:py-40 overflow-hidden border-b border-white/5">
         {/* Ambient Background */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-amber-500/5 blur-[200px] rounded-full pointer-events-none" />
-
         <div className="max-w-7xl mx-auto px-6 md:px-12">
           {/* Lead Copy */}
           <motion.div
@@ -635,9 +521,9 @@ export default function Home() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.06 }}
-                className="group p-6 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-amber-500/5 hover:border-amber-500/20 transition-all duration-700 text-center flex flex-col items-center gap-4 flex-shrink-0 w-[220px] snap-center md:w-auto md:snap-none"
+                className="group p-6 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white text-[#062B4A]/5 hover:border-white/50/20 transition-all duration-700 text-center flex flex-col items-center gap-4 flex-shrink-0 w-[220px] snap-center md:w-auto md:snap-none"
               >
-                <div className="p-3 rounded-2xl bg-white/5 text-white/40 group-hover:text-amber-400 group-hover:bg-amber-500/10 transition-all">
+                <div className="p-3 rounded-2xl bg-white/5 text-white/40 group-hover:text-[#A98B55]/80 group-hover:bg-white text-[#062B4A]/10 transition-all">
                   {item.icon}
                 </div>
                 <div>
@@ -655,12 +541,12 @@ export default function Home() {
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
-              className="lg:col-span-2 relative bg-gradient-to-br from-amber-900/40 via-amber-950/60 to-black p-12 md:p-16 flex flex-col justify-between min-h-[450px]"
+              className="lg:col-span-2 relative bg-gradient-to-br from-amber-900/40 via-amber-950/60 to-[#062B4A] p-12 md:p-16 flex flex-col justify-between min-h-[450px]"
             >
               <div>
                 <div className="flex items-center gap-3 mb-10">
-                  <div className="h-1.5 w-1.5 rounded-full bg-amber-400 animate-pulse" />
-                  <span className="text-amber-400/60 text-[9px] font-bold uppercase tracking-[0.6em]">Partner Spotlight</span>
+                  <div className="h-1.5 w-1.5 rounded-full bg-white/90 text-[#062B4A] animate-pulse" />
+                  <span className="text-white/80/60 text-[9px] font-bold uppercase tracking-[0.6em]">Partner Spotlight</span>
                 </div>
 
                 {/* Partner Logo */}
@@ -679,7 +565,7 @@ export default function Home() {
                 <p className="text-white/30 font-serif italic text-xl mt-2">Consultants</p>
               </div>
               <div className="flex flex-wrap gap-3 pt-8">
-                <motion.a href="#" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 bg-white text-black py-4 px-8 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-amber-400 transition-all">
+                <motion.a href="#" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 bg-white text-black py-4 px-8 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-white/90 text-[#062B4A] transition-all">
                   Visit Partner <ArrowRight size={14} />
                 </motion.a>
                 <motion.a href="#" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 border border-white/20 text-white py-4 px-8 rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:border-white transition-all">
@@ -704,7 +590,7 @@ export default function Home() {
                 <p className="text-white/20 text-[9px] font-bold uppercase tracking-[0.5em]">Operational Domains</p>
                 <div className="grid grid-cols-3 gap-8">
                   {[
-                    { label: "UAE", sub: "Local advisory presence", color: "bg-amber-400" },
+                    { label: "UAE", sub: "Local advisory presence", color: "bg-white/90 text-[#062B4A]" },
                     { label: "Tax", sub: "Compliance & structuring", color: "bg-emerald-400" },
                     { label: "Setup", sub: "Formation & support", color: "bg-blue-400" },
                   ].map((stat, i) => (
@@ -726,7 +612,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           PROJECTS — UPCOMING & ONGOING CAROUSEL
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative bg-black py-24 md:py-40 overflow-hidden border-t border-white/5">
+      <section className="relative bg-[#062B4A] py-24 md:py-40 overflow-hidden border-t border-white/5">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(255,255,255,0.03)_0%,_transparent_60%)] pointer-events-none" />
 
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
@@ -760,7 +646,7 @@ export default function Home() {
           {/* Status Filter Tabs */}
           <div className="flex items-center gap-3 mb-12">
             {["All", "Ongoing", "Upcoming"].map((tab) => (
-              <button key={tab} className="group px-6 py-2.5 rounded-full border border-white/10 text-white/40 text-xs font-bold uppercase tracking-[0.3em] hover:border-white hover:text-white transition-all first:bg-white first:text-black first:border-white">
+              <button key={tab} className="group px-6 py-2.5 rounded-full border border-white/10 text-white/40 text-xs font-bold uppercase tracking-[0.3em] hover:border-white hover:text-[#A98B55] transition-all first:bg-white first:text-black first:border-white">
                 {tab}
               </button>
             ))}
@@ -784,8 +670,8 @@ export default function Home() {
                 },
                 {
                   status: "Upcoming",
-                  statusColor: "bg-amber-400/20 text-amber-400 border-amber-400/30",
-                  dotColor: "bg-amber-400",
+                  statusColor: "bg-white/90 text-[#062B4A]/20 text-white/80 border-white/40/30",
+                  dotColor: "bg-white/90 text-[#062B4A]",
                   title: "HB Logistics Hub",
                   subtitle: "Phase II",
                   location: "Sinnar, Nashik",
@@ -796,8 +682,8 @@ export default function Home() {
                 },
                 {
                   status: "Upcoming",
-                  statusColor: "bg-amber-400/20 text-amber-400 border-amber-400/30",
-                  dotColor: "bg-amber-400",
+                  statusColor: "bg-white/90 text-[#062B4A]/20 text-white/80 border-white/40/30",
+                  dotColor: "bg-white/90 text-[#062B4A]",
                   title: "HB Commercial Zone",
                   subtitle: "Premium Commercial",
                   location: "Igatpuri Road, Nashik",
@@ -820,8 +706,8 @@ export default function Home() {
                 },
                 {
                   status: "Upcoming",
-                  statusColor: "bg-amber-400/20 text-amber-400 border-amber-400/30",
-                  dotColor: "bg-amber-400",
+                  statusColor: "bg-white/90 text-[#062B4A]/20 text-white/80 border-white/40/30",
+                  dotColor: "bg-white/90 text-[#062B4A]",
                   title: "HB Warehouse Complex",
                   subtitle: "Grade A Warehousing",
                   location: "MIDC, Nashik",
@@ -846,8 +732,8 @@ export default function Home() {
                   </div>
 
                   {/* Gradient Overlays */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/20 to-transparent" />
-                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-black/90 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-[#062B4A]/20 to-transparent" />
+                  <div className="absolute inset-x-0 bottom-0 h-2/3 bg-gradient-to-t from-[#062B4A]/90 to-transparent" />
 
                   {/* Status Badge — Top Right */}
                   <div className="absolute top-5 right-5 z-10">
@@ -898,7 +784,7 @@ export default function Home() {
                     {/* CTA */}
                     <motion.button
                       whileHover={{ x: 4 }}
-                      className="w-full flex items-center justify-between pt-2 text-white/40 hover:text-white transition-colors group/btn"
+                      className="w-full flex items-center justify-between pt-2 text-white/40 hover:text-[#A98B55] transition-colors group/btn"
                     >
                       <span className="text-[10px] font-bold uppercase tracking-[0.4em]">View Details</span>
                       <ArrowRight size={16} className="group-hover/btn:translate-x-1 transition-transform" />
@@ -923,7 +809,7 @@ export default function Home() {
 
 
       {/* Expertise Cards Grid */}
-      <section id="expertise" className="relative py-24 md:py-40 px-6 md:px-12 bg-black">
+      <section id="expertise" className="relative py-24 md:py-40 px-6 md:px-12 bg-[#062B4A]">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-32">
             <div>
@@ -950,25 +836,22 @@ export default function Home() {
       </section>
 
       {/* Featured Projects Portfolio */}
-      <section id="projects" className="relative py-24 md:py-40 px-6 md:px-12 bg-black border-t border-white/5">
+      <section id="projects" className="relative py-24 md:py-40 px-6 md:px-12 bg-[#062B4A] border-t border-white/5">
         <div className="max-w-7xl mx-auto flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:flex-row gap-6 md:gap-20 -mx-6 px-6 md:mx-0 md:px-0">
-          <Link href="/warehousing-2" className="group cursor-pointer flex-shrink-0 w-[300px] snap-center md:flex-1 md:w-auto md:snap-none" data-cursor="view"><div className="relative h-[450px] md:h-[800px] w-full overflow-hidden rounded-3xl mb-10"><Image src="/Cam_05-scaled.jpg" alt="Osiyan Grade-A Warehousing in Nashik — HB Realty India" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 50vw" /><div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors" /><div className="absolute bottom-6 md:bottom-10 left-6 md:left-10"><h3 className="text-white text-3xl md:text-4xl font-bold uppercase tracking-tighter">Osiyan Warehousing</h3><p className="text-white/40 italic font-serif">Dindori, Nashik</p></div></div></Link>
-          <Link href="/portfolio" className="group cursor-pointer flex-shrink-0 w-[300px] snap-center md:flex-1 md:pt-40 md:w-auto md:snap-none" data-cursor="view"><div className="relative h-[450px] md:h-[800px] w-full overflow-hidden rounded-3xl mb-10"><Image src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000" alt="Land Development Projects in Nashik — Plotted Communities by HB Realty" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 50vw" /><div className="absolute inset-0 bg-black/40 group-hover:bg-black/10 transition-colors" /><div className="absolute bottom-6 md:bottom-10 left-6 md:left-10"><h3 className="text-white text-3xl md:text-4xl font-bold uppercase tracking-tighter">Land Development</h3><p className="text-white/40 italic font-serif">Across Maharashtra</p></div></div></Link>
+          <Link href="/warehousing-2" className="group cursor-pointer flex-shrink-0 w-[300px] snap-center md:flex-1 md:w-auto md:snap-none" data-cursor="view"><div className="relative h-[450px] md:h-[800px] w-full overflow-hidden rounded-3xl mb-10"><Image src="/Cam_05-scaled.jpg" alt="Osiyan Grade-A Warehousing in Nashik — HB Realty India" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 50vw" /><div className="absolute inset-0 bg-[#062B4A]/40 group-hover:bg-[#062B4A]/10 transition-colors" /><div className="absolute bottom-6 md:bottom-10 left-6 md:left-10"><h3 className="text-white text-3xl md:text-4xl font-bold uppercase tracking-tighter">Osiyan Warehousing</h3><p className="text-white/40 italic font-serif">Dindori, Nashik</p></div></div></Link>
+          <Link href="/portfolio" className="group cursor-pointer flex-shrink-0 w-[300px] snap-center md:flex-1 md:pt-40 md:w-auto md:snap-none" data-cursor="view"><div className="relative h-[450px] md:h-[800px] w-full overflow-hidden rounded-3xl mb-10"><Image src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=2000" alt="Land Development Projects in Nashik — Plotted Communities by HB Realty" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 50vw" /><div className="absolute inset-0 bg-[#062B4A]/40 group-hover:bg-[#062B4A]/10 transition-colors" /><div className="absolute bottom-6 md:bottom-10 left-6 md:left-10"><h3 className="text-white text-3xl md:text-4xl font-bold uppercase tracking-tighter">Land Development</h3><p className="text-white/40 italic font-serif">Across Maharashtra</p></div></div></Link>
         </div>
       </section>
 
       {/* Contact Section */}
       <section id="contact" className="relative py-24 md:py-40 px-6 md:px-12 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-500/10 via-black to-purple-500/10" />
-        <div className="absolute top-0 left-1/3 w-[800px] h-[800px] bg-amber-500/5 blur-[200px] rounded-full pointer-events-none" />
-        <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-purple-500/5 blur-[200px] rounded-full pointer-events-none" />
-
+        <div className="absolute inset-0 bg-gradient-to-br from-white/20/10 via-[#062B4A] to-purple-500/10" />
         <div className="relative z-10 max-w-5xl mx-auto text-center">
-          <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }} viewport={{ once: true }} className="h-[2px] bg-gradient-to-r from-amber-500 to-purple-500 mx-auto mb-12" />
+          <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }} viewport={{ once: true }} className="h-[2px] bg-gradient-to-r from-white/20 to-purple-500 mx-auto mb-12" />
           <h2 className="text-6xl md:text-[120px] leading-[0.85] font-bold text-white tracking-tighter uppercase mb-6">Let&apos;s Build <br /><span className="font-serif italic font-normal text-zinc-500 capitalize">Legacy</span></h2>
           <p className="text-white/40 text-xl font-light max-w-xl mx-auto mb-12">Ready to transform your vision into reality? Let&apos;s start the conversation.</p>
           <div className="flex flex-wrap items-center justify-center gap-6">
-            <Link href="/contact" className="bg-white text-black px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-amber-500 hover:text-white transition-all flex items-center gap-4 shadow-[0_10px_40px_rgba(255,255,255,0.1)]">Contact Our Office <ArrowRight size={18} /></Link>
+            <Link href="/contact" className="bg-white text-black px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white text-[#062B4A] hover:text-[#A98B55] transition-all flex items-center gap-4 shadow-[0_10px_40px_rgba(255,255,255,0.1)]">Contact Our Office <ArrowRight size={18} /></Link>
             <Link href="/properties" className="border border-white/20 text-white px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-all">Explore Properties</Link>
           </div>
         </div>

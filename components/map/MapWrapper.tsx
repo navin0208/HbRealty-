@@ -7,7 +7,7 @@ import { MapPin, Maximize, ArrowRight, X } from "lucide-react";
 import type { Property } from "./PropertyMap";
 
 // Dynamic import of the map to avoid SSR issues with Leaflet
-const PropertyMap = dynamic(() => import("./PropertyMap"), { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-white/50"><div className="w-8 h-8 border-4 border-amber-500/30 border-t-amber-500 rounded-full animate-spin" /></div> });
+const PropertyMap = dynamic(() => import("./PropertyMap"), { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-white/50"><div className="w-8 h-8 border-4 border-white/50/30 border-t-white rounded-full animate-spin" /></div> });
 
 export default function MapWrapper() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
@@ -29,7 +29,7 @@ export default function MapWrapper() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[800px] w-full bg-black rounded-[40px] border border-white/5">
+      <div className="flex items-center justify-center h-[800px] w-full bg-[#062B4A] rounded-[40px] border border-white/5">
         <div className="text-white/50 animate-pulse text-sm tracking-widest uppercase">Loading Properties...</div>
       </div>
     );
@@ -37,7 +37,7 @@ export default function MapWrapper() {
 
 
   return (
-    <div className="flex flex-col lg:flex-row gap-6 h-[800px] w-full bg-black p-4 rounded-[40px] border border-white/5">
+    <div className="flex flex-col lg:flex-row gap-6 h-[800px] w-full bg-[#062B4A] p-4 rounded-[40px] border border-white/5">
       
       {/* Sidebar: Property List */}
       <div className="w-full lg:w-[400px] h-full flex flex-col gap-4 overflow-hidden relative">
@@ -52,11 +52,11 @@ export default function MapWrapper() {
               key={prop.id}
               whileHover={{ scale: 0.98 }}
               onClick={() => setSelectedProperty(prop)}
-              className={`cursor-pointer rounded-[20px] overflow-hidden border transition-all duration-300 ${selectedProperty?.id === prop.id ? 'border-amber-500 bg-amber-500/5' : 'border-white/5 bg-zinc-950 hover:bg-zinc-900'}`}
+              className={`cursor-pointer rounded-[20px] overflow-hidden border transition-all duration-300 ${selectedProperty?.id === prop.id ? 'border-white/50 bg-white text-[#062B4A]/5' : 'border-white/5 bg-zinc-950 hover:bg-zinc-900'}`}
             >
               <div className="h-[160px] w-full relative">
                 <img src={prop.image} alt={prop.title} className="w-full h-full object-cover" />
-                <div className="absolute top-4 left-4 px-3 py-1 bg-black/60 backdrop-blur-md rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-amber-400">
+                <div className="absolute top-4 left-4 px-3 py-1 bg-[#062B4A]/60 backdrop-blur-md rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/80">
                   {prop.type}
                 </div>
               </div>
@@ -68,7 +68,7 @@ export default function MapWrapper() {
                 </div>
                 <div className="flex items-center justify-between">
                   <span className="text-white text-xl font-bold tracking-tight">{prop.price}</span>
-                  <button className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-amber-500 hover:text-black transition-colors">
+                  <button className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center text-white hover:bg-white text-[#062B4A] hover:text-black transition-colors">
                     <ArrowRight size={14} />
                   </button>
                 </div>
@@ -89,18 +89,18 @@ export default function MapWrapper() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/80 backdrop-blur-xl border border-amber-500/30 p-4 rounded-2xl flex items-center gap-6 shadow-2xl z-[1000]"
+              className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-[#062B4A]/80 backdrop-blur-xl border border-white/50/30 p-4 rounded-2xl flex items-center gap-6 shadow-2xl z-[1000]"
             >
               <div className="text-white">
-                <p className="text-[10px] font-bold uppercase tracking-widest text-amber-500 mb-1">Interested?</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white/90 mb-1">Interested?</p>
                 <p className="text-sm font-medium">{selectedProperty.title}</p>
               </div>
-              <button className="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-amber-400 transition-colors shrink-0">
+              <button className="px-6 py-2.5 bg-white text-black text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-white/90 text-[#062B4A] transition-colors shrink-0">
                 Contact Agent
               </button>
               <button 
                 onClick={() => setSelectedProperty(null)}
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-white transition-colors absolute -top-3 -right-3 border border-white/20"
+                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-[#A98B55] transition-colors absolute -top-3 -right-3 border border-white/20"
               >
                 <X size={14} />
               </button>

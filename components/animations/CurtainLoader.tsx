@@ -23,7 +23,7 @@ export default function CurtainLoader() {
     <AnimatePresence>
       {visible && (
         <motion.div
-          className="fixed inset-0 z-[10000] bg-[#080808] flex items-center justify-center"
+          className="fixed inset-0 z-[10000] bg-[#041D34] flex items-center justify-center"
           initial={{ scaleY: 1 }}
           animate={{ scaleY: 0 }}
           exit={{ opacity: 0 }}

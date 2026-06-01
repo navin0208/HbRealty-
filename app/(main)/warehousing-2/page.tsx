@@ -98,7 +98,7 @@ export default function WarehousingPage() {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
-    <main className="min-h-screen bg-[#020202] font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden pb-20">
+    <main className="min-h-screen bg-[#031525] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white overflow-x-hidden pb-20">
 
       {/* ═══ HERO SECTION (EDITORIAL) ═══ */}
       <section className="relative h-[85vh] overflow-hidden flex items-end">
@@ -107,7 +107,6 @@ export default function WarehousingPage() {
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" 
             alt="Warehousing Nashik" fill className="object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite] grayscale-[20%]" priority 
           />
-          <div className="absolute inset-0 bg-[#080808]/40 mix-blend-multiply" />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-transparent" />
         </div>
 
@@ -125,7 +124,7 @@ export default function WarehousingPage() {
               </p>
             </div>
             
-            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group md:ml-[72px]">
+            <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group md:ml-[72px]">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Contact Us</span>
               <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
             </Link>
@@ -150,7 +149,7 @@ export default function WarehousingPage() {
             <p className="text-white/50 font-light text-lg leading-relaxed mb-12">
               As a leading warehousing company in Maharashtra, we help clients secure warehouse land for lease in Nashik, build custom storage facilities, and develop large-scale logistics parks tailored to industry demands. From concept to completion, our expert team ensures your warehousing project is delivered on time, within budget, and in full compliance with local regulations.
             </p>
-            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group w-fit">
+            <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group w-fit">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Talk to Nashik's Experts</span>
               <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
             </Link>
@@ -159,7 +158,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ SERVICES CARDS (MINIMAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#080808] border-t border-b border-white/5">
+      <section className="relative py-32 px-6 md:px-12 bg-[#041D34] border-t border-b border-white/5">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-24 border-b border-white/5 pb-16">
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
@@ -180,10 +179,9 @@ export default function WarehousingPage() {
               >
                 <div className="relative h-[300px] md:h-[400px] w-full mb-8 overflow-hidden">
                   <Image src={service.img} alt={service.title} fill className="object-cover grayscale group-hover:grayscale-0 transition-all duration-[20s] ease-out group-hover:scale-105" />
-                  <div className="absolute inset-0 bg-[#080808]/40 mix-blend-multiply" />
-                </div>
+                  </div>
                 
-                <h3 className="text-2xl font-medium text-white tracking-tight mb-4 group-hover:text-white/80 transition-colors">{service.title}</h3>
+                <h3 className="text-2xl font-medium text-white tracking-tight mb-4 group-hover:text-[#A98B55]/80 transition-colors">{service.title}</h3>
                 <p className="text-white/40 font-light text-base leading-relaxed">{service.desc}</p>
               </motion.div>
             ))}
@@ -221,7 +219,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ FAQ SECTION (MINIMAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#080808] border-t border-white/5">
+      <section className="relative py-32 px-6 md:px-12 bg-[#041D34] border-t border-white/5">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
             <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
@@ -266,7 +264,7 @@ export default function WarehousingPage() {
             <span className="text-white/30 text-[10px] font-medium uppercase tracking-[0.4em] block mb-6">Legal Advisory by Adv. Manoj Bafana</span>
             <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Complete legal support for <span className="font-serif italic text-white/50">real estate.</span></h3>
             <p className="text-white/40 font-light mb-12 max-w-md">27+ Years of Trusted Legal Expertise in Land, Revenue & Real Estate Law ensuring full compliance and peace of mind.</p>
-            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+            <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Consult Now</span>
               <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
             </Link>
@@ -279,7 +277,7 @@ export default function WarehousingPage() {
             <span className="text-white/30 text-[10px] font-medium uppercase tracking-[0.4em] block mb-6">Explore Strategic Growth</span>
             <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Your gateway to global <span className="font-serif italic text-white/50">opportunities.</span></h3>
             <p className="text-white/40 font-light mb-12 max-w-md">Gain access to global real estate acumen through Sanghavi & Bafana Consultants in Dubai for strategic cross-border success.</p>
-            <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+            <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Explore Dubai</span>
               <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
             </Link>

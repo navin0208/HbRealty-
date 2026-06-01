@@ -83,7 +83,7 @@ export default function Navbar() {
                     className="relative group py-2"
                   >
                     <span className={`text-sm font-medium tracking-wide transition-colors duration-500 ${
-                      isActive ? "text-white" : "text-white/50 group-hover:text-white"
+                      isActive ? "text-white" : "text-white/50 group-hover:text-[#A98B55]"
                     }`}>
                       {link.label}
                     </span>
@@ -113,7 +113,7 @@ export default function Navbar() {
             >
               <Link
                 href="/properties"
-                className="text-sm font-medium text-white/50 hover:text-white transition-colors duration-500"
+                className="text-sm font-medium text-white/50 hover:text-[#A98B55] transition-colors duration-500"
               >
                 Portal
               </Link>
@@ -123,7 +123,7 @@ export default function Navbar() {
           {/* Mobile Menu Toggle */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden text-white/70 hover:text-white transition-colors"
+            className="md:hidden text-white/70 hover:text-[#A98B55] transition-colors"
           >
             {mobileOpen ? <X size={24} strokeWidth={1.5} /> : <Menu size={24} strokeWidth={1.5} />}
           </button>
@@ -138,7 +138,7 @@ export default function Navbar() {
             animate={{ clipPath: "inset(0 0 0% 0)" }}
             exit={{ clipPath: "inset(0 0 100% 0)" }}
             transition={{ duration: 0.6, ease: [0.87, 0, 0.13, 1] }}
-            className="fixed inset-0 z-40 bg-[#080808] flex flex-col items-center justify-center gap-8 md:hidden"
+            className="fixed inset-0 z-40 bg-[#041D34] flex flex-col items-center justify-center gap-8 md:hidden"
           >
             {navLinks.map((link, i) => {
               const isActive = pathname === link.href;
@@ -154,7 +154,7 @@ export default function Navbar() {
                     href={link.href}
                     onClick={() => setMobileOpen(false)}
                     className={`block w-full py-4 text-4xl font-serif italic transition-colors duration-500 ${
-                      isActive ? "text-white" : "text-white/40 hover:text-white"
+                      isActive ? "text-white" : "text-white/40 hover:text-[#A98B55]"
                     }`}
                   >
                     {link.label}
@@ -171,7 +171,7 @@ export default function Navbar() {
               <Link
                 href="/properties"
                 onClick={() => setMobileOpen(false)}
-                className="block w-full py-4 text-sm font-medium tracking-widest uppercase text-white/50 hover:text-white transition-colors"
+                className="block w-full py-4 text-sm font-medium tracking-widest uppercase text-white/50 hover:text-[#A98B55] transition-colors"
               >
                 Enter Portal
               </Link>

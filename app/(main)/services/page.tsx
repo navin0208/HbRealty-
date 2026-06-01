@@ -115,7 +115,7 @@ export default function ServicesPage() {
   }, [active]);
 
   return (
-    <main className="min-h-screen bg-black font-sans selection:bg-amber-500/30 selection:text-amber-200 overflow-x-hidden">
+    <main className="min-h-screen bg-[#062B4A] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white overflow-x-hidden">
 
       {/* ═══ HEADER (EDITORIAL) ═══ */}
       <section className="relative pt-40 pb-24 px-6 md:px-12 max-w-[1600px] mx-auto border-b border-white/5">
@@ -154,8 +154,8 @@ export default function ServicesPage() {
             </motion.div>
           </AnimatePresence>
           
-          <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/40 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#062B4A]/80 via-[#062B4A]/40 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-[#062B4A]/40" />
 
           {/* Content Overlay */}
           <div className="absolute inset-0 flex items-center md:items-end pb-16 md:pb-24 px-6 md:px-12 max-w-[1600px] mx-auto w-full left-0 right-0">
@@ -194,7 +194,7 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="flex items-center gap-6 pt-12">
-                  <Link href="/contact" className="text-white/50 hover:text-white transition-colors duration-500 flex items-center gap-4 group">
+                  <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
                     <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Enquire Now</span>
                     <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
                   </Link>
@@ -216,10 +216,10 @@ export default function ServicesPage() {
               ))}
             </div>
             <div className="flex gap-3">
-              <button onClick={() => { setActive(prev => (prev - 1 + services.length) % services.length); setProgress(0); }} className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white transition-all hover:bg-white/5">
+              <button onClick={() => { setActive(prev => (prev - 1 + services.length) % services.length); setProgress(0); }} className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all hover:bg-white/5">
                 <ArrowLeft size={20} />
               </button>
-              <button onClick={() => { setActive(prev => (prev + 1) % services.length); setProgress(0); }} className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-white hover:border-white transition-all hover:bg-white/5">
+              <button onClick={() => { setActive(prev => (prev + 1) % services.length); setProgress(0); }} className="w-14 h-14 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all hover:bg-white/5">
                 <ArrowRight size={20} />
               </button>
             </div>
@@ -244,8 +244,8 @@ export default function ServicesPage() {
           className="relative rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_80px_rgba(0,0,0,0.4)]"
         >
           <Image src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=2000" alt="Dubai Skyline" fill className="object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-r from-black via-black/70 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#062B4A] via-[#062B4A]/70 to-transparent" />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A]/60 to-transparent" />
           
             <div className="relative z-10 p-12 md:p-20 min-h-[550px] flex flex-col justify-end max-w-3xl">
               <div className="flex items-center gap-4 mb-8">
@@ -263,7 +263,7 @@ export default function ServicesPage() {
                 <div className="flex items-center gap-4"><span className="text-white/30 text-xs font-serif italic">02</span><span className="text-white/70 text-[11px] font-medium uppercase tracking-[0.2em]">Compliance</span></div>
                 <div className="flex items-center gap-4"><span className="text-white/30 text-xs font-serif italic">03</span><span className="text-white/70 text-[11px] font-medium uppercase tracking-[0.2em]">Advisory</span></div>
               </div>
-              <Link href="/contact" className="inline-flex items-center gap-4 text-white/50 hover:text-white transition-colors group w-fit">
+              <Link href="/contact" className="inline-flex items-center gap-4 text-white/50 hover:text-[#A98B55] transition-colors group w-fit">
                 <span className="text-[11px] uppercase tracking-[0.2em] font-medium">Explore Dubai</span>
                 <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
               </Link>
@@ -272,7 +272,7 @@ export default function ServicesPage() {
       </section>
 
       {/* ═══ WHY CHOOSE (MINIMAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#080808] border-t border-white/5">
+      <section className="relative py-32 px-6 md:px-12 bg-[#041D34] border-t border-white/5">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-24 border-b border-white/5 pb-20">
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
@@ -290,7 +290,7 @@ export default function ServicesPage() {
             ].map((item, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                 className="flex flex-col items-start group">
-                <div className="text-5xl font-serif italic text-white/30 mb-8 group-hover:text-white/60 transition-colors duration-700">{item.num}</div>
+                <div className="text-5xl font-serif italic text-white/30 mb-8 group-hover:text-[#A98B55]/60 transition-colors duration-700">{item.num}</div>
                 <div className="h-px w-8 bg-white/20 mb-6" />
                 <h4 className="text-white font-medium text-lg tracking-wide mb-3">{item.title}</h4>
                 <p className="text-white/40 text-sm font-light leading-relaxed max-w-xs">{item.desc}</p>
