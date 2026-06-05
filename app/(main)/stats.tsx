@@ -221,7 +221,7 @@ export default function StatsSection() {
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[#062B4A]/70 font-serif italic text-2xl md:text-3xl max-w-xs leading-snug"
+                            className="text-[#062B4A]/70 font-medium text-[#A98B55] text-2xl md:text-3xl max-w-xs leading-snug"
                         >
                             Building legacy through precision and architectural foresight.
                         </motion.p>

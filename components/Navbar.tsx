@@ -46,7 +46,7 @@ export default function Navbar() {
             backdropFilter: "blur(0px)",
           },
           scrolled: {
-            backgroundColor: "rgba(8,8,8,0.9)",
+            backgroundColor: "rgba(6, 43, 74, 0.95)",
             backdropFilter: "blur(12px)",
           },
         }}

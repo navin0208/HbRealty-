@@ -48,6 +48,7 @@ export default function Footer() {
                 { href: "/services", label: "Our Services" },
                 { href: "/portfolio", label: "Portfolio" },
                 { href: "/warehousing-2", label: "Warehousing" },
+                { href: "/land-development", label: "Land & Development" },
                 { href: "/blog", label: "Blog & Insights" },
                 { href: "/contact", label: "Contact Us" },
               ].map((link) => (
@@ -69,19 +70,19 @@ export default function Footer() {
             <div className="w-8 h-px bg-white/20 mb-6 animate-underline" />
             <ul className="space-y-3">
               {[
-                "Warehouse Construction in Nashik",
-                "Land Development in Nashik",
-                "Industrial Plot Development",
-                "Warehouse Lease Advisory",
-                "Cold Storage Solutions",
-                "Land Legal Liaisoning",
+                { label: "Warehouse Construction in Nashik", href: "/warehousing-2" },
+                { label: "Land Development in Nashik", href: "/land-development" },
+                { label: "Industrial Plot Development", href: "/land-development" },
+                { label: "Warehouse Lease Advisory", href: "/services#lease-advisory" },
+                { label: "Cold Storage Solutions", href: "/warehousing-2" },
+                { label: "Land Legal Liaisoning", href: "/services#legal-land" },
               ].map((service) => (
-                <li key={service}>
+                <li key={service.label}>
                   <Link
-                    href="/services"
+                    href={service.href}
                     className="text-white/40 text-sm hover:text-[#A98B55] transition-colors"
                   >
-                    {service}
+                    {service.label}
                   </Link>
                 </li>
               ))}

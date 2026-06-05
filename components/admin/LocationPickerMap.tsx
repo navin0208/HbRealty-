@@ -60,7 +60,7 @@ export default function LocationPickerMap({ onLocationSelect, location }: Locati
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+          url="https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
         />
         <MapController center={location} />
         <LocationMarker position={position} onMapClick={handlePositionChange} />
@@ -68,7 +68,7 @@ export default function LocationPickerMap({ onLocationSelect, location }: Locati
       
       <style jsx global>{`
         .leaflet-container {
-          background: #000;
+          background: #f4f4f5;
           font-family: inherit;
         }
       `}</style>

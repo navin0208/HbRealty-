@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -24,6 +24,7 @@ export interface Property {
   size: string;
   location: [number, number];
   image: string;
+  status?: "available" | "sold";
 }
 
 
@@ -44,8 +45,16 @@ interface PropertyMapProps {
 }
 
 export default function PropertyMap({ properties, onPropertySelect, selectedProperty }: PropertyMapProps) {
+  const [mounted, setMounted] = useState(false);
+  
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
   const center: [number, number] = selectedProperty ? selectedProperty.location : [19.9975, 73.7898];
   const zoom = selectedProperty ? 15 : 12;
+
+  if (!mounted) return null;
 
   return (
     <div className="w-full h-full relative z-0">
@@ -57,8 +66,9 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
         zoomControl={false}
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-          url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png" // Dark theme map
+          attribution='&copy; <a href="https://www.google.com/maps">Google Maps</a>'
+          url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}" // Google Hybrid (Satellite + Labels)
+          maxZoom={20}
         />
         <MapController center={center} zoom={zoom} />
 
@@ -72,13 +82,18 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
             }}
           >
             <Popup className="custom-popup">
-              <div className="w-[200px] overflow-hidden rounded-xl bg-zinc-900 border border-white/10 text-white p-0 m-0 shadow-2xl">
-                <img src={prop.image} alt={prop.title} className="w-full h-[120px] object-cover" />
+              <div className="w-[200px] overflow-hidden rounded-xl bg-[#06111C]/95 backdrop-blur-md border border-white/10 text-white p-0 m-0 shadow-2xl relative">
+                <img src={prop.image} alt={prop.title} className={`w-full h-[120px] object-cover ${prop.status === 'sold' ? 'brightness-[0.7] grayscale' : ''}`} />
+                {prop.status === 'sold' && (
+                  <div className="absolute top-2 right-2 px-2 py-0.5 bg-red-600 text-white text-[8px] font-bold uppercase tracking-widest rounded z-10">
+                    SOLD
+                  </div>
+                )}
                 <div className="p-3">
-                  <span className="text-[9px] font-bold uppercase tracking-widest text-white/90">{prop.type}</span>
-                  <h4 className="text-sm font-bold mt-1 line-clamp-1">{prop.title}</h4>
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-[#A98B55]">{prop.type}</span>
+                  <h4 className="text-sm font-bold mt-1 line-clamp-1 text-white">{prop.title}</h4>
                   <div className="flex justify-between items-center mt-2">
-                    <span className="text-white/60 text-xs font-mono">{prop.size}</span>
+                    <span className="text-white/50 text-xs font-mono">{prop.size}</span>
                     <span className="text-white font-bold">{prop.price}</span>
                   </div>
                 </div>
@@ -95,11 +110,11 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
           box-shadow: none !important;
         }
         .leaflet-popup-tip {
-          background: #18181b !important; /* bg-zinc-900 */
+          background: #06111C !important;
           border: 1px solid rgba(255,255,255,0.1);
         }
         .leaflet-container {
-          background: #000;
+          background: #0A1118;
           font-family: inherit;
         }
       `}</style>

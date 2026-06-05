@@ -20,10 +20,6 @@ const CurtainLoader = dynamic(
   () => import("@/components/animations/CurtainLoader"),
   { ssr: false }
 );
-const CustomCursor = dynamic(
-  () => import("@/components/animations/CustomCursor"),
-  { ssr: false }
-);
 
 export default function MainLayout({
   children,
@@ -39,9 +35,6 @@ export default function MainLayout({
 
       {/* 🚀 ANTIGRAVITY — Page load curtain (first visit only) */}
       <CurtainLoader />
-
-      {/* 🚀 ANTIGRAVITY — Custom luxury cursor */}
-      <CustomCursor />
 
       <Navbar />
       

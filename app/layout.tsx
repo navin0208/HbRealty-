@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
+import GlobalCursorProvider from "@/components/animations/GlobalCursorProvider";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -159,6 +160,8 @@ export default function RootLayout({
         />
       </head>
       <body className="min-h-full flex flex-col" suppressHydrationWarning>
+        {/* 🚀 ANTIGRAVITY — Custom luxury cursor */}
+        <GlobalCursorProvider />
         {children}
       </body>
     </html>

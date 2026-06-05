@@ -2,14 +2,26 @@
 
 import { useState } from "react";
 import dynamic from "next/dynamic";
+import Link from "next/link";
 import { Send, MapPin, Building2, Image as ImageIcon, Maximize, CheckCircle2, AlertCircle } from "lucide-react";
 
-const LocationPickerMap = dynamic(() => import("./LocationPickerMap"), { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center bg-zinc-950 text-white/50 animate-pulse text-xs uppercase tracking-widest border border-white/10 rounded-xl">Loading Map...</div> });
+const LocationPickerMap = dynamic(() => import("./LocationPickerMap"), { ssr: false, loading: () => <div className="w-full h-full flex items-center justify-center bg-[#FAF9F6] text-[#062B4A]/50 animate-pulse text-xs uppercase tracking-widest border border-[#062B4A]/10 rounded-xl">Loading Map...</div> });
 
-export default function AdminPropertyForm() {
+interface Property {
+  id: string;
+  title: string;
+  type: string;
+  price: string;
+  size: string;
+  location: [number, number];
+  image: string;
+  status?: 'available' | 'sold';
+}
+
+export default function AdminPropertyForm({ initialData }: { initialData?: Property }) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
-  const [location, setLocation] = useState<[number, number] | null>(null);
+  const [location, setLocation] = useState<[number, number] | null>(initialData?.location || null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -28,21 +40,28 @@ export default function AdminPropertyForm() {
       price: formData.get("price"),
       size: formData.get("size"),
       image: formData.get("image"),
-      location: location
+      location: location,
+      status: "available"
     };
 
+    const isEditing = !!initialData;
+    const url = isEditing ? `/api/properties/${initialData.id}` : "/api/properties";
+    const method = isEditing ? "PATCH" : "POST";
+
     try {
-      const res = await fetch("/api/properties", {
-        method: "POST",
+      const res = await fetch(url, {
+        method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
 
       if (res.ok) {
         setStatus("success");
-        setMessage("Property listed successfully!");
-        (e.target as HTMLFormElement).reset();
-        setLocation(null);
+        setMessage(`Property ${isEditing ? 'updated' : 'listed'} successfully!`);
+        if (!isEditing) {
+          (e.target as HTMLFormElement).reset();
+          setLocation(null);
+        }
       } else {
         const errorData = await res.json();
         setStatus("error");
@@ -56,31 +75,44 @@ export default function AdminPropertyForm() {
 
   if (status === "success") {
     return (
-      <div className="bg-zinc-950 border border-white/10 p-12 rounded-[30px] flex flex-col items-center text-center space-y-6 max-w-2xl mx-auto w-full">
-        <div className="w-20 h-20 bg-green-500/10 text-green-500 rounded-full flex items-center justify-center mb-4">
+      <div className="bg-white border border-[#062B4A]/10 p-12 rounded-[30px] flex flex-col items-center text-center space-y-6 max-w-2xl mx-auto w-full shadow-[0_20px_50px_rgba(6,43,74,0.05)]">
+        <div className="w-20 h-20 bg-[#A98B55]/10 text-[#A98B55] rounded-full flex items-center justify-center mb-4">
           <CheckCircle2 size={40} />
         </div>
-        <h3 className="text-3xl font-bold text-white uppercase tracking-tighter">Property Added</h3>
-        <p className="text-white/60 font-light text-lg">{message}</p>
-        <button 
-          onClick={() => setStatus("idle")}
-          className="mt-8 px-8 py-3 bg-white text-black font-bold uppercase tracking-widest text-xs rounded-full hover:bg-zinc-200 transition-colors"
-        >
-          Add Another Property
-        </button>
+        <h3 className="text-3xl font-medium text-[#062B4A] tracking-tight">Property Listed</h3>
+        <p className="text-[#062B4A]/60 font-light text-lg">{message}</p>
+        <div className="flex flex-col sm:flex-row gap-4 mt-8 w-full justify-center">
+          <button 
+            onClick={() => {
+              setStatus("idle");
+              if (!initialData) setLocation(null);
+            }}
+            className="px-8 py-3.5 bg-[#FAF9F6] text-[#062B4A] border border-[#062B4A]/10 font-bold uppercase tracking-widest text-[10px] rounded-xl hover:bg-[#062B4A]/5 transition-colors"
+          >
+            {initialData ? 'Continue Editing' : 'Add Another Listing'}
+          </button>
+          <Link 
+            href="/admin"
+            className="px-8 py-3.5 bg-[#A98B55] text-white font-bold uppercase tracking-widest text-[10px] rounded-xl hover:bg-[#A98B55]/90 transition-colors inline-block"
+          >
+            Go to Dashboard
+          </Link>
+        </div>
       </div>
     );
   }
 
   return (
-    <div className="bg-zinc-950 border border-white/10 p-8 md:p-12 rounded-[30px] max-w-5xl mx-auto w-full relative overflow-hidden shadow-2xl">
+    <div className="bg-white border border-[#062B4A]/10 p-8 md:p-12 rounded-[30px] max-w-5xl mx-auto w-full relative overflow-hidden shadow-[0_20px_50px_rgba(6,43,74,0.05)]">
       <div className="relative z-10 mb-10">
-        <h3 className="text-3xl md:text-5xl font-bold text-white uppercase tracking-tighter mb-4">Admin: Add Listing</h3>
-        <p className="text-white/50 font-light text-sm md:text-base">Enter property details and drop a pin on the map to publish it immediately.</p>
+        <h3 className="text-3xl md:text-5xl font-medium text-[#062B4A] tracking-tight mb-4">{initialData ? 'Edit Listing' : 'Add Listing'}</h3>
+        <p className="text-[#062B4A]/60 font-light text-sm md:text-base">
+          {initialData ? 'Update property details and location below.' : 'Enter property details and drop a pin on the map to publish it immediately.'}
+        </p>
       </div>
 
       {status === "error" && (
-        <div className="mb-8 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start gap-3 text-red-500 text-sm">
+        <div className="mb-8 p-4 bg-red-50 border border-red-200 rounded-xl flex items-start gap-3 text-red-700 text-sm">
           <AlertCircle size={20} className="shrink-0 mt-0.5" />
           <p>{message}</p>
         </div>
@@ -90,43 +122,43 @@ export default function AdminPropertyForm() {
         {/* Left Column: Form Fields */}
         <div className="space-y-8">
           <div className="space-y-2">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Property Title</label>
-            <input required type="text" name="title" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors" placeholder="e.g. Prime Industrial Plot" />
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Property Title</label>
+            <input required type="text" name="title" defaultValue={initialData?.title} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. Prime Industrial Plot" />
           </div>
 
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
-              <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Building2 size={12} /> Type</label>
-              <select name="type" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors appearance-none">
-                <option value="Industrial Land">Industrial Land</option>
-                <option value="Warehouse">Warehouse</option>
-                <option value="Agricultural">Agricultural</option>
-                <option value="Residential">Residential</option>
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Building2 size={12} /> Type</label>
+              <select name="type" defaultValue={initialData?.type || "Industrial Land"} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A]/80 focus:outline-none focus:border-[#062B4A]/40 transition-colors appearance-none">
+                <option value="Industrial Land" className="bg-white text-[#062B4A]">Industrial Land</option>
+                <option value="Warehouse" className="bg-white text-[#062B4A]">Warehouse</option>
+                <option value="Agricultural" className="bg-white text-[#062B4A]">Agricultural</option>
+                <option value="Residential" className="bg-white text-[#062B4A]">Residential</option>
               </select>
             </div>
             <div className="space-y-2">
-              <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Price</label>
-              <input required type="text" name="price" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors" placeholder="e.g. ₹12 Cr" />
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Price</label>
+              <input required type="text" name="price" defaultValue={initialData?.price} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. ₹12 Cr" />
             </div>
           </div>
 
           <div className="space-y-2">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Size</label>
-            <input required type="text" name="size" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors" placeholder="e.g. 5 Acres" />
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Size</label>
+            <input required type="text" name="size" defaultValue={initialData?.size} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. 5 Acres" />
           </div>
 
           <div className="space-y-2">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><ImageIcon size={12} /> Image URL</label>
-            <input type="url" name="image" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors" placeholder="Optional: https://..." />
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><ImageIcon size={12} /> Image URL</label>
+            <input type="url" name="image" defaultValue={initialData?.image} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="Optional: https://..." />
           </div>
           
           <button 
             disabled={status === "loading"}
             type="submit" 
-            className="w-full bg-emerald-500 text-black font-bold uppercase tracking-[0.2em] text-xs py-5 rounded-xl hover:bg-emerald-400 transition-colors flex items-center justify-center gap-3 disabled:opacity-50"
+            className="w-full bg-[#A98B55] text-white font-bold uppercase tracking-[0.2em] text-[10px] py-5 rounded-xl hover:bg-[#A98B55]/90 transition-colors flex items-center justify-center gap-3 disabled:opacity-50"
           >
-            {status === "loading" ? "Publishing..." : (
-              <>Publish Property <Send size={16} /></>
+            {status === "loading" ? "Saving..." : (
+              <>{initialData ? 'Update Property' : 'Publish Property'} <Send size={14} /></>
             )}
           </button>
         </div>
@@ -134,12 +166,12 @@ export default function AdminPropertyForm() {
         {/* Right Column: Map Locator */}
         <div className="flex flex-col gap-4 h-[500px] lg:h-auto">
           <div className="space-y-1">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Location Coordinates</label>
-            <p className="text-white/60 text-xs">Click anywhere on the map to set the exact location pin, or paste coordinates below.</p>
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Location Coordinates</label>
+            <p className="text-[#062B4A]/60 text-xs font-light">Click anywhere on the map to set the exact location pin, or paste coordinates below.</p>
             <input 
               type="text" 
               placeholder="e.g. 19.9975, 73.7898" 
-              className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-emerald-500/50 transition-colors mt-2 text-sm font-mono"
+              className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors mt-2 text-sm font-mono"
               value={location ? `${location[0]}, ${location[1]}` : ""}
               onChange={(e) => {
                 const parts = e.target.value.split(',');
@@ -155,14 +187,14 @@ export default function AdminPropertyForm() {
               }}
             />
           </div>
-          <div className={`flex-1 rounded-xl overflow-hidden border transition-colors ${location ? 'border-emerald-500/50 shadow-[0_0_20px_rgba(16,185,129,0.2)]' : 'border-white/10'}`}>
+          <div className={`flex-1 rounded-xl overflow-hidden border transition-colors min-h-[300px] ${location ? 'border-[#062B4A]/40 shadow-[0_0_20px_rgba(6,43,74,0.08)]' : 'border-[#062B4A]/10'}`}>
             <LocationPickerMap 
               onLocationSelect={(lat, lng) => setLocation([lat, lng])} 
               location={location}
             />
           </div>
           {location && (
-            <div className="flex justify-between items-center bg-emerald-500/10 p-3 rounded-lg border border-emerald-500/20 text-xs text-emerald-400 font-mono">
+            <div className="flex justify-between items-center bg-[#062B4A]/5 p-3 rounded-lg border border-[#062B4A]/10 text-xs text-[#062B4A]/80 font-mono">
               <span>Lat: {location[0].toFixed(6)}</span>
               <span>Lng: {location[1].toFixed(6)}</span>
             </div>

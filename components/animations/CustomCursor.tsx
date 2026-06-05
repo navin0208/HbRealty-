@@ -19,6 +19,14 @@ export default function CustomCursor() {
       "(prefers-reduced-motion: reduce)"
     ).matches;
     if (prefersReduced) setIsTouch(true);
+
+    if (!isTouchDevice && !prefersReduced) {
+      document.documentElement.classList.add("custom-cursor-active");
+    }
+
+    return () => {
+      document.documentElement.classList.remove("custom-cursor-active");
+    };
   }, []);
 
   if (isTouch) return null;

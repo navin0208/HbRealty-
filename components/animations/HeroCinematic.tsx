@@ -17,21 +17,21 @@ if (typeof window !== "undefined") {
 const slides = [
   {
     id: 1,
-    image: "/Cam_06-scaled.jpg",
+    image: "/WAREHOUSE P4.jpg",
     heading: "Grade-A Warehousing",
     serifText: "Nashik",
     description: "Building Maharashtra's next generation of industrial infrastructure. From Osiyan MIDC to your doorstep — warehousing built right.",
   },
   {
     id: 2,
-    image: "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=2000",
+    image: "/Land-Development-HBRealtyindia-min-scaled.jpg",
     heading: "Land Development",
     serifText: "Experts",
     description: "Transforming raw land into thriving plotted communities and industrial parks across Nashik, Sinnar, and Dindori.",
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=2000",
+    image: "/Dubai.jpg",
     heading: "Global Advisory",
     serifText: "Dubai",
     description: "Cross-border real estate consulting through Sanghavi & Bafana — your bridge from Maharashtra to the UAE market.",

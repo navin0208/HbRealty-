@@ -23,7 +23,7 @@ const sections = [
             { n: '02', label: 'Legal Precision' },
             { n: '03', label: 'Logistics Infrastructure' },
         ],
-        image: '/warehousing.avif',
+        image: '/Warehouse p3.jpg',
         imageAlt: 'Grade-A Warehousing',
         cta: { label: 'View Portfolio', href: '/portfolio' },
         accent: 'Warehousing · 2024',
@@ -40,7 +40,7 @@ const sections = [
             { n: '02', label: 'Luxury Villas' },
             { n: '03', label: 'Gated Communities' },
         ],
-        image: 'https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&q=80&w=2000',
+        image: '/Cam_07-scaled.jpg',
         imageAlt: 'Luxury Residential Living',
         cta: { label: 'Explore Properties', href: '/properties' },
         accent: 'Residential · 2024',
@@ -157,16 +157,28 @@ export function AboutSection() {
                                         }}
                                         transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
                                     >
-                                        {data.services.map((s, i) => (
-                                            <div key={s.n} className="flex items-center gap-3">
-                                                <span className="text-[#A98B55]/70 text-[10px] font-serif italic w-5 shrink-0">
-                                                    {s.n}
-                                                </span>
-                                                <span className="text-white/80 text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium">
-                                                    {s.label}
-                                                </span>
-                                            </div>
-                                        ))}
+                                        {data.services.map((s, i) => {
+                                            const isLandDev = s.label === "Land Development";
+                                            const isWarehousing = s.label === "Logistics Infrastructure";
+                                            const linkHref = isLandDev ? "/land-development" : isWarehousing ? "/warehousing-2" : null;
+
+                                            return (
+                                                <div key={s.n} className="flex items-center gap-3">
+                                                    <span className="text-[#A98B55]/70 text-[10px] font-serif italic w-5 shrink-0">
+                                                        {s.n}
+                                                    </span>
+                                                    {linkHref ? (
+                                                        <Link href={linkHref} className="text-white/80 text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium hover:text-[#A98B55] transition-colors">
+                                                            {s.label}
+                                                        </Link>
+                                                    ) : (
+                                                        <span className="text-white/80 text-[10px] md:text-xs uppercase tracking-[0.15em] md:tracking-[0.2em] font-medium">
+                                                            {s.label}
+                                                        </span>
+                                                    )}
+                                                </div>
+                                            );
+                                        })}
                                     </motion.div>
 
                                     {/* CTA */}

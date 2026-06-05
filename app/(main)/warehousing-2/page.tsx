@@ -115,7 +115,7 @@ export default function WarehousingPage() {
             <div className="w-12 h-px bg-white/20 mb-8" />
             
             <h1 className="text-4xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9] mb-8 max-w-5xl">
-              Warehousing & <span className="font-serif italic text-white/50">land development.</span>
+              Warehousing & <span className="font-medium text-[#A98B55]">land development.</span>
             </h1>
             
             <div className="pl-0 md:pl-10 border-l-0 md:border-l border-white/20">
@@ -139,7 +139,7 @@ export default function WarehousingPage() {
             <div className="w-12 h-px bg-white/20 mb-8" />
             <h2 className="text-4xl md:text-6xl font-medium text-white tracking-tight leading-[1] mb-8">
               Trusted <br/>
-              <span className="font-serif italic text-white/50">development.</span>
+              <span className="font-medium text-[#A98B55]">development.</span>
             </h2>
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }} className="lg:col-span-7 space-y-8 mt-0 md:mt-24">
@@ -162,7 +162,7 @@ export default function WarehousingPage() {
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-24 border-b border-white/5 pb-16">
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
-              Our <span className="font-serif italic text-white/50">Services</span>
+              Our <span className="font-medium text-[#A98B55]">Services</span>
             </h2>
             <p className="text-white/40 text-lg font-light max-w-md">Comprehensive solutions covering every aspect of warehousing and industrial land development.</p>
           </div>
@@ -194,7 +194,7 @@ export default function WarehousingPage() {
         <div className="text-center mb-20 relative z-10">
           <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">
-            Client <span className="font-serif italic text-white/50">testimonials.</span>
+            Client <span className="font-medium text-[#A98B55]">testimonials.</span>
           </h2>
         </div>
 
@@ -223,7 +223,7 @@ export default function WarehousingPage() {
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
             <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
-            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">Frequently asked <span className="font-serif italic text-white/50">questions.</span></h2>
+            <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">Frequently asked <span className="font-medium text-[#A98B55]">questions.</span></h2>
           </div>
 
           <div className="space-y-0 divide-y divide-white/5">
@@ -254,6 +254,26 @@ export default function WarehousingPage() {
         </div>
       </section>
 
+      {/* ═══ PREMIUM CALL TO ACTION ═══ */}
+      <section className="relative py-32 px-6 md:px-12 bg-[#FAF9F6] text-[#062B4A]">
+        <div className="max-w-[1600px] mx-auto text-center flex flex-col items-center">
+          <div className="w-12 h-px bg-[#062B4A]/25 mb-8" />
+          <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
+            Ready to Build Your <br/>
+            <span className="font-medium text-[#A98B55]">Next Warehousing Project?</span>
+          </h2>
+          <p className="text-[#062B4A]/60 font-light text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
+            Partner with Maharashtra's leading warehousing consultants and developers. Let our experts assist you with customized construction, leasing options, and complete legal compliance.
+          </p>
+          <Link 
+            href="/contact" 
+            className="bg-[#062B4A] text-white px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#A98B55] transition-all inline-flex items-center gap-4 shadow-xl"
+          >
+            Get in Touch Today <ArrowRight size={16} />
+          </Link>
+        </div>
+      </section>
+
       {/* ═══ GLOBAL & LEGAL CTA (EDITORIAL) ═══ */}
       <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-white/5 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
@@ -262,7 +282,7 @@ export default function WarehousingPage() {
             className="flex flex-col items-start border-l border-white/5 pl-8 md:pl-12"
           >
             <span className="text-white/30 text-[10px] font-medium uppercase tracking-[0.4em] block mb-6">Legal Advisory by Adv. Manoj Bafana</span>
-            <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Complete legal support for <span className="font-serif italic text-white/50">real estate.</span></h3>
+            <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Complete legal support for <span className="font-medium text-[#A98B55]">real estate.</span></h3>
             <p className="text-white/40 font-light mb-12 max-w-md">27+ Years of Trusted Legal Expertise in Land, Revenue & Real Estate Law ensuring full compliance and peace of mind.</p>
             <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Consult Now</span>
@@ -275,7 +295,7 @@ export default function WarehousingPage() {
             className="flex flex-col items-start border-l border-white/5 pl-8 md:pl-12"
           >
             <span className="text-white/30 text-[10px] font-medium uppercase tracking-[0.4em] block mb-6">Explore Strategic Growth</span>
-            <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Your gateway to global <span className="font-serif italic text-white/50">opportunities.</span></h3>
+            <h3 className="text-3xl md:text-4xl font-medium text-white tracking-tight mb-6 leading-[1.1]">Your gateway to global <span className="font-medium text-[#A98B55]">opportunities.</span></h3>
             <p className="text-white/40 font-light mb-12 max-w-md">Gain access to global real estate acumen through Sanghavi & Bafana Consultants in Dubai for strategic cross-border success.</p>
             <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Explore Dubai</span>

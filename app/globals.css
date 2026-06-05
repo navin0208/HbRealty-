@@ -121,9 +121,9 @@ html {
 
 /* ═══ 🚀 ANTIGRAVITY — ANIMATION KEYFRAMES ═══ */
 
-/* Custom cursor — hide native on desktop */
+/* Custom cursor — hide native on desktop when custom cursor is active */
 @media (pointer: fine) {
-  html, html * {
+  .custom-cursor-active, .custom-cursor-active * {
     cursor: none !important;
   }
 }

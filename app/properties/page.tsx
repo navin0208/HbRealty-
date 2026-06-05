@@ -19,51 +19,53 @@ export default function PropertiesPage() {
   ] as const;
 
   return (
-    <main className="min-h-screen bg-[#031525] font-sans selection:bg-white text-[#062B4A]/30 selection:text-white">
+    <main className="min-h-screen bg-[#06111C] font-sans selection:bg-[#A98B55] selection:text-white text-white/60">
       {/* Navigation Header */}
-      <nav className="fixed top-0 inset-x-0 z-50 bg-[#062B4A]/50 backdrop-blur-xl border-b border-white/5 px-6 py-4">
+      <nav className="fixed top-0 inset-x-0 z-50 bg-[#06111C]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4">
         <div className="max-w-[1600px] mx-auto flex justify-between items-center">
-          <Link href="/" className="flex items-center gap-4 text-white/50 hover:text-[#A98B55] transition-colors group">
-            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/10 transition-colors">
+          <Link href="/" className="flex items-center gap-4 text-white/60 hover:text-[#A98B55] transition-colors group">
+            <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/5 transition-colors">
               <ArrowLeft size={16} />
             </div>
-            <span className="text-xs font-bold uppercase tracking-[0.3em]">Back to Main</span>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] hidden sm:block">Back to Main</span>
+            <span className="text-xs font-bold uppercase tracking-[0.3em] sm:hidden">Back</span>
           </Link>
-          <div className="flex items-center gap-3">
-             <div className="h-1.5 w-1.5 rounded-full bg-white text-[#062B4A] animate-pulse" />
-             <span className="text-white/30 text-[10px] font-bold uppercase tracking-[0.4em]">Real Estate Portal</span>
+          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
+             <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
+             <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.4em] hidden sm:block">Real Estate Portal</span>
+             <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.4em] sm:hidden">Portal</span>
           </div>
         </div>
       </nav>
 
       {/* Main Content */}
-      <div className="pt-32 pb-20 px-6 max-w-[1600px] mx-auto min-h-screen flex flex-col">
+      <div className="pt-28 md:pt-32 pb-20 px-4 md:px-6 max-w-[1600px] mx-auto min-h-screen flex flex-col">
         
         {/* Page Header & Tabs */}
-        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-8 mb-12">
+        <div className="flex flex-col md:flex-row items-start md:items-end justify-between gap-6 md:gap-8 mb-8 md:mb-12">
           <div className="space-y-4">
-            <h1 className="text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase leading-[0.9]">
+            <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase leading-[0.9]">
               Property <br/>
-              <span className="font-serif italic font-normal text-zinc-500 lowercase">Exchange</span>
+              <span className="font-serif italic font-normal text-[#A98B55] lowercase">Exchange</span>
             </h1>
-            <p className="text-white/40 text-lg max-w-xl font-light">
+            <p className="text-white/60 text-sm md:text-lg max-w-xl font-light">
               Explore premium grade-A warehousing, industrial land, or connect with us to list your property or form strategic developer partnerships.
             </p>
           </div>
 
-          <div className="flex flex-wrap items-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md">
+          <div className="flex flex-row overflow-x-auto no-scrollbar w-full md:w-auto items-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md shrink-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id as Tab)}
-                className={`relative px-6 py-3 rounded-xl flex items-center gap-3 text-xs font-bold uppercase tracking-widest transition-colors ${
-                  activeTab === tab.id ? "text-black" : "text-white/60 hover:text-[#A98B55]"
+                className={`relative px-4 md:px-6 py-3 rounded-xl flex items-center gap-3 text-[10px] md:text-xs font-bold uppercase tracking-widest transition-colors whitespace-nowrap ${
+                  activeTab === tab.id ? "text-[#06111C]" : "text-white/60 hover:text-white"
                 }`}
               >
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="activeTabBg"
-                    className="absolute inset-0 bg-white rounded-xl"
+                    className="absolute inset-0 bg-[#A98B55] rounded-xl shadow-[0_0_20px_rgba(169,139,85,0.4)]"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
@@ -87,7 +89,7 @@ export default function PropertiesPage() {
               className="w-full h-full"
             >
               {activeTab === "buy" && (
-                <div className="w-full h-full min-h-[600px]">
+                <div className="w-full h-full min-h-[500px] md:min-h-[600px]">
                   <MapWrapper />
                 </div>
               )}
