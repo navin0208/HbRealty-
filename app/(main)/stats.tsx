@@ -59,18 +59,18 @@ function StatItem({ value, suffix = '+', label, index, description }: StatProps)
             />
 
             {/* Number */}
-            <div className="relative flex items-end gap-1 md:gap-2 mb-3">
+            <div className="relative flex items-end gap-1 mb-2 md:mb-3">
                 <motion.span
                     animate={{ color: hovered ? '#041D34' : '#062B4A' }}
                     transition={{ duration: 0.5 }}
-                    className="text-[72px] md:text-[148px] font-medium tracking-tighter leading-none font-sans"
+                    className="text-[48px] md:text-[56px] lg:text-[64px] xl:text-[80px] 2xl:text-[148px] font-medium tracking-tighter leading-none font-sans"
                 >
                     {count}
                 </motion.span>
                 <motion.span
                     animate={{ color: hovered ? '#041D34' : 'rgba(6, 43, 74, 0.4)' }}
                     transition={{ duration: 0.5 }}
-                    className="text-[32px] md:text-[64px] font-medium leading-none mb-2 md:mb-4 font-sans"
+                    className="text-[24px] md:text-[28px] lg:text-[32px] xl:text-[40px] 2xl:text-[64px] font-medium leading-none mb-1 md:mb-4 font-sans"
                 >
                     {suffix}
                 </motion.span>
@@ -159,7 +159,7 @@ function VerticalDivider({ delay }: { delay: number }) {
             viewport={{ once: true }}
             transition={{ delay, duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
             style={{ transformOrigin: 'top' }}
-            className="hidden md:block w-px bg-gradient-to-b from-transparent via-[#062B4A]/10 to-transparent self-stretch"
+            className="hidden xl:block w-px bg-gradient-to-b from-transparent via-[#062B4A]/10 to-transparent self-stretch"
         />
     )
 }
@@ -212,29 +212,29 @@ export default function StatsSection() {
                     By the Numbers
                 </motion.p>
 
-                <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
 
                     {/* Left — Quote */}
-                    <div className="md:col-span-4 flex items-end pb-8">
+                    <div className="lg:col-span-4 flex items-end pb-0 lg:pb-8">
                         <motion.p
                             initial={{ opacity: 0, x: -30 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             viewport={{ once: true }}
                             transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
-                            className="text-[#062B4A]/70 font-medium text-[#A98B55] text-2xl md:text-3xl max-w-xs leading-snug"
+                            className="text-[#062B4A]/70 font-medium text-[#A98B55] text-2xl md:text-3xl max-w-md lg:max-w-xs leading-snug"
                         >
                             Building legacy through precision and architectural foresight.
                         </motion.p>
                     </div>
 
                     {/* Right — Stats */}
-                    <div className="md:col-span-8 md:pl-24">
+                    <div className="lg:col-span-8 lg:pl-8 xl:pl-16 2xl:pl-24">
 
-                        {/* Desktop: horizontal row with dividers */}
-                        <div className="hidden md:flex items-start gap-0">
+                        {/* Desktop (xl+): horizontal row with dividers */}
+                        <div className="hidden xl:flex items-start gap-0">
                             {stats.map((stat, i) => (
                                 <div key={stat.label} className="flex flex-1">
-                                    <div className="flex-1 px-10 first:pl-0 last:pr-0">
+                                    <div className="flex-1 px-4 lg:px-6 xl:px-8 2xl:px-10 first:pl-0 last:pr-0">
                                         <StatItem {...stat} index={i} />
                                     </div>
                                     {i < stats.length - 1 && <VerticalDivider delay={i * 0.18 + 0.3} />}
@@ -242,8 +242,8 @@ export default function StatsSection() {
                             ))}
                         </div>
 
-                        {/* Mobile: stacked grid */}
-                        <div className="grid grid-cols-1 gap-12 md:hidden">
+                        {/* Mobile & Tablet (<xl): Grid or Stack */}
+                        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8 xl:hidden">
                             {stats.map((stat, i) => (
                                 <div key={stat.label}>
                                     <StatItem {...stat} index={i} />
@@ -254,7 +254,7 @@ export default function StatsSection() {
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.3, duration: 0.8 }}
                                             style={{ transformOrigin: 'left' }}
-                                            className="mt-12 h-px bg-[#062B4A]/10"
+                                            className="mt-12 h-px bg-[#062B4A]/10 md:hidden"
                                         />
                                     )}
                                 </div>

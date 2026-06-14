@@ -60,11 +60,18 @@ export default function BlogPage() {
       {/* ═══ HEADER (EDITORIAL) ═══ */}
       <section className="relative pt-40 pb-12 px-6 md:px-12 bg-[#062B4A] border-b border-white/10">
         <div className="max-w-[1600px] mx-auto">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="w-12 h-px bg-white/20 mb-8" />
-            <h1 className="text-5xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9]">
-              Industry <span className="font-medium text-[#A98B55]">insights.</span>
-            </h1>
+          <motion.div initial={{ opacity: 0, y: 40, filter: "blur(15px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>
+            <motion.div initial={{ width: 0 }} animate={{ width: 48 }} transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="h-px bg-white/20 mb-8" />
+            <div className="overflow-hidden">
+              <motion.h1 
+                initial={{ y: "100%" }}
+                animate={{ y: 0 }}
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-5xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9]"
+              >
+                Industry <span className="font-medium text-[#A98B55]">insights.</span>
+              </motion.h1>
+            </div>
           </motion.div>
         </div>
       </section>
@@ -78,7 +85,7 @@ export default function BlogPage() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className="relative h-[500px] md:h-[600px] overflow-hidden group cursor-pointer"
+              className="relative h-[500px] md:h-[600px] overflow-hidden group cursor-pointer rounded-2xl"
             >
             <Image src={featuredPost.image} alt={featuredPost.title} fill className="object-cover grayscale-[30%] transition-transform duration-[20s] group-hover:scale-105" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/40 to-transparent" />
@@ -115,10 +122,11 @@ export default function BlogPage() {
           {otherPosts.map((post, i) => (
             <Link href={`/blog/${post.id}`} key={post.id}>
               <motion.article 
-                initial={{ opacity: 0, y: 30 }} 
-                whileInView={{ opacity: 1, y: 0 }} 
+                initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} 
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
+                whileHover={{ y: -8 }}
                 viewport={{ once: true, margin: "-100px" }}
-                transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ delay: i * 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
                 className="group cursor-pointer flex flex-col h-full"
               >
               <div className="relative h-[300px] w-full overflow-hidden mb-8">
@@ -148,14 +156,20 @@ export default function BlogPage() {
       <section className="relative py-32 bg-[#062B4A] text-white">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
           <motion.div 
-            initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+            initial={{ opacity: 0, y: 30, filter: "blur(12px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className="relative py-16 md:py-24"
           >
             <div className="relative z-10 text-center max-w-3xl mx-auto">
-              <div className="w-12 h-px bg-white/20 mx-auto mb-10" />
-              <h3 className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-8">
+              <motion.div initial={{ width: 0 }} whileInView={{ width: 48 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.8 }} className="h-px bg-white/20 mx-auto mb-10" />
+              <motion.h3 
+                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
+                whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2, duration: 1 }}
+                className="text-4xl md:text-6xl font-medium text-white tracking-tight mb-8"
+              >
                 Stay <span className="font-medium text-[#A98B55]">informed.</span>
-              </h3>
+              </motion.h3>
               <p className="text-white/50 font-light text-lg mb-16 leading-relaxed">Get the latest insights on land development, warehousing, and real estate delivered to your inbox.</p>
               
               <div className="flex flex-col md:flex-row items-end justify-center gap-6 max-w-lg mx-auto">

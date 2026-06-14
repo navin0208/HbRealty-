@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Maximize, Download, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
+import TrustedPartners from "@/components/sections/TrustedPartners";
 import { useElementScrollProgress, type ElementScrollOffset } from "@/components/useElementScrollProgress";
 
 const HERO_SCROLL_OFFSET: ElementScrollOffset = ["start start", "end start"];
@@ -159,7 +160,7 @@ export default function PortfolioPage() {
         </motion.div>
 
         <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-24 w-full">
-          <div className="w-12 h-px bg-white/20 mb-8" />
+          <motion.div initial={{ width: 0 }} animate={{ width: 48 }} transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="h-px bg-white/20 mb-8" />
           <div className="overflow-hidden">
             <motion.h1 initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
               className="text-5xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9]">
@@ -200,8 +201,8 @@ export default function PortfolioPage() {
         {featured.map((project, index) => (
           <motion.div 
             key={project.id}
-            initial={{ opacity: 0, y: 40 }} 
-            whileInView={{ opacity: 1, y: 0 }} 
+            initial={{ opacity: 0, y: 50, filter: "blur(12px)" }} 
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
@@ -337,6 +338,11 @@ export default function PortfolioPage() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          TRUSTED PARTNERS & CLIENTS
+          ═══════════════════════════════════════════════════════════ */}
+      <TrustedPartners />
 
       {/* ═══ CTA (EDITORIAL / PREMIUM BLUE) ═══ */}
       <section className="relative py-40 px-6 md:px-12 bg-[#062B4A] text-white selection:bg-white selection:text-[#062B4A]">

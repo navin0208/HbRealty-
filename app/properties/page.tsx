@@ -65,7 +65,7 @@ export default function PropertiesPage() {
                 {activeTab === tab.id && (
                   <motion.div
                     layoutId="activeTabBg"
-                    className="absolute inset-0 bg-[#A98B55] rounded-xl shadow-[0_0_20px_rgba(169,139,85,0.4)]"
+                    className="absolute inset-0 bg-white rounded-xl shadow-[0_0_20px_rgba(255,255,255,0.4)]"
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}

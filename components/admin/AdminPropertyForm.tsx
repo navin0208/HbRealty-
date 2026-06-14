@@ -186,6 +186,35 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
                 }
               }}
             />
+            
+            <div className="mt-4 border-t border-[#062B4A]/10 pt-4">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Extract from Google Maps Link</label>
+              <input 
+                type="url" 
+                placeholder="Paste Google Maps URL here... (e.g. https://www.google.com/maps/place/.../@19.99,73.78)" 
+                className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors mt-2 text-xs"
+                onChange={(e) => {
+                  const url = e.target.value;
+                  // Regex to match @lat,lng from Google Maps Long URLs
+                  const match = url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+                  if (match) {
+                    const lat = parseFloat(match[1]);
+                    const lng = parseFloat(match[2]);
+                    if (!isNaN(lat) && !isNaN(lng)) {
+                      setLocation([lat, lng]);
+                      // Flash success feedback visually by clearing and showing coordinates
+                      e.target.value = '';
+                      setMessage("Coordinates successfully extracted from link!");
+                    }
+                  } else if (url.includes("goo.gl") || url.includes("maps.app.goo.gl")) {
+                    setMessage("Short links (goo.gl) require you to open them first. Please open the link in your browser, and paste the FULL expanded URL here.");
+                  }
+                }}
+              />
+              <p className="text-[#062B4A]/40 text-[10px] mt-2 leading-tight">
+                Tip: If using a short link (goo.gl), open it in your browser first and copy the full URL containing the "@" coordinates.
+              </p>
+            </div>
           </div>
           <div className={`flex-1 rounded-xl overflow-hidden border transition-colors min-h-[300px] ${location ? 'border-[#062B4A]/40 shadow-[0_0_20px_rgba(6,43,74,0.08)]' : 'border-[#062B4A]/10'}`}>
             <LocationPickerMap 

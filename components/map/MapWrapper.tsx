@@ -54,8 +54,8 @@ export default function MapWrapper() {
               onClick={() => setSelectedProperty(prop)}
               className={`cursor-pointer rounded-[16px] md:rounded-[20px] overflow-hidden border transition-all duration-300 ${
                 selectedProperty?.id === prop.id 
-                  ? 'border-[#A98B55] bg-[#A98B55]/10' 
-                  : 'border-white/5 bg-[#06111C]/50 hover:bg-white/5 hover:border-white/20'
+                  ? 'border-[#A98B55] bg-white shadow-[0_0_30px_rgba(169,139,85,0.3)]' 
+                  : 'border-white/10 bg-white/90 hover:bg-white hover:shadow-lg'
               }`}
             >
               <div className="h-[160px] w-full relative">
@@ -74,14 +74,14 @@ export default function MapWrapper() {
                 )}
               </div>
               <div className="p-4 md:p-6">
-                <h3 className="text-white font-bold text-base md:text-lg leading-tight mb-3">{prop.title}</h3>
-                <div className="flex items-center gap-4 text-white/50 text-[10px] md:text-xs mb-4">
+                <h3 className="text-[#062B4A] font-bold text-base md:text-lg leading-tight mb-3">{prop.title}</h3>
+                <div className="flex items-center gap-4 text-[#062B4A]/50 text-[10px] md:text-xs mb-4">
                   <div className="flex items-center gap-1.5"><Maximize size={14} className="text-[#A98B55]" /> {prop.size}</div>
                   <div className="flex items-center gap-1.5"><MapPin size={14} className="text-[#A98B55]" /> Nashik</div>
                 </div>
                 <div className="flex items-center justify-between">
-                  <span className="text-white text-lg md:text-xl font-bold tracking-tight">{prop.price}</span>
-                  <button className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white hover:bg-[#A98B55] hover:border-[#A98B55] transition-colors">
+                  <span className="text-[#062B4A] text-lg md:text-xl font-bold tracking-tight">{prop.price}</span>
+                  <button className="w-8 h-8 rounded-full bg-slate-100 border border-black/5 flex items-center justify-center text-[#062B4A] hover:bg-[#A98B55] hover:text-white transition-colors">
                     <ArrowRight size={14} />
                   </button>
                 </div>
@@ -102,26 +102,26 @@ export default function MapWrapper() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 bg-[#06111C]/95 backdrop-blur-xl border border-white/15 p-3 lg:p-4 rounded-2xl flex items-center gap-4 lg:gap-6 shadow-2xl z-[1000] w-[90%] max-w-[400px] lg:max-w-max lg:w-auto"
+              className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-xl border border-black/10 p-3 lg:p-4 rounded-2xl flex items-center gap-4 lg:gap-6 shadow-2xl z-[1000] w-[90%] max-w-[400px] lg:max-w-max lg:w-auto"
             >
-              <div className="text-white flex-1 min-w-0">
+              <div className="text-[#062B4A] flex-1 min-w-0">
                 <p className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-[#A98B55] mb-0.5 lg:mb-1">
                   {selectedProperty.status === 'sold' ? 'Sold Out' : 'Interested?'}
                 </p>
                 <p className="text-xs lg:text-sm font-medium truncate">{selectedProperty.title}</p>
               </div>
               {selectedProperty.status === 'sold' ? (
-                <button disabled className="px-4 lg:px-6 py-2 lg:py-2.5 bg-white/5 border border-white/10 text-white/40 text-[10px] lg:text-xs font-bold uppercase tracking-widest rounded-xl cursor-not-allowed shrink-0">
+                <button disabled className="px-4 lg:px-6 py-2 lg:py-2.5 bg-black/5 border border-black/10 text-black/40 text-[10px] lg:text-xs font-bold uppercase tracking-widest rounded-xl cursor-not-allowed shrink-0">
                   Sold Out
                 </button>
               ) : (
-                <button className="px-4 lg:px-6 py-2 lg:py-2.5 bg-[#A98B55] text-[#06111C] text-[10px] lg:text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-[#A98B55]/90 transition-colors shrink-0">
+                <button className="px-4 lg:px-6 py-2 lg:py-2.5 bg-[#A98B55] text-white text-[10px] lg:text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-[#A98B55]/90 transition-colors shrink-0">
                   Contact Agent
                 </button>
               )}
               <button 
                 onClick={() => setSelectedProperty(null)}
-                className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center text-white/50 hover:text-[#A98B55] transition-colors absolute -top-3 -right-3 border border-white/20"
+                className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center text-black/50 hover:text-red-500 transition-colors absolute -top-3 -right-3 border border-black/10 shadow-sm"
               >
                 <X size={14} />
               </button>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, AlertCircle, Building2, MapPin, Maximize, User, Mail, Phone } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Building2, MapPin, Maximize, User, Mail, Phone, FileUp } from "lucide-react";
 
 type FormType = "sell" | "developer";
 
@@ -13,6 +13,21 @@ interface PropertyInquiryFormProps {
 export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) {
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
+  const [fileError, setFileError] = useState("");
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      if (file.size > 5 * 1024 * 1024) {
+        setFileError("Document must be smaller than 5MB.");
+        e.target.value = ""; // Clear the input
+      } else {
+        setFileError("");
+      }
+    } else {
+      setFileError("");
+    }
+  };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -131,6 +146,25 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
         <div className="space-y-2">
           <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Additional Details</label>
           <textarea name="details" rows={4} className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors resize-none" placeholder={type === 'sell' ? "Describe the property, legal status, road access..." : "Describe your requirements, preferred budget..."} />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+            <FileUp size={12} /> Property Document (7/12 For Verification)
+          </label>
+          <div className="relative">
+            <input 
+              type="file" 
+              name="document" 
+              accept=".pdf,image/*"
+              onChange={handleFileChange}
+              className={`w-full bg-white/5 border rounded-xl px-4 py-3 text-white/80 focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-white/10 file:text-white hover:file:bg-white/20 cursor-pointer ${
+                fileError ? "border-red-500/50" : "border-white/10 focus:border-white/50/50"
+              }`} 
+            />
+            <p className="absolute right-4 top-1/2 -translate-y-1/2 text-white/30 text-[9px] font-bold uppercase tracking-widest pointer-events-none hidden sm:block">Max 5MB</p>
+          </div>
+          {fileError && <p className="text-red-400 text-xs mt-1">{fileError}</p>}
         </div>
 
         <button 

@@ -74,3 +74,62 @@ export const EASE_CINEMATIC: BezierTuple = [0.22, 1, 0.36, 1];
 export const EASE_EXIT: BezierTuple = [0.55, 0, 1, 0.45];
 export const EASE_SPRING: BezierTuple = [0.34, 1.56, 0.64, 1];
 export const EASE_CURTAIN: BezierTuple = [0.87, 0, 0.13, 1];
+
+// ── Slide-in from Left ──
+export const slideInLeft: Variants = {
+  hidden: { opacity: 0, x: -80 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.9, ease: EASE_IN },
+  },
+};
+
+// ── Slide-in from Right ──
+export const slideInRight: Variants = {
+  hidden: { opacity: 0, x: 80 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.9, ease: EASE_IN },
+  },
+};
+
+// ── Stagger container with slower, more cinematic reveal ──
+export const staggerContainerSlow: Variants = {
+  hidden: {},
+  visible: {
+    transition: { staggerChildren: 0.15, delayChildren: 0.2 },
+  },
+};
+
+// ── Blur-in fade ──
+export const blurIn: Variants = {
+  hidden: { opacity: 0, filter: "blur(20px)", y: 30 },
+  visible: {
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    transition: { duration: 1.0, ease: EASE_IN },
+  },
+};
+
+// ── Rotate-in from bottom ──
+export const rotateIn: Variants = {
+  hidden: { opacity: 0, rotateX: 45, y: 40 },
+  visible: {
+    opacity: 1,
+    rotateX: 0,
+    y: 0,
+    transition: { duration: 0.8, ease: EASE_IN },
+  },
+};
+
+// ── Line expand from left ──
+export const lineExpand: Variants = {
+  hidden: { scaleX: 0, transformOrigin: "left" },
+  visible: {
+    scaleX: 1,
+    transition: { duration: 1.2, ease: EASE_IN },
+  },
+};

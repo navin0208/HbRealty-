@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
+import { Layers } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -27,6 +28,12 @@ export interface Property {
   status?: "available" | "sold";
 }
 
+const MAP_LAYERS = {
+  satellite: { name: "Satellite", url: "https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}" },
+  terrain: { name: "Terrain", url: "https://mt1.google.com/vt/lyrs=p&x={x}&y={y}&z={z}" },
+  standard: { name: "Standard", url: "https://mt1.google.com/vt/lyrs=m&x={x}&y={y}&z={z}" },
+  clean: { name: "Clean", url: "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" }
+};
 
 function MapController({ center, zoom }: { center: [number, number]; zoom: number }) {
   const map = useMap();
@@ -46,6 +53,8 @@ interface PropertyMapProps {
 
 export default function PropertyMap({ properties, onPropertySelect, selectedProperty }: PropertyMapProps) {
   const [mounted, setMounted] = useState(false);
+  const [activeLayer, setActiveLayer] = useState<keyof typeof MAP_LAYERS>("satellite");
+  const [layersOpen, setLayersOpen] = useState(false);
   
   useEffect(() => {
     setMounted(true);
@@ -57,17 +66,17 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
   if (!mounted) return null;
 
   return (
-    <div className="w-full h-full relative z-0">
+    <div className="w-full h-full relative z-0 group">
       <MapContainer
         center={center}
         zoom={zoom}
         scrollWheelZoom={true}
-        className="w-full h-full rounded-[20px] overflow-hidden border border-white/10"
+        className="w-full h-full rounded-[20px] overflow-hidden border border-black/5 z-0"
         zoomControl={false}
       >
         <TileLayer
           attribution='&copy; <a href="https://www.google.com/maps">Google Maps</a>'
-          url="https://mt1.google.com/vt/lyrs=y&x={x}&y={y}&z={z}" // Google Hybrid (Satellite + Labels)
+          url={MAP_LAYERS[activeLayer].url}
           maxZoom={20}
         />
         <MapController center={center} zoom={zoom} />
@@ -82,7 +91,7 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
             }}
           >
             <Popup className="custom-popup">
-              <div className="w-[200px] overflow-hidden rounded-xl bg-[#06111C]/95 backdrop-blur-md border border-white/10 text-white p-0 m-0 shadow-2xl relative">
+              <div className="w-[200px] overflow-hidden rounded-xl bg-white/95 backdrop-blur-md border border-black/5 text-[#062B4A] p-0 m-0 shadow-2xl relative">
                 <img src={prop.image} alt={prop.title} className={`w-full h-[120px] object-cover ${prop.status === 'sold' ? 'brightness-[0.7] grayscale' : ''}`} />
                 {prop.status === 'sold' && (
                   <div className="absolute top-2 right-2 px-2 py-0.5 bg-red-600 text-white text-[8px] font-bold uppercase tracking-widest rounded z-10">
@@ -91,10 +100,10 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
                 )}
                 <div className="p-3">
                   <span className="text-[9px] font-bold uppercase tracking-widest text-[#A98B55]">{prop.type}</span>
-                  <h4 className="text-sm font-bold mt-1 line-clamp-1 text-white">{prop.title}</h4>
+                  <h4 className="text-sm font-bold mt-1 line-clamp-1 text-[#062B4A]">{prop.title}</h4>
                   <div className="flex justify-between items-center mt-2">
-                    <span className="text-white/50 text-xs font-mono">{prop.size}</span>
-                    <span className="text-white font-bold">{prop.price}</span>
+                    <span className="text-[#062B4A]/50 text-xs font-mono">{prop.size}</span>
+                    <span className="text-[#062B4A] font-bold">{prop.price}</span>
                   </div>
                 </div>
               </div>
@@ -103,6 +112,39 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
         ))}
       </MapContainer>
 
+      {/* Custom Premium Layer Controls OVER the map */}
+      <div className="absolute top-4 right-4 z-[9999] flex flex-col items-end gap-2 pointer-events-auto">
+        <button
+          onClick={() => setLayersOpen(!layersOpen)}
+          className={`w-10 h-10 md:w-11 md:h-11 bg-white/95 backdrop-blur-md rounded-xl shadow-xl flex items-center justify-center text-[#062B4A] border cursor-pointer transition-all ${
+            layersOpen ? "border-[#062B4A]" : "border-black/10 hover:bg-white hover:border-black/20"
+          }`}
+        >
+          <Layers size={20} />
+        </button>
+
+        {layersOpen && (
+          <div className="bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-black/10 p-2 flex flex-col gap-1 w-36 overflow-hidden">
+            {Object.entries(MAP_LAYERS).map(([key, layer]) => (
+              <button
+                key={key}
+                onClick={() => {
+                  setActiveLayer(key as keyof typeof MAP_LAYERS);
+                  setLayersOpen(false);
+                }}
+                className={`px-3 py-2 text-left text-[10px] font-bold uppercase tracking-widest rounded-lg transition-all cursor-pointer ${
+                  activeLayer === key
+                    ? "bg-[#062B4A] text-white"
+                    : "text-[#062B4A] hover:bg-black/5"
+                }`}
+              >
+                {layer.name}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+
       <style jsx global>{`
         .leaflet-popup-content-wrapper {
           background: transparent !important;
@@ -110,11 +152,11 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
           box-shadow: none !important;
         }
         .leaflet-popup-tip {
-          background: #06111C !important;
-          border: 1px solid rgba(255,255,255,0.1);
+          background: white !important;
+          border: 1px solid rgba(0,0,0,0.05);
         }
         .leaflet-container {
-          background: #0A1118;
+          background: #f8fafc;
           font-family: inherit;
         }
       `}</style>

@@ -18,10 +18,11 @@
     "price": "₹8.5 Cr",
     "size": "3.2 Acres",
     "location": [
-      19.9615,
-      73.8055
+      19.99861352541527,
+      73.83762001991273
     ],
-    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400"
+    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400",
+    "status": "available"
   },
   {
     "id": "3",
@@ -59,5 +60,44 @@
       73.81039295693265
     ],
     "id": "qytumwgs0"
+  },
+  {
+    "title": "ewsrdxcfgvhbjnkml",
+    "type": "Agricultural",
+    "price": "12cr",
+    "size": "5acre",
+    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+    "location": [
+      20.007612999687343,
+      73.78701752739065
+    ],
+    "status": "available",
+    "id": "ifhu0tyg1"
+  },
+  {
+    "title": "bhtfrf",
+    "type": "Industrial Land",
+    "price": "hbhb",
+    "size": "hbhbh",
+    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+    "location": [
+      20.00143643122793,
+      73.80336284637453
+    ],
+    "status": "available",
+    "id": "x1yada4pm"
+  },
+  {
+    "title": "asdfghjkl",
+    "type": "Industrial Land",
+    "price": "12cr",
+    "size": "1111acre",
+    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+    "location": [
+      19.99315156304784,
+      73.80117416381837
+    ],
+    "status": "sold",
+    "id": "wj881uwny"
   }
 ]

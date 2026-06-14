@@ -82,16 +82,16 @@ export default function AboutPage() {
           ].map((stat, i) => (
             <motion.div 
               key={i}
-              initial={{ opacity: 0, y: 20 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
+              initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} 
+              whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ delay: i * 0.12, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="flex flex-col items-start"
             >
               <span className="text-4xl md:text-5xl font-serif text-[#062B4A] tracking-tight mb-4 animate-counter">
                 <AnimatedCounter value={stat.val} />
               </span>
-              <div className="w-8 h-px bg-[#062B4A]/20 mb-4" />
+              <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.12 + 0.4, duration: 0.8 }} style={{ transformOrigin: 'left' }} className="w-8 h-px bg-[#062B4A]/20 mb-4" />
               <span className="text-[#062B4A]/55 text-[10px] font-bold uppercase tracking-[0.2em]">{stat.title}</span>
             </motion.div>
           ))}
@@ -102,8 +102,8 @@ export default function AboutPage() {
       <section className="relative py-20 px-6 md:px-12 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-40">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>
-              <div className="w-12 h-px bg-[#062B4A]/20 mb-8" />
+            <motion.div initial={{ opacity: 0, x: -40, filter: "blur(12px)" }} whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>
+              <motion.div initial={{ width: 0 }} whileInView={{ width: 48 }} viewport={{ once: true }} transition={{ duration: 1, delay: 0.2 }} className="h-px bg-[#062B4A]/20 mb-8" />
               <h2 className="text-3xl md:text-5xl font-medium text-[#062B4A] tracking-tight leading-[1.1] mb-8">
                 From <span className="font-medium text-[#A98B55]">vision</span> <br/> to reality.
               </h2>
@@ -111,13 +111,13 @@ export default function AboutPage() {
           </div>
           
           <div className="lg:col-span-7 space-y-16 mt-0 md:mt-24">
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="text-[#062B4A]/70 text-xl md:text-2xl font-light leading-relaxed">
+            <motion.p initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="text-[#062B4A]/70 text-xl md:text-2xl font-light leading-relaxed">
               HB Realty India stands at the forefront of land development and warehousing in Maharashtra. We specialize in identifying, acquiring, and transforming land into thriving commercial and logistics hubs.
             </motion.p>
-            <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.1 }} className="text-[#062B4A]/60 text-lg font-light leading-relaxed">
+            <motion.p initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.15 }} className="text-[#062B4A]/60 text-lg font-light leading-relaxed">
               With a legacy of excellence and innovation, we offer end-to-end real estate solutions combining legal consultancy, infrastructure planning, and warehousing expertise into one seamless experience.
             </motion.p>
-            <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }} className="relative border-l border-[#062B4A]/25 pl-8 md:pl-12 py-4">
+            <motion.div initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.25 }} className="relative border-l border-[#062B4A]/25 pl-8 md:pl-12 py-4">
               <p className="text-[#062B4A]/80 font-medium text-[#A98B55] text-xl md:text-2xl leading-relaxed">
                 At the heart of our operations lies <span className="text-[#062B4A] font-sans not-italic font-medium">Osiyan</span>, our state-of-the-art Grade-A warehousing facility in Nashik. Strategically located, it is a reflection of our vision—developing world-class infrastructure to empower India&apos;s growing economy.
               </p>
@@ -139,12 +139,12 @@ export default function AboutPage() {
         </div>
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-            <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
+            <motion.div initial={{ opacity: 0, x: -40, filter: "blur(12px)" }} whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} viewport={{ once: true }}>
               <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.6em] block mb-6">Our Vision</span>
               <p className="text-white/80 font-light text-3xl md:text-4xl leading-[1.6] italic">
                 &ldquo;To become Maharashtra&apos;s most trusted name in land development, warehousing consultancy, and real estate legal services, while contributing to sustainable and intelligent infrastructure growth.&rdquo;
               </p>
-              <div className="w-20 h-[2px] bg-white text-[#062B4A] mt-12" />
+              <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }} viewport={{ once: true }} transition={{ delay: 0.4, duration: 1 }} className="h-[2px] bg-white text-[#062B4A] mt-12" />
             </motion.div>
 
             <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }}>
@@ -159,13 +159,13 @@ export default function AboutPage() {
                 ].map((strength, i) => (
                   <motion.div 
                     key={i} 
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 0, x: 25, filter: "blur(8px)" }}
+                    whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
                     viewport={{ once: true }}
-                    transition={{ delay: i * 0.08 }}
+                    transition={{ delay: i * 0.1, duration: 0.8 }}
                     className="flex items-start gap-4 group"
                   >
-                    <div className="w-8 h-[2px] bg-white text-[#062B4A]/50 mt-3 group-hover:w-12 group-hover:bg-white text-[#062B4A] transition-all shrink-0" />
+                    <motion.div initial={{ width: 0 }} whileInView={{ width: 32 }} viewport={{ once: true }} transition={{ delay: i * 0.1 + 0.2, duration: 0.6 }} className="h-[2px] bg-white/50 mt-3 group-hover:bg-white transition-all shrink-0" />
                     <p className="text-white/70 font-light text-lg group-hover:text-[#A98B55] transition-colors">{strength}</p>
                   </motion.div>
                 ))}
@@ -192,13 +192,14 @@ export default function AboutPage() {
               ].map((reason, i) => (
                 <motion.div 
                   key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 0, y: 30, filter: "blur(10px)" }}
+                  whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                  whileHover={{ y: -8 }}
                   viewport={{ once: true, margin: "-100px" }}
-                  transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                  className="flex flex-col items-start group"
+                  transition={{ delay: i * 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="flex flex-col items-start group cursor-default"
                 >
-                  <span className="text-[#062B4A]/20 font-light text-2xl mb-6 group-hover:text-[#A98B55]/40 transition-colors">0{i+1}</span>
+                  <span className="text-[#062B4A]/20 font-light text-2xl mb-6 group-hover:text-[#A98B55]/40 transition-colors">{String(i+1).padStart(2,'0')}</span>
                   <h4 className="text-[#062B4A] text-lg font-medium tracking-wide mb-4">{reason.title}</h4>
                   <p className="text-[#062B4A]/60 text-sm md:text-base font-light leading-relaxed max-w-sm">{reason.desc}</p>
                 </motion.div>
@@ -220,10 +221,10 @@ export default function AboutPage() {
         </div>
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           <motion.div 
-            initial={{ opacity: 0, scale: 0.95 }} 
-            whileInView={{ opacity: 1, scale: 1 }} 
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(15px)" }} 
+            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} 
             viewport={{ once: true }}
-            transition={{ duration: 1 }}
+            transition={{ duration: 1.2 }}
             className="lg:col-span-5 relative h-[700px] rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
           >
             <Image src="/Hitesh-scaled.png" alt="Mr. Hitesh Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
@@ -239,9 +240,10 @@ export default function AboutPage() {
           </motion.div>
           
           <motion.div 
-            initial={{ opacity: 0, x: 40 }} 
-            whileInView={{ opacity: 1, x: 0 }} 
+            initial={{ opacity: 0, x: 50, filter: "blur(12px)" }} 
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
             viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.2 }}
             className="lg:col-span-7 space-y-10"
           >
             <h2 className="text-white text-4xl md:text-7xl font-bold tracking-tighter uppercase leading-[0.85]">

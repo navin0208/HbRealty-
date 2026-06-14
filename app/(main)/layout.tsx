@@ -3,6 +3,7 @@
 
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import WhatsAppButton from "@/components/WhatsAppButton";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { AnimatePresence, motion } from "framer-motion";
@@ -39,7 +40,15 @@ export default function MainLayout({
       <Navbar />
       
       {/* 🚀 ANTIGRAVITY — Page Transitions */}
-      <AnimatePresence mode="wait">
+      <AnimatePresence mode="wait" onExitComplete={() => {
+        // @ts-ignore
+        if (window.lenis) {
+          // @ts-ignore
+          window.lenis.scrollTo(0, { immediate: true });
+        } else {
+          window.scrollTo({ top: 0, left: 0, behavior: "instant" });
+        }
+      }}>
         <motion.main
           key={pathname}
           initial={{ opacity: 0, y: 20 }}
@@ -53,6 +62,7 @@ export default function MainLayout({
       </AnimatePresence>
 
       <Footer />
+      <WhatsAppButton />
     </SmoothScrollProvider>
   );
 }

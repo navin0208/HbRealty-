@@ -30,8 +30,8 @@ export default function ContactPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#062B4A]/90 via-[#062B4A]/20 to-transparent h-48" />
         </div>
         <div className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-24 w-full">
-          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}>
-            <div className="w-12 h-px bg-white/20 mb-8" />
+          <motion.div initial={{ opacity: 0, y: 40, filter: "blur(15px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>
+            <motion.div initial={{ width: 0 }} animate={{ width: 48 }} transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="h-px bg-white/20 mb-8" />
             <div className="overflow-hidden">
               <motion.h1 
                 initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
@@ -53,7 +53,7 @@ export default function ContactPage() {
           <div className="lg:col-span-5 space-y-16 lg:sticky lg:top-40">
             {/* India HQ */}
             <motion.div 
-              initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, y: 30, filter: "blur(12px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className="space-y-8"
             >
               <div className="flex items-center gap-4 border-b border-white/10 pb-4">

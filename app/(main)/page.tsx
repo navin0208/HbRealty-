@@ -3,14 +3,15 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useTransform, useMotionTemplate, useInView, useSpring } from "framer-motion";
+import { motion, AnimatePresence, useTransform, useMotionTemplate, useInView, useSpring, useScroll } from "framer-motion";
 import { Menu, ArrowRight, Play, ChevronRight, Globe, Shield, Zap, Target, CheckCircle2, Award, Building2, Scale, Users, Plus, Minus, AlertCircle, RefreshCcw, TrendingUp, CheckCircle, FileText, Gavel, Construction, ArrowLeft, MoveRight, MapPin, Phone, Mail, Clock, Volume2, VolumeX, Briefcase } from "lucide-react";
 import LiquidLogoSection from "@/components/LiquidLogoSection";
 import { useElementScrollProgress, type ElementScrollOffset } from "@/components/useElementScrollProgress";
 import HeroCinematic from "@/components/animations/HeroCinematic";
-import { cardHover, scaleIn } from "@/lib/animation-variants"; // 🚀 ANTIGRAVITY
+import { cardHover, scaleIn, blurIn, staggerContainerSlow, fadeUp, fadeUpStagger } from "@/lib/animation-variants"; // 🚀 ANTIGRAVITY
 import StatsSection from "./stats";
 import { AboutSection, LandDevelopmentSection } from "./abt";
+import TrustedPartners from "@/components/sections/TrustedPartners";
 import { projects as portfolioProjects } from "./portfolio/page";
 
 const SCROLL_REVEAL_OFFSET: ElementScrollOffset = ["start 0.9", "start 0.4"];
@@ -110,7 +111,7 @@ const services = [
     id: 4,
     title: "Warehouse Legal Clearance",
     desc: "Fast and reliable approvals for fire safety, environmental compliance, and operational licenses.",
-    image: "/Warehouse-Lease-Advisory-min-scaled.jpg",
+     image: "/warehouse_clearance.png",
     icon: <FileText className="w-6 h-6" />,
     color: "#10b981",
     accent: "Operational Speed"
@@ -151,11 +152,22 @@ export default function Home() {
   const warehouseY = useTransform(warehouseScroll, [0, 1], ["-10%", "10%"]);
   const panelY = useTransform(warehouseScroll, [0, 1], ["8%", "-8%"]);
 
+  // Scroll-driven "From Vision to Reality" marquee
+  const visionRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress: visionScroll } = useScroll({
+    target: visionRef,
+    offset: ["start end", "end start"],
+  });
+  const visionX = useTransform(visionScroll, [0, 1], ["15%", "-60%"]);
+  const visionX2 = useTransform(visionScroll, [0, 1], ["-30%", "20%"]);
+  const visionOpacity = useTransform(visionScroll, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const visionScale = useTransform(visionScroll, [0, 0.5, 1], [0.9, 1, 0.9]);
 
 
-  // Auto-play for Services Carousel (Faster cycle)
+
+  // Auto-play for Services Carousel (Slower cycle for readability)
   useEffect(() => {
-    const duration = 3500;
+    const duration = 8000;
     const interval = 50;
     let elapsed = 0;
 
@@ -181,6 +193,38 @@ export default function Home() {
 
       <AboutSection />
       <LandDevelopmentSection />
+
+      {/* ═══════════════════════════════════════════════════════════
+          SCROLL-DRIVEN "FROM VISION TO REALITY" MARQUEE
+          ═══════════════════════════════════════════════════════════ */}
+      <section
+        ref={visionRef}
+        className="relative py-32 md:py-48 overflow-hidden bg-[#FAF9F6] border-y border-[#062B4A]/5"
+      >
+        {/* Ambient gradient blobs */}
+        <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-[#A98B55]/5 blur-[120px] pointer-events-none" />
+        <div className="absolute bottom-0 right-1/4 w-[400px] h-[400px] rounded-full bg-[#062B4A]/5 blur-[100px] pointer-events-none" />
+
+        <motion.div style={{ opacity: visionOpacity, scale: visionScale }} className="relative z-10">
+          {/* Row 1: slides right to left */}
+          <motion.div style={{ x: visionX }} className="flex items-center gap-8 md:gap-16 whitespace-nowrap mb-4 md:mb-6">
+            <span className="text-[#062B4A] text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">From Vision</span>
+            <div className="h-[3px] w-24 md:w-48 bg-[#A98B55] rounded-full shrink-0" />
+            <span className="text-[#062B4A]/10 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">Precision</span>
+            <div className="h-3 w-3 rounded-full bg-[#A98B55] shrink-0" />
+            <span className="text-[#062B4A]/20 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">Legacy</span>
+          </motion.div>
+
+          {/* Row 2: slides left to right */}
+          <motion.div style={{ x: visionX2 }} className="flex items-center gap-8 md:gap-16 whitespace-nowrap">
+            <span className="text-[#062B4A]/10 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">Craft</span>
+            <div className="h-3 w-3 rounded-full bg-[#062B4A]/20 shrink-0" />
+            <span className="text-[#062B4A] text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">To Reality</span>
+            <div className="h-[3px] w-24 md:w-48 bg-[#062B4A]/20 rounded-full shrink-0" />
+            <span className="text-[#A98B55]/30 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-serif italic font-normal tracking-tighter lowercase leading-none">mastery</span>
+          </motion.div>
+        </motion.div>
+      </section>
 
       {/* IMMERSIVE CINEMATIC VIDEO */}
       <section className="relative w-full bg-white py-24 md:py-32">
@@ -299,27 +343,27 @@ export default function Home() {
             </motion.div>
 
             {/* Approach Card (Subtle tint) */}
-            <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.1 }} className="relative p-10 md:p-14 bg-[#062B4A]/5 border-y md:border-y-0 md:border-x border-[#062B4A]/10 md:z-10 shadow-md flex flex-col items-start text-left">
+            <motion.div initial={{ opacity: 0, y: 50, filter: "blur(10px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true }} transition={{ delay: 0.15, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="relative p-10 md:p-14 bg-[#062B4A]/5 border-y md:border-y-0 md:border-x border-[#062B4A]/10 md:z-10 shadow-md flex flex-col items-start text-left">
               <div className="mb-10 p-4 rounded-2xl bg-purple-500/10 text-purple-500"><RefreshCcw size={28} /></div>
               <h3 className="text-[#062B4A] text-2xl font-bold uppercase tracking-widest mb-8">Our Approach</h3>
               <ul className="space-y-6">
                 {["Verified documentation.", "Approved master planning.", "Infrastructure-ready plots.", "Transparent development process."].map((item, i) => (
-                  <li key={i} className="text-[#062B4A]/70 text-sm font-light tracking-wide flex items-center gap-4">
+                  <motion.li key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 + i * 0.1 }} className="text-[#062B4A]/70 text-sm font-light tracking-wide flex items-center gap-4">
                     <div className="h-[1px] w-4 bg-purple-500/50" /> {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
 
             {/* Advantage Card (Inverted Highlight) */}
-            <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="relative p-10 md:p-14 bg-[#062B4A] rounded-[40px] md:rounded-none md:rounded-r-[40px] shadow-2xl flex flex-col items-start text-left group">
+            <motion.div initial={{ opacity: 0, x: 50, filter: "blur(10px)" }} whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} viewport={{ once: true }} transition={{ delay: 0.25, duration: 0.9, ease: [0.22, 1, 0.36, 1] }} className="relative p-10 md:p-14 bg-[#062B4A] rounded-[40px] md:rounded-none md:rounded-r-[40px] shadow-2xl flex flex-col items-start text-left group">
               <div className="mb-10 p-4 rounded-2xl bg-white/10 text-[#A98B55] group-hover:scale-110 transition-transform"><TrendingUp size={28} /></div>
               <h3 className="text-white text-2xl font-bold uppercase tracking-widest mb-8">Your Advantage</h3>
               <ul className="space-y-6">
                 {["Secure ownership", "Faster execution", "Operational efficiency", "Long-term capital growth"].map((item, i) => (
-                  <li key={i} className="text-white/70 text-sm font-light tracking-wide flex items-center gap-4">
+                  <motion.li key={i} initial={{ opacity: 0, x: -20 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true }} transition={{ delay: 0.4 + i * 0.1 }} className="text-white/70 text-sm font-light tracking-wide flex items-center gap-4">
                     <CheckCircle size={16} className="text-[#A98B55]" /> {item}
-                  </li>
+                  </motion.li>
                 ))}
               </ul>
             </motion.div>
@@ -418,13 +462,13 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           DUBAI — ACT I: CINEMATIC VIDEO MOMENT
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative h-[60vh] sm:h-[80vh] md:h-screen bg-[#062B4A] overflow-hidden flex items-center justify-center py-6 sm:py-10 md:py-20 px-4 sm:px-6 md:px-12">
+      <section className="relative h-[60vh] sm:h-[80vh] md:h-screen bg-[#062B4A] overflow-hidden flex items-center justify-center p-4 sm:p-6 md:p-8 lg:p-12">
         <motion.div
-          initial={{ scale: 0.9, opacity: 0 }}
-          whileInView={{ scale: 1, opacity: 1 }}
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="relative w-full h-full max-w-[1600px] rounded-3xl md:rounded-[80px] overflow-hidden border border-white/10 shadow-[0_0_100px_rgba(0,0,0,0.8)] group"
+          className="relative w-full h-full overflow-hidden group rounded-[32px] md:rounded-[60px] lg:rounded-[80px] border border-white/10 shadow-2xl"
         >
           {/* Unobstructed Video */}
           <video
@@ -437,15 +481,15 @@ export default function Home() {
             <source src="/Dubai.mp4" type="video/mp4" />
           </video>
 
-          {/* Cinematic Vignette — soft fade on ALL edges within the rounded frame */}
-          <div className="absolute inset-0 pointer-events-none z-10" style={{ boxShadow: 'inset 0 0 150px 50px rgba(0,0,0,0.8)' }} />
-          <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-[#062B4A]/40 z-10" />
+          {/* Cinematic Vignette — soft fade on ALL edges */}
+          <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-[#062B4A]/20 z-10" />
           <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-[#062B4A]/80 to-transparent z-10" />
 
           {/* Title Card — Bottom-aligned with staggered premium animations */}
-          <div className="absolute inset-0 z-20 flex flex-col justify-end pb-8 sm:pb-16 md:pb-24 px-6 sm:px-12 md:px-20">
-            <div className="max-w-6xl">
-              {/* Label line */}
+          <div className="absolute inset-0 z-20 flex flex-col justify-end pb-8 sm:pb-16 md:pb-24">
+            <div className="max-w-[1600px] mx-auto w-full px-6 md:px-12">
+              <div className="max-w-6xl">
+                {/* Label line */}
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
                 whileInView={{ opacity: 1, x: 0 }}
@@ -503,6 +547,7 @@ export default function Home() {
               </motion.p>
             </div>
           </div>
+        </div>
 
           {/* Film Grain Texture */}
           <div className="absolute inset-0 opacity-[0.04] pointer-events-none bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] z-10" />
@@ -587,10 +632,10 @@ export default function Home() {
                 <p className="text-white/30 font-serif italic text-xl mt-2">Consultants</p>
               </div>
               <div className="flex flex-wrap gap-3 pt-8">
-                <motion.a href="#" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 bg-white hover:bg-white/90 text-[#062B4A] py-3 px-6 sm:py-4 sm:px-8 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] transition-all">
+                <motion.a href="https://sanghaviandbafana.com/" target="_blank" rel="noopener noreferrer" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 bg-white hover:bg-white/90 text-[#062B4A] py-3 px-6 sm:py-4 sm:px-8 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] transition-all">
                   Visit Partner <ArrowRight size={14} />
                 </motion.a>
-                <motion.a href="#" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 border border-white/20 hover:border-white text-white py-3 px-6 sm:py-4 sm:px-8 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] transition-all">
+                <motion.a href="https://sanghaviandbafana.com/" target="_blank" rel="noopener noreferrer" whileHover={{ x: 3 }} className="inline-flex items-center gap-3 border border-white/20 hover:border-white text-white py-3 px-6 sm:py-4 sm:px-8 rounded-full text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.3em] transition-all">
                   Their Team <ArrowRight size={14} />
                 </motion.a>
               </div>
@@ -626,6 +671,103 @@ export default function Home() {
                   ))}
                 </div>
               </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          TRUSTED PARTNERS & CLIENTS
+          ═══════════════════════════════════════════════════════════ */}
+      <TrustedPartners />
+
+      {/* ═══════════════════════════════════════════════════════════
+          LEGAL LEGACY — ADV. MANOJ BAFANA
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="relative bg-[#041D34] py-20 md:py-32 overflow-hidden border-t border-white/5">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] mix-blend-overlay opacity-5 pointer-events-none" />
+        
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+            
+            {/* Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="lg:col-span-5 relative"
+            >
+              <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl group">
+                <Image 
+                  src="/Manoj-bafana.jpg"
+                  alt="Adv. Manoj Bafana"
+                  fill
+                  className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#041D34]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 border border-white/10 rounded-[30px] pointer-events-none" />
+              </div>
+              
+              {/* Badge */}
+              <div className="absolute -bottom-8 -right-4 md:-right-12 bg-[#A98B55] text-[#041D34] p-6 md:p-8 rounded-full flex items-center justify-center shadow-xl border-4 border-[#041D34]">
+                <div className="text-center">
+                  <span className="block text-3xl md:text-4xl font-bold tracking-tighter leading-none mb-1">27+</span>
+                  <span className="block text-[8px] font-bold uppercase tracking-[0.2em]">Years of<br/>Legacy</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Content Side */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="lg:col-span-7 pt-10 lg:pt-0"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-px w-12 bg-[#A98B55]" />
+                <span className="text-[#A98B55] text-[10px] font-bold uppercase tracking-[0.3em]">Our Strategic Partner</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.1] mb-6">
+                Legal Mastery & <br/>
+                <span className="font-serif italic font-light text-white/60">Foresight</span>
+              </h2>
+              
+              <h3 className="text-xl md:text-2xl text-white font-medium mb-8 tracking-wide">
+                Adv. Manoj Bafana & Associates
+              </h3>
+
+              <div className="space-y-6 text-white/60 text-lg md:text-xl font-light leading-relaxed max-w-2xl relative">
+                <div className="absolute -left-4 md:-left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#A98B55] to-transparent" />
+                <p className="pl-4 md:pl-0">
+                  With a rich experience spanning over 27 years, the firm has built a strong reputation for its expertise, professionalism, and commitment to delivering top-notch legal solutions to its clients in land and properties.
+                </p>
+                <p className="pl-4 md:pl-0">
+                  Advocate Manoj R Bafana & Associates is a reputable and established legal firm, specialising in various aspects of land matters and related legal services.
+                </p>
+              </div>
+
+              <div className="mt-12 flex flex-wrap items-center gap-6 md:gap-8 border-t border-white/10 pt-10">
+                <div className="space-y-1">
+                  <span className="text-white text-base md:text-lg font-medium block">Title Verification</span>
+                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Due Diligence</span>
+                </div>
+                <div className="w-px h-10 bg-white/10" />
+                <div className="space-y-1">
+                  <span className="text-white text-base md:text-lg font-medium block">Gov. Approvals</span>
+                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Liaisoning</span>
+                </div>
+                <div className="w-px h-10 bg-white/10 hidden sm:block" />
+                <div className="space-y-1 hidden sm:block">
+                  <span className="text-white text-base md:text-lg font-medium block">Dispute Resolution</span>
+                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Legal Support</span>
+                </div>
+              </div>
+              
             </motion.div>
           </div>
         </div>
@@ -792,13 +934,19 @@ export default function Home() {
       {/* Expertise Cards Grid */}
       <section id="expertise" className="relative py-24 md:py-40 px-6 md:px-12 bg-[#062B4A]">
         <div className="max-w-7xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-32">
-            <div>
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            variants={staggerContainerSlow}
+            className="grid grid-cols-1 md:grid-cols-2 gap-20 items-center mb-32"
+          >
+            <motion.div variants={blurIn}>
               <span className="text-white/30 text-xs font-bold uppercase tracking-[0.5em] block mb-6">Our Expertise</span>
               <h2 className="text-5xl md:text-7xl font-bold text-white tracking-tighter uppercase leading-[0.9]"><ScrollRevealText effect="reveal" text="Innovation in" /> <br /><span className="font-serif italic font-normal text-zinc-500 lowercase px-4">Every</span> <ScrollRevealText effect="reveal" text="Dimension" /></h2>
-            </div>
-            <p className="text-white/40 text-xl font-light leading-relaxed">From the foundation of logistics to the pinnacle of residential luxury, we apply a standard of excellence that is absolute.</p>
-          </div>
+            </motion.div>
+            <motion.p variants={blurIn} className="text-white/40 text-xl font-light leading-relaxed">From the foundation of logistics to the pinnacle of residential luxury, we apply a standard of excellence that is absolute.</motion.p>
+          </motion.div>
           <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-4 gap-4 md:gap-8 -mx-6 px-6 md:mx-0 md:px-0">
             {[
               { icon: <Target className="text-zinc-500" />, title: "Precision", desc: "Absolute accuracy in every structural detail." },
@@ -816,45 +964,39 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Featured Projects Portfolio */}
-      <section id="projects" className="relative py-24 md:py-40 px-6 md:px-12 bg-white border-t border-[#062B4A]/10">
-        <div className="max-w-7xl mx-auto mb-16">
-          <span className="text-[#062B4A]/40 text-xs font-bold uppercase tracking-[0.5em] block mb-4">Featured Projects</span>
-          <h2 className="text-4xl md:text-5xl font-bold text-[#062B4A] tracking-tighter uppercase leading-[0.9]">Our Portfolio Showcase</h2>
-        </div>
-        <div className="max-w-7xl mx-auto flex overflow-x-auto snap-x snap-mandatory scrollbar-hide gap-6 md:gap-12 pb-10">
-          {[
-            { id: "osiyan", title: "Osiyan Warehousing", subtitle: "Grade-A Industrial Development", image: "/Warehouse p3.jpg", location: "Akrale MIDC, Dindori, Nashik" },
-            { id: "vinyasa", title: "Vinyasa", subtitle: "Wellness Premium Community", image: "/VINYASA-1_page-0010.jpg", location: "Kurungawadi, Igatpuri" },
-            { id: "tirasheet", title: "Tirasheet Enclave", subtitle: "Premium Plotted Development", image: "/TiratShet-Enclave-Nashik-Gat-No.-2.png", location: "Tiratshet, Nashik" },
-            { id: "maparvadi-greens", title: "Maparvadi Greens", subtitle: "Plotted Township Concept", image: "/Maparvadi-Greens-Sinnar-Gat-No.-22l-1.png", location: "Sinnar, Nashik" },
-            { id: "maparvadi-meadows", title: "Maparvadi Meadows", subtitle: "Compact Planned Community", image: "/Maparvadi-Meadows-Sinnar-.jpeg", location: "Sinnar, Nashik" }
-          ].map((proj) => (
-            <Link key={proj.id} href="/portfolio" className="group cursor-pointer flex-shrink-0 w-[280px] snap-center md:flex-1 md:w-auto md:snap-none" data-cursor="view">
-              <div className="relative h-[450px] md:h-[600px] w-full overflow-hidden rounded-3xl mb-6">
-                <Image src={proj.image} alt={proj.title} fill className="object-cover transition-transform duration-1000 group-hover:scale-110" sizes="(max-width: 768px) 100vw, 25vw" />
-                <div className="absolute inset-0 bg-[#062B4A]/25 group-hover:bg-[#062B4A]/5 transition-colors" />
-                <div className="absolute bottom-6 left-6 right-6">
-                  <h3 className="text-white text-2xl font-bold uppercase tracking-tighter leading-tight">{proj.title}</h3>
-                  <p className="text-white/60 text-xs tracking-wider uppercase mt-1">{proj.subtitle}</p>
-                  <p className="text-white/40 italic font-serif text-xs mt-2">{proj.location}</p>
-                </div>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
 
       {/* Contact Section */}
       <section id="contact" className="relative py-24 md:py-40 px-6 md:px-12 overflow-hidden bg-[#062B4A]">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }} viewport={{ once: true }} className="h-[2px] bg-[#A98B55] mx-auto mb-12" />
-          <h2 className="text-6xl md:text-[120px] leading-[0.85] font-bold text-white tracking-tighter uppercase mb-6">Let&apos;s Build <br /><span className="font-serif italic font-normal text-[#FAF9F6] capitalize">Legacy</span></h2>
-          <p className="text-white/60 text-xl font-light max-w-xl mx-auto mb-12">Ready to transform your vision into reality? Let&apos;s start the conversation.</p>
-          <div className="flex flex-wrap items-center justify-center gap-6">
+          <motion.h2 
+            initial={{ opacity: 0, y: 60, filter: "blur(15px)" }}
+            whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+            className="text-6xl md:text-[120px] leading-[0.85] font-bold text-white tracking-tighter uppercase mb-6"
+          >
+            Let&apos;s Build <br /><span className="font-serif italic font-normal text-[#FAF9F6] capitalize">Legacy</span>
+          </motion.h2>
+          <motion.p 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }}
+            className="text-white/60 text-xl font-light max-w-xl mx-auto mb-12"
+          >
+            Ready to transform your vision into reality? Let&apos;s start the conversation.
+          </motion.p>
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="flex flex-wrap items-center justify-center gap-6"
+          >
             <Link href="/contact" className="bg-white text-[#062B4A] px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-[#FAF9F6] hover:text-[#A98B55] transition-all flex items-center gap-4 shadow-xl">Contact Our Office <ArrowRight size={18} /></Link>
             <Link href="/properties" className="border border-white/20 text-white px-12 py-6 rounded-full text-sm font-bold uppercase tracking-widest hover:bg-white/10 transition-all">Explore Properties</Link>
-          </div>
+          </motion.div>
         </div>
       </section>
 

@@ -32,7 +32,7 @@ export default function Footer() {
                 style={{ width: "auto", height: "auto" }}
               />
             </Link>
-            <p className="text-white/40 text-sm leading-relaxed mb-6">
+            <p className="text-white/80 text-sm leading-relaxed mb-6">
               Nashik&apos;s trusted land development company and warehousing consultant. Delivering Grade-A infrastructure and real estate solutions across Maharashtra since inception.
             </p>
           </motion.div>
@@ -55,7 +55,7 @@ export default function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-white/40 text-sm hover:text-[#A98B55] transition-colors"
+                    className="text-white/80 text-sm hover:text-[#A98B55] transition-colors"
                   >
                     {link.label}
                   </Link>
@@ -80,7 +80,7 @@ export default function Footer() {
                 <li key={service.label}>
                   <Link
                     href={service.href}
-                    className="text-white/40 text-sm hover:text-[#A98B55] transition-colors"
+                    className="text-white/80 text-sm hover:text-[#A98B55] transition-colors"
                   >
                     {service.label}
                   </Link>
@@ -95,28 +95,28 @@ export default function Footer() {
             <div className="w-8 h-px bg-white/20 mb-6 animate-underline" />
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <MapPin size={16} className="text-white/30 shrink-0 mt-1" />
-                <span className="text-white/40 text-sm leading-relaxed">
+                <MapPin size={16} className="text-white/60 shrink-0 mt-1" />
+                <span className="text-white/80 text-sm leading-relaxed">
                   Office no 501, Samrat Qubism, Gangapur Road, near Veg Aroma Hotel, Nashik, Maharashtra 422013
                 </span>
               </div>
               <div className="flex items-center gap-3">
-                <Phone size={16} className="text-white/30 shrink-0" />
-                <a href="tel:+919175848355" className="text-white/40 text-sm hover:text-[#A98B55] transition-colors">
+                <Phone size={16} className="text-white/60 shrink-0" />
+                <a href="tel:+919175848355" className="text-white/80 text-sm hover:text-[#A98B55] transition-colors">
                   +91 91758 48355
                 </a>
               </div>
               <div className="flex items-center gap-3">
-                <Mail size={16} className="text-white/30 shrink-0" />
-                <a href="mailto:info@hbrealtyindia.com" className="text-white/40 text-sm hover:text-[#A98B55] transition-colors">
+                <Mail size={16} className="text-white/60 shrink-0" />
+                <a href="mailto:info@hbrealtyindia.com" className="text-white/80 text-sm hover:text-[#A98B55] transition-colors">
                   info@hbrealtyindia.com
                 </a>
               </div>
             </div>
 
             <div className="mt-8 pt-6 border-t border-white/5">
-              <h5 className="text-white/30 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Osiyan Warehousing</h5>
-              <p className="text-white/30 text-xs leading-relaxed">
+              <h5 className="text-white/80 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Osiyan Warehousing</h5>
+              <p className="text-white/80 text-xs leading-relaxed">
                 Gat.No-179/3, Kathwad Phata, Talegaon Dindori, Tal. Dindori, Dist. Nashik, Maharashtra
               </p>
             </div>
@@ -125,11 +125,24 @@ export default function Footer() {
 
         {/* Partners */}
         <motion.div variants={fadeUp} className="border-t border-white/5 pt-10 mb-10">
-          <h4 className="text-white/20 text-[10px] font-bold uppercase tracking-[0.4em] mb-4">Our Partners</h4>
-          <div className="flex flex-wrap gap-x-8 gap-y-2 text-white/30 text-xs">
-            <span>Adv. Manoj Bafana</span>
-            <span>Sanghavi & Bafana (Dubai)</span>
-            <span>Everliveindia</span>
+          <div className="flex items-center gap-4 mb-6">
+            <div className="h-px w-8 bg-[#A98B55]/50" />
+            <h4 className="text-[#A98B55] text-[10px] font-bold uppercase tracking-[0.4em]">Our Strategic Partners</h4>
+          </div>
+          <div className="flex flex-wrap gap-4 md:gap-6">
+            {[
+              { name: "Adv. Manoj Bafana", role: "Legal Counsel" },
+              { name: "Sanghavi & Bafana", role: "Dubai Advisory" },
+              { name: "Everlive India", role: "Ayurveda Wellness" }
+            ].map((partner, i) => (
+              <div key={i} className="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/15 px-5 py-3 rounded-2xl transition-all cursor-default">
+                <div className="h-1.5 w-1.5 rounded-full bg-[#A98B55] group-hover:animate-pulse" />
+                <div>
+                  <span className="block text-white/90 text-sm font-medium tracking-wide group-hover:text-white transition-colors">{partner.name}</span>
+                  <span className="block text-white/40 text-[9px] uppercase tracking-widest mt-0.5">{partner.role}</span>
+                </div>
+              </div>
+            ))}
           </div>
         </motion.div>
 
@@ -140,10 +153,10 @@ export default function Footer() {
           </p>
           <div className="flex gap-8 text-white/30 text-xs">
             <Link href="/contact" className="hover:text-[#A98B55] transition-colors">Privacy Policy</Link>
-            <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Instagram</a>
-            <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Facebook</a>
-            <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">LinkedIn</a>
-            <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">YouTube</a>
+            <a href="https://www.linkedin.com/company/hb-realty-india/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">LinkedIn</a>
+            <a href="https://www.linkedin.com/company/hb-realty-india" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Instagram</a>
+            <a href="https://www.facebook.com/p/HB-Realty-India-61560211460029/" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Facebook</a>
+            <a href="https://www.youtube.com/@HBRealty-India" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">YouTube</a>
           </div>
         </motion.div>
       </div>

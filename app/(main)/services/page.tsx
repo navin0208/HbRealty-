@@ -57,7 +57,7 @@ const services = [
     desc: "Fast and reliable approvals for fire safety, environmental compliance, and operational licenses.",
     icon: <FileText className="w-7 h-7" />,
     accent: "Operational Speed",
-    image: "/Warehouse-Legal-Clearance-min-scaled.jpg",
+    image: "/warehouse_clearance.png",
     bullets: [
       "Fire safety and environmental compliance",
       "Building plan approvals",
@@ -99,19 +99,25 @@ export default function ServicesPage() {
   return (
     <main className="min-h-screen bg-white font-sans selection:bg-[#062B4A] selection:text-white text-[#062B4A]/30 overflow-x-hidden">
 
-      {/* ═══ HEADER (EDITORIAL) ═══ */}
       <section className="relative pt-40 pb-24 px-6 md:px-12 bg-[#062B4A] border-b border-white/10">
-        <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="max-w-[1600px] mx-auto">
+        <motion.div initial={{ opacity: 0, y: 40, filter: "blur(15px)" }} animate={{ opacity: 1, y: 0, filter: "blur(0px)" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }} className="max-w-[1600px] mx-auto">
           <div className="max-w-5xl">
-            <div className="w-12 h-px bg-white/20 mb-8" />
-            <h1 className="text-4xl md:text-[80px] font-medium text-white tracking-tight leading-[1] mb-8">
-              Warehousing & <br/>
-              <span className="font-medium text-[#A98B55]">land development.</span>
-            </h1>
+            <motion.div initial={{ width: 0 }} animate={{ width: 48 }} transition={{ duration: 1.2, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="h-px bg-white/20 mb-8" />
+            <div className="overflow-hidden">
+              <motion.h1 
+                initial={{ y: "100%" }} 
+                animate={{ y: 0 }} 
+                transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+                className="text-4xl md:text-[80px] font-medium text-white tracking-tight leading-[1] mb-8"
+              >
+                Warehousing & <br/>
+                <span className="font-medium text-[#A98B55]">land development.</span>
+              </motion.h1>
+            </div>
             <motion.div 
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.4, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              initial={{ opacity: 0, x: -30, filter: "blur(10px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              transition={{ delay: 0.5, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="pl-0 md:pl-10 border-l-0 md:border-l border-white/20"
             >
               <p className="text-white/60 text-xl md:text-2xl font-light leading-relaxed max-w-2xl pl-0 md:pl-8">
@@ -146,8 +152,8 @@ export default function ServicesPage() {
                   
                   {/* Content Block */}
                   <motion.div 
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, y: 40, filter: "blur(12px)" }}
+                    whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
                     className={`lg:col-span-6 space-y-6 md:space-y-8 ${!isEven ? "lg:order-2" : ""}`}
@@ -170,10 +176,17 @@ export default function ServicesPage() {
 
                     <div className={`grid grid-cols-1 md:grid-cols-2 gap-4 pt-6 border-t ${isDark ? "border-white/10" : "border-[#062B4A]/10"}`}>
                       {service.bullets.map((bullet, idx) => (
-                        <div key={idx} className="flex items-start gap-4">
+                        <motion.div 
+                          key={idx} 
+                          initial={{ opacity: 0, x: -15 }}
+                          whileInView={{ opacity: 1, x: 0 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: idx * 0.08, duration: 0.6 }}
+                          className="flex items-start gap-4"
+                        >
                           <div className={`w-1.5 h-1.5 rounded-full ${bulletColor} mt-2 shrink-0`} />
                           <p className={`${textMutedClass} text-sm font-light leading-relaxed`}>{bullet}</p>
-                        </div>
+                        </motion.div>
                       ))}
                     </div>
 
@@ -204,8 +217,8 @@ export default function ServicesPage() {
 
                   {/* Image Block */}
                   <motion.div 
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
+                    initial={{ opacity: 0, scale: 0.9, filter: "blur(10px)" }}
+                    whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
                     viewport={{ once: true, margin: "-100px" }}
                     transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
                     className={`lg:col-span-6 relative aspect-[4/3] md:aspect-[16/10] w-full rounded-2xl md:rounded-3xl overflow-hidden group/img ${
@@ -278,10 +291,10 @@ export default function ServicesPage() {
               { title: "Compliance", desc: "Legal and liaison support to keep projects risk-free.", num: "100%" },
               { title: "Sustainability", desc: "Green practices integrated into every development.", num: "∞" }
             ].map((item, i) => (
-              <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: i * 0.1, duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-                className="flex flex-col items-start group">
+              <motion.div key={i} initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} whileHover={{ y: -8 }} viewport={{ once: true, margin: "-100px" }} transition={{ delay: i * 0.12, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                className="flex flex-col items-start group cursor-default">
                 <div className="text-5xl font-light text-[#062B4A]/30 mb-8 group-hover:text-[#A98B55]/60 transition-colors duration-700">{item.num}</div>
-                <div className="h-px w-8 bg-[#062B4A]/20 mb-6" />
+                <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ delay: i * 0.12 + 0.3, duration: 0.8 }} style={{ transformOrigin: 'left' }} className="h-px w-8 bg-[#062B4A]/20 mb-6" />
                 <h4 className="text-[#062B4A] font-medium text-lg tracking-wide mb-3">{item.title}</h4>
                 <p className="text-[#062B4A]/50 text-sm font-light leading-relaxed max-w-xs">{item.desc}</p>
               </motion.div>

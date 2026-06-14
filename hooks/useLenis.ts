@@ -26,6 +26,8 @@ export function useLenis() {
     });
 
     lenisRef.current = lenis;
+    // @ts-ignore
+    window.lenis = lenis;
 
     // Sync Lenis scroll position with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
