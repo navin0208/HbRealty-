@@ -23,7 +23,7 @@ export const projects = [
     highlights: ["19 Loading Docks", "10m Clear Height", "2L Litre Water Tank", "Dedicated Transformer"],
     image: "/Warehouse p3.jpg",
     hasBrochure: true,
-    brochureUrl: "/OSIYAN-WAREHOUSE-BROCHURE-1.pdf",
+    brochureUrl: "/warehouse-brochure.pdf",
     featured: true,
     status: "Ongoing",
     units: "Phase-1 & 2",
