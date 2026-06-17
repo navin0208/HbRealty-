@@ -36,7 +36,7 @@ export default function Navbar() {
 
   return (
     <>
-      {/* 🚀 ANTIGRAVITY — motion.nav with animated height/blur transition */}
+
       <motion.nav
         initial={false}
         animate={scrolled ? "scrolled" : "top"}

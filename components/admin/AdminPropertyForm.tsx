@@ -16,6 +16,8 @@ interface Property {
   location: [number, number];
   image: string;
   status?: 'available' | 'sold';
+  isVerified?: boolean;
+  isPremium?: boolean;
 }
 
 export default function AdminPropertyForm({ initialData }: { initialData?: Property }) {
@@ -34,15 +36,17 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
     setStatus("loading");
     
     const formData = new FormData(e.currentTarget);
-    const data = {
-      title: formData.get("title"),
-      type: formData.get("type"),
-      price: formData.get("price"),
-      size: formData.get("size"),
-      image: formData.get("image"),
-      location: location,
-      status: "available"
-    };
+      const data = {
+        title: formData.get("title"),
+        type: formData.get("type"),
+        price: formData.get("price"),
+        size: formData.get("size"),
+        image: formData.get("image"),
+        location: location,
+        status: "available",
+        isVerified: formData.get("isVerified") === "on",
+        isPremium: formData.get("isPremium") === "on"
+      };
 
     const isEditing = !!initialData;
     const url = isEditing ? `/api/properties/${initialData.id}` : "/api/properties";
@@ -145,6 +149,24 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
           <div className="space-y-2">
             <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Size</label>
             <input required type="text" name="size" defaultValue={initialData?.size} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. 5 Acres" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative flex items-center justify-center w-6 h-6 rounded border border-[#062B4A]/20 bg-[#FAF9F6] group-hover:border-[#062B4A]/40 transition-colors">
+                <input type="checkbox" name="isVerified" defaultChecked={initialData?.isVerified} className="peer opacity-0 absolute inset-0 cursor-pointer" />
+                <CheckCircle2 size={14} className="text-[#A98B55] opacity-0 peer-checked:opacity-100 transition-opacity" />
+              </div>
+              <span className="text-[#062B4A]/80 text-[10px] font-bold uppercase tracking-widest">Verified Badge</span>
+            </label>
+            
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative flex items-center justify-center w-6 h-6 rounded border border-[#062B4A]/20 bg-[#FAF9F6] group-hover:border-[#062B4A]/40 transition-colors">
+                <input type="checkbox" name="isPremium" defaultChecked={initialData?.isPremium} className="peer opacity-0 absolute inset-0 cursor-pointer" />
+                <CheckCircle2 size={14} className="text-[#A98B55] opacity-0 peer-checked:opacity-100 transition-opacity" />
+              </div>
+              <span className="text-[#062B4A]/80 text-[10px] font-bold uppercase tracking-widest">Premium Property</span>
+            </label>
           </div>
 
           <div className="space-y-2">

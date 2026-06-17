@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, Marker, Popup, useMap } from "react-leaflet";
-import { Layers } from "lucide-react";
+import { Layers, Sparkles, CheckCircle2 } from "lucide-react";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
@@ -26,6 +26,8 @@ export interface Property {
   location: [number, number];
   image: string;
   status?: "available" | "sold";
+  isVerified?: boolean;
+  isPremium?: boolean;
 }
 
 const MAP_LAYERS = {
@@ -91,19 +93,29 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
             }}
           >
             <Popup className="custom-popup">
-              <div className="w-[200px] overflow-hidden rounded-xl bg-white/95 backdrop-blur-md border border-black/5 text-[#062B4A] p-0 m-0 shadow-2xl relative">
-                <img src={prop.image} alt={prop.title} className={`w-full h-[120px] object-cover ${prop.status === 'sold' ? 'brightness-[0.7] grayscale' : ''}`} />
-                {prop.status === 'sold' && (
-                  <div className="absolute top-2 right-2 px-2 py-0.5 bg-red-600 text-white text-[8px] font-bold uppercase tracking-widest rounded z-10">
-                    SOLD
-                  </div>
-                )}
+              <div className={`w-[200px] overflow-hidden rounded-xl bg-white/95 backdrop-blur-md border ${prop.isPremium ? 'border-[#A98B55] shadow-[0_10px_30px_rgba(169,139,85,0.2)]' : 'border-black/5 shadow-2xl'} text-[#062B4A] p-0 m-0 relative`}>
+                <div className="relative">
+                  <img src={prop.image} alt={prop.title} className={`w-full h-[120px] object-cover ${prop.status === 'sold' ? 'brightness-[0.7] grayscale' : ''}`} />
+                  {prop.isPremium && (
+                    <div className="absolute top-2 right-2 px-2 py-0.5 bg-gradient-to-r from-[#A98B55] to-[#BFA16B] rounded shadow-lg text-[8px] font-bold uppercase tracking-widest text-white flex items-center gap-1 z-10">
+                      <Sparkles size={8} /> Premium
+                    </div>
+                  )}
+                  {prop.status === 'sold' && (
+                    <div className={`absolute top-2 px-2 py-0.5 bg-red-600 text-white text-[8px] font-bold uppercase tracking-widest rounded z-10 ${prop.isPremium ? 'left-2' : 'right-2'}`}>
+                      SOLD
+                    </div>
+                  )}
+                </div>
                 <div className="p-3">
                   <span className="text-[9px] font-bold uppercase tracking-widest text-[#A98B55]">{prop.type}</span>
-                  <h4 className="text-sm font-bold mt-1 line-clamp-1 text-[#062B4A]">{prop.title}</h4>
+                  <div className="flex items-center gap-1.5 mt-1">
+                    <h4 className="text-sm font-bold line-clamp-1 text-[#062B4A]">{prop.title}</h4>
+                    {prop.isVerified && <CheckCircle2 size={12} className="text-blue-500 shrink-0" />}
+                  </div>
                   <div className="flex justify-between items-center mt-2">
                     <span className="text-[#062B4A]/50 text-xs font-mono">{prop.size}</span>
-                    <span className="text-[#062B4A] font-bold">{prop.price}</span>
+                    <span className="text-[#062B4A] font-bold text-sm">{prop.price}</span>
                   </div>
                 </div>
               </div>

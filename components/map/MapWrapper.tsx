@@ -2,8 +2,8 @@
 
 import dynamic from "next/dynamic";
 import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MapPin, Maximize, ArrowRight, X } from "lucide-react";
+import { motion, AnimatePresence, useDragControls } from "framer-motion";
+import { MapPin, Maximize, ArrowRight, X, CheckCircle2, Sparkles, ChevronUp, GripHorizontal } from "lucide-react";
 import type { Property } from "./PropertyMap";
 
 // Dynamic import of the map to avoid SSR issues with Leaflet
@@ -13,6 +13,9 @@ export default function MapWrapper() {
   const [selectedProperty, setSelectedProperty] = useState<Property | null>(null);
   const [properties, setProperties] = useState<Property[]>([]);
   const [loading, setLoading] = useState(true);
+
+  const [isMobileListOpen, setIsMobileListOpen] = useState(false);
+  const dragControls = useDragControls();
 
   useEffect(() => {
     fetch('/api/properties')
@@ -29,71 +32,130 @@ export default function MapWrapper() {
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center h-[800px] w-full bg-zinc-50 rounded-[40px] border border-[#062B4A]/10">
+      <div className="flex items-center justify-center h-[700px] lg:h-[800px] w-full bg-zinc-50 rounded-[40px] border border-[#062B4A]/10">
         <div className="text-[#062B4A]/50 animate-pulse text-sm tracking-widest uppercase">Loading Properties...</div>
       </div>
     );
   }
 
+  const renderPropertyCard = (prop: Property) => (
+    <motion.div 
+      key={prop.id}
+      whileHover={{ scale: 0.98 }}
+      onClick={() => setSelectedProperty(prop)}
+      className={`cursor-pointer rounded-[16px] md:rounded-[20px] overflow-hidden border transition-all duration-500 ease-out transform shrink-0 ${
+        selectedProperty?.id === prop.id 
+          ? prop.isPremium 
+            ? 'border-[#A98B55] bg-gradient-to-b from-[#A98B55]/10 to-white shadow-[0_0_40px_rgba(169,139,85,0.4)] scale-[1.02]' 
+            : 'border-[#062B4A] bg-white shadow-2xl scale-[1.02]' 
+          : prop.isPremium
+            ? 'border-[#A98B55]/30 bg-gradient-to-b from-[#A98B55]/5 to-white/90 hover:bg-white hover:border-[#A98B55]/60 hover:shadow-[0_10px_30px_rgba(169,139,85,0.15)]'
+            : 'border-black/5 bg-white/90 hover:bg-white hover:border-black/10 hover:shadow-xl'
+      }`}
+    >
+      <div className="h-[140px] md:h-[160px] w-full relative">
+        <img 
+          src={prop.image} 
+          alt={prop.title} 
+          className={`w-full h-full object-cover transition-all ${prop.status === 'sold' ? 'brightness-[0.4] grayscale' : ''}`} 
+        />
+        <div className="absolute top-3 md:top-4 left-3 md:left-4 px-2 md:px-3 py-1 bg-[#062B4A]/80 backdrop-blur-md rounded-full border border-white/10 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-white/90">
+          {prop.type}
+        </div>
+        {prop.isPremium && (
+          <div className="absolute top-3 md:top-4 right-3 md:right-4 px-2 md:px-3 py-1 bg-gradient-to-r from-[#A98B55] to-[#BFA16B] rounded-full shadow-lg text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-white flex items-center gap-1.5 z-10 border border-white/20">
+            <Sparkles size={10} className="text-white/90" /> Premium
+          </div>
+        )}
+        {prop.status === 'sold' && (
+          <div className={`absolute top-3 md:top-4 px-2 md:px-3 py-1 bg-red-600 rounded-full border border-white/10 text-[8px] md:text-[9px] font-bold uppercase tracking-widest text-white z-10 ${prop.isPremium ? 'right-24 md:right-28' : 'right-3 md:right-4'}`}>
+            SOLD
+          </div>
+        )}
+      </div>
+      <div className="p-3 md:p-6 relative">
+        <div className="flex items-center gap-2 mb-2">
+          <h3 className="text-[#062B4A] font-bold text-sm md:text-lg leading-tight line-clamp-1">{prop.title}</h3>
+          {prop.isVerified && (
+            <div className="flex items-center justify-center shrink-0" title="Verified Property">
+              <CheckCircle2 size={14} className="text-blue-500 fill-blue-50 md:w-4 md:h-4" />
+            </div>
+          )}
+        </div>
+        <div className="flex items-center gap-3 md:gap-4 text-[#062B4A]/60 text-[9px] md:text-xs mb-3 md:mb-5 font-medium">
+          <div className="flex items-center gap-1.5"><Maximize size={12} className="text-[#A98B55]" /> {prop.size}</div>
+          <div className="flex items-center gap-1.5"><MapPin size={12} className="text-[#A98B55]" /> Nashik</div>
+        </div>
+        <div className="flex items-center justify-between">
+          <span className="text-[#062B4A] text-base md:text-xl font-bold tracking-tight">{prop.price}</span>
+          <button className="w-6 h-6 md:w-8 md:h-8 rounded-full bg-slate-100 border border-black/5 flex items-center justify-center text-[#062B4A] hover:bg-[#A98B55] hover:text-white transition-colors">
+            <ArrowRight size={12} />
+          </button>
+        </div>
+      </div>
+    </motion.div>
+  );
 
   return (
-    <div className="flex flex-col lg:flex-row gap-4 md:gap-6 h-[700px] lg:h-[800px] w-full bg-white/5 backdrop-blur-xl p-3 md:p-4 rounded-[24px] md:rounded-[40px] border border-white/10 shadow-2xl overflow-hidden relative">
+    <div className="relative h-[65vh] min-h-[450px] lg:h-[800px] w-full bg-white/5 backdrop-blur-xl rounded-[24px] md:rounded-[40px] border border-white/10 shadow-2xl overflow-hidden">
       
-      {/* Sidebar: Property List */}
-      <div className="w-full lg:w-[450px] h-[300px] lg:h-full flex flex-col gap-4 overflow-hidden relative order-2 lg:order-1 shrink-0 z-10">
-        <div className="p-4 md:p-6 pb-2 md:pb-4 bg-[#06111C]/80 backdrop-blur-md rounded-[16px] md:rounded-[20px] border border-white/10 shrink-0 shadow-xl">
-          <h2 className="text-xl md:text-2xl font-bold text-white tracking-tighter uppercase">Available Listings</h2>
-          <p className="text-[#A98B55] text-[10px] md:text-xs mt-1 tracking-widest uppercase font-bold">Browse our exclusive verified properties</p>
+      {/* Main Area: Map (Background) */}
+      <div className="absolute inset-0 z-0">
+        <PropertyMap properties={properties} onPropertySelect={setSelectedProperty} selectedProperty={selectedProperty} />
+      </div>
+
+      {/* Desktop Sidebar (lg and up) */}
+      <div className="hidden lg:flex absolute left-4 top-4 bottom-4 w-[450px] flex-col gap-4 overflow-hidden z-10 pointer-events-none">
+        <div className="p-6 pb-4 bg-[#06111C]/90 backdrop-blur-md rounded-[20px] border border-white/10 shrink-0 shadow-2xl pointer-events-auto">
+          <h2 className="text-2xl font-bold text-white tracking-tighter uppercase">Available Listings</h2>
+          <p className="text-[#A98B55] text-xs mt-1 tracking-widest uppercase font-bold">Browse our exclusive verified properties</p>
         </div>
 
-        <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar">
-          {properties.map((prop) => (
-            <motion.div 
-              key={prop.id}
-              whileHover={{ scale: 0.98 }}
-              onClick={() => setSelectedProperty(prop)}
-              className={`cursor-pointer rounded-[16px] md:rounded-[20px] overflow-hidden border transition-all duration-300 ${
-                selectedProperty?.id === prop.id 
-                  ? 'border-[#A98B55] bg-white shadow-[0_0_30px_rgba(169,139,85,0.3)]' 
-                  : 'border-white/10 bg-white/90 hover:bg-white hover:shadow-lg'
-              }`}
-            >
-              <div className="h-[160px] w-full relative">
-                <img 
-                  src={prop.image} 
-                  alt={prop.title} 
-                  className={`w-full h-full object-cover transition-all ${prop.status === 'sold' ? 'brightness-[0.4] grayscale' : ''}`} 
-                />
-                <div className="absolute top-4 left-4 px-3 py-1 bg-[#062B4A]/80 backdrop-blur-md rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white/90">
-                  {prop.type}
-                </div>
-                {prop.status === 'sold' && (
-                  <div className="absolute top-4 right-4 px-3 py-1 bg-red-600 rounded-full border border-white/10 text-[9px] font-bold uppercase tracking-widest text-white">
-                    SOLD
-                  </div>
-                )}
-              </div>
-              <div className="p-4 md:p-6">
-                <h3 className="text-[#062B4A] font-bold text-base md:text-lg leading-tight mb-3">{prop.title}</h3>
-                <div className="flex items-center gap-4 text-[#062B4A]/50 text-[10px] md:text-xs mb-4">
-                  <div className="flex items-center gap-1.5"><Maximize size={14} className="text-[#A98B55]" /> {prop.size}</div>
-                  <div className="flex items-center gap-1.5"><MapPin size={14} className="text-[#A98B55]" /> Nashik</div>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-[#062B4A] text-lg md:text-xl font-bold tracking-tight">{prop.price}</span>
-                  <button className="w-8 h-8 rounded-full bg-slate-100 border border-black/5 flex items-center justify-center text-[#062B4A] hover:bg-[#A98B55] hover:text-white transition-colors">
-                    <ArrowRight size={14} />
-                  </button>
-                </div>
-              </div>
-            </motion.div>
-          ))}
+        <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar pointer-events-auto">
+          {properties.map(renderPropertyCard)}
         </div>
       </div>
 
-      {/* Main Area: Map */}
-      <div className="flex-1 w-full h-[400px] lg:h-full relative rounded-[20px] lg:rounded-[30px] overflow-hidden border border-white/10 shadow-inner order-1 lg:order-2">
-        <PropertyMap properties={properties} onPropertySelect={setSelectedProperty} selectedProperty={selectedProperty} />
+      {/* Mobile Bottom Sheet (up to lg) */}
+      <motion.div 
+        drag="y"
+        dragControls={dragControls}
+        dragConstraints={{ top: 0, bottom: 0 }}
+        dragElastic={0.2}
+        onDragEnd={(e, info) => {
+          if (info.offset.y < -50) setIsMobileListOpen(true);
+          if (info.offset.y > 50) setIsMobileListOpen(false);
+        }}
+        initial={{ y: "calc(100% - 90px)" }}
+        animate={{ y: isMobileListOpen ? 0 : "calc(100% - 90px)" }}
+        transition={{ type: "spring", bounce: 0, duration: 0.6 }}
+        className="lg:hidden absolute bottom-0 left-0 right-0 z-20 bg-white/95 backdrop-blur-2xl rounded-t-[30px] border-t border-[#062B4A]/10 shadow-[0_-10px_40px_rgba(0,0,0,0.1)] flex flex-col max-h-[85%]"
+      >
+        {/* Drag Handle & Header */}
+        <div 
+          className="p-4 flex flex-col items-center justify-center cursor-grab active:cursor-grabbing border-b border-[#062B4A]/5 shrink-0"
+          onPointerDown={(e) => dragControls.start(e)}
+        >
+          <GripHorizontal size={24} className="text-[#062B4A]/20 mb-2" />
+          <div className="flex items-center justify-between w-full px-2">
+            <div>
+              <h2 className="text-lg font-bold text-[#062B4A] tracking-tighter uppercase leading-none">Available Listings</h2>
+              <p className="text-[#A98B55] text-[9px] mt-1 tracking-widest uppercase font-bold">{properties.length} Properties Found</p>
+            </div>
+            <button 
+              onClick={() => setIsMobileListOpen(!isMobileListOpen)}
+              className="w-8 h-8 bg-[#062B4A]/5 rounded-full flex items-center justify-center text-[#062B4A]"
+            >
+              <ChevronUp size={16} className={`transition-transform duration-300 ${isMobileListOpen ? 'rotate-180' : ''}`} />
+            </button>
+          </div>
+        </div>
+
+        {/* List Content */}
+        <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-zinc-50/50">
+          {properties.map(renderPropertyCard)}
+        </div>
+      </motion.div>
         
         {/* Floating Contact CTA if a property is selected */}
         <AnimatePresence>
@@ -128,7 +190,6 @@ export default function MapWrapper() {
             </motion.div>
           )}
         </AnimatePresence>
-      </div>
 
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Playfair_Display } from "next/font/google";
+import { Toaster } from "sonner";
 import GlobalCursorProvider from "@/components/animations/GlobalCursorProvider";
 import "./globals.css";
 
@@ -163,6 +164,7 @@ export default function RootLayout({
         {/* 🚀 ANTIGRAVITY — Custom luxury cursor */}
         <GlobalCursorProvider />
         {children}
+        <Toaster richColors position="bottom-right" />
       </body>
     </html>
   );

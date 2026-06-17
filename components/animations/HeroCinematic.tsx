@@ -148,7 +148,7 @@ export default function HeroCinematic() {
       </div>
 
       {/* LAYER 4: Content (Slider) */}
-      <div ref={contentLayer} className="relative z-30 flex flex-col items-start justify-end h-screen pb-32 px-6 md:px-12 max-w-[1600px] mx-auto w-full">
+      <div ref={contentLayer} className="relative z-30 flex flex-col items-start justify-end h-screen pb-16 md:pb-20 lg:pb-32 px-6 md:px-12 max-w-[1600px] mx-auto w-full">
         <AnimatePresence mode="wait">
           <motion.div 
             key={currentSlide}
@@ -156,7 +156,7 @@ export default function HeroCinematic() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl space-y-6"
+            className="max-w-4xl space-y-3 md:space-y-4 pt-16 md:pt-20"
           >
             
             {/* Eyebrow Location */}
@@ -167,7 +167,7 @@ export default function HeroCinematic() {
               className="flex items-center gap-4"
             >
               <div className="h-[1px] w-8 bg-white/40" />
-              <span className="text-white/60 font-serif italic text-2xl md:text-3xl tracking-wide">{current.serifText}</span>
+              <span className="text-white/60 font-serif italic text-xl md:text-2xl lg:text-3xl tracking-wide">{current.serifText}</span>
             </motion.div>
 
             {/* Headline Word-by-Word Reveal */}
@@ -175,7 +175,7 @@ export default function HeroCinematic() {
               initial="hidden"
               animate="visible"
               transition={{ staggerChildren: 0.04, delayChildren: 0.4 }}
-              className="text-5xl md:text-[110px] leading-[0.9] font-medium text-white tracking-tight flex flex-wrap gap-[0.2em]"
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[110px] leading-[1.1] lg:leading-[0.9] font-medium text-white tracking-tight flex flex-wrap gap-[0.2em]"
             >
               {words.map((word, i) => (
                 <motion.span key={i} variants={wordVariant} className="inline-block pb-2">
@@ -191,12 +191,12 @@ export default function HeroCinematic() {
               transition={{ delay: 0.8, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="pl-0 md:pl-32 border-l-0 md:border-l border-white/20 pt-4"
             >
-              <p className="text-white/60 text-lg md:text-xl max-w-lg font-light leading-relaxed pl-0 md:pl-8">
+              <p className="text-white/60 text-sm md:text-base lg:text-xl max-w-lg font-light leading-relaxed pl-0 md:pl-8">
                 {current.description}
               </p>
               
               {/* CTAs */}
-              <div className="flex items-center gap-6 mt-10 pl-0 md:pl-8">
+              <div className="flex items-center gap-4 md:gap-6 mt-6 md:mt-10 pl-0 md:pl-8">
                 <Link href="/portfolio" className="group flex items-center gap-4 bg-white text-black px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-white text-[#062B4A] hover:text-[#A98B55] transition-all">
                   Explore Portfolio
                   <ArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />

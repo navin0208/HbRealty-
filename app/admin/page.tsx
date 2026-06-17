@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { Plus, Trash2, Shield, ExternalLink, RefreshCw, AlertCircle, Building2, MapPin, CheckCircle, XCircle, Edit } from "lucide-react";
+import { Plus, Trash2, Shield, ExternalLink, RefreshCw, AlertCircle, Building2, MapPin, CheckCircle, XCircle, Edit, CheckCircle2, Sparkles, FileText } from "lucide-react";
 import dynamic from "next/dynamic";
 
 const PropertyMap = dynamic(() => import("@/components/map/PropertyMap"), { 
@@ -20,6 +20,8 @@ interface Property {
   location: [number, number];
   image: string;
   status?: 'available' | 'sold';
+  isVerified?: boolean;
+  isPremium?: boolean;
 }
 
 export default function AdminDashboardPage() {
@@ -242,7 +244,11 @@ export default function AdminDashboardPage() {
                           </div>
                         </td>
                         <td className="py-4 px-6 max-w-xs">
-                          <div className="font-medium text-[#062B4A] truncate" title={p.title}>{p.title}</div>
+                          <div className="flex items-center gap-2">
+                            <div className="font-medium text-[#062B4A] truncate" title={p.title}>{p.title}</div>
+                            {p.isVerified && <span title="Verified"><CheckCircle2 size={12} className="text-blue-500 shrink-0" /></span>}
+                            {p.isPremium && <span title="Premium"><Sparkles size={12} className="text-[#A98B55] shrink-0" /></span>}
+                          </div>
                           <div className="flex items-center gap-1 text-[#062B4A]/40 text-xs font-mono mt-1">
                             <MapPin size={10} />
                             <span>{p.location ? `${p.location[0].toFixed(4)}, ${p.location[1].toFixed(4)}` : "No Coordinates"}</span>
@@ -281,6 +287,13 @@ export default function AdminDashboardPage() {
                             >
                               {isUpdating ? "Updating..." : (isSold ? "Mark Available" : "Mark Sold")}
                             </button>
+                            <Link
+                              href={`/admin/proposal/${p.id}`}
+                              className="p-2 border border-[#A98B55]/20 hover:border-[#A98B55] hover:bg-[#A98B55] text-[#A98B55] hover:text-white rounded-lg transition-colors"
+                              title="Generate Proposal PDF"
+                            >
+                              <FileText size={14} />
+                            </Link>
                             <Link
                               href={`/admin/edit-property/${p.id}`}
                               className="p-2 border border-[#062B4A]/20 hover:border-[#062B4A] hover:bg-[#062B4A] text-[#062B4A]/80 hover:text-white rounded-lg transition-colors"

@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
-import { ArrowLeft, Building, UserPlus, Map } from "lucide-react";
+import { ArrowLeft, Building, UserPlus, Map, Menu, X } from "lucide-react";
 import MapWrapper from "@/components/map/MapWrapper";
 import PropertyInquiryForm from "@/components/forms/PropertyInquiryForm";
 
@@ -11,6 +11,7 @@ type Tab = "buy" | "sell" | "developers";
 
 export default function PropertiesPage() {
   const [activeTab, setActiveTab] = useState<Tab>("buy");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const tabs = [
     { id: "buy", label: "Buy Properties", icon: <Map size={16} /> },
@@ -22,7 +23,7 @@ export default function PropertiesPage() {
     <main className="min-h-screen bg-[#06111C] font-sans selection:bg-[#A98B55] selection:text-white text-white/60">
       {/* Navigation Header */}
       <nav className="fixed top-0 inset-x-0 z-50 bg-[#06111C]/80 backdrop-blur-xl border-b border-white/10 px-6 py-4">
-        <div className="max-w-[1600px] mx-auto flex justify-between items-center">
+        <div className="max-w-[1600px] mx-auto flex justify-between items-center relative">
           <Link href="/" className="flex items-center gap-4 text-white/60 hover:text-[#A98B55] transition-colors group">
             <div className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center group-hover:bg-white/5 transition-colors">
               <ArrowLeft size={16} />
@@ -30,10 +31,49 @@ export default function PropertiesPage() {
             <span className="text-xs font-bold uppercase tracking-[0.3em] hidden sm:block">Back to Main</span>
             <span className="text-xs font-bold uppercase tracking-[0.3em] sm:hidden">Back</span>
           </Link>
-          <div className="flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
+
+          {/* Desktop Badge */}
+          <div className="hidden md:flex items-center gap-3 bg-white/5 border border-white/10 px-4 py-1.5 rounded-full">
              <div className="h-1.5 w-1.5 rounded-full bg-green-500 animate-pulse" />
-             <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.4em] hidden sm:block">Real Estate Portal</span>
-             <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.4em] sm:hidden">Portal</span>
+             <span className="text-white/80 text-[10px] font-bold uppercase tracking-[0.4em]">Real Estate Portal</span>
+          </div>
+
+          {/* Mobile Hamburger Menu */}
+          <div className="md:hidden relative">
+            <button 
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-white/80 hover:bg-white/5 transition-colors"
+            >
+              {isMobileMenuOpen ? <X size={16} /> : <Menu size={16} />}
+            </button>
+            
+            {/* Mobile Dropdown */}
+            <AnimatePresence>
+              {isMobileMenuOpen && (
+                <motion.div
+                  initial={{ opacity: 0, y: 10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: 10, scale: 0.95 }}
+                  transition={{ duration: 0.2 }}
+                  className="absolute top-14 right-0 w-[220px] bg-[#06111C]/95 backdrop-blur-2xl border border-white/10 rounded-2xl shadow-2xl p-2 flex flex-col gap-1 overflow-hidden z-50"
+                >
+                  {tabs.map((tab) => (
+                    <button
+                      key={tab.id}
+                      onClick={() => {
+                        setActiveTab(tab.id as Tab);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className={`px-4 py-3 rounded-xl flex items-center gap-3 text-[10px] font-bold uppercase tracking-widest transition-colors ${
+                        activeTab === tab.id ? "bg-white text-[#06111C]" : "text-white/60 hover:text-white hover:bg-white/5"
+                      }`}
+                    >
+                      {tab.icon} {tab.label}
+                    </button>
+                  ))}
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
         </div>
       </nav>
@@ -53,7 +93,7 @@ export default function PropertiesPage() {
             </p>
           </div>
 
-          <div className="flex flex-row overflow-x-auto no-scrollbar w-full md:w-auto items-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md shrink-0">
+          <div className="hidden md:flex flex-row overflow-x-auto no-scrollbar w-auto items-center gap-2 p-1.5 bg-white/5 border border-white/10 rounded-2xl backdrop-blur-md shrink-0">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
@@ -89,7 +129,7 @@ export default function PropertiesPage() {
               className="w-full h-full"
             >
               {activeTab === "buy" && (
-                <div className="w-full h-full min-h-[500px] md:min-h-[600px]">
+                <div className="w-full h-full md:min-h-[600px]">
                   <MapWrapper />
                 </div>
               )}

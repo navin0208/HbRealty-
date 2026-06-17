@@ -159,17 +159,17 @@ export default function PortfolioPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#062B4A]/90 via-[#062B4A]/20 to-transparent h-48" />
         </motion.div>
 
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-24 w-full">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-12 md:pb-16 lg:pb-24 w-full">
           <motion.div initial={{ width: 0 }} animate={{ width: 48 }} transition={{ duration: 1, delay: 0.3, ease: [0.16, 1, 0.3, 1] }} className="h-px bg-white/20 mb-8" />
           <div className="overflow-hidden">
             <motion.h1 initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9]">
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-medium text-white tracking-tight leading-[1.1] lg:leading-[0.9]">
               Shaping <span className="font-medium text-[#A98B55]">Maharashtra&apos;s</span>
             </motion.h1>
           </div>
-          <div className="overflow-hidden ml-0 md:ml-32 mb-12">
+          <div className="overflow-hidden ml-0 md:ml-16 lg:ml-32 mb-8 md:mb-12">
             <motion.h1 initial={{ y: "100%" }} animate={{ y: 0 }} transition={{ duration: 1.4, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="text-5xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9]">
+              className="text-4xl sm:text-5xl md:text-6xl lg:text-[80px] font-medium text-white tracking-tight leading-[1.1] lg:leading-[0.9]">
               future.
             </motion.h1>
           </div>
@@ -205,18 +205,18 @@ export default function PortfolioPage() {
             whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} 
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className={`grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
+            className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-12 gap-8 lg:gap-12 xl:gap-24 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
           >
             {/* Image Block */}
-            <div className={`lg:col-span-7 relative h-[500px] md:h-[700px] overflow-hidden group ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'}`}>
+            <div className={`xl:col-span-7 relative h-[400px] md:h-[500px] xl:h-[700px] w-full overflow-hidden group ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'}`}>
               <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-[20s] ease-out group-hover:scale-105 grayscale-[20%]" />
             </div>
 
             {/* Text Block */}
-            <div className={`lg:col-span-5 flex flex-col justify-center ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>
+            <div className={`xl:col-span-5 flex flex-col justify-center w-full overflow-hidden ${index % 2 !== 0 ? 'lg:order-1' : 'lg:order-2'}`}>
               <span className="text-[#062B4A]/55 text-[10px] font-bold uppercase tracking-[0.2em] block mb-4">{project.category}</span>
-              <h2 className="text-4xl md:text-6xl font-medium text-[#062B4A] tracking-tight leading-[1] mb-6">{project.title}</h2>
-              <p className="text-[#062B4A]/60 font-light text-lg leading-relaxed mb-10 max-w-lg">{project.overview}</p>
+              <h2 className="text-3xl md:text-5xl lg:text-4xl xl:text-6xl font-medium text-[#062B4A] tracking-tight leading-[1.1] mb-6 break-words pr-4">{project.title}</h2>
+              <p className="text-[#062B4A]/60 font-light text-base md:text-lg lg:text-base xl:text-lg leading-relaxed mb-8 xl:mb-10 max-w-lg pr-4">{project.overview}</p>
               
               <div className="flex flex-col gap-4 mb-12">
                 <div className="flex items-center gap-4 border-b border-[#062B4A]/10 pb-4">

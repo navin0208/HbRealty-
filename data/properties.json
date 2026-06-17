@@ -1,30 +1,5 @@
 [
   {
-    "id": "1",
-    "title": "Prime Industrial Plot",
-    "type": "Industrial Land",
-    "price": "₹12 Cr",
-    "size": "5 Acres",
-    "location": [
-      19.9975,
-      73.7898
-    ],
-    "image": "https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&q=80&w=400"
-  },
-  {
-    "id": "2",
-    "title": "Highway Facing Warehouse Space",
-    "type": "Warehouse",
-    "price": "₹8.5 Cr",
-    "size": "3.2 Acres",
-    "location": [
-      19.99861352541527,
-      73.83762001991273
-    ],
-    "image": "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=400",
-    "status": "available"
-  },
-  {
     "id": "3",
     "title": "Agricultural Land suitable for plotting",
     "type": "Agricultural",
@@ -47,7 +22,10 @@
       19.996176207981303,
       73.75800132751466
     ],
-    "id": "hwwbl7tmu"
+    "id": "hwwbl7tmu",
+    "status": "available",
+    "isVerified": false,
+    "isPremium": true
   },
   {
     "title": "HB ",
@@ -75,19 +53,6 @@
     "id": "ifhu0tyg1"
   },
   {
-    "title": "bhtfrf",
-    "type": "Industrial Land",
-    "price": "hbhb",
-    "size": "hbhbh",
-    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
-    "location": [
-      20.00143643122793,
-      73.80336284637453
-    ],
-    "status": "available",
-    "id": "x1yada4pm"
-  },
-  {
     "title": "asdfghjkl",
     "type": "Industrial Land",
     "price": "12cr",
@@ -99,5 +64,18 @@
     ],
     "status": "sold",
     "id": "wj881uwny"
+  },
+  {
+    "title": "tyuiop",
+    "type": "Industrial Land",
+    "price": "12cr",
+    "size": "3acre",
+    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+    "location": [
+      19.976010811289544,
+      73.83582830429079
+    ],
+    "status": "available",
+    "id": "ptnb8gxky"
   }
 ]

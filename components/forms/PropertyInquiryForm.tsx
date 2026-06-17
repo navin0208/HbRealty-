@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Send, CheckCircle2, AlertCircle, Building2, MapPin, Maximize, User, Mail, Phone, FileUp } from "lucide-react";
+import { Send, CheckCircle2, AlertCircle, Building2, MapPin, Maximize, User, Mail, Phone, FileUp, Camera } from "lucide-react";
+import { toast } from "sonner";
 
 type FormType = "sell" | "developer";
 
@@ -34,16 +35,12 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
     setStatus("loading");
     
     const formData = new FormData(e.currentTarget);
-    const data = Object.fromEntries(formData.entries());
-    
-    // Add type to payload
-    data.inquiryType = type;
+    formData.append("inquiryType", type);
 
     try {
       const res = await fetch("/api/inquiry", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       const result = await res.json();
@@ -51,13 +48,16 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
       if (res.ok) {
         setStatus("success");
         setMessage(result.message);
+        toast.success("Email sent successfully! We will contact you soon.");
       } else {
         setStatus("error");
         setMessage(result.error || "Failed to submit inquiry.");
+        toast.error("Email not sent. Please try again.");
       }
     } catch (err) {
       setStatus("error");
       setMessage("An unexpected error occurred. Please try again.");
+      toast.error("Email not sent. An unexpected error occurred.");
     }
   };
 
@@ -121,27 +121,56 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
             <input required type="tel" name="phone" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="+91 98765 43210" />
           </div>
           <div className="space-y-2">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Building2 size={12} /> Property Type</label>
+            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Building2 size={12} /> Type of Land</label>
             <select name="propertyType" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors appearance-none">
-              <option value="land">Agricultural Land</option>
-              <option value="industrial">Industrial Land</option>
-              <option value="warehouse">Warehouse Space</option>
-              <option value="residential">Residential Plot</option>
-              <option value="other">Other</option>
+              <option value="agriculture" className="bg-zinc-900">Agriculture</option>
+              <option value="commercial" className="bg-zinc-900">Commercial</option>
+              <option value="industrial" className="bg-zinc-900">Industrial</option>
+              <option value="warehouse" className="bg-zinc-900">Warehouse</option>
+              <option value="other" className="bg-zinc-900">Other</option>
             </select>
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Location / City</label>
-            <input required type="text" name="location" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="Nashik, Maharashtra" />
+            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Location (Area, Locality)</label>
+            <input required type="text" name="location" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. Gangapur Road, Nashik" />
           </div>
           <div className="space-y-2">
-            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Size (Acres / Sq.Ft)</label>
+            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Land Size (Guntha, Acre, Hectare)</label>
             <input required type="text" name="size" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. 5 Acres" />
           </div>
         </div>
+
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="space-y-2">
+            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Rate (per Vaar, Guntha, Acre, Hectare)</label>
+            <input type="text" name="rate" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. 10 Lakhs per Guntha" />
+          </div>
+          <div className="space-y-2">
+            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Distance from Highways</label>
+            <input type="text" name="highwayDistance" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. 2 km from Mumbai-Agra Highway" />
+          </div>
+        </div>
+
+        {type === 'sell' && (
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Land Legal Status</label>
+              <select name="legalStatus" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors appearance-none">
+                <option value="agricultural" className="bg-zinc-900">Agricultural (Not NA)</option>
+                <option value="na_cleared" className="bg-zinc-900">NA Cleared (Non-Agricultural)</option>
+                <option value="na_order_pending" className="bg-zinc-900">NA Order Pending</option>
+                <option value="not_applicable" className="bg-zinc-900">Not Applicable</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Road Access (in meters)</label>
+              <input type="text" name="roadSize" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. 18 meters" />
+            </div>
+          </div>
+        )}
 
         <div className="space-y-2">
           <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Additional Details</label>
@@ -166,6 +195,23 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
           </div>
           {fileError && <p className="text-red-400 text-xs mt-1">{fileError}</p>}
         </div>
+
+        {type === 'sell' && (
+          <div className="space-y-2">
+            <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
+              <Camera size={12} /> Property Images
+            </label>
+            <div className="relative">
+              <input 
+                type="file" 
+                name="propertyImages" 
+                accept="image/*"
+                multiple
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white/80 focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-white/10 file:text-white hover:file:bg-white/20 cursor-pointer" 
+              />
+            </div>
+          </div>
+        )}
 
         <button 
           disabled={status === "loading"}

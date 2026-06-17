@@ -14,6 +14,8 @@ interface Property {
   location: [number, number];
   image: string;
   status?: 'available' | 'sold';
+  isVerified?: boolean;
+  isPremium?: boolean;
 }
 
 export async function DELETE(
@@ -47,6 +49,35 @@ export async function DELETE(
   } catch (error) {
     console.error('Error deleting property:', error);
     return NextResponse.json({ error: 'Failed to delete property' }, { status: 500 });
+  }
+}
+
+export async function GET(
+  request: Request,
+  { params }: { params: Promise<{ id: string }> | { id: string } }
+) {
+  try {
+    const resolvedParams = await params;
+    const { id } = resolvedParams;
+
+    let properties: Property[] = [];
+    try {
+      const fileContents = await fs.readFile(dataFilePath, 'utf8');
+      properties = JSON.parse(fileContents);
+    } catch (e) {
+      return NextResponse.json({ error: 'Property data file not found' }, { status: 404 });
+    }
+
+    const property = properties.find((p) => p.id === id);
+
+    if (!property) {
+      return NextResponse.json({ error: 'Property not found' }, { status: 404 });
+    }
+
+    return NextResponse.json(property);
+  } catch (error) {
+    console.error('Error fetching property:', error);
+    return NextResponse.json({ error: 'Failed to fetch property' }, { status: 500 });
   }
 }
 

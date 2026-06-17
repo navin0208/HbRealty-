@@ -590,7 +590,7 @@ export default function Home() {
                 transition={{ delay: i * 0.06 }}
                 className="group p-6 rounded-3xl border border-white/5 bg-white/[0.02] hover:bg-white text-[#062B4A]/5 hover:border-white/50/20 transition-all duration-700 text-center flex flex-col items-center gap-4 flex-shrink-0 w-[220px] snap-center md:w-auto md:snap-none"
               >
-                <div className="p-3 rounded-2xl bg-white/5 text-white/40 group-hover:text-[#A98B55]/80 group-hover:bg-white text-[#062B4A]/10 transition-all">
+                <div className="p-3 rounded-2xl bg-[#A98B55]/10 text-[#A98B55] group-hover:text-[#A98B55]/80 group-hover:bg-white transition-all">
                   {item.icon}
                 </div>
                 <div>
@@ -700,7 +700,7 @@ export default function Home() {
             >
               <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl group">
                 <Image 
-                  src="/Manoj-bafana.jpg"
+                  src="/Manoj-bafana.jpeg"
                   alt="Adv. Manoj Bafana"
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-105"
@@ -949,10 +949,10 @@ export default function Home() {
           </motion.div>
           <div className="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide md:grid md:grid-cols-4 gap-4 md:gap-8 -mx-6 px-6 md:mx-0 md:px-0">
             {[
-              { icon: <Target className="text-zinc-500" />, title: "Precision", desc: "Absolute accuracy in every structural detail." },
-              { icon: <Shield className="text-zinc-500" />, title: "Trust", desc: "Integrity at the heart of our operations." },
-              { icon: <Zap className="text-zinc-500" />, title: "Efficiency", desc: "Optimizing space for peak performance." },
-              { icon: <Globe className="text-zinc-500" />, title: "Global", desc: "Expanding horizons across continents." }
+              { icon: <Target className="text-[#A98B55]" />, title: "Precision", desc: "Absolute accuracy in every structural detail." },
+              { icon: <Shield className="text-[#A98B55]" />, title: "Trust", desc: "Integrity at the heart of our operations." },
+              { icon: <Zap className="text-[#A98B55]" />, title: "Efficiency", desc: "Optimizing space for peak performance." },
+              { icon: <Globe className="text-[#A98B55]" />, title: "Global", desc: "Expanding horizons across continents." }
             ].map((item, i) => (
               <motion.div key={i} initial="rest" whileHover="hover" variants={cardHover} animate={{ opacity: 1, y: 0 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }} viewport={{ once: true }} className="flex-shrink-0 w-[260px] snap-center md:w-auto md:snap-none p-10 border border-white/5 bg-white/[0.02] rounded-3xl hover:bg-white/[0.05] transition-all group">
                 <div className="mb-6 group-hover:scale-110 transition-transform">{item.icon}</div>
