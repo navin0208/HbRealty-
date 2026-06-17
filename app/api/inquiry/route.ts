@@ -85,9 +85,9 @@ export async function POST(request: Request) {
       const testEmail = "navinkamble75@gmail.com";
 
       await transporter.sendMail({
-        from: \`"HB Realty Portal" <\${process.env.GMAIL_USER}>\`,
+        from: `"HB Realty Portal" <${process.env.GMAIL_USER}>`,
         to: [toEmail, testEmail].join(', '),
-        subject: \`New Lead: \${name} - \${inquiryType?.toUpperCase()}\`,
+        subject: `New Lead: ${name} - ${inquiryType?.toUpperCase()}`,
         html: htmlContent,
         attachments: attachments.length > 0 ? attachments : undefined
       });
