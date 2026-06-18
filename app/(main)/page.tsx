@@ -700,7 +700,7 @@ export default function Home() {
             >
               <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl group">
                 <Image 
-                  src="/Manoj-bafana.jpeg"
+                  src="/Manoj-bafana.png"
                   alt="Adv. Manoj Bafana"
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-105"
