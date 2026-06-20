@@ -24,6 +24,7 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
   const [location, setLocation] = useState<[number, number] | null>(initialData?.location || null);
+  const [imagePreview, setImagePreview] = useState<string | null>(initialData?.image || null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -36,17 +37,15 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
     setStatus("loading");
     
     const formData = new FormData(e.currentTarget);
-      const data = {
-        title: formData.get("title"),
-        type: formData.get("type"),
-        price: formData.get("price"),
-        size: formData.get("size"),
-        image: formData.get("image"),
-        location: location,
-        status: "available",
-        isVerified: formData.get("isVerified") === "on",
-        isPremium: formData.get("isPremium") === "on"
-      };
+    formData.set("location", JSON.stringify(location));
+
+    // Append checkboxes explicitly since unchecked checkboxes aren't included in FormData
+    formData.set("isVerified", (e.currentTarget.elements.namedItem("isVerified") as HTMLInputElement).checked ? "true" : "false");
+    formData.set("isPremium", (e.currentTarget.elements.namedItem("isPremium") as HTMLInputElement).checked ? "true" : "false");
+
+    if (initialData?.image && !formData.get("imageFile")?.valueOf()) {
+      formData.set("image", initialData.image);
+    }
 
     const isEditing = !!initialData;
     const url = isEditing ? `/api/properties/${initialData.id}` : "/api/properties";
@@ -55,8 +54,7 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
     try {
       const res = await fetch(url, {
         method,
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: formData,
       });
 
       if (res.ok) {
@@ -170,8 +168,27 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
           </div>
 
           <div className="space-y-2">
-            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><ImageIcon size={12} /> Image URL</label>
-            <input type="url" name="image" defaultValue={initialData?.image} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="Optional: https://..." />
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><ImageIcon size={12} /> Property Image</label>
+            <div className="flex items-center gap-4">
+              {imagePreview && (
+                <img src={imagePreview} alt="Preview" className="w-16 h-16 object-cover rounded-xl border border-[#062B4A]/10 shrink-0" />
+              )}
+              <input 
+                type="file" 
+                name="imageFile" 
+                accept="image/*"
+                onChange={(e) => {
+                  if (e.target.files && e.target.files[0]) {
+                    const url = URL.createObjectURL(e.target.files[0]);
+                    setImagePreview(url);
+                  }
+                }}
+                className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-xs file:font-bold file:bg-[#062B4A]/5 file:text-[#062B4A] hover:file:bg-[#062B4A]/10 cursor-pointer" 
+              />
+            </div>
+            {initialData?.image && (
+              <p className="text-[10px] text-[#062B4A]/40 mt-1">Leave empty to keep current image.</p>
+            )}
           </div>
           
           <button 

@@ -117,6 +117,7 @@ export default function AdminDashboardPage() {
             <div className="hidden md:flex items-center gap-2 border-l border-[#062B4A]/10 pl-6">
               <Link href="/admin" className="text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg bg-[#062B4A]/5 text-[#062B4A] transition-colors">Properties</Link>
               <Link href="/admin/blogs" className="text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg text-[#062B4A]/60 hover:bg-[#062B4A]/5 transition-colors">Blogs</Link>
+              <Link href="/admin/inquiries" className="text-[10px] font-bold uppercase tracking-widest px-4 py-2 rounded-lg text-[#062B4A]/60 hover:bg-[#062B4A]/5 transition-colors">Inquiries</Link>
             </div>
           </div>
           <div className="flex items-center gap-4">

@@ -1,81 +1,818 @@
 [
   {
-    "id": "3",
-    "title": "Agricultural Land suitable for plotting",
-    "type": "Agricultural",
-    "price": "₹4.2 Cr",
-    "size": "10 Acres",
+    "id": "lvghylh7t",
+    "title": "18 Acre Land in Lakhmapur",
+    "type": "Land for Sale",
+    "price": "Rs.1.85Cr / Total: Rs.33 Cr",
+    "size": "18 Acre",
     "location": [
-      20.0211,
-      73.8212
+      20.5557115,
+      74.3470099
     ],
-    "image": "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=400",
-    "status": "sold"
-  },
-  {
-    "title": "BANG BANG",
-    "type": "Industrial Land",
-    "price": "69CR",
-    "size": "12 Acres",
-    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
-    "location": [
-      19.996176207981303,
-      73.75800132751466
-    ],
-    "id": "hwwbl7tmu",
+    "image": "/land_placeholder.png",
     "status": "available",
-    "isVerified": false,
-    "isPremium": true
+    "isVerified": true
   },
   {
-    "title": "HB ",
-    "type": "Industrial Land",
-    "price": "100cr",
-    "size": "100acres",
-    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+    "id": "qlhcs8y87",
+    "title": "11 Acre Land in Lakhmapur",
+    "type": "Land for Lease",
+    "price": "Price on Request",
+    "size": "11 Acre",
     "location": [
-      20.016415436675207,
-      73.81039295693265
+      20.5557115,
+      74.3470099
     ],
-    "id": "qytumwgs0"
-  },
-  {
-    "title": "ewsrdxcfgvhbjnkml",
-    "type": "Agricultural",
-    "price": "12cr",
-    "size": "5acre",
-    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
-    "location": [
-      20.007612999687343,
-      73.78701752739065
-    ],
+    "image": "/land_placeholder.png",
     "status": "available",
-    "id": "ifhu0tyg1"
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/fhgyyhSgHbL5DUjT6?g_st=awb"
   },
   {
-    "title": "asdfghjkl",
-    "type": "Industrial Land",
-    "price": "12cr",
-    "size": "1111acre",
-    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+    "id": "rapm77k1d",
+    "title": "6 acre 10 gunthe Land in Khatwad phata",
+    "type": "Land for Sale",
+    "price": "Rs.2.5Cr/Acre / Total: Rs.15.25Cr",
+    "size": "6 acre 10 gunthe",
     "location": [
-      19.99315156304784,
-      73.80117416381837
+      19.990992928611945,
+      73.75057782855744
     ],
-    "status": "sold",
-    "id": "wj881uwny"
-  },
-  {
-    "title": "tyuiop",
-    "type": "Industrial Land",
-    "price": "12cr",
-    "size": "3acre",
-    "image": "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
-    "location": [
-      19.976010811289544,
-      73.83582830429079
-    ],
+    "image": "/land_placeholder.png",
     "status": "available",
-    "id": "ptnb8gxky"
+    "isVerified": true
+  },
+  {
+    "id": "i0g5q2ukk",
+    "title": "5 acre Land in khatwad Phata",
+    "type": "Land for Sale",
+    "price": "Rs.1.60/Acre / Total: Rs.8 Cr",
+    "size": "5 acre",
+    "location": [
+      20.1470593,
+      73.8191226
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/KkcqW4YsMYxX8F5T9?g_st=aw"
+  },
+  {
+    "id": "oxchu1m1k",
+    "title": "10 acre Land in Lakhmapur",
+    "type": "Industrial Land",
+    "price": "Rs.50 lakh/acre / Total: Rs.5 Cr",
+    "size": "10 acre",
+    "location": [
+      20.273351,
+      73.824816
+    ],
+    "image": "https://ywkynysjjnyfcprvserh.supabase.co/storage/v1/object/public/inquiries/properties/1781876604929_Maparvadi_Greens_Sinnar_Gat_No._22l_1.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/vp3hrJ1NeMzKHszu9?g_st=aw",
+    "isPremium": false
+  },
+  {
+    "id": "bqewt0oav",
+    "title": "15-16 acre Land in Bhiwandi",
+    "type": "Land for Sale",
+    "price": "Rs.35 lakhs/acre / Total: Rs.5.6 Cr",
+    "size": "15-16 acre",
+    "location": [
+      19.97196595504668,
+      73.80709426549997
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "3z3ee3yrc",
+    "title": "20 acre Land in Pandhurli Phata Sinnar",
+    "type": "Land for Sale",
+    "price": "Rs.35lakh/acre / Total: Rs.7Cr",
+    "size": "20 acre",
+    "location": [
+      19.98428243910483,
+      73.77742437612906
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "u6bbtvzub",
+    "title": "2.26 acre Land in Pathardi Phata",
+    "type": "Land for Sale",
+    "price": "Rs.22.5Cr/Acre / Total: Rs.50Cr",
+    "size": "2.26 acre",
+    "location": [
+      19.9566521,
+      73.7581059
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/J414sfgVaEDAhMhn7"
+  },
+  {
+    "id": "6geh8tf51",
+    "title": "5 acres Land in Shirdi Airport",
+    "type": "Land for Sale",
+    "price": "Rs.1.15Cr/acre / Total: Rs.5.75Cr",
+    "size": "5 acres",
+    "location": [
+      19.66916,
+      74.354291
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/C8jhE5fPzCQVaoV96"
+  },
+  {
+    "id": "zulnj9iuk",
+    "title": "60 gunthe Land in Akrale",
+    "type": "Land for Sale",
+    "price": "Rs.4.30L/guntha / Total: Rs.2.58Cr",
+    "size": "60 gunthe",
+    "location": [
+      20.14663,
+      73.85899
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/JsWw7GE6jWyoCFXn9"
+  },
+  {
+    "id": "4z010cv31",
+    "title": "55 gunthe Land in Akrale",
+    "type": "Land for Sale",
+    "price": "RS.4.30L/guntha / Total: Rs.2.36Cr",
+    "size": "55 gunthe",
+    "location": [
+      20.0305786,
+      74.1476409
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/2pviffuwEqfwuvbW7"
+  },
+  {
+    "id": "d86mp325i",
+    "title": "4.30 acre Land in Igatpuri",
+    "type": "Land for Sale",
+    "price": "Rs1.10Cr/Acre / Total: Rs.4.73Cr",
+    "size": "4.30 acre",
+    "location": [
+      19.6944394,
+      73.5638878
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/Wbmz5ATUQk1QxjFDA?g_st=aw"
+  },
+  {
+    "id": "keeivsc3i",
+    "title": "93 gunthe Land in Igatpuri",
+    "type": "Land for Sale",
+    "price": "Rs.1.85Cr/Acre / Total: Rs4.5Cr",
+    "size": "93 gunthe",
+    "location": [
+      19.814461,
+      73.631966
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/GUJW8fhvZTdeCPBD6"
+  },
+  {
+    "id": "cqv0duod9",
+    "title": "7 acre Land in Akrale Midc",
+    "type": "Land for Sale",
+    "price": "Rs.1.25Cr/Acre / Total: Rs.8.75Cr",
+    "size": "7 acre",
+    "location": [
+      19.97283850147214,
+      73.77704257417994
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/Kgsz2pvqfqGvEzK56"
+  },
+  {
+    "id": "3uhweusb7",
+    "title": "8.5 acre Land in Pimpalnare",
+    "type": "Land for Sale",
+    "price": "Rs.1.25Cr/Acre / Total: Rs.10.6 Cr",
+    "size": "8.5 acre",
+    "location": [
+      19.99598704905391,
+      73.8090820023686
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "qruyi1bzs",
+    "title": "11 acre Land in jalkhed gaon,peth highway",
+    "type": "Land for Sale",
+    "price": "Rs.28L/acre / Total: Rs.3.08Cr",
+    "size": "11 acre",
+    "location": [
+      20.043252327104728,
+      73.8101941148849
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "j1yueq5ic",
+    "title": "13 acre Land in Mumbai nashik Highway",
+    "type": "Land for Sale",
+    "price": "Rs.7L/Guntha / Total: Rs.40.04Cr",
+    "size": "13 acre",
+    "location": [
+      20.0142611,
+      73.8149915
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "cmppy0a2a",
+    "title": "3 acre Land in 17km from Nashik",
+    "type": "Land for Sale",
+    "price": "Rs.40L/Acre / Total: Rs.1.2Cr",
+    "size": "3 acre",
+    "location": [
+      20.0735697,
+      73.6649351
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "l91zq3o91",
+    "title": "5 acre Land in Wadhivare",
+    "type": "Land for Sale",
+    "price": "Rs.18L/acre / Total: Rs.90 lakhs",
+    "size": "5 acre",
+    "location": [
+      19.874586,
+      73.655268
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/xb3xVZyEzEpq3H1U7?g_st=awb"
+  },
+  {
+    "id": "wfdhwmlcn",
+    "title": "7 Acre Land in Lakhmapur",
+    "type": "Land for Sale",
+    "price": "Price on Request",
+    "size": "7 Acre",
+    "location": [
+      20.5557115,
+      74.3470099
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/aBpEYSnbuHtXnaxH7?g_st=awb"
+  },
+  {
+    "id": "p3senx3qx",
+    "title": "3 Acre Land in Khatwad Village",
+    "type": "Land for Sale",
+    "price": "Rs.1.6Cr/Acre / Total: Rs.4.8 Cr",
+    "size": "3 Acre",
+    "location": [
+      19.97774454400395,
+      73.75465552256877
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/CfqK9fovWUdLMmSd6?g_st=ic"
+  },
+  {
+    "id": "wnf3l6ksm",
+    "title": "66 Acres Land in Jambutake",
+    "type": "Land for Sale",
+    "price": "Rs.65l/Acre / Total: Rs.42.9 Cr",
+    "size": "66 Acres",
+    "location": [
+      19.986086103463332,
+      73.80934737167317
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/4CRJHidXzaGtdM6ZA?g_st=iw"
+  },
+  {
+    "id": "1sl7h9l61",
+    "title": "4 Acre Land in Igatpuri",
+    "type": "Land for Sale",
+    "price": "Rs. 1Cr/Acre / Total: Rs.4 Acre",
+    "size": "4 Acre",
+    "location": [
+      19.6944394,
+      73.5638878
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/kV9zuX5kktCHKeur9?g_st=iw"
+  },
+  {
+    "id": "okc1bbrze",
+    "title": "25 Acre Land in Lakhmapur",
+    "type": "Land for Sale",
+    "price": "Rs. 90Lakh/Acre / Total: Rs.22.5Cr",
+    "size": "25 Acre",
+    "location": [
+      20.0305786,
+      74.1476409
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/64XTuMpP8WC9tb8r7"
+  },
+  {
+    "id": "layfs5jgk",
+    "title": "49 Gunthe Land in Dhakambe,Airport Road",
+    "type": "Land for Sale",
+    "price": "Rs.8.5Lakh/Guntha / Total: Rs.4.16Cr",
+    "size": "49 Gunthe",
+    "location": [
+      20.109819,
+      73.828865
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/ehH3qJDYJn9Xsep76"
+  },
+  {
+    "id": "s3oe4n8ku",
+    "title": "20 Acre Land in Nalval Pada,Dindori,Nashik",
+    "type": "Land for Sale",
+    "price": "Rs.35 Lakh/Acre / Total: Rs.7Cr",
+    "size": "20 Acre",
+    "location": [
+      20.28172,
+      73.721287
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/h9oL5GHcsSkJzC3AA"
+  },
+  {
+    "id": "7f5ln3ybg",
+    "title": "4 Acres Land in Murumbi,Wadhivare",
+    "type": "Land for Sale",
+    "price": "Rs.1.5Cr/Acre / Total: Rs.6 Cr",
+    "size": "4 Acres",
+    "location": [
+      19.828466,
+      73.540298
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/j5PsGFW1z3J3FzLW6?g_st=aw"
+  },
+  {
+    "id": "o8rathaxz",
+    "title": "5 Acres Land in Mundhegaon,Igatpuri",
+    "type": "Land for Sale",
+    "price": "Rs.5 lakhs/guntha / Total: Rs.10Cr",
+    "size": "5 Acres",
+    "location": [
+      19.985679929458385,
+      73.80516667282608
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/U9xR8yJbGz7fWvU87"
+  },
+  {
+    "id": "g1lygy2xo",
+    "title": "7 Acres Land in Murumbi,Wadhivare",
+    "type": "Land for Sale",
+    "price": "Rs. / Total: Rs.",
+    "size": "7 Acres",
+    "location": [
+      19.846281,
+      73.647292
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/LzPWKZyy9qPYbhT5A?g_st=aw"
+  },
+  {
+    "id": "28li7mh70",
+    "title": "18.76 Acres Land in Shahapur",
+    "type": "Land for Sale",
+    "price": "Rs. 6 Lakh/Acre / Total: Rs.1.12 Cr",
+    "size": "18.76 Acres",
+    "location": [
+      20.039415082777786,
+      73.82916229336864
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.apple/p/Lz7LBzAZLyzM8q"
+  },
+  {
+    "id": "pch0b1scr",
+    "title": "22 Acres Land in Kadawa Mhalungi",
+    "type": "Land for Sale",
+    "price": "Rs.35 lakhs/Acre",
+    "size": "22 Acres",
+    "location": [
+      20.244457,
+      73.797344
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/o1G3n8Fu2Vj2WxHS8"
+  },
+  {
+    "id": "rmggtyyqs",
+    "title": "17 Acre Land in kadawa Mahalungi",
+    "type": "Land for Sale",
+    "price": "Rs.40 Lakhs/Acre",
+    "size": "17 Acre",
+    "location": [
+      20.244457,
+      73.797344
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/o1G3n8Fu2Vj2WxHS8"
+  },
+  {
+    "id": "rfsjm8iiz",
+    "title": "45 Gunthe Land in Makhmalabad Corp.,NAshik",
+    "type": "Land for Sale",
+    "price": "Rs.16 Lakh/Guntha / Total: Rs.7.2 Cr",
+    "size": "45 Gunthe",
+    "location": [
+      20.071172,
+      73.778812
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/hRTBjV7vKJu8YMdi6?g_st=aw"
+  },
+  {
+    "id": "0nems384a",
+    "title": "1 Acre Land in Makhmalabad,NAshik",
+    "type": "Land for Sale",
+    "price": "Rs.25 Lakh/Guntha / Total: Rs.11Cr",
+    "size": "1 Acre",
+    "location": [
+      20.047942,
+      73.772045
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/tLZukrfGJLNKHeDF7?g_st=aw"
+  },
+  {
+    "id": "ukva83798",
+    "title": "12 Acre Land in Awankhed",
+    "type": "Land for Sale",
+    "price": "Rs.55 Lakh/Acre / Total: Rs.6.6 Cr",
+    "size": "12 Acre",
+    "location": [
+      20.04312662436268,
+      73.78106684190534
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/rgt7ohHgm1uqTpbz9?g_st=aw"
+  },
+  {
+    "id": "edo7ubqip",
+    "title": "6 Acre Land in Jambutakke",
+    "type": "Land for Sale",
+    "price": "Rs.45 lakh/acre",
+    "size": "6 Acre",
+    "location": [
+      20.174434,
+      73.749987
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/HjateQanT8URYYfH6"
+  },
+  {
+    "id": "0ckl8o7cx",
+    "title": "3 Acre Land in Jalkhed",
+    "type": "Land for Sale",
+    "price": "Rs.25 Lakh",
+    "size": "3 Acre",
+    "location": [
+      20.243093,
+      73.653266
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/Ci6dKPHxcJheU5sW9"
+  },
+  {
+    "id": "f7krbusmn",
+    "title": "2 Acre Land in Chandori,Saykheda",
+    "type": "Land for Sale",
+    "price": "Rs.4 lakh/Guntha",
+    "size": "2 Acre",
+    "location": [
+      20.04091,
+      74.01686
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/UgEv9BGCG9MzE92A9"
+  },
+  {
+    "id": "xpu6k0gzs",
+    "title": "12 Acre Land in Chanchadgav,Peth highway",
+    "type": "Land for Sale",
+    "price": "Rs.90Lakh/Acre",
+    "size": "12 Acre",
+    "location": [
+      19.99729724269303,
+      73.82272822572858
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/HQMRbxm7QAdPm3jw9?g_st=iw"
+  },
+  {
+    "id": "yigqhv0cy",
+    "title": "6.5 Acre Land in Lakhmapur Phata",
+    "type": "Land for Sale",
+    "price": "Rs.2.30cr/Acre",
+    "size": "6.5 Acre",
+    "location": [
+      20.029104849332874,
+      73.80011592661847
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/6uwjuggQspAkLsPV7?g_st=iw"
+  },
+  {
+    "id": "07qesgw4j",
+    "title": "9 Acre Land in Anjaneri",
+    "type": "Land for Sale",
+    "price": "Price on Request",
+    "size": "9 Acre",
+    "location": [
+      19.968626,
+      73.568389
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/1vK7g75cKGJE71W67"
+  },
+  {
+    "id": "asht088iz",
+    "title": "8 Acre Land in Akrale MIDC",
+    "type": "Land for Sale",
+    "price": "Rs.1.5Cr/Acreq",
+    "size": "8 Acre",
+    "location": [
+      20.145013,
+      73.843234
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/Lejn7sx9GWtGZZZU8?g_st=aw"
+  },
+  {
+    "id": "02g8cep4b",
+    "title": "45 Acre Land in ",
+    "type": "Land for Sale",
+    "price": "Price on Request",
+    "size": "45 Acre",
+    "location": [
+      20.000527726411008,
+      73.76800902482098
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "ylqt0jfkf",
+    "title": "18 acre Land in ",
+    "type": "Land for Sale",
+    "price": "Price on Request",
+    "size": "18 acre",
+    "location": [
+      19.97741408132232,
+      73.82930687245461
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true
+  },
+  {
+    "id": "suibtw9ap",
+    "title": "76 Gunthe Land in Ozhar highway",
+    "type": "Land for Sale",
+    "price": "Rs.18 lakh/gunthe",
+    "size": "76 Gunthe",
+    "location": [
+      20.075497,
+      73.908201
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/xjC7nBZHYyHUH9678?g_st=aw"
+  },
+  {
+    "id": "wm3uen4l2",
+    "title": "5 Acre Land in Hatnore",
+    "type": "Land for Sale",
+    "price": "Rs.30 Lakh/Acre",
+    "size": "5 Acre",
+    "location": [
+      20.232603,
+      73.7732
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/4T2fkbxBh3equmU89"
+  },
+  {
+    "id": "pjgm6kflj",
+    "title": "7 Acre Land in jambutakke",
+    "type": "Land for Sale",
+    "price": "Rs.35 Lakh/Acre",
+    "size": "7 Acre",
+    "location": [
+      19.994899293391583,
+      73.75595869663184
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/UmvFr7pSQhBrwexs5?g_st=iw"
+  },
+  {
+    "id": "9y49ke355",
+    "title": "26 Acre Land in Kherwadi Datane",
+    "type": "Land for Sale",
+    "price": "Rs.60 lakh/acre",
+    "size": "26 Acre",
+    "location": [
+      19.1202895,
+      73.9732877
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/kHBjNSMk4n3841zb9"
+  },
+  {
+    "id": "ngq36e4hi",
+    "title": "4 Acre Land in Nalegav",
+    "type": "Land for Sale",
+    "price": "Rs.45Lakh/acre",
+    "size": "4 Acre",
+    "location": [
+      20.037468432217153,
+      73.77435698455726
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/4iidFyg4uMBZwR5x6?g_st=iw"
+  },
+  {
+    "id": "mpnbxkl4l",
+    "title": "25 Acre Land in Talegaon,Dindoeri",
+    "type": "Land for Sale",
+    "price": "Rs.2.30 Cr/Acre",
+    "size": "25 Acre",
+    "location": [
+      20.02430043253188,
+      73.80498971643574
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://goo.gl/maps/ej3xhbX1MBvT2eRz5"
+  },
+  {
+    "id": "sc23kgc85",
+    "title": "7 Acre Land in Ramshej Shivar",
+    "type": "Land for Sale",
+    "price": "Rs.1.60/acre",
+    "size": "7 Acre",
+    "location": [
+      19.96911215768205,
+      73.75278026702934
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/SiKgCfpYS2yXpTW36?g_st=aw"
+  },
+  {
+    "id": "q3x9imkin",
+    "title": "8 Acre Land in jambutakke",
+    "type": "Land for Sale",
+    "price": "Rs.60 Lakh",
+    "size": "8 Acre",
+    "location": [
+      20.0181486150019,
+      73.74357320591551
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://goo.gl/maps/KvcHhPcA8UuC7UDz6?g_st=aw"
+  },
+  {
+    "id": "xqbrag1b8",
+    "title": "50 Acre Land in Songav kochrgav",
+    "type": "Land for Sale",
+    "price": "Rs.40 lakhs/Acre",
+    "size": "50 Acre",
+    "location": [
+      19.975017032178165,
+      73.83624081635551
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/Gp2qbr6KWYf9RJDH6"
+  },
+  {
+    "id": "a34wvwa80",
+    "title": "37 Acre Land in Akrale",
+    "type": "Land for Sale",
+    "price": "Rs.1.40 Cr/Acre",
+    "size": "37 Acre",
+    "location": [
+      20.011008412040088,
+      73.7899671171348
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/gC499bYwNvUhiRyx6"
+  },
+  {
+    "id": "u5lv42ckj",
+    "title": "50 Acre Land in Songav Kochargav",
+    "type": "Land for Sale",
+    "price": "Rs.40 Lakh/Acre",
+    "size": "50 Acre",
+    "location": [
+      20.025172052430307,
+      73.75832087592809
+    ],
+    "image": "/land_placeholder.png",
+    "status": "available",
+    "isVerified": true,
+    "mapLink": "https://maps.app.goo.gl/iDpxujY16Q94FywF7"
   }
 ]

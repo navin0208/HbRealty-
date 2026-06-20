@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import Image from "next/image";
 import { Printer, ArrowLeft, Loader2, MapPin, Building2, Layers, IndianRupee } from "lucide-react";
+import { supabase } from "@/lib/supabase";
 
 interface Property {
   id: string;
@@ -32,9 +33,8 @@ export default function ProposalPage() {
   useEffect(() => {
     const fetchProperty = async () => {
       try {
-        const res = await fetch(`/api/properties/${params.id}`);
-        if (!res.ok) throw new Error("Property not found");
-        const data = await res.json();
+        const { data, error } = await supabase.from('properties').select('*').eq('id', params.id).single();
+        if (error) throw new Error("Property not found");
         setProperty(data);
         setCustomPrice(data.price);
       } catch (err) {

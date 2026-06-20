@@ -28,6 +28,7 @@ export interface Property {
   status?: "available" | "sold";
   isVerified?: boolean;
   isPremium?: boolean;
+  mapLink?: string;
 }
 
 const MAP_LAYERS = {
@@ -117,6 +118,16 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
                     <span className="text-[#062B4A]/50 text-xs font-mono">{prop.size}</span>
                     <span className="text-[#062B4A] font-bold text-sm">{prop.price}</span>
                   </div>
+                  {prop.mapLink && (
+                    <a 
+                      href={prop.mapLink} 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="mt-3 w-full block text-center bg-[#062B4A]/5 hover:bg-[#062B4A]/10 text-[#062B4A] text-[10px] font-bold uppercase tracking-widest py-2 rounded-lg transition-colors"
+                    >
+                      View on Google Maps
+                    </a>
+                  )}
                 </div>
               </div>
             </Popup>

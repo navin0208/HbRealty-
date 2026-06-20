@@ -12,6 +12,7 @@ import { cardHover, scaleIn, blurIn, staggerContainerSlow, fadeUp, fadeUpStagger
 import StatsSection from "./stats";
 import { AboutSection, LandDevelopmentSection } from "./abt";
 import TrustedPartners from "@/components/sections/TrustedPartners";
+import Testimonials from "@/components/sections/Testimonials";
 import { projects as portfolioProjects } from "./portfolio/page";
 
 const SCROLL_REVEAL_OFFSET: ElementScrollOffset = ["start 0.9", "start 0.4"];
@@ -675,6 +676,11 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          CLIENT VOICES & TESTIMONIALS
+          ═══════════════════════════════════════════════════════════ */}
+      <Testimonials />
 
       {/* ═══════════════════════════════════════════════════════════
           TRUSTED PARTNERS & CLIENTS

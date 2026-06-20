@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Warehousing Development Services in Nashik — Warehouse Construction, Cold Storage & Logistics Parks",
+  title: "Warehousing in Nashik — Warehouse Construction, Cold Storage & Logistics Parks | HB Realty India",
   description:
-    "HB Realty India offers end-to-end warehousing development services in Nashik including warehouse construction, cold storage warehouse building, logistics park development in Maharashtra, warehouse land for lease in Nashik, and complete legal liaisoning. Trusted by businesses across Nashik, Pune, and Maharashtra.",
+    "Looking for warehousing in Nashik? HB Realty India offers end-to-end warehousing development services including warehouse construction, cold storage warehouse building, logistics park development in Maharashtra, warehouse land for lease in Nashik, and complete legal liaisoning. Trusted by businesses across Nashik, Pune, and Maharashtra.",
   keywords: [
+    "warehousing in Nashik",
     "warehousing development services Nashik",
     "warehouse construction Nashik",
     "cold storage warehouse Nashik",
@@ -15,11 +16,13 @@ export const metadata: Metadata = {
     "Grade A warehousing Nashik",
     "warehouse legal clearance Maharashtra",
     "Osiyan warehousing Nashik",
+    "warehouse for rent Nashik",
+    "warehouse near Nashik airport",
   ],
   alternates: { canonical: "/warehousing-2" },
   openGraph: {
-    title: "Warehousing Development Services in Nashik — HB Realty India",
-    description: "End-to-end warehouse construction, cold storage, logistics parks, and warehouse land for lease in Nashik, Maharashtra.",
+    title: "Warehousing in Nashik — Warehouse Construction & Logistics Parks | HB Realty India",
+    description: "End-to-end warehousing in Nashik: warehouse construction, cold storage, logistics parks, and warehouse land for lease in Maharashtra.",
     url: "https://hbrealtyindia.com/warehousing-2",
   },
 };

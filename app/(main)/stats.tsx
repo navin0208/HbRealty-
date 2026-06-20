@@ -169,7 +169,7 @@ const stats = [
     {
         value: 200,
         suffix: '+',
-        label: 'Trusted Global Clients',
+        label: 'Trusted Clients',
         description: 'Families and investors who chose us for life-defining decisions.',
     },
     {

@@ -16,10 +16,11 @@ export const metadata: Metadata = {
     template: "%s | HB Realty India",
   },
   description:
-    "HB Realty India is a trusted land development company and warehousing consultant in Nashik, Maharashtra. We offer Grade-A warehouse construction, industrial plot development, legal liaisoning, and real estate consultancy services across Maharashtra.",
+    "HB Realty India is a trusted land development company, warehousing consultant, and land clearance expert in Nashik, Maharashtra. We offer Grade-A warehouse construction, industrial plot development, land clearance services, legal liaisoning, and real estate consultancy services across Maharashtra.",
   keywords: [
     "land development in Nashik",
     "warehousing in Nashik",
+    "land clearance in Nashik",
     "industrial development in Nashik",
     "land development company Maharashtra",
     "warehouse construction Nashik",
@@ -31,6 +32,8 @@ export const metadata: Metadata = {
     "cold storage Nashik",
     "logistics park Maharashtra",
     "land legal services Nashik",
+    "land clearance services Maharashtra",
+    "land title clearance Nashik",
     "commercial land Nashik",
     "HB Realty India",
     "Osiyan Warehousing Nashik",
@@ -93,7 +96,17 @@ const structuredData = {
       logo: "https://hbrealtyindia.com/logo.png",
       image: "https://hbrealtyindia.com/logo.png",
       description:
-        "HB Realty India is a trusted land development company and warehousing consultant in Nashik, Maharashtra offering Grade-A warehouse construction, industrial plot development, legal liaisoning, and real estate consultancy.",
+        "HB Realty India is a trusted land development company, warehousing consultant, and land clearance expert in Nashik, Maharashtra offering Grade-A warehouse construction, industrial plot development, land clearance services, legal liaisoning, and real estate consultancy.",
+      knowsAbout: [
+        "Warehousing in Nashik",
+        "Land Development in Nashik",
+        "Land Clearance in Nashik",
+        "Warehouse Construction",
+        "Cold Storage Development",
+        "Industrial Plot Development",
+        "Legal Liaisoning",
+        "Logistics Park Development",
+      ],
       telephone: "+91-91758-48355",
       email: "info@hbrealtyindia.com",
       address: {
