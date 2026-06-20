@@ -234,7 +234,7 @@ export default function ContactPage() {
             className="rounded-[40px] overflow-hidden border border-[#062B4A]/10 h-[400px] relative shadow-[0_30px_60px_rgba(6,43,74,0.1)]"
           >
             <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3748.3!2d73.7756!3d19.9986!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTnCsDU5JzU1LjAiTiA3M8KwNDYnMzIuMiJF!5e0!3m2!1sen!2sin!4v1" 
+              src="https://maps.google.com/maps?q=HB+REALTY+INDIA,+Nashik&t=&z=16&ie=UTF8&iwloc=&output=embed" 
               width="100%" 
               height="100%" 
               style={{ border: 0 }} 
