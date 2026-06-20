@@ -115,7 +115,7 @@ export default function Navbar() {
                 href="/properties"
                 className="text-sm font-medium text-white/50 hover:text-[#A98B55] transition-colors duration-500"
               >
-                Portal
+                Buy / Sell
               </Link>
             </motion.div>
           </div>
@@ -173,7 +173,7 @@ export default function Navbar() {
                 onClick={() => setMobileOpen(false)}
                 className="block w-full py-4 text-sm font-medium tracking-widest uppercase text-white/50 hover:text-[#A98B55] transition-colors"
               >
-                Enter Portal
+                Buy / Sell
               </Link>
             </motion.div>
           </motion.div>
