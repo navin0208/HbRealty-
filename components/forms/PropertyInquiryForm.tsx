@@ -107,18 +107,18 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><User size={12} /> Full Name</label>
-            <input required type="text" name="name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="John Doe" />
+            <input required type="text" name="name" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="Full Name" />
           </div>
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Mail size={12} /> Email Address</label>
-            <input required type="email" name="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="john@example.com" />
+            <input required type="email" name="email" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="Email Address" />
           </div>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Phone size={12} /> Phone Number</label>
-            <input required type="tel" name="phone" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="+91 98765 43210" />
+            <input required type="tel" name="phone" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="+91 XXXXX XXXXX" />
           </div>
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Building2 size={12} /> Type of Land</label>
@@ -135,7 +135,7 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Location (Area, Locality)</label>
-            <input required type="text" name="location" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. Gangapur Road, Nashik" />
+            <input required type="text" name="location" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors" placeholder="e.g. Locality, City" />
           </div>
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Land Size (Guntha, Acre, Hectare)</label>

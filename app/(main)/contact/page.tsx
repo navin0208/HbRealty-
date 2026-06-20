@@ -170,21 +170,21 @@ export default function ContactPage() {
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-3">
                           <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">First Name</label>
-                          <input name="firstName" required type="text" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="John" />
+                          <input name="firstName" required type="text" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="First Name" />
                         </div>
                         <div className="space-y-3">
                           <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Last Name</label>
-                          <input name="lastName" required type="text" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="Doe" />
+                          <input name="lastName" required type="text" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="Last Name" />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-3">
                           <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Email Address</label>
-                          <input name="email" required type="email" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="john@company.com" />
+                          <input name="email" required type="email" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="Email Address" />
                         </div>
                         <div className="space-y-3">
                           <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Phone Number</label>
-                          <input name="phone" type="tel" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="+91 98765 43210" />
+                          <input name="phone" type="tel" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="+91 XXXXX XXXXX" />
                         </div>
                       </div>
                       <div className="space-y-3">
