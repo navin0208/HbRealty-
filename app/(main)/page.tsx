@@ -85,7 +85,7 @@ const services = [
     id: 1,
     title: "Grade A Warehousing",
     desc: "Modern, secure warehouses with advanced facilities and flexible spaces.",
-    image: "/Warehouse p3.jpg",
+    image: "/compressed_Warehouse p3.jpg",
     icon: <Building2 className="w-6 h-6" />,
     color: "#f97316",
     accent: "Logistics Excellence"
@@ -112,7 +112,7 @@ const services = [
     id: 4,
     title: "Warehouse Legal Clearance",
     desc: "Fast and reliable approvals for fire safety, environmental compliance, and operational licenses.",
-     image: "/warehouse_clearance.png",
+     image: "/compressed_warehouse_clearance.jpg",
     icon: <FileText className="w-6 h-6" />,
     color: "#10b981",
     accent: "Operational Speed"
@@ -277,7 +277,7 @@ export default function Home() {
                 }
               }}
             >
-              <source src="/HB-Realty-India.mov" type="video/mp4" />
+              <source src="/HB-Realty-India-compressed.mp4" type="video/mp4" />
             </video>
 
             {/* Clean Controls Overlay */}
@@ -479,7 +479,7 @@ export default function Home() {
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
           >
-            <source src="/Dubai.mp4" type="video/mp4" />
+            <source src="/Dubai-compressed.mp4" type="video/mp4" />
           </video>
 
           {/* Cinematic Vignette — soft fade on ALL edges */}
@@ -706,7 +706,7 @@ export default function Home() {
             >
               <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl group">
                 <Image 
-                  src="/Manoj-bafana.png"
+                  src="/compressed_Manoj-Bafana.jpg"
                   alt="Adv. Manoj Bafana"
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-105"
