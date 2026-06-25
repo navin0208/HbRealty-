@@ -22,10 +22,38 @@ export default function AdminBlogForm({ initialData }: { initialData?: Blog }) {
     setStatus("loading");
     
     const formData = new FormData(e.currentTarget);
+    let imageUrl = formData.get("image") as string;
+    const imageFile = formData.get("imageFile") as File;
+
+    if (imageFile && imageFile.size > 0) {
+      const uploadData = new FormData();
+      uploadData.append("file", imageFile);
+      
+      try {
+        const uploadRes = await fetch("/api/upload", {
+          method: "POST",
+          body: uploadData,
+        });
+        
+        if (uploadRes.ok) {
+          const { url } = await uploadRes.json();
+          imageUrl = url;
+        } else {
+          setStatus("error");
+          setMessage("Failed to upload image.");
+          return;
+        }
+      } catch (err) {
+        setStatus("error");
+        setMessage("Error uploading image.");
+        return;
+      }
+    }
+
     const data = {
       title: formData.get("title"),
       author: formData.get("author"),
-      image: formData.get("image"),
+      image: imageUrl,
       content: formData.get("content"),
     };
 
@@ -111,9 +139,18 @@ export default function AdminBlogForm({ initialData }: { initialData?: Blog }) {
             <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><User size={12} /> Author</label>
             <input required type="text" name="author" defaultValue={initialData?.author} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. Hitesh Bhutda" />
           </div>
-          <div className="space-y-2">
-            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><ImageIcon size={12} /> Cover Image URL</label>
-            <input type="url" name="image" defaultValue={initialData?.image} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="Optional: https://..." />
+          <div className="space-y-2 col-span-1 md:col-span-2">
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><ImageIcon size={12} /> Cover Image</label>
+            <div className="flex flex-col sm:flex-row gap-4">
+              <input 
+                type="file" 
+                name="imageFile" 
+                accept="image/*"
+                className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3 text-[#062B4A] focus:outline-none transition-colors file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-[10px] file:font-bold file:uppercase file:tracking-widest file:bg-[#062B4A]/10 file:text-[#062B4A] hover:file:bg-[#062B4A]/20 cursor-pointer" 
+              />
+              <div className="flex items-center text-[#062B4A]/30 text-[10px] font-bold uppercase tracking-widest px-2 whitespace-nowrap">OR URL</div>
+              <input type="url" name="image" defaultValue={initialData?.image} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="https://..." />
+            </div>
           </div>
         </div>
 

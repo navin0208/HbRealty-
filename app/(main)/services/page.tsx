@@ -9,8 +9,8 @@ import { Building2, Construction, Scale, FileText, Briefcase, Globe2, ArrowRight
 const services = [
   {
     id: "warehousing",
-    title: "Grade A Warehousing",
-    desc: "Modern, secure, and strategically located warehouses in Nashik with advanced facilities, 24/7 security, and flexible space options.",
+    title: "Grade A Industrial Shed",
+    desc: "Modern, secure, and strategically located industrial sheds in Nashik with advanced facilities, 24/7 security, and flexible space options.",
     icon: <Building2 className="w-7 h-7" />,
     accent: "Logistics Excellence",
     image: "/Warehouse p3.jpg",
@@ -53,7 +53,7 @@ const services = [
   },
   {
     id: "legal-warehouse",
-    title: "Warehouse Clearance",
+    title: "Industrial Shed Clearance",
     desc: "Fast and reliable approvals for fire safety, environmental compliance, and operational licenses.",
     icon: <FileText className="w-7 h-7" />,
     accent: "Operational Speed",
@@ -68,7 +68,7 @@ const services = [
   {
     id: "lease-advisory",
     title: "Lease Advisory",
-    desc: "Expert advice and negotiation for warehouse leasing to secure the best terms for your business.",
+    desc: "Expert advice and negotiation for industrial shed leasing to secure the best terms for your business.",
     icon: <Briefcase className="w-7 h-7" />,
     accent: "Market Intelligence",
     image: "/Warehouse-Lease-Advisory-min-scaled.jpg",
@@ -110,7 +110,7 @@ export default function ServicesPage() {
                 transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
                 className="text-4xl md:text-[80px] font-medium text-white tracking-tight leading-[1] mb-8"
               >
-                Warehousing & <br/>
+                Industrial Sheds & <br/>
                 <span className="font-medium text-[#A98B55]">land development.</span>
               </motion.h1>
             </div>
@@ -286,7 +286,7 @@ export default function ServicesPage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 md:gap-8">
             {[
-              { title: "Experience", desc: "Years of proven expertise in land and warehouse projects.", num: "20+" },
+              { title: "Experience", desc: "Years of proven expertise in land and industrial shed projects.", num: "20+" },
               { title: "Location", desc: "Strategic sites in Nashik connected to major industrial hubs.", num: "5+" },
               { title: "Compliance", desc: "Legal and liaison support to keep projects risk-free.", num: "100%" },
               { title: "Sustainability", desc: "Green practices integrated into every development.", num: "∞" }

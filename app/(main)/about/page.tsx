@@ -71,6 +71,107 @@ export default function AboutPage() {
         </motion.div>
       </section>
 
+      {/* ═══ LEADERSHIP — CINEMATIC PORTRAIT ═══ */}
+      <section className="relative py-32 md:py-40 bg-[#062B4A] overflow-hidden text-white">
+        <div className="absolute inset-0 opacity-10">
+          <Image 
+            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" 
+            alt="Guiding the vision background" 
+            fill 
+            className="object-cover"
+          />
+        </div>
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(15px)" }} 
+            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} 
+            viewport={{ once: true }}
+            transition={{ duration: 1.2 }}
+            className="lg:col-span-5 relative h-[600px] md:h-[700px] rounded-[30px] md:rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+          >
+            <Image src="/Hitesh-scaled.png" alt="Mr. Hitesh Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-transparent" />
+            <div className="absolute bottom-0 inset-x-0 p-8 md:p-12 bg-gradient-to-t from-[#062B4A]/90 to-transparent">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-[2px] w-8 bg-white/30" />
+                <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.4em]">Visionary Leadership</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tighter">Mr. Hitesh Bafana</h3>
+              <p className="text-white/50 text-xs md:text-sm font-light uppercase tracking-widest mt-2">Founder & Managing Director</p>
+            </div>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, x: 50, filter: "blur(12px)" }} 
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            className="lg:col-span-7 space-y-8 md:space-y-10"
+          >
+            <h2 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.85]">
+              Guiding <span className="font-medium text-[#A98B55]">The Vision</span>
+            </h2>
+            <div className="space-y-6">
+              <p className="text-white/70 font-light text-lg md:text-xl leading-[1.8]">
+                The founder of HB Realty India, <strong className="text-white font-medium">Hitesh Bafana</strong>, is a seasoned professional with extensive experience in real estate development and industrial logistics. Guided by the vast legal expertise and legacy of his father, <strong className="text-[#A98B55] font-medium">Adv. Manoj Bafana</strong>, his in-depth knowledge of land acquisition laws, liaisoning procedures, and infrastructure compliance has been instrumental in positioning HB Realty as a trusted partner for businesses across Nashik and Maharashtra.
+              </p>
+              <p className="text-white/70 font-light text-lg md:text-xl leading-[1.8]">
+                Under his leadership, HB Realty India has grown into a full-service firm known for its transparent processes, strategic execution, and client-focused approach. Our vision is to bridge the gap between raw land and high-value infrastructure through legally sound, future-ready development solutions.
+              </p>
+            </div>
+            <a href="/contact" className="inline-flex items-center gap-4 bg-white text-[#062B4A] hover:bg-[#FAF9F6] px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs transition-colors">
+              Connect With Us <ArrowRight size={16} />
+            </a>
+          </motion.div>
+        </div>
+      </section>
+      {/* ═══ LEGAL LEGACY — ADV. MANOJ BAFANA ═══ */}
+      <section className="relative py-20 md:py-32 bg-[#041D34] overflow-hidden text-white border-t border-white/5">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] mix-blend-overlay opacity-5 pointer-events-none" />
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
+          <motion.div 
+            initial={{ opacity: 0, x: -50, filter: "blur(12px)" }} 
+            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
+            viewport={{ once: true }}
+            transition={{ duration: 1.2, delay: 0.2 }}
+            className="lg:col-span-7 space-y-8 md:space-y-10 lg:order-1 order-2"
+          >
+            <h2 className="text-white text-4xl md:text-6xl lg:text-7xl font-bold tracking-tighter uppercase leading-[0.85]">
+              Legal <span className="font-medium text-[#A98B55]">Mastery</span>
+            </h2>
+            <div className="space-y-6">
+              <p className="text-white/70 font-light text-lg md:text-xl leading-[1.8]">
+                With a rich experience spanning over 27 years, <strong className="text-[#A98B55] font-medium">Adv. Manoj Bafana</strong> has built a strong reputation for his expertise, professionalism, and commitment to delivering top-notch legal solutions in land and properties.
+              </p>
+              <p className="text-white/70 font-light text-lg md:text-xl leading-[1.8]">
+                Advocate Manoj R Bafana & Associates is a reputable and established legal firm, specializing in various aspects of land matters, title verification, due diligence, and government liaisoning. His vast foresight and legal mastery lay the secure foundation for all of HB Realty's developments.
+              </p>
+            </div>
+            <a href="/contact" className="inline-flex items-center gap-4 bg-transparent border border-white/20 text-white hover:bg-white hover:text-[#041D34] px-6 md:px-8 py-3 md:py-4 rounded-full font-bold uppercase tracking-widest text-[10px] md:text-xs transition-all">
+              Consult Now <ArrowRight size={16} />
+            </a>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, scale: 0.9, filter: "blur(15px)" }} 
+            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} 
+            viewport={{ once: true }}
+            transition={{ duration: 1.2 }}
+            className="lg:col-span-5 relative h-[600px] md:h-[700px] rounded-[30px] md:rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] lg:order-2 order-1"
+          >
+            <Image src="/compressed_Manoj-Bafana.jpg" alt="Adv. Manoj Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#041D34] via-transparent to-transparent" />
+            <div className="absolute bottom-0 inset-x-0 p-8 md:p-12 bg-gradient-to-t from-[#041D34]/90 to-transparent">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="h-[2px] w-8 bg-[#A98B55]" />
+                <span className="text-[#A98B55] text-[10px] font-bold uppercase tracking-[0.4em]">27+ Years of Legacy</span>
+              </div>
+              <h3 className="text-3xl md:text-4xl font-bold text-white uppercase tracking-tighter">Adv. Manoj Bafana</h3>
+              <p className="text-white/50 text-xs md:text-sm font-light uppercase tracking-widest mt-2">Strategic Legal Partner</p>
+            </div>
+          </motion.div>
+        </div>
+      </section>
       {/* ═══ FLOATING STATS BAR (EDITORIAL) ═══ */}
       <section className="relative z-20 px-6 md:px-12 max-w-[1600px] mx-auto pt-20 pb-10">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 border-b border-[#062B4A]/10 pb-20">
@@ -209,60 +310,7 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ═══ LEADERSHIP — CINEMATIC PORTRAIT ═══ */}
-      <section className="relative py-40 bg-[#062B4A] overflow-hidden text-white">
-        <div className="absolute inset-0 opacity-10">
-          <Image 
-            src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" 
-            alt="Guiding the vision background" 
-            fill 
-            className="object-cover"
-          />
-        </div>
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
-          <motion.div 
-            initial={{ opacity: 0, scale: 0.9, filter: "blur(15px)" }} 
-            whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} 
-            viewport={{ once: true }}
-            transition={{ duration: 1.2 }}
-            className="lg:col-span-5 relative h-[700px] rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
-          >
-            <Image src="/Hitesh-scaled.png" alt="Mr. Hitesh Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-transparent" />
-            <div className="absolute bottom-0 inset-x-0 p-12 bg-gradient-to-t from-[#062B4A]/90 to-transparent">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="h-[2px] w-8 bg-white/30" />
-                <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.4em]">Visionary Leadership</span>
-              </div>
-              <h3 className="text-4xl font-bold text-white uppercase tracking-tighter">Mr. Hitesh Bafana</h3>
-              <p className="text-white/50 text-sm font-light uppercase tracking-widest mt-2">Founder & Managing Director</p>
-            </div>
-          </motion.div>
-          
-          <motion.div 
-            initial={{ opacity: 0, x: 50, filter: "blur(12px)" }} 
-            whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} 
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, delay: 0.2 }}
-            className="lg:col-span-7 space-y-10"
-          >
-            <h2 className="text-white text-4xl md:text-7xl font-bold tracking-tighter uppercase leading-[0.85]">
-              Guiding <span className="font-medium text-[#A98B55]">The Vision</span>
-            </h2>
-            <div className="space-y-6">
-              <p className="text-white/70 font-light text-xl leading-[1.8]">
-                The founder of HB Realty India, is a seasoned professional with extensive experience in real estate legal consultancy, land development, and industrial logistics. His in-depth knowledge of land acquisition laws, liaisoning procedures, and infrastructure compliance has been instrumental in positioning HB Realty as a trusted partner for businesses across Nashik and Maharashtra.
-              </p>
-              <p className="text-white/70 font-light text-xl leading-[1.8]">
-                Under his leadership, HB Realty India has grown into a full-service firm known for its transparent processes, strategic execution, and client-focused approach. Mr. Bafana&apos;s vision is to bridge the gap between raw land and high-value infrastructure through legally sound, future-ready development solutions.
-              </p>
-            </div>
-            <a href="/contact" className="inline-flex items-center gap-4 bg-white text-[#062B4A] hover:bg-[#FAF9F6] px-8 py-4 rounded-full font-bold uppercase tracking-widest text-xs transition-colors">
-              Connect With Us <ArrowRight size={16} />
-            </a>
-          </motion.div>
-        </div>
-      </section>
+
 
 
 

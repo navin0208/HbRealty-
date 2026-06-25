@@ -6,7 +6,8 @@ import Image from "next/image";
 
 const partners = [
   { name: "Kapoor Diesels", isLink: false, url: "", logo: "/logos/KDG-Logo-Options-4.webp" },
-  { name: "Maru Enterprises", isLink: false, url: "", logo: "/logos/Maru.png" }
+  { name: "Maru Enterprises", isLink: false, url: "", logo: "/logos/Maru.png" },
+  { name: "Ather Energy", isLink: false, url: "", logo: "/logos/ather-energy.png" }
 ];
 
 export default function TrustedPartners() {
@@ -37,7 +38,7 @@ export default function TrustedPartners() {
           </motion.p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-10 max-w-6xl mx-auto">
           {partners.map((partner, i) => {
             const content = (
               <>

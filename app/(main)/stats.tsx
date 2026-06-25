@@ -63,14 +63,14 @@ function StatItem({ value, suffix = '+', label, index, description }: StatProps)
                 <motion.span
                     animate={{ color: hovered ? '#041D34' : '#062B4A' }}
                     transition={{ duration: 0.5 }}
-                    className="text-[48px] md:text-[56px] lg:text-[64px] xl:text-[80px] 2xl:text-[148px] font-medium tracking-tighter leading-none font-sans"
+                    className="text-[48px] md:text-[56px] lg:text-[64px] xl:text-[80px] 2xl:text-[96px] font-medium tracking-tighter leading-none font-sans"
                 >
                     {count}
                 </motion.span>
                 <motion.span
                     animate={{ color: hovered ? '#041D34' : 'rgba(6, 43, 74, 0.4)' }}
                     transition={{ duration: 0.5 }}
-                    className="text-[24px] md:text-[28px] lg:text-[32px] xl:text-[40px] 2xl:text-[64px] font-medium leading-none mb-1 md:mb-4 font-sans"
+                    className="text-[24px] md:text-[28px] lg:text-[32px] xl:text-[40px] 2xl:text-[48px] font-medium leading-none mb-1 md:mb-4 font-sans"
                 >
                     {suffix}
                 </motion.span>
@@ -176,7 +176,7 @@ const stats = [
         value: 27,
         suffix: '+',
         label: 'Years of Legal Mastery',
-        description: 'Decades of navigating complex real estate structures with precision.',
+        description: 'Decades of navigating complex real estate structures with precision, guided by Adv. Manoj Bafana.',
     },
     {
         value: 25,
@@ -190,7 +190,7 @@ export default function StatsSection() {
     return (
         <section
             id="global"
-            className="relative py-24 md:py-40 px-6 md:px-12 bg-white overflow-hidden border-b border-[#062B4A]/10"
+            className="relative py-12 md:py-20 px-6 md:px-12 bg-white overflow-hidden border-b border-[#062B4A]/10"
         >
             {/* Background scrolling ticker */}
             <BackgroundTicker />
@@ -207,12 +207,12 @@ export default function StatsSection() {
                     whileInView={{ opacity: 1, letterSpacing: '0.2em' }}
                     viewport={{ once: true }}
                     transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-                    className="text-[#062B4A]/40 text-xs uppercase tracking-[0.2em] mb-16 md:mb-24 font-bold"
+                    className="text-[#062B4A]/40 text-xs uppercase tracking-[0.2em] mb-8 md:mb-12 font-bold"
                 >
                     By the Numbers
                 </motion.p>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-8 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-start">
 
                     {/* Left — Quote */}
                     <div className="lg:col-span-4 flex items-end pb-0 lg:pb-8">
@@ -254,7 +254,7 @@ export default function StatsSection() {
                                             viewport={{ once: true }}
                                             transition={{ delay: 0.3, duration: 0.8 }}
                                             style={{ transformOrigin: 'left' }}
-                                            className="mt-12 h-px bg-[#062B4A]/10 md:hidden"
+                                            className="mt-8 h-px bg-[#062B4A]/10 md:hidden"
                                         />
                                     )}
                                 </div>
@@ -271,7 +271,7 @@ export default function StatsSection() {
                     viewport={{ once: true }}
                     transition={{ delay: 0.8, duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
                     style={{ transformOrigin: 'left' }}
-                    className="mt-20 md:mt-32 h-px bg-gradient-to-r from-[#062B4A]/5 via-[#062B4A]/15 to-transparent"
+                    className="mt-12 md:mt-20 h-px bg-gradient-to-r from-[#062B4A]/5 via-[#062B4A]/15 to-transparent"
                 />
             </div>
         </section>

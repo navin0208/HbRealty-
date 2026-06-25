@@ -18,9 +18,9 @@ const slides = [
   {
     id: 1,
     image: "/WAREHOUSE P4.jpg",
-    heading: "Grade-A Warehousing",
+    heading: "Grade-A Industrial Shed",
     serifText: "Nashik",
-    description: "Building Maharashtra's next generation of industrial infrastructure. From Osiyan MIDC to your doorstep — warehousing built right.",
+    description: "Building Maharashtra's next generation of industrial infrastructure. From Osiyan MIDC to your doorstep — industrial sheds built right.",
   },
   {
     id: 2,

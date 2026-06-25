@@ -5,7 +5,7 @@ import { motion, AnimatePresence, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { MapPin, Maximize, Download, ArrowRight, ChevronDown, ChevronUp } from "lucide-react";
-import TrustedPartners from "@/components/sections/TrustedPartners";
+
 import { useElementScrollProgress, type ElementScrollOffset } from "@/components/useElementScrollProgress";
 
 const HERO_SCROLL_OFFSET: ElementScrollOffset = ["start start", "end start"];
@@ -13,7 +13,7 @@ const HERO_SCROLL_OFFSET: ElementScrollOffset = ["start start", "end start"];
 export const projects = [
   {
     id: "osiyan",
-    title: "Osiyan Warehousing",
+    title: "Osiyan Industrial Shed",
     subtitle: "Grade-A Industrial Development",
     category: "Warehousing",
     location: "Akrale MIDC, Dindori, Nashik",
@@ -241,6 +241,32 @@ export default function PortfolioPage() {
                   </a>
                 )}
               </div>
+
+              {project.id === "osiyan" && (
+                <div className="mt-8 border-t border-[#062B4A]/10 pt-6">
+                  <span className="text-[#062B4A]/50 text-[9px] font-bold uppercase tracking-[0.2em] block mb-4">Strategic Clients for this project</span>
+                  <div className="flex flex-wrap items-center gap-8">
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="relative w-16 h-8">
+                        <Image src="/logos/KDG-Logo-Options-4.webp" alt="Kapoor Diesels" fill className="object-contain opacity-70" />
+                      </div>
+                      <span className="text-[#062B4A]/60 text-[8px] font-medium uppercase tracking-widest text-center">Kapoor Diesels</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="relative w-16 h-8">
+                        <Image src="/logos/Maru.png" alt="Maru Enterprises" fill className="object-contain opacity-70" />
+                      </div>
+                      <span className="text-[#062B4A]/60 text-[8px] font-medium uppercase tracking-widest text-center">Maru Enterprises</span>
+                    </div>
+                    <div className="flex flex-col items-center gap-2">
+                      <div className="relative w-16 h-8">
+                        <Image src="/logos/ather-energy.png" alt="Ather Energy" fill className="object-contain opacity-70" />
+                      </div>
+                      <span className="text-[#062B4A]/60 text-[8px] font-medium uppercase tracking-widest text-center">Ather Energy</span>
+                    </div>
+                  </div>
+                </div>
+              )}
             </div>
           </motion.div>
         ))}
@@ -339,10 +365,7 @@ export default function PortfolioPage() {
         </div>
       </section>
 
-      {/* ═══════════════════════════════════════════════════════════
-          TRUSTED PARTNERS & CLIENTS
-          ═══════════════════════════════════════════════════════════ */}
-      <TrustedPartners />
+
 
       {/* ═══ CTA (EDITORIAL / PREMIUM BLUE) ═══ */}
       <section className="relative py-40 px-6 md:px-12 bg-[#062B4A] text-white selection:bg-white selection:text-[#062B4A]">

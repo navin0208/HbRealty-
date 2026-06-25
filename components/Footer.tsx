@@ -154,7 +154,7 @@ export default function Footer() {
           <div className="flex gap-8 text-white/30 text-xs">
             <Link href="/contact" className="hover:text-[#A98B55] transition-colors">Privacy Policy</Link>
             <a href="https://www.linkedin.com/company/hb-realty-india/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">LinkedIn</a>
-            <a href="https://www.linkedin.com/company/hb-realty-india" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Instagram</a>
+            <a href="https://www.instagram.com/hbrealtyindia/" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Instagram</a>
             <a href="https://www.facebook.com/p/HB-Realty-India-61560211460029/" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Facebook</a>
             <a href="https://www.youtube.com/@HBRealty-India" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">YouTube</a>
           </div>

@@ -113,9 +113,9 @@ export default function Navbar() {
             >
               <Link
                 href="/properties"
-                className="text-sm font-medium text-white/50 hover:text-[#A98B55] transition-colors duration-500"
+                className="px-6 py-2 rounded-full border border-[#A98B55] bg-[#A98B55]/10 text-[#A98B55] text-xs font-bold tracking-widest uppercase hover:bg-[#A98B55] hover:text-[#041D34] transition-all duration-500 shadow-[0_0_15px_rgba(169,139,85,0.3)]"
               >
-                Buy / Sell
+                Buy / Sell / Lease
               </Link>
             </motion.div>
           </div>
@@ -171,9 +171,9 @@ export default function Navbar() {
               <Link
                 href="/properties"
                 onClick={() => setMobileOpen(false)}
-                className="block w-full py-4 text-sm font-medium tracking-widest uppercase text-white/50 hover:text-[#A98B55] transition-colors"
+                className="block w-full py-4 text-xs font-bold tracking-widest uppercase text-[#041D34] bg-[#A98B55] rounded-full hover:bg-white transition-colors shadow-[0_0_20px_rgba(169,139,85,0.4)]"
               >
-                Buy / Sell
+                Buy / Sell / Lease
               </Link>
             </motion.div>
           </motion.div>

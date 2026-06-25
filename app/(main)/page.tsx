@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useTransform, useMotionTemplate, useInView, useSpring, useScroll } from "framer-motion";
-import { Menu, ArrowRight, Play, ChevronRight, Globe, Shield, Zap, Target, CheckCircle2, Award, Building2, Scale, Users, Plus, Minus, AlertCircle, RefreshCcw, TrendingUp, CheckCircle, FileText, Gavel, Construction, ArrowLeft, MoveRight, MapPin, Phone, Mail, Clock, Volume2, VolumeX, Briefcase } from "lucide-react";
+import { Menu, ArrowRight, Play, ChevronRight, Globe, Shield, Zap, Target, CheckCircle2, Award, Building2, Scale, Users, Plus, Minus, AlertCircle, RefreshCcw, TrendingUp, CheckCircle, FileText, Gavel, Construction, ArrowLeft, MoveRight, MapPin, Phone, Mail, Clock, Volume2, VolumeX, Briefcase, X } from "lucide-react";
 import LiquidLogoSection from "@/components/LiquidLogoSection";
 import { useElementScrollProgress, type ElementScrollOffset } from "@/components/useElementScrollProgress";
 import HeroCinematic from "@/components/animations/HeroCinematic";
@@ -83,8 +83,8 @@ function ScrollRevealText({
 const services = [
   {
     id: 1,
-    title: "Grade A Warehousing",
-    desc: "Modern, secure warehouses with advanced facilities and flexible spaces.",
+    title: "Grade A Industrial Sheds",
+    desc: "Modern, secure industrial sheds with advanced facilities and flexible spaces.",
     image: "/compressed_Warehouse p3.jpg",
     icon: <Building2 className="w-6 h-6" />,
     color: "#f97316",
@@ -110,7 +110,7 @@ const services = [
   },
   {
     id: 4,
-    title: "Warehouse Legal Clearance",
+    title: "Industrial Shed Legal Clearance",
     desc: "Fast and reliable approvals for fire safety, environmental compliance, and operational licenses.",
      image: "/compressed_warehouse_clearance.jpg",
     icon: <FileText className="w-6 h-6" />,
@@ -120,7 +120,7 @@ const services = [
   {
     id: 5,
     title: "Lease Advisory",
-    desc: "Expert advice and negotiation for warehouse leasing to secure the best terms for your business.",
+    desc: "Expert advice and negotiation for industrial shed leasing to secure the best terms for your business.",
     image: "/Warehouse-Lease-Advisory-min-scaled.jpg",
     icon: <Briefcase className="w-6 h-6" />,
     color: "#ec4899",
@@ -142,6 +142,7 @@ export default function Home() {
   const [activeService, setActiveService] = useState(0);
   const [timerProgress, setTimerProgress] = useState(0);
   const [activeProjectTab, setActiveProjectTab] = useState("All");
+  const [activeReel, setActiveReel] = useState<string | null>(null);
 
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
@@ -200,7 +201,7 @@ export default function Home() {
           ═══════════════════════════════════════════════════════════ */}
       <section
         ref={visionRef}
-        className="relative py-32 md:py-48 overflow-hidden bg-[#FAF9F6] border-y border-[#062B4A]/5"
+        className="relative py-8 md:py-12 overflow-hidden bg-[#FAF9F6] border-y border-[#062B4A]/5"
       >
         {/* Ambient gradient blobs */}
         <div className="absolute top-0 left-1/4 w-[600px] h-[600px] rounded-full bg-[#A98B55]/5 blur-[120px] pointer-events-none" />
@@ -208,27 +209,27 @@ export default function Home() {
 
         <motion.div style={{ opacity: visionOpacity, scale: visionScale }} className="relative z-10">
           {/* Row 1: slides right to left */}
-          <motion.div style={{ x: visionX }} className="flex items-center gap-8 md:gap-16 whitespace-nowrap mb-4 md:mb-6">
-            <span className="text-[#062B4A] text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">From Vision</span>
-            <div className="h-[3px] w-24 md:w-48 bg-[#A98B55] rounded-full shrink-0" />
-            <span className="text-[#062B4A]/10 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">Precision</span>
-            <div className="h-3 w-3 rounded-full bg-[#A98B55] shrink-0" />
-            <span className="text-[#062B4A]/20 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">Legacy</span>
+          <motion.div style={{ x: visionX }} className="flex items-center gap-8 md:gap-12 whitespace-nowrap mb-2 md:mb-4">
+            <span className="text-[#062B4A] text-[48px] sm:text-[64px] md:text-[100px] lg:text-[140px] font-bold tracking-tighter uppercase leading-none">From Vision</span>
+            <div className="h-[3px] w-16 md:w-32 bg-[#A98B55] rounded-full shrink-0" />
+            <span className="text-[#062B4A]/10 text-[48px] sm:text-[64px] md:text-[100px] lg:text-[140px] font-bold tracking-tighter uppercase leading-none">Precision</span>
+            <div className="h-2 w-2 md:h-3 md:w-3 rounded-full bg-[#A98B55] shrink-0" />
+            <span className="text-[#062B4A]/20 text-[48px] sm:text-[64px] md:text-[100px] lg:text-[140px] font-bold tracking-tighter uppercase leading-none">Legacy</span>
           </motion.div>
 
           {/* Row 2: slides left to right */}
-          <motion.div style={{ x: visionX2 }} className="flex items-center gap-8 md:gap-16 whitespace-nowrap">
-            <span className="text-[#062B4A]/10 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">Craft</span>
-            <div className="h-3 w-3 rounded-full bg-[#062B4A]/20 shrink-0" />
-            <span className="text-[#062B4A] text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-bold tracking-tighter uppercase leading-none">To Reality</span>
-            <div className="h-[3px] w-24 md:w-48 bg-[#062B4A]/20 rounded-full shrink-0" />
-            <span className="text-[#A98B55]/30 text-[60px] sm:text-[80px] md:text-[140px] lg:text-[180px] font-serif italic font-normal tracking-tighter lowercase leading-none">mastery</span>
+          <motion.div style={{ x: visionX2 }} className="flex items-center gap-8 md:gap-12 whitespace-nowrap">
+            <span className="text-[#062B4A]/10 text-[48px] sm:text-[64px] md:text-[100px] lg:text-[140px] font-bold tracking-tighter uppercase leading-none">Craft</span>
+            <div className="h-2 w-2 md:h-3 md:w-3 rounded-full bg-[#062B4A]/20 shrink-0" />
+            <span className="text-[#062B4A] text-[48px] sm:text-[64px] md:text-[100px] lg:text-[140px] font-bold tracking-tighter uppercase leading-none">To Reality</span>
+            <div className="h-[3px] w-16 md:w-32 bg-[#062B4A]/20 rounded-full shrink-0" />
+            <span className="text-[#A98B55]/30 text-[48px] sm:text-[64px] md:text-[100px] lg:text-[140px] font-serif italic font-normal tracking-tighter lowercase leading-none">mastery</span>
           </motion.div>
         </motion.div>
       </section>
 
       {/* IMMERSIVE CINEMATIC VIDEO */}
-      <section className="relative w-full bg-white py-24 md:py-32">
+      <section className="relative w-full bg-white py-16 md:py-24">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -249,79 +250,55 @@ export default function Home() {
           </motion.div>
         </div>
 
-        {/* Video Container (Full Width inside Max-Width, 16:9 Aspect Ratio) */}
+        {/* Reels Container (Responsive Carousel) */}
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-            className="relative w-full aspect-video rounded-[30px] overflow-hidden group shadow-[0_30px_60px_rgba(6,43,74,0.1)] border border-[#062B4A]/10"
-          >
-            <video
-              ref={videoRef}
-              autoPlay
-              loop
-              muted={isMuted}
-              playsInline
-              className="absolute inset-0 w-full h-full object-cover brightness-[0.85] cursor-pointer"
-              onClick={() => {
-                if (videoRef.current) {
-                  if (isPlaying) {
-                    videoRef.current.pause();
-                    setIsPlaying(false);
-                  } else {
-                    videoRef.current.play();
-                    setIsPlaying(true);
-                  }
-                }
-              }}
-            >
-              <source src="/HB-Realty-India-compressed.mp4" type="video/mp4" />
-            </video>
-
-            {/* Clean Controls Overlay */}
-            <div className="absolute bottom-6 md:bottom-8 right-6 md:right-8 flex items-center gap-3 md:gap-4 z-20 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-              {/* Play/Pause */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  if (videoRef.current) {
-                    if (isPlaying) {
-                      videoRef.current.pause();
-                      setIsPlaying(false);
-                    } else {
-                      videoRef.current.play();
-                      setIsPlaying(true);
-                    }
-                  }
-                }}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md flex items-center justify-center text-white/90 hover:text-white hover:border-white transition-all"
+          <div className="flex overflow-x-auto snap-x snap-mandatory gap-6 md:grid md:grid-cols-3 md:gap-8 pb-8 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+            {[1, 2, 3].map((item, i) => (
+              <motion.div
+                key={i}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 1.2, delay: i * 0.15, ease: [0.16, 1, 0.3, 1] }}
+                className="relative w-[75vw] sm:w-[60vw] md:w-full aspect-[9/16] shrink-0 snap-center rounded-[24px] md:rounded-[30px] overflow-hidden group shadow-xl border border-[#062B4A]/10 bg-[#041D34]"
               >
-                {isPlaying ? (
-                  <div className="w-3 h-3 md:w-4 md:h-4 border-l-2 border-r-2 border-current" />
-                ) : (
-                  <Play fill="currentColor" size={16} className="ml-1" />
-                )}
-              </button>
-              
-              {/* Mute/Unmute */}
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  setIsMuted(!isMuted);
-                }}
-                className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 bg-black/40 backdrop-blur-md flex items-center justify-center text-white/90 hover:text-white hover:border-white transition-all"
-              >
-                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-              </button>
-            </div>
-          </motion.div>
+                {/* Reel Placeholder Video */}
+                <video
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover brightness-[0.7] group-hover:scale-105 transition-transform duration-[10s]"
+                >
+                  <source src={i === 0 ? "/Video-64.mp4" : i === 1 ? "/Video-305.mp4" : "/Video-996.mp4"} type="video/mp4" />
+                </video>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
+                
+                {/* Reel Content Overlay */}
+                <div className="absolute inset-0 p-6 md:p-8 flex flex-col justify-end pointer-events-none">
+                  <div 
+                    className="flex items-center gap-3 mb-4 pointer-events-auto cursor-pointer w-fit group/btn"
+                    onClick={() => setActiveReel(i === 0 ? "/Video-64.mp4" : i === 1 ? "/Video-305.mp4" : "/Video-996.mp4")}
+                  >
+                    <div className="w-10 h-10 md:w-12 md:h-12 rounded-full border border-white/20 bg-white/10 backdrop-blur-md flex items-center justify-center text-white group-hover/btn:bg-white group-hover/btn:text-[#041D34] transition-all shadow-[0_0_15px_rgba(255,255,255,0.2)]">
+                      <Play fill="currentColor" size={14} className="ml-1" />
+                    </div>
+                    <span className="text-white/90 text-[10px] font-bold uppercase tracking-[0.2em] group-hover/btn:text-white transition-colors drop-shadow-md">Play Reel</span>
+                  </div>
+                  <h3 className="text-white font-medium text-lg md:text-xl lg:text-2xl leading-snug">
+                    {i === 0 && "Transforming Nashik's Industrial Landscape"}
+                    {i === 1 && "Inside Osiyan: Grade-A Infrastructure"}
+                    {i === 2 && "The Future of Industrial Sheds"}
+                  </h3>
+                </div>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
       {/* STRATEGIC TRANSFORMATION SECTION */}
-      <section className="relative py-24 md:py-40 px-6 md:px-12 bg-[#FAF9F6] border-b border-[#062B4A]/10 overflow-hidden">
+      <section className="relative py-16 md:py-24 px-6 md:px-12 bg-[#FAF9F6] border-b border-[#062B4A]/10 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-32 space-y-4">
             <span className="text-[#062B4A]/50 text-xs font-bold uppercase tracking-[0.6em] block">Business Lifecycle</span>
@@ -373,7 +350,7 @@ export default function Home() {
       </section>
 
       {/* ULTRA-PREMIUM CINEMATIC CAPABILITIES CAROUSEL */}
-      <section className="relative bg-[#062B4A] py-16 md:py-24 lg:py-40 overflow-hidden">
+      <section className="relative bg-[#062B4A] py-12 md:py-16 lg:py-24 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-24 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
@@ -456,6 +433,98 @@ export default function Home() {
               </motion.div>
             </AnimatePresence>
             <div className="absolute top-6 left-6 sm:top-12 sm:left-12 flex flex-col gap-3 sm:gap-4"><div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-white animate-pulse" /><div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-white/20" /><div className="h-1.5 w-1.5 sm:h-2 sm:w-2 rounded-full bg-white/20" /></div>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════════════════
+          LEGAL LEGACY — ADV. MANOJ BAFANA
+          ═══════════════════════════════════════════════════════════ */}
+      <section className="relative bg-[#041D34] py-12 md:py-20 overflow-hidden border-t border-white/5">
+        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] mix-blend-overlay opacity-5 pointer-events-none" />
+        
+        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
+            
+            {/* Image Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="lg:col-span-5 relative"
+            >
+              <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl group">
+                <Image 
+                  src="/compressed_Manoj-Bafana.jpg"
+                  alt="Adv. Manoj Bafana"
+                  fill
+                  className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#041D34]/80 via-transparent to-transparent pointer-events-none" />
+                <div className="absolute inset-0 border border-white/10 rounded-[30px] pointer-events-none" />
+              </div>
+              
+              {/* Badge */}
+              <div className="absolute -bottom-8 -right-4 md:-right-12 bg-[#A98B55] text-[#041D34] p-6 md:p-8 rounded-full flex items-center justify-center shadow-xl border-4 border-[#041D34]">
+                <div className="text-center">
+                  <span className="block text-3xl md:text-4xl font-bold tracking-tighter leading-none mb-1">27+</span>
+                  <span className="block text-[8px] font-bold uppercase tracking-[0.2em]">Years of<br/>Legacy</span>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Content Side */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+              viewport={{ once: true }}
+              className="lg:col-span-7 pt-10 lg:pt-0"
+            >
+              <div className="flex items-center gap-4 mb-8">
+                <div className="h-px w-12 bg-[#A98B55]" />
+                <span className="text-[#A98B55] text-[10px] font-bold uppercase tracking-[0.3em]">Our Strategic Partner</span>
+              </div>
+              
+              <h2 className="text-4xl md:text-5xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.1] mb-6">
+                Legal Mastery & <br/>
+                <span className="font-serif italic font-light text-white/60">Foresight</span>
+              </h2>
+              
+              <h3 className="text-xl md:text-2xl text-white font-medium mb-8 tracking-wide">
+                Adv. Manoj Bafana & Associates
+              </h3>
+
+              <div className="space-y-6 text-white/60 text-lg md:text-xl font-light leading-relaxed max-w-2xl relative">
+                <div className="absolute -left-4 md:-left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#A98B55] to-transparent" />
+                <p className="pl-4 md:pl-0">
+                  With a rich experience spanning over 27 years, the firm has built a strong reputation for its expertise, professionalism, and commitment to delivering top-notch legal solutions to its clients in land and properties.
+                </p>
+                <p className="pl-4 md:pl-0">
+                  Advocate Manoj R Bafana & Associates is a reputable and established legal firm, specialising in various aspects of land matters and related legal services.
+                </p>
+              </div>
+
+              <div className="mt-12 flex flex-wrap items-center gap-6 md:gap-8 border-t border-white/10 pt-10">
+                <div className="space-y-1">
+                  <span className="text-white text-base md:text-lg font-medium block">Title Verification</span>
+                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Due Diligence</span>
+                </div>
+                <div className="w-px h-10 bg-white/10" />
+                <div className="space-y-1">
+                  <span className="text-white text-base md:text-lg font-medium block">Gov. Approvals</span>
+                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Liaisoning</span>
+                </div>
+                <div className="w-px h-10 bg-white/10 hidden sm:block" />
+                <div className="space-y-1 hidden sm:block">
+                  <span className="text-white text-base md:text-lg font-medium block">Dispute Resolution</span>
+                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Legal Support</span>
+                </div>
+              </div>
+              
+            </motion.div>
           </div>
         </div>
       </section>
@@ -558,7 +627,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           DUBAI — ACT II: EDITORIAL CONTENT STRIP
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#062B4A] py-16 md:py-24 lg:py-40 overflow-hidden border-t border-white/5">
+      <section className="relative bg-[#062B4A] py-12 md:py-16 lg:py-24 overflow-hidden border-t border-white/5">
         {/* Ambient Background */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Lead Copy */}
@@ -687,102 +756,12 @@ export default function Home() {
           ═══════════════════════════════════════════════════════════ */}
       <TrustedPartners />
 
-      {/* ═══════════════════════════════════════════════════════════
-          LEGAL LEGACY — ADV. MANOJ BAFANA
-          ═══════════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#041D34] py-20 md:py-32 overflow-hidden border-t border-white/5">
-        <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] mix-blend-overlay opacity-5 pointer-events-none" />
-        
-        <div className="max-w-[1600px] mx-auto px-6 md:px-12">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-24 items-center">
-            
-            {/* Image Side */}
-            <motion.div
-              initial={{ opacity: 0, x: -50 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="lg:col-span-5 relative"
-            >
-              <div className="relative w-full aspect-[4/5] rounded-[30px] overflow-hidden shadow-2xl group">
-                <Image 
-                  src="/compressed_Manoj-Bafana.jpg"
-                  alt="Adv. Manoj Bafana"
-                  fill
-                  className="object-cover transition-transform duration-[2s] group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#041D34]/80 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute inset-0 border border-white/10 rounded-[30px] pointer-events-none" />
-              </div>
-              
-              {/* Badge */}
-              <div className="absolute -bottom-8 -right-4 md:-right-12 bg-[#A98B55] text-[#041D34] p-6 md:p-8 rounded-full flex items-center justify-center shadow-xl border-4 border-[#041D34]">
-                <div className="text-center">
-                  <span className="block text-3xl md:text-4xl font-bold tracking-tighter leading-none mb-1">27+</span>
-                  <span className="block text-[8px] font-bold uppercase tracking-[0.2em]">Years of<br/>Legacy</span>
-                </div>
-              </div>
-            </motion.div>
 
-            {/* Content Side */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              viewport={{ once: true }}
-              className="lg:col-span-7 pt-10 lg:pt-0"
-            >
-              <div className="flex items-center gap-4 mb-8">
-                <div className="h-px w-12 bg-[#A98B55]" />
-                <span className="text-[#A98B55] text-[10px] font-bold uppercase tracking-[0.3em]">Our Strategic Partner</span>
-              </div>
-              
-              <h2 className="text-4xl md:text-5xl lg:text-[70px] font-medium text-white tracking-tight leading-[1.1] mb-6">
-                Legal Mastery & <br/>
-                <span className="font-serif italic font-light text-white/60">Foresight</span>
-              </h2>
-              
-              <h3 className="text-xl md:text-2xl text-white font-medium mb-8 tracking-wide">
-                Adv. Manoj Bafana & Associates
-              </h3>
-
-              <div className="space-y-6 text-white/60 text-lg md:text-xl font-light leading-relaxed max-w-2xl relative">
-                <div className="absolute -left-4 md:-left-6 top-0 bottom-0 w-[2px] bg-gradient-to-b from-[#A98B55] to-transparent" />
-                <p className="pl-4 md:pl-0">
-                  With a rich experience spanning over 27 years, the firm has built a strong reputation for its expertise, professionalism, and commitment to delivering top-notch legal solutions to its clients in land and properties.
-                </p>
-                <p className="pl-4 md:pl-0">
-                  Advocate Manoj R Bafana & Associates is a reputable and established legal firm, specialising in various aspects of land matters and related legal services.
-                </p>
-              </div>
-
-              <div className="mt-12 flex flex-wrap items-center gap-6 md:gap-8 border-t border-white/10 pt-10">
-                <div className="space-y-1">
-                  <span className="text-white text-base md:text-lg font-medium block">Title Verification</span>
-                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Due Diligence</span>
-                </div>
-                <div className="w-px h-10 bg-white/10" />
-                <div className="space-y-1">
-                  <span className="text-white text-base md:text-lg font-medium block">Gov. Approvals</span>
-                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Liaisoning</span>
-                </div>
-                <div className="w-px h-10 bg-white/10 hidden sm:block" />
-                <div className="space-y-1 hidden sm:block">
-                  <span className="text-white text-base md:text-lg font-medium block">Dispute Resolution</span>
-                  <span className="text-white/40 text-[9px] md:text-[10px] font-bold uppercase tracking-[0.2em] block">Legal Support</span>
-                </div>
-              </div>
-              
-            </motion.div>
-          </div>
-        </div>
-      </section>
 
       {/* ═══════════════════════════════════════════════════════════
           PROJECTS — UPCOMING & ONGOING CAROUSEL
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative bg-white py-24 md:py-40 overflow-hidden border-t border-[#062B4A]/10">
+      <section className="relative bg-white py-16 md:py-24 overflow-hidden border-t border-[#062B4A]/10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(6,43,74,0.015)_0%,_transparent_60%)] pointer-events-none" />
 
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
@@ -938,7 +917,7 @@ export default function Home() {
 
 
       {/* Expertise Cards Grid */}
-      <section id="expertise" className="relative py-24 md:py-40 px-6 md:px-12 bg-[#062B4A]">
+      <section id="expertise" className="relative py-16 md:py-24 px-6 md:px-12 bg-[#062B4A]">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial="hidden"
@@ -972,7 +951,7 @@ export default function Home() {
 
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-24 md:py-40 px-6 md:px-12 overflow-hidden bg-[#062B4A]">
+      <section id="contact" className="relative py-16 md:py-24 px-6 md:px-12 overflow-hidden bg-[#062B4A]">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }} viewport={{ once: true }} className="h-[2px] bg-[#A98B55] mx-auto mb-12" />
           <motion.h2 
@@ -1005,6 +984,39 @@ export default function Home() {
           </motion.div>
         </div>
       </section>
+      <AnimatePresence>
+        {activeReel && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-[100] flex items-center justify-center bg-black/95 backdrop-blur-xl p-4 md:p-12"
+            onClick={() => setActiveReel(null)}
+          >
+            <button 
+              onClick={() => setActiveReel(null)}
+              className="absolute top-6 right-6 md:top-12 md:right-12 w-12 h-12 rounded-full bg-white/10 hover:bg-white/20 flex items-center justify-center text-white transition-colors z-50"
+            >
+              <X size={24} />
+            </button>
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              className="relative w-full max-w-[400px] aspect-[9/16] bg-black rounded-[24px] md:rounded-[32px] overflow-hidden shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <video
+                src={activeReel}
+                autoPlay
+                controls
+                playsInline
+                className="w-full h-full object-cover"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
 
     </main>
   );

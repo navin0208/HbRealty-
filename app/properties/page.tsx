@@ -15,8 +15,8 @@ export default function PropertiesPage() {
 
   const tabs = [
     { id: "buy", label: "Buy Properties", icon: <Map size={16} /> },
-    { id: "sell", label: "Sell Your Property", icon: <Building size={16} /> },
-    { id: "developers", label: "For Developers", icon: <UserPlus size={16} /> },
+    { id: "sell", label: "Sell / Rent your property", icon: <Building size={16} /> },
+    { id: "developers", label: "For Development and Lease", icon: <UserPlus size={16} /> },
   ] as const;
 
   return (

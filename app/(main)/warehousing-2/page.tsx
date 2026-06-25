@@ -8,32 +8,32 @@ import { useState } from "react";
 
 const services = [
   {
-    title: "Warehouse Construction in Nashik",
+    title: "Industrial Shed Construction in Nashik",
     desc: "Custom-designed facilities built to optimize storage, operations, and safety. We handle every stage: planning, permissions, and construction.",
     icon: <Building2 className="w-8 h-8" />,
     img: "https://images.unsplash.com/photo-1541888946425-d81bb19480c5?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "Warehouse Leasing & Sales",
-    desc: "Get access to premium ready-to-use warehouses or long-term warehouse land for lease in Nashik to build your own facility.",
+    title: "Industrial Shed Leasing & Sales",
+    desc: "Get access to premium ready-to-use industrial sheds or long-term industrial shed land for lease in Nashik to build your own facility.",
     icon: <ShieldCheck className="w-8 h-8" />,
     img: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=800"
   },
   {
-    title: "Cold Storage Warehouse Builder",
+    title: "Cold Storage Builder",
     desc: "Specialized design and construction for temperature-controlled storage, ideal for food processing, pharma, and agriculture.",
     icon: <ThermometerSnowflake className="w-8 h-8" />,
     img: "https://images.unsplash.com/photo-1518112390430-f4ab02e9c2c8?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Logistics Park Development",
-    desc: "Large-scale industrial and logistics park planning with integrated warehousing, transport access, and utilities in Maharashtra.",
+    desc: "Large-scale industrial and logistics park planning with integrated industrial sheds, transport access, and utilities in Maharashtra.",
     icon: <Truck className="w-8 h-8" />,
     img: "https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=800"
   },
   {
     title: "Land Development & Legal Liaisoning",
-    desc: "From land identification to government clearances, our legal team ensures a smooth setup process for all warehousing projects.",
+    desc: "From land identification to government clearances, our legal team ensures a smooth setup process for all industrial shed projects.",
     icon: <Scale className="w-8 h-8" />,
     img: "https://images.unsplash.com/photo-1589829545856-d10d557cf95f?auto=format&fit=crop&q=80&w=800"
   }
@@ -46,7 +46,7 @@ const testimonials = [
     location: "Chandwad, Nashik"
   },
   {
-    text: "Our warehouse project in Trimbak was completed on schedule with HB Realty's guidance. Their liaisoning and advisory services were truly professional.",
+    text: "Our industrial shed project in Trimbak was completed on schedule with HB Realty's guidance. Their liaisoning and advisory services were truly professional.",
     name: "Neha Desai",
     location: "Trimbak, Nashik"
   },
@@ -61,7 +61,7 @@ const testimonials = [
     location: "Manmad, Nashik"
   },
   {
-    text: "Professional, responsive, and highly skilled – the best choice for warehouse construction and logistics park development in Maharashtra.",
+    text: "Professional, responsive, and highly skilled – the best choice for industrial shed construction and logistics park development in Maharashtra.",
     name: "Sneha Patil",
     location: "Peth, Nashik"
   }
@@ -69,28 +69,28 @@ const testimonials = [
 
 const faqs = [
   {
-    q: "What warehousing services do you provide in Nashik?",
-    a: "We offer end-to-end Warehousing Development Services in Nashik, including construction, leasing, cold storage setup, and facility management for various industries."
+    q: "What industrial shed services do you provide in Nashik?",
+    a: "We offer end-to-end Industrial Shed Development Services in Nashik, including construction, leasing, cold storage setup, and facility management for various industries."
   },
   {
-    q: "Do you handle warehouse construction in Nashik?",
-    a: "Yes. We specialize in warehouse construction in Nashik, delivering custom-built facilities designed for logistics, manufacturing, e-commerce, and more."
+    q: "Do you handle industrial shed construction in Nashik?",
+    a: "Yes. We specialize in industrial shed construction in Nashik, delivering custom-built facilities designed for logistics, manufacturing, e-commerce, and more."
   },
   {
-    q: "Can I lease warehouse land in Nashik through HB Realty?",
-    a: "Absolutely. We provide premium warehouse land for lease in Nashik as well as ready-to-use warehouse spaces in prime industrial zones."
+    q: "Can I lease industrial shed land in Nashik through HB Realty?",
+    a: "Absolutely. We provide premium industrial shed land for lease in Nashik as well as ready-to-use industrial shed spaces in prime industrial zones."
   },
   {
     q: "Do you only work in certain areas of Maharashtra?",
     a: "We operate across all major growth hubs in Maharashtra including Nashik, Pune, Aurangabad, and Mumbai outskirts, as well as emerging industrial zones."
   },
   {
-    q: "How do I choose the right warehouse location in Nashik?",
-    a: "Our team assesses your operational needs, industry type, and transport access to recommend the best warehousing options in Nashik for your business."
+    q: "How do I choose the right industrial shed location in Nashik?",
+    a: "Our team assesses your operational needs, industry type, and transport access to recommend the best industrial shed options in Nashik for your business."
   },
   {
-    q: "Can you manage legal clearances for warehouses?",
-    a: "Yes. We handle all permissions, government clearances, and compliance required for smooth warehouse setup in Maharashtra."
+    q: "Can you manage legal clearances for industrial sheds?",
+    a: "Yes. We handle all permissions, government clearances, and compliance required for smooth industrial shed setup in Maharashtra."
   }
 ];
 
@@ -105,7 +105,7 @@ export default function WarehousingPage() {
         <div className="absolute inset-0">
           <Image 
             src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&q=80&w=2000" 
-            alt="Warehousing Nashik" fill className="object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite] grayscale-[20%]" priority 
+            alt="Industrial Shed Nashik" fill className="object-cover scale-105 animate-[pulse_20s_ease-in-out_infinite] grayscale-[20%]" priority 
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[#080808] via-[#080808]/70 to-transparent" />
         </div>
@@ -115,12 +115,12 @@ export default function WarehousingPage() {
             <div className="w-12 h-px bg-white/20 mb-8" />
             
             <h1 className="text-4xl md:text-[90px] font-medium text-white tracking-tight leading-[0.9] mb-8 max-w-5xl">
-              Warehousing & <span className="font-medium text-[#A98B55]">land development.</span>
+              Industrial Sheds & <span className="font-medium text-[#A98B55]">land development.</span>
             </h1>
             
             <div className="pl-0 md:pl-10 border-l-0 md:border-l border-white/20">
               <p className="text-white/50 font-light text-xl leading-relaxed max-w-2xl pl-0 md:pl-8 mb-12">
-                From warehouse construction in Nashik to cold storage facilities and logistics park development across Maharashtra, we deliver end-to-end solutions for your industrial and storage needs.
+                From industrial shed construction in Nashik to cold storage facilities and logistics park development across Maharashtra, we deliver end-to-end solutions for your industrial and storage needs.
               </p>
             </div>
             
@@ -144,10 +144,10 @@ export default function WarehousingPage() {
           </motion.div>
           <motion.div initial={{ opacity: 0, x: 30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }} className="lg:col-span-7 space-y-8 mt-0 md:mt-24">
             <p className="text-white/60 font-light text-xl leading-relaxed">
-              At HB Realty India, we specialize in <strong className="text-white font-medium">Warehousing Development Services in Nashik</strong> providing businesses with strategically located facilities, legal compliance support, and turnkey construction solutions.
+              At HB Realty India, we specialize in <strong className="text-white font-medium">Industrial Shed Development Services in Nashik</strong> providing businesses with strategically located facilities, legal compliance support, and turnkey construction solutions.
             </p>
             <p className="text-white/50 font-light text-lg leading-relaxed mb-12">
-              As a leading warehousing company in Maharashtra, we help clients secure warehouse land for lease in Nashik, build custom storage facilities, and develop large-scale logistics parks tailored to industry demands. From concept to completion, our expert team ensures your warehousing project is delivered on time, within budget, and in full compliance with local regulations.
+              As a leading industrial developer in Maharashtra, we help clients secure industrial shed land for lease in Nashik, build custom storage facilities, and develop large-scale logistics parks tailored to industry demands. From concept to completion, our expert team ensures your industrial shed project is delivered on time, within budget, and in full compliance with local regulations.
             </p>
             <Link href="/contact" className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group w-fit">
               <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Talk to Nashik's Experts</span>
@@ -164,7 +164,7 @@ export default function WarehousingPage() {
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
               Our <span className="font-medium text-[#A98B55]">Services</span>
             </h2>
-            <p className="text-white/40 text-lg font-light max-w-md">Comprehensive solutions covering every aspect of warehousing and industrial land development.</p>
+            <p className="text-white/40 text-lg font-light max-w-md">Comprehensive solutions covering every aspect of industrial shed and industrial land development.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12 md:gap-x-12 md:gap-y-20">
@@ -260,10 +260,10 @@ export default function WarehousingPage() {
           <div className="w-12 h-px bg-[#062B4A]/25 mb-8" />
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
             Ready to Build Your <br/>
-            <span className="font-medium text-[#A98B55]">Next Warehousing Project?</span>
+            <span className="font-medium text-[#A98B55]">Next Industrial Shed Project?</span>
           </h2>
           <p className="text-[#062B4A]/60 font-light text-lg md:text-xl max-w-2xl mb-12 leading-relaxed">
-            Partner with Maharashtra's leading warehousing consultants and developers. Let our experts assist you with customized construction, leasing options, and complete legal compliance.
+            Partner with Maharashtra's leading industrial shed consultants and developers. Let our experts assist you with customized construction, leasing options, and complete legal compliance.
           </p>
           <Link 
             href="/contact" 
