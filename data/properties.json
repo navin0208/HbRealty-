@@ -1,34 +1,5 @@
 [
   {
-    "id": "lvghylh7t",
-    "title": "18 Acre Land in Lakhmapur",
-    "type": "Land for Sale",
-    "price": "Rs.1.85Cr / Total: Rs.33 Cr",
-    "size": "18 Acre",
-    "location": [
-      20.5557115,
-      74.3470099
-    ],
-    "image": "/land_placeholder.png",
-    "status": "available",
-    "isVerified": true
-  },
-  {
-    "id": "qlhcs8y87",
-    "title": "11 Acre Land in Lakhmapur",
-    "type": "Land for Lease",
-    "price": "Price on Request",
-    "size": "11 Acre",
-    "location": [
-      20.5557115,
-      74.3470099
-    ],
-    "image": "/land_placeholder.png",
-    "status": "available",
-    "isVerified": true,
-    "mapLink": "https://maps.app.goo.gl/fhgyyhSgHbL5DUjT6?g_st=awb"
-  },
-  {
     "id": "rapm77k1d",
     "title": "6 acre 10 gunthe Land in Khatwad phata",
     "type": "Land for Sale",
@@ -41,21 +12,6 @@
     "image": "/land_placeholder.png",
     "status": "available",
     "isVerified": true
-  },
-  {
-    "id": "i0g5q2ukk",
-    "title": "5 acre Land in khatwad Phata",
-    "type": "Land for Sale",
-    "price": "Rs.1.60/Acre / Total: Rs.8 Cr",
-    "size": "5 acre",
-    "location": [
-      20.1470593,
-      73.8191226
-    ],
-    "image": "/land_placeholder.png",
-    "status": "available",
-    "isVerified": true,
-    "mapLink": "https://maps.app.goo.gl/KkcqW4YsMYxX8F5T9?g_st=aw"
   },
   {
     "id": "oxchu1m1k",

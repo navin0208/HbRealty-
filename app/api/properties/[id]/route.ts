@@ -1,22 +1,5 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
-
-const dataFilePath = path.join(process.cwd(), 'data', 'properties.json');
-
-// Interface matching the properties format
-interface Property {
-  id: string;
-  title: string;
-  type: string;
-  price: string;
-  size: string;
-  location: [number, number];
-  image: string;
-  status?: 'available' | 'sold';
-  isVerified?: boolean;
-  isPremium?: boolean;
-}
+import { supabase } from '@/lib/supabase';
 
 export async function DELETE(
   request: Request,
@@ -26,24 +9,17 @@ export async function DELETE(
     const resolvedParams = await params;
     const { id } = resolvedParams;
 
-    // Read existing properties
-    let properties: Property[] = [];
-    try {
-      const fileContents = await fs.readFile(dataFilePath, 'utf8');
-      properties = JSON.parse(fileContents);
-    } catch (e) {
-      return NextResponse.json({ error: 'Property data file not found' }, { status: 404 });
-    }
+    const { data, error } = await supabase
+      .from('properties')
+      .delete()
+      .eq('id', id)
+      .select();
 
-    // Filter out the property to delete
-    const filteredProperties = properties.filter((p) => p.id !== id);
+    if (error) throw error;
 
-    if (properties.length === filteredProperties.length) {
+    if (!data || data.length === 0) {
       return NextResponse.json({ error: 'Property not found' }, { status: 404 });
     }
-
-    // Save back to file
-    await fs.writeFile(dataFilePath, JSON.stringify(filteredProperties, null, 2), 'utf8');
 
     return NextResponse.json({ success: true, message: `Property ${id} deleted successfully` });
   } catch (error) {
@@ -60,21 +36,24 @@ export async function GET(
     const resolvedParams = await params;
     const { id } = resolvedParams;
 
-    let properties: Property[] = [];
-    try {
-      const fileContents = await fs.readFile(dataFilePath, 'utf8');
-      properties = JSON.parse(fileContents);
-    } catch (e) {
-      return NextResponse.json({ error: 'Property data file not found' }, { status: 404 });
-    }
+    const { data: p, error } = await supabase
+      .from('properties')
+      .select('*')
+      .eq('id', id)
+      .single();
 
-    const property = properties.find((p) => p.id === id);
-
-    if (!property) {
+    if (error || !p) {
       return NextResponse.json({ error: 'Property not found' }, { status: 404 });
     }
 
-    return NextResponse.json(property);
+    const formattedProperty = {
+      ...p,
+      location: [p.location_lat, p.location_lng],
+      isVerified: p.isverified,
+      isPremium: p.ispremium
+    };
+
+    return NextResponse.json(formattedProperty);
   } catch (error) {
     console.error('Error fetching property:', error);
     return NextResponse.json({ error: 'Failed to fetch property' }, { status: 500 });
@@ -90,36 +69,39 @@ export async function PATCH(
     const { id } = resolvedParams;
     const body = await request.json();
 
-    // Read existing properties
-    let properties: Property[] = [];
-    try {
-      const fileContents = await fs.readFile(dataFilePath, 'utf8');
-      properties = JSON.parse(fileContents);
-    } catch (e) {
-      return NextResponse.json({ error: 'Property data file not found' }, { status: 404 });
+    const updateData: any = {};
+    if (body.title) updateData.title = body.title;
+    if (body.type) updateData.type = body.type;
+    if (body.price) updateData.price = body.price;
+    if (body.size) updateData.size = body.size;
+    if (body.location) {
+      updateData.location_lat = body.location[0];
+      updateData.location_lng = body.location[1];
+    }
+    if (body.image) updateData.image = body.image;
+    if (body.status) updateData.status = body.status;
+    if (body.isVerified !== undefined) updateData.isverified = body.isVerified;
+    if (body.isPremium !== undefined) updateData.ispremium = body.isPremium;
+
+    const { data: p, error } = await supabase
+      .from('properties')
+      .update(updateData)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error || !p) {
+      return NextResponse.json({ error: 'Failed to update property or not found' }, { status: 404 });
     }
 
-    // Find and update property
-    let updatedProperty: Property | null = null;
-    const updatedProperties = properties.map((p) => {
-      if (p.id === id) {
-        updatedProperty = {
-          ...p,
-          ...body,
-        };
-        return updatedProperty;
-      }
-      return p;
-    });
+    const formattedProperty = {
+      ...p,
+      location: [p.location_lat, p.location_lng],
+      isVerified: p.isverified,
+      isPremium: p.ispremium
+    };
 
-    if (!updatedProperty) {
-      return NextResponse.json({ error: 'Property not found' }, { status: 404 });
-    }
-
-    // Save back to file
-    await fs.writeFile(dataFilePath, JSON.stringify(updatedProperties, null, 2), 'utf8');
-
-    return NextResponse.json(updatedProperty);
+    return NextResponse.json(formattedProperty);
   } catch (error) {
     console.error('Error updating property:', error);
     return NextResponse.json({ error: 'Failed to update property' }, { status: 500 });
