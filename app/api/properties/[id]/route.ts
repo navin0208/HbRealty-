@@ -67,21 +67,55 @@ export async function PATCH(
   try {
     const resolvedParams = await params;
     const { id } = resolvedParams;
-    const body = await request.json();
+    const formData = await request.formData();
 
     const updateData: any = {};
-    if (body.title) updateData.title = body.title;
-    if (body.type) updateData.type = body.type;
-    if (body.price) updateData.price = body.price;
-    if (body.size) updateData.size = body.size;
-    if (body.location) {
-      updateData.location_lat = body.location[0];
-      updateData.location_lng = body.location[1];
+    const title = formData.get("title") as string;
+    if (title) updateData.title = title;
+    
+    const type = formData.get("type") as string;
+    if (type) updateData.type = type;
+    
+    const price = formData.get("price") as string;
+    if (price) updateData.price = price;
+    
+    const size = formData.get("size") as string;
+    if (size) updateData.size = size;
+    
+    const locationStr = formData.get("location") as string;
+    if (locationStr) {
+      const location = JSON.parse(locationStr);
+      updateData.location_lat = location[0];
+      updateData.location_lng = location[1];
     }
-    if (body.image) updateData.image = body.image;
-    if (body.status) updateData.status = body.status;
-    if (body.isVerified !== undefined) updateData.isverified = body.isVerified;
-    if (body.isPremium !== undefined) updateData.ispremium = body.isPremium;
+    
+    // Handle image upload if present
+    let imageUrl = formData.get("image") as string;
+    const imageFile = formData.get("imageFile") as File;
+    if (imageFile && imageFile.size > 0) {
+      const uploadData = new FormData();
+      uploadData.append("file", imageFile);
+      
+      const uploadRes = await fetch(new URL("/api/upload", request.url).toString(), {
+        method: "POST",
+        body: uploadData,
+      });
+      
+      if (uploadRes.ok) {
+        const { url } = await uploadRes.json();
+        imageUrl = url;
+      }
+    }
+    if (imageUrl) updateData.image = imageUrl;
+    
+    const status = formData.get("status") as string;
+    if (status) updateData.status = status;
+    
+    const isVerified = formData.get("isVerified");
+    if (isVerified !== null) updateData.isverified = isVerified === "true";
+    
+    const isPremium = formData.get("isPremium");
+    if (isPremium !== null) updateData.ispremium = isPremium === "true";
 
     const { data: p, error } = await supabase
       .from('properties')
