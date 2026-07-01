@@ -16,6 +16,7 @@ interface Property {
   location: [number, number];
   image: string;
   status?: 'available' | 'sold';
+  intent?: string;
   isVerified?: boolean;
   isPremium?: boolean;
 }
@@ -136,11 +137,27 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
                 <option value="Warehouse" className="bg-white text-[#062B4A]">Warehouse</option>
                 <option value="Agricultural" className="bg-white text-[#062B4A]">Agricultural</option>
                 <option value="Residential" className="bg-white text-[#062B4A]">Residential</option>
+                <option value="Commercial" className="bg-white text-[#062B4A]">Commercial</option>
               </select>
             </div>
             <div className="space-y-2">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Listing Intent</label>
+              <select name="intent" defaultValue={initialData?.intent || "Buy"} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A]/80 focus:outline-none focus:border-[#062B4A]/40 transition-colors appearance-none">
+                <option value="Buy" className="bg-white text-[#062B4A]">For Sale (Buy)</option>
+                <option value="Rent" className="bg-white text-[#062B4A]">On Rent</option>
+                <option value="Lease" className="bg-white text-[#062B4A]">On Lease</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
               <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Price</label>
               <input required type="text" name="price" defaultValue={initialData?.price} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. ₹12 Cr" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><Maximize size={12} /> Size</label>
+              <input required type="text" name="size" defaultValue={initialData?.size} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. 5 Acres" />
             </div>
           </div>
 

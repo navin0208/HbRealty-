@@ -34,6 +34,7 @@ create table public.properties (
   location_lng double precision not null,
   image text not null,
   status text default 'available',
+  intent text default 'Buy',
   isVerified boolean default false,
   isPremium boolean default false,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
@@ -66,3 +67,6 @@ create policy "Allow public full access" on public.blogs for all using (true) wi
 
 -- Force PostgREST schema cache to reload
 NOTIFY pgrst, 'reload schema';
+
+-- Migration to run in existing database:
+-- ALTER TABLE public.properties ADD COLUMN intent text DEFAULT 'Buy';

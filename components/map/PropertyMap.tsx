@@ -122,7 +122,12 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
                   <span className="text-[9px] font-bold uppercase tracking-widest text-[#A98B55]">{prop.type}</span>
                   <div className="flex items-center gap-1.5 mt-1">
                     <h4 className="text-sm font-bold line-clamp-1 text-[#062B4A]">{prop.title}</h4>
-                    {prop.isVerified && <CheckCircle2 size={12} className="text-blue-500 shrink-0" />}
+                    {prop.isVerified && (
+                      <div className="flex items-center gap-1 shrink-0 px-1.5 py-0.5 bg-green-500/10 rounded border border-green-500/20" title="Verified Property">
+                        <CheckCircle2 size={10} className="text-green-500" />
+                        <span className="text-[7px] font-bold uppercase tracking-widest text-green-600">Verified</span>
+                      </div>
+                    )}
                   </div>
                   <div className="flex justify-between items-center mt-2">
                     <span className="text-[#062B4A]/50 text-xs font-mono">{prop.size}</span>

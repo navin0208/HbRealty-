@@ -15,7 +15,8 @@ export async function GET() {
       ...p,
       location: [p.location_lat, p.location_lng],
       isVerified: p.isverified,
-      isPremium: p.ispremium
+      isPremium: p.ispremium,
+      intent: p.intent || 'Buy'
     }));
 
     return NextResponse.json(formattedProperties);
@@ -67,6 +68,7 @@ export async function POST(request: Request) {
       location_lng: location[1],
       image: imageUrl || "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
       status: (formData.get("status") as string) || 'available',
+      intent: (formData.get("intent") as string) || 'Buy',
       isverified: formData.get("isVerified") === "true",
       ispremium: formData.get("isPremium") === "true"
     };

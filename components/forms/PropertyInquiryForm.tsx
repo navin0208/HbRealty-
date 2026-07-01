@@ -135,18 +135,18 @@ export default function PropertyInquiryForm({ type }: PropertyInquiryFormProps) 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           <div className="space-y-2">
             <label className="text-white/40 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">
-              <Building2 size={12} /> {type === 'sell' ? "Intent (Sell / Rent)" : "Intent (Develop / Lease)"}
+              <Building2 size={12} /> {type === 'sell' ? "Intent (Sell / Rent / Lease)" : "Intent (Develop)"}
             </label>
             <select name="intent" className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-white/50/50 transition-colors appearance-none">
               {type === 'sell' ? (
                 <>
                   <option value="sell" className="bg-zinc-900">Sell Property</option>
                   <option value="rent" className="bg-zinc-900">Rent Property</option>
+                  <option value="lease" className="bg-zinc-900">Lease Property</option>
                 </>
               ) : (
                 <>
                   <option value="develop" className="bg-zinc-900">Develop Property</option>
-                  <option value="lease" className="bg-zinc-900">Lease Property</option>
                 </>
               )}
             </select>

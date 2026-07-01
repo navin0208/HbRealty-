@@ -15,6 +15,7 @@ export default function MapWrapper() {
   const [loading, setLoading] = useState(true);
 
   const [isMobileListOpen, setIsMobileListOpen] = useState(false);
+  const [intentFilter, setIntentFilter] = useState<"All" | "Buy" | "Rent" | "Lease">("All");
   const dragControls = useDragControls();
 
   useEffect(() => {
@@ -37,6 +38,10 @@ export default function MapWrapper() {
       </div>
     );
   }
+
+  const filteredProperties = intentFilter === "All" 
+    ? properties 
+    : properties.filter(p => (p as any).intent === intentFilter);
 
   const renderPropertyCard = (prop: Property) => (
     <motion.div 
@@ -77,8 +82,9 @@ export default function MapWrapper() {
         <div className="flex items-center gap-2 mb-2">
           <h3 className="text-[#062B4A] font-bold text-sm md:text-lg leading-tight line-clamp-1">{prop.title}</h3>
           {prop.isVerified && (
-            <div className="flex items-center justify-center shrink-0" title="Verified Property">
-              <CheckCircle2 size={14} className="text-blue-500 fill-blue-50 md:w-4 md:h-4" />
+            <div className="flex items-center gap-1 shrink-0 px-1.5 py-0.5 bg-green-500/10 rounded border border-green-500/20" title="Verified Property">
+              <CheckCircle2 size={12} className="text-green-500 md:w-3 md:h-3" />
+              <span className="text-[8px] font-bold uppercase tracking-widest text-green-600">Verified</span>
             </div>
           )}
         </div>
@@ -99,20 +105,32 @@ export default function MapWrapper() {
   return (
     <div className="relative h-[65vh] min-h-[450px] lg:h-[800px] w-full bg-white/5 backdrop-blur-xl rounded-[24px] md:rounded-[40px] border border-white/10 shadow-2xl overflow-hidden">
       
-      {/* Main Area: Map (Background) */}
       <div className="absolute inset-0 z-0">
-        <PropertyMap properties={properties} onPropertySelect={setSelectedProperty} selectedProperty={selectedProperty} />
+        <PropertyMap properties={filteredProperties} onPropertySelect={setSelectedProperty} selectedProperty={selectedProperty} />
       </div>
 
       {/* Desktop Sidebar (lg and up) */}
       <div className="hidden lg:flex absolute left-4 top-4 bottom-4 w-[450px] flex-col gap-4 overflow-hidden z-10 pointer-events-none">
         <div className="p-6 pb-4 bg-[#06111C]/90 backdrop-blur-md rounded-[20px] border border-white/10 shrink-0 shadow-2xl pointer-events-auto">
           <h2 className="text-2xl font-bold text-white tracking-tighter uppercase">Available Listings</h2>
-          <p className="text-[#A98B55] text-xs mt-1 tracking-widest uppercase font-bold">Browse our exclusive verified properties</p>
+          <p className="text-[#A98B55] text-xs mt-1 tracking-widest uppercase font-bold mb-4">Browse our exclusive verified properties</p>
+          <div className="flex bg-white/10 p-1 rounded-xl">
+            {["All", "Buy", "Rent", "Lease"].map(filter => (
+              <button
+                key={filter}
+                onClick={() => setIntentFilter(filter as any)}
+                className={`flex-1 py-1.5 text-[9px] font-bold uppercase tracking-widest rounded-lg transition-colors ${
+                  intentFilter === filter ? "bg-white text-[#06111C]" : "text-white/60 hover:text-white"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
 
         <div className="flex-1 overflow-y-auto pr-2 space-y-4 custom-scrollbar pointer-events-auto">
-          {properties.map(renderPropertyCard)}
+          {filteredProperties.map(renderPropertyCard)}
         </div>
       </div>
 
@@ -140,7 +158,7 @@ export default function MapWrapper() {
           <div className="flex items-center justify-between w-full px-2">
             <div>
               <h2 className="text-lg font-bold text-[#062B4A] tracking-tighter uppercase leading-none">Available Listings</h2>
-              <p className="text-[#A98B55] text-[9px] mt-1 tracking-widest uppercase font-bold">{properties.length} Properties Found</p>
+              <p className="text-[#A98B55] text-[9px] mt-1 tracking-widest uppercase font-bold">{filteredProperties.length} Properties Found</p>
             </div>
             <button 
               onClick={() => setIsMobileListOpen(!isMobileListOpen)}
@@ -149,11 +167,24 @@ export default function MapWrapper() {
               <ChevronUp size={16} className={`transition-transform duration-300 ${isMobileListOpen ? 'rotate-180' : ''}`} />
             </button>
           </div>
+          <div className="flex w-full mt-3 bg-[#062B4A]/5 p-1 rounded-xl">
+            {["All", "Buy", "Rent", "Lease"].map(filter => (
+              <button
+                key={filter}
+                onClick={() => setIntentFilter(filter as any)}
+                className={`flex-1 py-1.5 text-[9px] font-bold uppercase tracking-widest rounded-lg transition-colors ${
+                  intentFilter === filter ? "bg-[#062B4A] text-white" : "text-[#062B4A]/60 hover:text-[#062B4A]"
+                }`}
+              >
+                {filter}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* List Content */}
         <div className="flex-1 overflow-y-auto p-4 space-y-4 custom-scrollbar bg-zinc-50/50">
-          {properties.map(renderPropertyCard)}
+          {filteredProperties.map(renderPropertyCard)}
         </div>
       </motion.div>
         

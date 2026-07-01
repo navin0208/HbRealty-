@@ -14,9 +14,9 @@ export default function PropertiesPage() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const tabs = [
-    { id: "buy", label: "Buy Properties", icon: <Map size={16} /> },
-    { id: "sell", label: "Sell / Rent your property", icon: <Building size={16} /> },
-    { id: "developers", label: "For Development and Lease", icon: <UserPlus size={16} /> },
+    { id: "buy", label: "Search Properties", icon: <Map size={16} /> },
+    { id: "sell", label: "Sell / Rent / Lease your property", icon: <Building size={16} /> },
+    { id: "developers", label: "For Development", icon: <UserPlus size={16} /> },
   ] as const;
 
   return (

@@ -37,7 +37,7 @@ export default function AboutPage() {
           <div className="absolute inset-0 bg-gradient-to-b from-[#062B4A]/90 via-[#062B4A]/20 to-transparent h-48" />
         </motion.div>
 
-        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-32 w-full flex flex-col items-start">
+        <motion.div style={{ opacity: heroOpacity }} className="relative z-10 max-w-[1600px] mx-auto px-6 md:px-12 pb-16 w-full flex flex-col items-start">
           <div className="overflow-hidden">
             <motion.h1 
               initial={{ y: "100%" }} 
@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ LEADERSHIP — CINEMATIC PORTRAIT ═══ */}
-      <section className="relative py-16 md:py-40 bg-[#062B4A] overflow-hidden text-white">
+      <section className="relative py-16 md:py-24 bg-[#062B4A] overflow-hidden text-white">
         <div className="absolute inset-0 opacity-10">
           <Image 
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" 
@@ -87,7 +87,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} 
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
-            className="lg:col-span-5 relative h-[600px] md:h-[700px] rounded-[30px] md:rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
+            className="lg:col-span-5 relative h-[500px] md:h-[600px] rounded-[30px] md:rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)]"
           >
             <Image src="/Hitesh-scaled.png" alt="Mr. Hitesh Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-transparent" />
@@ -126,7 +126,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* ═══ LEGAL LEGACY — ADV. MANOJ BAFANA ═══ */}
-      <section className="relative py-20 md:py-16 bg-[#041D34] overflow-hidden text-white border-t border-white/5">
+      <section className="relative py-16 md:py-20 bg-[#041D34] overflow-hidden text-white border-t border-white/5">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] mix-blend-overlay opacity-5 pointer-events-none" />
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           <motion.div 
@@ -157,7 +157,7 @@ export default function AboutPage() {
             whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }} 
             viewport={{ once: true }}
             transition={{ duration: 1.2 }}
-            className="lg:col-span-5 relative h-[600px] md:h-[700px] rounded-[30px] md:rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] lg:order-2 order-1"
+            className="lg:col-span-5 relative h-[500px] md:h-[600px] rounded-[30px] md:rounded-[50px] overflow-hidden border border-white/10 shadow-[0_30px_60px_rgba(0,0,0,0.5)] lg:order-2 order-1"
           >
             <Image src="/compressed_Manoj-Bafana.jpg" alt="Adv. Manoj Bafana" fill className="object-cover grayscale hover:grayscale-0 transition-all duration-1000" />
             <div className="absolute inset-0 bg-gradient-to-t from-[#041D34] via-transparent to-transparent" />
@@ -173,8 +173,8 @@ export default function AboutPage() {
         </div>
       </section>
       {/* ═══ FLOATING STATS BAR (EDITORIAL) ═══ */}
-      <section className="relative z-20 px-6 md:px-12 max-w-[1600px] mx-auto pt-20 pb-10">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 border-b border-[#062B4A]/10 pb-20">
+      <section className="relative z-20 px-6 md:px-12 max-w-[1600px] mx-auto pt-16 pb-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 border-b border-[#062B4A]/10 pb-12">
           {[
             { title: "Transparent Dealings", val: "100%" },
             { title: "Legal Compliance", val: "100%" },
@@ -200,7 +200,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ ABOUT STORY — EDITORIAL SPLIT ═══ */}
-      <section className="relative py-20 px-6 md:px-12 max-w-[1600px] mx-auto">
+      <section className="relative py-12 md:py-16 px-6 md:px-12 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-20 items-start">
           <div className="lg:col-span-5 lg:sticky lg:top-40">
             <motion.div initial={{ opacity: 0, x: -40, filter: "blur(12px)" }} whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}>
@@ -211,7 +211,7 @@ export default function AboutPage() {
             </motion.div>
           </div>
           
-          <div className="lg:col-span-7 space-y-16 mt-0 md:mt-24">
+          <div className="lg:col-span-7 space-y-8 mt-12 lg:mt-0">
             <motion.p initial={{ opacity: 0, y: 30, filter: "blur(10px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }} className="text-[#062B4A]/70 text-xl md:text-2xl font-light leading-relaxed">
               HB Realty India stands at the forefront of land development and warehousing in Maharashtra. We specialize in identifying, acquiring, and transforming land into thriving commercial and logistics hubs.
             </motion.p>
@@ -228,7 +228,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ VISION — CINEMATIC FULL-WIDTH ═══ */}
-      <section className="relative py-40 overflow-hidden">
+      <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0">
           <Image 
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&q=80&w=2000" 
@@ -275,16 +275,16 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-      <section className="relative py-40 px-6 md:px-12 bg-white">
-        <div className="max-w-[1600px] mx-auto border-t border-[#062B4A]/10 pt-32">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-20">
+      <section className="relative py-20 px-6 md:px-12 bg-white">
+        <div className="max-w-[1600px] mx-auto border-t border-[#062B4A]/10 pt-16 md:pt-24">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-x-8 gap-y-12 md:gap-y-20">
             <div className="md:col-span-1">
               <h2 className="text-3xl md:text-4xl font-medium text-[#062B4A] tracking-tight">
                 Why <br/> <span className="font-medium text-[#A98B55]">HB Realty?</span>
               </h2>
             </div>
             
-            <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-20">
+            <div className="md:col-span-3 grid grid-cols-1 md:grid-cols-2 gap-x-16 gap-y-12">
               {[
                 { title: "Proven Track Record", desc: "Decades of industrial land development excellence across Maharashtra." },
                 { title: "Legal Mastery", desc: "Expertise in regulatory approvals, NOCs, and complex legal formalities." },
@@ -309,9 +309,6 @@ export default function AboutPage() {
           </div>
         </div>
       </section>
-
-
-
 
 
     </main>
