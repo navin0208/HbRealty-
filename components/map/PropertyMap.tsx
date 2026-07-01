@@ -34,6 +34,16 @@ export interface Property {
   location: [number, number];
   image: string;
   status?: "available" | "sold";
+  intent?: string;
+  transactionType?: string;
+  ownership?: string;
+  roadWidth?: string;
+  boundaryWall?: boolean;
+  openSides?: number;
+  address?: string;
+  description?: string;
+  features?: string[];
+  possessionType?: string;
   isVerified?: boolean;
   isPremium?: boolean;
   mapLink?: string;

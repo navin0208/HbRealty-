@@ -15,8 +15,15 @@ interface Property {
   size: string;
   location: [number, number];
   image: string;
-  status?: 'available' | 'sold';
   intent?: string;
+  transactionType?: string;
+  ownership?: string;
+  roadWidth?: string;
+  boundaryWall?: boolean;
+  openSides?: number;
+  address?: string;
+  description?: string;
+  features?: string[];
   isVerified?: boolean;
   isPremium?: boolean;
 }
@@ -43,6 +50,7 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
     // Append checkboxes explicitly since unchecked checkboxes aren't included in FormData
     formData.set("isVerified", (e.currentTarget.elements.namedItem("isVerified") as HTMLInputElement).checked ? "true" : "false");
     formData.set("isPremium", (e.currentTarget.elements.namedItem("isPremium") as HTMLInputElement).checked ? "true" : "false");
+    formData.set("boundaryWall", (e.currentTarget.elements.namedItem("boundaryWall") as HTMLInputElement).checked ? "true" : "false");
 
     if (initialData?.image && !formData.get("imageFile")?.valueOf()) {
       formData.set("image", initialData.image);
@@ -150,6 +158,41 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
             </div>
           </div>
 
+          <div className="space-y-2">
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><MapPin size={12} /> Address</label>
+            <input type="text" name="address" defaultValue={initialData?.address} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. Dasak, Nashik, Maharashtra" />
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Transaction Type</label>
+              <select name="transactionType" defaultValue={initialData?.transactionType || "Resale"} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A]/80 focus:outline-none focus:border-[#062B4A]/40 transition-colors appearance-none">
+                <option value="Resale" className="bg-white text-[#062B4A]">Resale</option>
+                <option value="New Property" className="bg-white text-[#062B4A]">New Property</option>
+              </select>
+            </div>
+            <div className="space-y-2">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Ownership</label>
+              <select name="ownership" defaultValue={initialData?.ownership || "Freehold"} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A]/80 focus:outline-none focus:border-[#062B4A]/40 transition-colors appearance-none">
+                <option value="Freehold" className="bg-white text-[#062B4A]">Freehold</option>
+                <option value="Leasehold" className="bg-white text-[#062B4A]">Leasehold</option>
+                <option value="Co-operative Society" className="bg-white text-[#062B4A]">Co-operative Society</option>
+                <option value="Power of Attorney" className="bg-white text-[#062B4A]">Power of Attorney</option>
+              </select>
+            </div>
+          </div>
+
+          <div className="grid grid-cols-2 gap-6">
+            <div className="space-y-2">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Road Width</label>
+              <input type="text" name="roadWidth" defaultValue={initialData?.roadWidth} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. 20.0 Feet" />
+            </div>
+            <div className="space-y-2">
+              <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Open Sides</label>
+              <input type="number" name="openSides" defaultValue={initialData?.openSides} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. 2" />
+            </div>
+          </div>
+
           <div className="grid grid-cols-2 gap-6">
             <div className="space-y-2">
               <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Price</label>
@@ -182,6 +225,32 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
               </div>
               <span className="text-[#062B4A]/80 text-[10px] font-bold uppercase tracking-widest">Premium Property</span>
             </label>
+            
+            <label className="flex items-center gap-3 cursor-pointer group">
+              <div className="relative flex items-center justify-center w-6 h-6 rounded border border-[#062B4A]/20 bg-[#FAF9F6] group-hover:border-[#062B4A]/40 transition-colors">
+                <input type="checkbox" name="boundaryWall" defaultChecked={initialData?.boundaryWall} className="peer opacity-0 absolute inset-0 cursor-pointer" />
+                <CheckCircle2 size={14} className="text-[#A98B55] opacity-0 peer-checked:opacity-100 transition-opacity" />
+              </div>
+              <span className="text-[#062B4A]/80 text-[10px] font-bold uppercase tracking-widest">Boundary Wall</span>
+            </label>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Possession Type</label>
+            <select name="possessionType" defaultValue={initialData?.possessionType || "Immediate"} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A]/80 focus:outline-none focus:border-[#062B4A]/40 transition-colors appearance-none">
+              <option value="Immediate" className="bg-white text-[#062B4A]">Immediate</option>
+              <option value="Under Construction" className="bg-white text-[#062B4A]">Under Construction</option>
+            </select>
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">About Property (Description)</label>
+            <textarea name="description" rows={5} defaultValue={initialData?.description} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30 resize-none" placeholder="Write a detailed description..." />
+          </div>
+
+          <div className="space-y-2">
+            <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Features</label>
+            <input type="text" name="features" defaultValue={initialData?.features?.join(', ')} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A] focus:outline-none focus:border-[#062B4A]/40 transition-colors placeholder:text-[#062B4A]/30" placeholder="e.g. Vaastu Compliant, Corner Plot (comma separated)" />
           </div>
 
           <div className="space-y-2">

@@ -188,37 +188,119 @@ export default function MapWrapper() {
         </div>
       </motion.div>
         
-        {/* Floating Contact CTA if a property is selected */}
+        {/* Property Details Drawer */}
         <AnimatePresence>
           {selectedProperty && (
-            <motion.div 
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: 20 }}
-              className="absolute bottom-4 lg:bottom-6 left-1/2 -translate-x-1/2 bg-white/95 backdrop-blur-xl border border-black/10 p-3 lg:p-4 rounded-2xl flex items-center gap-4 lg:gap-6 shadow-2xl z-[1000] w-[90%] max-w-[400px] lg:max-w-max lg:w-auto"
-            >
-              <div className="text-[#062B4A] flex-1 min-w-0">
-                <p className="text-[9px] lg:text-[10px] font-bold uppercase tracking-widest text-[#A98B55] mb-0.5 lg:mb-1">
-                  {selectedProperty.status === 'sold' ? 'Sold Out' : 'Interested?'}
-                </p>
-                <p className="text-xs lg:text-sm font-medium truncate">{selectedProperty.title}</p>
-              </div>
-              {selectedProperty.status === 'sold' ? (
-                <button disabled className="px-4 lg:px-6 py-2 lg:py-2.5 bg-black/5 border border-black/10 text-black/40 text-[10px] lg:text-xs font-bold uppercase tracking-widest rounded-xl cursor-not-allowed shrink-0">
-                  Sold Out
-                </button>
-              ) : (
-                <button className="px-4 lg:px-6 py-2 lg:py-2.5 bg-[#A98B55] text-white text-[10px] lg:text-xs font-bold uppercase tracking-widest rounded-xl hover:bg-[#A98B55]/90 transition-colors shrink-0">
-                  Contact Agent
-                </button>
-              )}
-              <button 
+            <>
+              {/* Backdrop */}
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
                 onClick={() => setSelectedProperty(null)}
-                className="w-8 h-8 rounded-full bg-black/5 flex items-center justify-center text-black/50 hover:text-red-500 transition-colors absolute -top-3 -right-3 border border-black/10 shadow-sm"
+                className="absolute inset-0 bg-[#06111C]/40 backdrop-blur-sm z-[999]"
+              />
+              
+              {/* Drawer */}
+              <motion.div
+                initial={{ x: "100%" }}
+                animate={{ x: 0 }}
+                exit={{ x: "100%" }}
+                transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                className="absolute top-0 right-0 bottom-0 w-full md:w-[450px] lg:w-[500px] bg-white z-[1000] shadow-2xl flex flex-col overflow-hidden border-l border-white/10"
               >
-                <X size={14} />
-              </button>
-            </motion.div>
+                <div className="relative h-[250px] shrink-0">
+                  <img src={selectedProperty.image} alt={selectedProperty.title} className={`w-full h-full object-cover ${selectedProperty.status === 'sold' ? 'brightness-50 grayscale' : ''}`} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A]/90 via-[#062B4A]/20 to-transparent" />
+                  
+                  <button onClick={() => setSelectedProperty(null)} className="absolute top-4 right-4 w-10 h-10 bg-black/40 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-black/60 transition-colors z-10 border border-white/20">
+                    <X size={20} />
+                  </button>
+
+                  <div className="absolute bottom-6 left-6 right-6">
+                    <div className="flex items-center gap-2 mb-3">
+                      <span className="px-3 py-1 bg-[#A98B55] text-white text-[9px] font-bold uppercase tracking-widest rounded-full">{selectedProperty.intent || 'Buy'}</span>
+                      <span className="px-3 py-1 bg-white/20 backdrop-blur-md text-white text-[9px] font-bold uppercase tracking-widest rounded-full border border-white/20">{selectedProperty.type}</span>
+                      {selectedProperty.status === 'sold' && (
+                        <span className="px-3 py-1 bg-red-600 text-white text-[9px] font-bold uppercase tracking-widest rounded-full">Sold Out</span>
+                      )}
+                    </div>
+                    <h2 className="text-2xl font-bold text-white tracking-tight leading-tight flex items-center gap-2">
+                      {selectedProperty.title}
+                      {selectedProperty.isVerified && <CheckCircle2 size={16} className="text-green-400 shrink-0" />}
+                    </h2>
+                    <p className="text-white/70 text-xs mt-1 flex items-center gap-1.5"><MapPin size={12} /> {selectedProperty.address || 'Nashik, Maharashtra'}</p>
+                  </div>
+                </div>
+
+                <div className="flex-1 overflow-y-auto bg-[#FAF9F6] p-6 custom-scrollbar text-[#062B4A]">
+                  <div className="flex items-center justify-between mb-8 pb-6 border-b border-[#062B4A]/10">
+                    <div>
+                      <p className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest mb-1">Asking Price</p>
+                      <p className="text-[#062B4A] text-2xl md:text-3xl font-bold tracking-tight">{selectedProperty.price}</p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest mb-1">Total Area</p>
+                      <p className="text-[#062B4A] text-xl font-medium flex items-center justify-end gap-1.5"><Maximize size={16} className="text-[#A98B55]"/> {selectedProperty.size}</p>
+                    </div>
+                  </div>
+
+                  <h3 className="text-[#062B4A] text-xs font-bold uppercase tracking-widest mb-5 flex items-center gap-2"><Sparkles size={14} className="text-[#A98B55]" /> Property Details</h3>
+                  <div className="grid grid-cols-2 gap-y-5 gap-x-6 mb-8 bg-white p-5 rounded-2xl border border-[#062B4A]/5 shadow-[0_4px_20px_rgba(6,43,74,0.03)]">
+                    <div>
+                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Transaction</p>
+                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.transactionType || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Ownership</p>
+                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.ownership || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Road Width</p>
+                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.roadWidth || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Possession</p>
+                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.possessionType || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Open Sides</p>
+                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.openSides || 'N/A'}</p>
+                    </div>
+                    <div>
+                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Boundary Wall</p>
+                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.boundaryWall ? 'Yes' : 'No'}</p>
+                    </div>
+                  </div>
+
+                  {selectedProperty.description && (
+                    <div className="mb-8">
+                      <h3 className="text-[#062B4A] text-xs font-bold uppercase tracking-widest mb-3">About Property</h3>
+                      <p className="text-[#062B4A]/70 text-sm leading-relaxed whitespace-pre-wrap">{selectedProperty.description}</p>
+                    </div>
+                  )}
+
+                  {selectedProperty.features && selectedProperty.features.length > 0 && (
+                    <div className="mb-8">
+                      <h3 className="text-[#062B4A] text-xs font-bold uppercase tracking-widest mb-4">Features</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {selectedProperty.features.map((feat, i) => (
+                          <span key={i} className="px-3 py-1.5 bg-white border border-[#062B4A]/10 text-[#062B4A] text-[11px] font-medium rounded-lg flex items-center gap-2 shadow-[0_2px_10px_rgba(6,43,74,0.02)]">
+                            <CheckCircle2 size={12} className="text-[#A98B55]"/> {feat}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  )}
+                </div>
+
+                <div className="p-4 bg-white border-t border-[#062B4A]/10 shrink-0">
+                  <a href="/contact" className={`w-full py-4 text-white text-xs font-bold uppercase tracking-widest rounded-xl transition-colors flex items-center justify-center gap-3 ${selectedProperty.status === 'sold' ? 'bg-black/20 pointer-events-none' : 'bg-[#062B4A] hover:bg-[#A98B55]'}`}>
+                    {selectedProperty.status === 'sold' ? 'Sold Out' : 'Contact Agent'} {selectedProperty.status !== 'sold' && <ArrowRight size={16} />}
+                  </a>
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
 

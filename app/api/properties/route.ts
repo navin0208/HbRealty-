@@ -16,7 +16,16 @@ export async function GET() {
       location: [p.location_lat, p.location_lng],
       isVerified: p.isverified,
       isPremium: p.ispremium,
-      intent: p.intent || 'Buy'
+      intent: p.intent || 'Buy',
+      transactionType: p.transaction_type,
+      ownership: p.ownership,
+      roadWidth: p.road_width,
+      boundaryWall: p.boundary_wall,
+      openSides: p.open_sides,
+      address: p.address,
+      description: p.description,
+      features: p.features || [],
+      possessionType: p.possession_type
     }));
 
     return NextResponse.json(formattedProperties);
@@ -70,7 +79,16 @@ export async function POST(request: Request) {
       status: (formData.get("status") as string) || 'available',
       intent: (formData.get("intent") as string) || 'Buy',
       isverified: formData.get("isVerified") === "true",
-      ispremium: formData.get("isPremium") === "true"
+      ispremium: formData.get("isPremium") === "true",
+      transaction_type: formData.get("transactionType") as string || null,
+      ownership: formData.get("ownership") as string || null,
+      road_width: formData.get("roadWidth") as string || null,
+      boundary_wall: formData.get("boundaryWall") === "true",
+      open_sides: formData.get("openSides") ? parseInt(formData.get("openSides") as string) : null,
+      address: formData.get("address") as string || null,
+      description: formData.get("description") as string || null,
+      features: formData.get("features") ? (formData.get("features") as string).split(',').map(f => f.trim()).filter(Boolean) : [],
+      possession_type: formData.get("possessionType") as string || null
     };
 
     const { error } = await supabase

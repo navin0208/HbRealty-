@@ -35,6 +35,15 @@ create table public.properties (
   image text not null,
   status text default 'available',
   intent text default 'Buy',
+  transaction_type text,
+  ownership text,
+  road_width text,
+  boundary_wall boolean default false,
+  open_sides integer,
+  address text,
+  description text,
+  features text[],
+  possession_type text,
   isVerified boolean default false,
   isPremium boolean default false,
   created_at timestamp with time zone default timezone('utc'::text, now()) not null
@@ -70,3 +79,4 @@ NOTIFY pgrst, 'reload schema';
 
 -- Migration to run in existing database:
 -- ALTER TABLE public.properties ADD COLUMN intent text DEFAULT 'Buy';
+-- ALTER TABLE public.properties ADD COLUMN transaction_type text, ADD COLUMN ownership text, ADD COLUMN road_width text, ADD COLUMN boundary_wall boolean, ADD COLUMN open_sides integer, ADD COLUMN address text, ADD COLUMN description text, ADD COLUMN features text[], ADD COLUMN possession_type text;
