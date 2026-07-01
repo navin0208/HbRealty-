@@ -112,7 +112,7 @@ export default function SingleBlogPage({ params }: { params: Promise<{ id: strin
       </section>
 
       {/* ═══ CONTENT SECTION ═══ */}
-      <section className="py-20 md:py-32 px-6 md:px-12 max-w-[900px] mx-auto">
+      <section className="py-20 md:py-16 px-6 md:px-12 max-w-[900px] mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -124,7 +124,7 @@ export default function SingleBlogPage({ params }: { params: Promise<{ id: strin
       </section>
 
       {/* ═══ FOOTER CTA ═══ */}
-      <section className="py-24 border-t border-[#062B4A]/10 bg-[#062B4A]/5 text-center px-6">
+      <section className="py-12 border-t border-[#062B4A]/10 bg-[#062B4A]/5 text-center px-6">
         <h3 className="text-2xl md:text-4xl font-medium text-[#062B4A] tracking-tight mb-6">Enjoyed this article?</h3>
         <p className="text-[#062B4A]/60 font-light max-w-lg mx-auto mb-10">Read more insights on our blog or get in touch with our team for expert real estate guidance.</p>
         <Link href="/blog" className="inline-flex items-center gap-4 bg-[#062B4A] text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-[#A98B55] transition-colors duration-500">

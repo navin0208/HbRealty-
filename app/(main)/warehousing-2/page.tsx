@@ -133,7 +133,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ INTRODUCTION (EDITORIAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           <motion.div initial={{ opacity: 0, x: -30 }} whileInView={{ opacity: 1, x: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }} className="lg:col-span-5 lg:sticky lg:top-40">
             <div className="w-12 h-px bg-white/20 mb-8" />
@@ -158,7 +158,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ SERVICES CARDS (MINIMAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#041D34] border-t border-b border-white/5">
+      <section className="relative py-16 px-6 md:px-12 bg-[#041D34] border-t border-b border-white/5">
         <div className="max-w-[1600px] mx-auto">
           <div className="flex flex-col md:flex-row items-start justify-between gap-12 mb-24 border-b border-white/5 pb-16">
             <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight">
@@ -190,7 +190,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ TESTIMONIALS (EDITORIAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto overflow-hidden">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto overflow-hidden">
         <div className="text-center mb-20 relative z-10">
           <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
           <h2 className="text-4xl md:text-5xl font-medium text-white tracking-tight mb-6">
@@ -219,7 +219,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ FAQ SECTION (MINIMAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#041D34] border-t border-white/5">
+      <section className="relative py-16 px-6 md:px-12 bg-[#041D34] border-t border-white/5">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-20">
             <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
@@ -255,7 +255,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ PREMIUM CALL TO ACTION ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#FAF9F6] text-[#062B4A]">
+      <section className="relative py-16 px-6 md:px-12 bg-[#FAF9F6] text-[#062B4A]">
         <div className="max-w-[1600px] mx-auto text-center flex flex-col items-center">
           <div className="w-12 h-px bg-[#062B4A]/25 mb-8" />
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
@@ -275,7 +275,7 @@ export default function WarehousingPage() {
       </section>
 
       {/* ═══ GLOBAL & LEGAL CTA (EDITORIAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-white/5 mt-20">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-white/5 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}

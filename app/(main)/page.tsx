@@ -83,57 +83,43 @@ function ScrollRevealText({
 const services = [
   {
     id: 1,
-    title: "Grade A Industrial Sheds",
-    desc: "Modern, secure industrial sheds with advanced facilities and flexible spaces.",
+    title: "Industrial Sheds & Development",
+    desc: "Comprehensive solutions from raw land to grade-A industrial infrastructure.",
     image: "/compressed_Warehouse p3.jpg",
     icon: <Building2 className="w-6 h-6" />,
     color: "#f97316",
-    accent: "Logistics Excellence"
+    accent: "Logistics Excellence",
+    subPoints: [
+      "Industrial Shed Development",
+      "Land Development",
+      "Industrial Shed Approvals & Clearances"
+    ]
   },
   {
     id: 2,
-    title: "Land Development",
-    desc: "Strategic land development built for compliance and long-term value.",
-    image: "/Land-Development-HBRealtyindia-min-scaled.jpg",
-    icon: <Construction className="w-6 h-6" />,
-    color: "#a855f7",
-    accent: "Strategic Growth"
-  },
-  {
-    id: 3,
-    title: "Land Legal Services",
-    desc: "Complete legal and liaisoning support in Nashik from title verification to government approvals and NOCs.",
+    title: "Land Legal & Consultancy",
+    desc: "Complete legal, liaisoning, and consulting support across Maharashtra.",
     image: "/Warehouse-Legal-Clearance-min-scaled.jpg",
     icon: <Scale className="w-6 h-6" />,
     color: "#3b82f6",
-    accent: "Legal Mastery"
+    accent: "Legal Mastery",
+    subPoints: [
+      "Land Legal Services",
+      "Land Consultancy"
+    ]
   },
   {
-    id: 4,
-    title: "Industrial Shed Legal Clearance",
-    desc: "Fast and reliable approvals for fire safety, environmental compliance, and operational licenses.",
-     image: "/compressed_warehouse_clearance.jpg",
-    icon: <FileText className="w-6 h-6" />,
-    color: "#10b981",
-    accent: "Operational Speed"
-  },
-  {
-    id: 5,
-    title: "Lease Advisory",
-    desc: "Expert advice and negotiation for industrial shed leasing to secure the best terms for your business.",
+    id: 3,
+    title: "Lease & Investment Advisory",
+    desc: "Expert advice and negotiation to secure the best terms and ROI for your assets.",
     image: "/Warehouse-Lease-Advisory-min-scaled.jpg",
     icon: <Briefcase className="w-6 h-6" />,
     color: "#ec4899",
-    accent: "Market Intelligence"
-  },
-  {
-    id: 6,
-    title: "Land Consultancy",
-    desc: "Trusted land consultants providing investment insights, due diligence, and transaction support across Maharashtra.",
-    image: "/plot-development-.jpg",
-    icon: <Globe className="w-6 h-6" />,
-    color: "#06b6d4",
-    accent: "Advisory Excellence"
+    accent: "Market Intelligence",
+    subPoints: [
+      "Lease Advisory",
+      "Industrial Land & Asset Advisory"
+    ]
   }
 ];
 
@@ -229,7 +215,7 @@ export default function Home() {
       </section>
 
       {/* IMMERSIVE CINEMATIC VIDEO */}
-      <section className="relative w-full bg-white py-16 md:py-24">
+      <section className="relative w-full bg-white py-16 md:py-12">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -298,7 +284,7 @@ export default function Home() {
       </section>
 
       {/* STRATEGIC TRANSFORMATION SECTION */}
-      <section className="relative py-16 md:py-24 px-6 md:px-12 bg-[#FAF9F6] border-b border-[#062B4A]/10 overflow-hidden">
+      <section className="relative py-16 md:py-12 px-6 md:px-12 bg-[#FAF9F6] border-b border-[#062B4A]/10 overflow-hidden">
         <div className="relative z-10 max-w-7xl mx-auto">
           <div className="text-center mb-32 space-y-4">
             <span className="text-[#062B4A]/50 text-xs font-bold uppercase tracking-[0.6em] block">Business Lifecycle</span>
@@ -350,7 +336,7 @@ export default function Home() {
       </section>
 
       {/* ULTRA-PREMIUM CINEMATIC CAPABILITIES CAROUSEL */}
-      <section className="relative bg-[#062B4A] py-12 md:py-16 lg:py-24 overflow-hidden">
+      <section className="relative bg-[#062B4A] py-12 md:py-16 lg:py-12 overflow-hidden">
         <div className="max-w-[1440px] mx-auto px-4 sm:px-6 md:px-12 lg:px-20">
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-24 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
@@ -406,7 +392,15 @@ export default function Home() {
                         {services[activeService].title.split(' & ').map((part, i) => (<span key={i} className="block">{i > 0 && <span className="text-zinc-500 font-serif lowercase italic mr-2 sm:mr-4">&</span>}{part}</span>))}
                       </h3>
                     </div>
-                    <p className="text-white/60 text-sm sm:text-base md:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl tracking-tight">{services[activeService].desc}</p>
+                    <p className="text-white/60 text-sm sm:text-base md:text-xl lg:text-2xl font-light leading-relaxed max-w-2xl tracking-tight mb-6">{services[activeService].desc}</p>
+                    <ul className="space-y-3 pb-4">
+                      {services[activeService].subPoints.map((point, idx) => (
+                        <li key={idx} className="flex items-center gap-3 text-white/90 text-sm md:text-lg font-medium tracking-wide">
+                          <CheckCircle2 size={18} className="text-[#A98B55] shrink-0" />
+                          {point}
+                        </li>
+                      ))}
+                    </ul>
                     <div className="flex flex-wrap items-center gap-3 sm:gap-6 pt-4 sm:pt-8">
                       {services[activeService].id === 1 ? (
                         <Link href="/warehousing-2">
@@ -627,7 +621,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           DUBAI — ACT II: EDITORIAL CONTENT STRIP
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative bg-[#062B4A] py-12 md:py-16 lg:py-24 overflow-hidden border-t border-white/5">
+      <section className="relative bg-[#062B4A] py-12 md:py-16 lg:py-12 overflow-hidden border-t border-white/5">
         {/* Ambient Background */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12">
           {/* Lead Copy */}
@@ -761,7 +755,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════════════════════
           PROJECTS — UPCOMING & ONGOING CAROUSEL
           ═══════════════════════════════════════════════════════════ */}
-      <section className="relative bg-white py-16 md:py-24 overflow-hidden border-t border-[#062B4A]/10">
+      <section className="relative bg-white py-16 md:py-12 overflow-hidden border-t border-[#062B4A]/10">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(6,43,74,0.015)_0%,_transparent_60%)] pointer-events-none" />
 
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
@@ -917,7 +911,7 @@ export default function Home() {
 
 
       {/* Expertise Cards Grid */}
-      <section id="expertise" className="relative py-16 md:py-24 px-6 md:px-12 bg-[#062B4A]">
+      <section id="expertise" className="relative py-16 md:py-12 px-6 md:px-12 bg-[#062B4A]">
         <div className="max-w-7xl mx-auto">
           <motion.div 
             initial="hidden"
@@ -951,7 +945,7 @@ export default function Home() {
 
 
       {/* Contact Section */}
-      <section id="contact" className="relative py-16 md:py-24 px-6 md:px-12 overflow-hidden bg-[#062B4A]">
+      <section id="contact" className="relative py-16 md:py-12 px-6 md:px-12 overflow-hidden bg-[#062B4A]">
         <div className="relative z-10 max-w-5xl mx-auto text-center">
           <motion.div initial={{ width: 0 }} whileInView={{ width: 80 }} viewport={{ once: true }} className="h-[2px] bg-[#A98B55] mx-auto mb-12" />
           <motion.h2 

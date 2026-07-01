@@ -72,7 +72,7 @@ export default function AboutPage() {
       </section>
 
       {/* ═══ LEADERSHIP — CINEMATIC PORTRAIT ═══ */}
-      <section className="relative py-32 md:py-40 bg-[#062B4A] overflow-hidden text-white">
+      <section className="relative py-16 md:py-40 bg-[#062B4A] overflow-hidden text-white">
         <div className="absolute inset-0 opacity-10">
           <Image 
             src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=2000" 
@@ -126,7 +126,7 @@ export default function AboutPage() {
         </div>
       </section>
       {/* ═══ LEGAL LEGACY — ADV. MANOJ BAFANA ═══ */}
-      <section className="relative py-20 md:py-32 bg-[#041D34] overflow-hidden text-white border-t border-white/5">
+      <section className="relative py-20 md:py-16 bg-[#041D34] overflow-hidden text-white border-t border-white/5">
         <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/noise-lines.png')] mix-blend-overlay opacity-5 pointer-events-none" />
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-16 items-center relative z-10">
           <motion.div 

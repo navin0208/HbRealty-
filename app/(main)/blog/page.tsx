@@ -117,7 +117,7 @@ export default function BlogPage() {
       )}
 
       {/* ═══ ARTICLE GRID (MINIMAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-[#062B4A]/10 mt-16">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-[#062B4A]/10 mt-16">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 lg:gap-16">
           {otherPosts.map((post, i) => (
             <Link href={`/blog/${post.id}`} key={post.id}>
@@ -153,11 +153,11 @@ export default function BlogPage() {
       </section>
 
       {/* ═══ NEWSLETTER CTA (EDITORIAL) ═══ */}
-      <section className="relative py-32 bg-[#062B4A] text-white">
+      <section className="relative py-16 bg-[#062B4A] text-white">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
           <motion.div 
             initial={{ opacity: 0, y: 30, filter: "blur(12px)" }} whileInView={{ opacity: 1, y: 0, filter: "blur(0px)" }} viewport={{ once: true, margin: "-100px" }} transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="relative py-16 md:py-24"
+            className="relative py-16 md:py-12"
           >
             <div className="relative z-10 text-center max-w-3xl mx-auto">
               <motion.div initial={{ width: 0 }} whileInView={{ width: 48 }} viewport={{ once: true }} transition={{ delay: 0.2, duration: 0.8 }} className="h-px bg-white/20 mx-auto mb-10" />

@@ -191,11 +191,11 @@ export default function PortfolioPage() {
       </section>
 
       {/* ═══ FEATURED — EDITORIAL CARDS ═══ */}
-      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto space-y-32 pb-12">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto space-y-16 pb-12">
         <div className="flex items-center gap-4 mb-16 border-b border-[#062B4A]/10 pb-8">
-          <span className="text-[#062B4A]/40 font-light text-lg">01</span>
+          <span className="text-[#062B4A]/40 font-light text-lg md:text-xl">01</span>
           <div className="h-px w-12 bg-[#062B4A]/20" />
-          <span className="text-[#062B4A]/80 text-[10px] font-medium uppercase tracking-[0.2em]">Featured Works</span>
+          <span className="text-[#062B4A]/80 text-sm md:text-base font-bold uppercase tracking-[0.2em]">Featured Works</span>
         </div>
 
         {featured.map((project, index) => (
@@ -276,9 +276,9 @@ export default function PortfolioPage() {
       <section className="relative py-12 bg-white text-[#062B4A] border-t border-[#062B4A]/10">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-4 mb-16">
-            <span className="text-[#062B4A]/40 font-light text-lg">02</span>
+            <span className="text-[#062B4A]/40 font-light text-lg md:text-xl">02</span>
             <div className="h-px w-12 bg-[#062B4A]/20" />
-            <span className="text-[#062B4A]/80 text-[10px] font-bold uppercase tracking-[0.2em]">All Projects</span>
+            <span className="text-[#062B4A]/80 text-sm md:text-base font-bold uppercase tracking-[0.2em]">All Projects</span>
           </div>
 
           <div className="space-y-0 divide-y divide-[#062B4A]/10">

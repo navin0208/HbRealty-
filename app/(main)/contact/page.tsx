@@ -148,7 +148,7 @@ export default function ContactPage() {
             >
               <div className="relative z-10">
                 {submitted ? (
-                  <div className="flex flex-col items-center justify-center text-center py-32 space-y-8">
+                  <div className="flex flex-col items-center justify-center text-center py-16 space-y-8">
                     <CheckCircle2 size={40} className="text-white/40" strokeWidth={1} />
                     <h3 className="text-3xl font-medium text-white tracking-tight">Message <span className="font-medium text-[#A98B55]">sent.</span></h3>
                     <p className="text-white/60 font-light text-lg max-w-sm">Thank you for reaching out. Our team will get back to you within 24 hours.</p>
@@ -217,7 +217,7 @@ export default function ContactPage() {
       </section>
 
       {/* ═══ MAP EMBED SECTION (LIGHT) ═══ */}
-      <section className="relative py-32 bg-white text-[#062B4A]">
+      <section className="relative py-16 bg-white text-[#062B4A]">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12 relative z-10">
           <div className="mb-12 flex flex-col items-start gap-4">
             <div className="flex items-center gap-4">

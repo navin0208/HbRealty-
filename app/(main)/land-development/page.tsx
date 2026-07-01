@@ -137,7 +137,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ INTRODUCTION (EDITORIAL) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto bg-white">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto bg-white">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-start">
           <motion.div 
             initial={{ opacity: 0, x: -30 }} 
@@ -194,7 +194,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ PROVEN PROCESS (DARK BLUE SECTION) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#062B4A] text-white border-t border-b border-white/5">
+      <section className="relative py-16 px-6 md:px-12 bg-[#062B4A] text-white border-t border-b border-white/5">
         <div className="max-w-[1600px] mx-auto">
           <div className="max-w-3xl mb-24">
             <div className="w-12 h-px bg-white/20 mb-8" />
@@ -233,7 +233,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ WHY CHOOSE US (MINIMAL IVORY SECTION) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#FAF9F6]">
+      <section className="relative py-16 px-6 md:px-12 bg-[#FAF9F6]">
         <div className="max-w-[1600px] mx-auto">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <motion.div 
@@ -279,7 +279,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ TESTIMONIALS (REAL EXPERIENCES) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-white">
+      <section className="relative py-16 px-6 md:px-12 bg-white">
         <div className="max-w-[1600px] mx-auto">
           <div className="text-center mb-24">
             <div className="w-12 h-px bg-[#062B4A]/20 mx-auto mb-8" />
@@ -316,7 +316,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ FAQ SECTION (DARK ACCORDION) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#062B4A] text-white border-t border-white/5">
+      <section className="relative py-16 px-6 md:px-12 bg-[#062B4A] text-white border-t border-white/5">
         <div className="max-w-4xl mx-auto">
           <div className="text-center mb-24">
             <div className="w-12 h-px bg-white/20 mx-auto mb-8" />
@@ -362,7 +362,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ PREMIUM CALL TO ACTION ═══ */}
-      <section className="relative py-32 px-6 md:px-12 bg-[#062B4A] text-white">
+      <section className="relative py-16 px-6 md:px-12 bg-[#062B4A] text-white">
         <div className="max-w-[1600px] mx-auto text-center flex flex-col items-center">
           <div className="w-12 h-px bg-white/20 mb-8" />
           <h2 className="text-4xl md:text-6xl font-medium tracking-tight mb-6">
@@ -382,7 +382,7 @@ export default function LandDevelopmentPage() {
       </section>
 
       {/* ═══ LEGAL & DUBAI CTA (COMBINED PROMOS) ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-[#062B4A]/10 mt-20">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto border-t border-[#062B4A]/10 mt-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24">
           <motion.div 
             initial={{ opacity: 0, y: 20 }} 

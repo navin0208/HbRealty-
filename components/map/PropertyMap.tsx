@@ -17,6 +17,14 @@ const customIcon = L.icon({
   shadowSize: [41, 41],
 });
 
+const warehouseIcon = L.divIcon({
+  className: 'custom-warehouse-icon',
+  html: `<div style="background-color: #062B4A; color: white; width: 32px; height: 32px; border-radius: 50%; display: flex; align-items: center; justify-content: center; box-shadow: 0 4px 12px rgba(0,0,0,0.3); border: 2px solid #A98B55;"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>`,
+  iconSize: [32, 32],
+  iconAnchor: [16, 16],
+  popupAnchor: [0, -16]
+});
+
 export interface Property {
   id: string;
   title: string;
@@ -84,15 +92,17 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
         />
         <MapController center={center} zoom={zoom} />
 
-        {properties.map((prop) => (
-          <Marker
-            key={prop.id}
-            position={prop.location}
-            icon={customIcon}
-            eventHandlers={{
-              click: () => onPropertySelect(prop)
-            }}
-          >
+        {properties.map((prop) => {
+          const isCommercial = prop.type.toLowerCase().includes('warehouse') || prop.type.toLowerCase().includes('commercial');
+          return (
+            <Marker
+              key={prop.id}
+              position={prop.location}
+              icon={isCommercial ? warehouseIcon : customIcon}
+              eventHandlers={{
+                click: () => onPropertySelect(prop)
+              }}
+            >
             <Popup className="custom-popup">
               <div className={`w-[200px] overflow-hidden rounded-xl bg-white/95 backdrop-blur-md border ${prop.isPremium ? 'border-[#A98B55] shadow-[0_10px_30px_rgba(169,139,85,0.2)]' : 'border-black/5 shadow-2xl'} text-[#062B4A] p-0 m-0 relative`}>
                 <div className="relative">
@@ -132,7 +142,8 @@ export default function PropertyMap({ properties, onPropertySelect, selectedProp
               </div>
             </Popup>
           </Marker>
-        ))}
+          );
+        })}
       </MapContainer>
 
       {/* Custom Premium Layer Controls OVER the map */}

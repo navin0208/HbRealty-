@@ -131,18 +131,30 @@ export default function Footer() {
           </div>
           <div className="flex flex-wrap gap-4 md:gap-6">
             {[
-              { name: "Adv. Manoj Bafana", role: "Legal Counsel" },
-              { name: "Sanghavi & Bafana", role: "Dubai Advisory" },
-              { name: "Everlive India", role: "Ayurveda Wellness" }
-            ].map((partner, i) => (
-              <div key={i} className="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/15 px-5 py-3 rounded-2xl transition-all cursor-default">
-                <div className="h-1.5 w-1.5 rounded-full bg-[#A98B55] group-hover:animate-pulse" />
-                <div>
-                  <span className="block text-white/90 text-sm font-medium tracking-wide group-hover:text-white transition-colors">{partner.name}</span>
-                  <span className="block text-white/40 text-[9px] uppercase tracking-widest mt-0.5">{partner.role}</span>
+              { name: "Adv. Manoj Bafana", role: "Legal Counsel", href: null },
+              { name: "Sanghavi & Bafana", role: "Dubai Advisory", href: "https://sanghaviandbafana.com" },
+              { name: "Everlive India", role: "Ayurveda Wellness", href: "https://www.everliveindia.com" }
+            ].map((partner, i) => {
+              const Content = (
+                <>
+                  <div className="h-1.5 w-1.5 rounded-full bg-[#A98B55] group-hover:animate-pulse" />
+                  <div>
+                    <span className="block text-white/90 text-sm font-medium tracking-wide group-hover:text-white transition-colors">{partner.name}</span>
+                    <span className="block text-white/40 text-[9px] uppercase tracking-widest mt-0.5">{partner.role}</span>
+                  </div>
+                </>
+              );
+
+              return partner.href ? (
+                <a key={i} href={partner.href} target="_blank" rel="noopener noreferrer" className="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/15 px-5 py-3 rounded-2xl transition-all">
+                  {Content}
+                </a>
+              ) : (
+                <div key={i} className="group flex items-center gap-3 bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/15 px-5 py-3 rounded-2xl transition-all cursor-default">
+                  {Content}
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </motion.div>
 
