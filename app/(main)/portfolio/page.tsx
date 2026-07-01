@@ -191,7 +191,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ═══ FEATURED — EDITORIAL CARDS ═══ */}
-      <section className="relative py-32 px-6 md:px-12 max-w-[1600px] mx-auto space-y-32">
+      <section className="relative py-16 px-6 md:px-12 max-w-[1600px] mx-auto space-y-32 pb-12">
         <div className="flex items-center gap-4 mb-16 border-b border-[#062B4A]/10 pb-8">
           <span className="text-[#062B4A]/40 font-light text-lg">01</span>
           <div className="h-px w-12 bg-[#062B4A]/20" />
@@ -273,7 +273,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ═══ OTHER PROJECTS — MINIMAL LIST ═══ */}
-      <section className="relative py-32 bg-white text-[#062B4A] border-t border-[#062B4A]/10">
+      <section className="relative py-12 bg-white text-[#062B4A] border-t border-[#062B4A]/10">
         <div className="max-w-[1600px] mx-auto px-6 md:px-12">
           <div className="flex items-center gap-4 mb-16">
             <span className="text-[#062B4A]/40 font-light text-lg">02</span>

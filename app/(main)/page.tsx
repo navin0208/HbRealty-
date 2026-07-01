@@ -811,7 +811,7 @@ export default function Home() {
 
           {/* Carousel Track */}
           <div className="relative">
-            <div className="flex gap-6 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div className="flex gap-2 md:gap-3 overflow-x-auto pb-8 snap-x snap-mandatory scrollbar-hide" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               {(activeProjectTab === "All"
                 ? portfolioProjects
                 : portfolioProjects.filter(p => p.status === activeProjectTab)

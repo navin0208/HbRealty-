@@ -156,7 +156,7 @@ export default function HeroCinematic() {
             animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
             exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
-            className="max-w-4xl space-y-3 md:space-y-4 pt-16 md:pt-20"
+            className="max-w-4xl space-y-2 md:space-y-4 pt-24 md:pt-20"
           >
             
             {/* Eyebrow Location */}
@@ -175,7 +175,7 @@ export default function HeroCinematic() {
               initial="hidden"
               animate="visible"
               transition={{ staggerChildren: 0.04, delayChildren: 0.4 }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-[70px] xl:text-[110px] leading-[1.1] lg:leading-[0.9] font-medium text-white tracking-tight flex flex-wrap gap-[0.2em]"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-[60px] xl:text-[90px] leading-[1.1] lg:leading-[0.9] font-medium text-white tracking-tight flex flex-wrap gap-[0.2em]"
             >
               {words.map((word, i) => (
                 <motion.span key={i} variants={wordVariant} className="inline-block pb-2">
