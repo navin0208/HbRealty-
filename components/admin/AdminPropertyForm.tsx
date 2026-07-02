@@ -24,6 +24,7 @@ interface Property {
   address?: string;
   description?: string;
   features?: string[];
+  possessionType?: string;
   isVerified?: boolean;
   isPremium?: boolean;
 }
