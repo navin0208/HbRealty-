@@ -14,6 +14,7 @@ import { AboutSection, LandDevelopmentSection } from "./abt";
 import TrustedPartners from "@/components/sections/TrustedPartners";
 import Testimonials from "@/components/sections/Testimonials";
 import { projects as portfolioProjects } from "./portfolio/page";
+import LazyVideo from "@/components/LazyVideo";
 
 const SCROLL_REVEAL_OFFSET: ElementScrollOffset = ["start 0.9", "start 0.4"];
 const WAREHOUSE_SCROLL_OFFSET: ElementScrollOffset = ["start end", "end start"];
@@ -249,15 +250,14 @@ export default function Home() {
                 className="relative w-[75vw] sm:w-[60vw] md:w-full aspect-[9/16] shrink-0 snap-center rounded-[24px] md:rounded-[30px] overflow-hidden group shadow-xl border border-[#062B4A]/10 bg-[#041D34]"
               >
                 {/* Reel Placeholder Video */}
-                <video
+                <LazyVideo
+                  src={i === 0 ? "/Video-64.mp4" : i === 1 ? "/Video-305.mp4" : "/Video-996.mp4"}
                   autoPlay
                   loop
                   muted
                   playsInline
                   className="absolute inset-0 w-full h-full object-cover brightness-[0.7] group-hover:scale-105 transition-transform duration-[10s]"
-                >
-                  <source src={i === 0 ? "/Video-64.mp4" : i === 1 ? "/Video-305.mp4" : "/Video-996.mp4"} type="video/mp4" />
-                </video>
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent pointer-events-none" />
                 
                 {/* Reel Content Overlay */}
@@ -381,7 +381,7 @@ export default function Home() {
           <div className="relative h-[550px] sm:h-[650px] md:h-[750px] lg:h-[800px] w-full rounded-3xl md:rounded-[60px] overflow-hidden group">
             <AnimatePresence mode="wait">
               <motion.div key={activeService} initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
-                <Image src={services[activeService].image} alt={services[activeService].title} fill className="object-cover brightness-75 transition-transform duration-[20s] group-hover:scale-110 ease-out" sizes="100vw" />
+                <Image src={services[activeService].image} alt={services[activeService].title} fill className="object-cover brightness-75 transition-transform duration-[20s] group-hover:scale-110 ease-out" quality={60} sizes="(max-width: 768px) 100vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-[#062B4A]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#062B4A]/60 via-transparent to-transparent" />
                 <div className="absolute inset-0 p-6 sm:p-12 md:p-20 lg:p-24 flex flex-col justify-end items-start">
@@ -454,6 +454,7 @@ export default function Home() {
                   alt="Adv. Manoj Bafana"
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-105"
+                  quality={60}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#041D34]/80 via-transparent to-transparent pointer-events-none" />
@@ -535,15 +536,14 @@ export default function Home() {
           className="relative w-full h-full overflow-hidden group rounded-[32px] md:rounded-[60px] lg:rounded-[80px] border border-white/10 shadow-2xl"
         >
           {/* Unobstructed Video */}
-          <video
+          <LazyVideo
+            src="/Dubai-compressed.mp4"
             autoPlay
             loop
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover"
-          >
-            <source src="/Dubai-compressed.mp4" type="video/mp4" />
-          </video>
+          />
 
           {/* Cinematic Vignette — soft fade on ALL edges */}
           <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-transparent to-[#062B4A]/20 z-10" />
