@@ -94,7 +94,7 @@ export function AboutSection() {
                                     alt={data.imageAlt}
                                     fill
                                     className="object-cover"
-                                    quality={60}
+                                    quality={50}
                                     sizes="(max-width: 768px) 100vw, 50vw"
                                 />
                             </motion.div>

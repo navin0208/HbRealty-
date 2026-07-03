@@ -341,7 +341,7 @@ export default function Home() {
           <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-24 gap-8 md:gap-12">
             <div className="space-y-4 md:space-y-6">
               <div className="flex items-center gap-4">
-                <motion.div initial={{ width: 0 }} whileInView={{ width: 40 }} className="h-[1px] bg-white/20" />
+                <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} style={{ transformOrigin: "left" }} className="h-[1px] w-10 bg-white/20" />
                 <span className="text-white/40 text-[9px] sm:text-[10px] font-bold uppercase tracking-[0.6em] sm:tracking-[0.8em] block">Industrial Mastery</span>
               </div>
               <h2 className="text-4xl sm:text-5xl md:text-7xl lg:text-[90px] font-bold text-white tracking-tighter uppercase leading-[0.9] sm:leading-[0.85]">
@@ -357,19 +357,19 @@ export default function Home() {
                     <div className="flex flex-col items-center gap-1.5 sm:gap-2">
                       <span className={`text-[9px] sm:text-[10px] font-bold transition-colors ${activeService === i ? 'text-white' : 'text-white/20'}`}>0{i + 1}</span>
                       <div className="relative w-8 sm:w-12 h-[2px] bg-white/10 overflow-hidden">
-                        {activeService === i && <motion.div initial={{ width: 0 }} animate={{ width: `${timerProgress}%` }} className="absolute inset-0 bg-white" />}
+                        {activeService === i && <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: timerProgress / 100 }} style={{ transformOrigin: "left" }} className="absolute inset-0 bg-white" />}
                       </div>
                     </div>
                   </button>
                 ))}
               </div>
               <div className="flex gap-3 sm:gap-4 self-end md:self-auto">
-                <button onClick={() => { setActiveService(prev => (prev - 1 + services.length) % services.length); setTimerProgress(0); }} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all group overflow-hidden relative">
+                <button aria-label="Previous Service" onClick={() => { setActiveService(prev => (prev - 1 + services.length) % services.length); setTimerProgress(0); }} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all group overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full" />
                   <ArrowLeft size={18} className="sm:hidden relative z-10" />
                   <ArrowLeft size={24} className="hidden sm:block relative z-10" />
                 </button>
-                <button onClick={() => { setActiveService(prev => (prev + 1) % services.length); setTimerProgress(0); }} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all group overflow-hidden relative">
+                <button aria-label="Next Service" onClick={() => { setActiveService(prev => (prev + 1) % services.length); setTimerProgress(0); }} className="w-12 h-12 sm:w-16 sm:h-16 rounded-full border border-white/5 flex items-center justify-center text-white/40 hover:text-[#A98B55] hover:border-white transition-all group overflow-hidden relative">
                   <div className="absolute inset-0 bg-white/5 scale-0 group-hover:scale-100 transition-transform duration-500 rounded-full" />
                   <ArrowRight size={18} className="sm:hidden relative z-10" />
                   <ArrowRight size={24} className="hidden sm:block relative z-10" />
@@ -381,7 +381,7 @@ export default function Home() {
           <div className="relative h-[550px] sm:h-[650px] md:h-[750px] lg:h-[800px] w-full rounded-3xl md:rounded-[60px] overflow-hidden group">
             <AnimatePresence mode="wait">
               <motion.div key={activeService} initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }} transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0">
-                <Image src={services[activeService].image} alt={services[activeService].title} fill className="object-cover brightness-75 transition-transform duration-[20s] group-hover:scale-110 ease-out" quality={60} sizes="(max-width: 768px) 100vw, 100vw" />
+                <Image src={services[activeService].image} alt={services[activeService].title} fill className="object-cover brightness-75 transition-transform duration-[20s] group-hover:scale-110 ease-out" quality={50} sizes="(max-width: 768px) 100vw, 100vw" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#062B4A] via-[#062B4A]/40 to-transparent" />
                 <div className="absolute inset-0 bg-gradient-to-r from-[#062B4A]/60 via-transparent to-transparent" />
                 <div className="absolute inset-0 p-6 sm:p-12 md:p-20 lg:p-24 flex flex-col justify-end items-start">
@@ -403,13 +403,13 @@ export default function Home() {
                     </ul>
                     <div className="flex flex-wrap items-center gap-3 sm:gap-6 pt-4 sm:pt-8">
                       {services[activeService].id === 1 ? (
-                        <Link href="/warehousing-2">
+                        <Link href="/warehousing-2" aria-label={`Learn more about ${services[activeService].title}`}>
                           <motion.button whileHover={{ x: 5 }} className="flex items-center gap-3 sm:gap-4 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] sm:tracking-[0.4em] transition-all bg-white/10 hover:bg-white hover:text-[#062B4A] py-3.5 px-7 sm:py-4.5 sm:px-9 rounded-full backdrop-blur-xl border border-white/10">
                             Learn More <MoveRight size={14} />
                           </motion.button>
                         </Link>
                       ) : services[activeService].id === 2 ? (
-                        <Link href="/land-development">
+                        <Link href="/land-development" aria-label={`Learn more about ${services[activeService].title}`}>
                           <motion.button whileHover={{ x: 5 }} className="flex items-center gap-3 sm:gap-4 text-white text-[10px] sm:text-xs font-bold uppercase tracking-[0.25em] sm:tracking-[0.4em] transition-all bg-white/10 hover:bg-white hover:text-[#062B4A] py-3.5 px-7 sm:py-4.5 sm:px-9 rounded-full backdrop-blur-xl border border-white/10">
                             Learn More <MoveRight size={14} />
                           </motion.button>
@@ -454,7 +454,7 @@ export default function Home() {
                   alt="Adv. Manoj Bafana"
                   fill
                   className="object-cover transition-transform duration-[2s] group-hover:scale-105"
-                  quality={60}
+                  quality={50}
                   sizes="(max-width: 768px) 100vw, 50vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#041D34]/80 via-transparent to-transparent pointer-events-none" />
@@ -562,11 +562,12 @@ export default function Home() {
                 className="flex items-center gap-4 mb-6"
               >
                 <motion.div
-                  initial={{ width: 0 }}
-                  whileInView={{ width: 64 }}
+                  initial={{ scaleX: 0 }}
+                  whileInView={{ scaleX: 1 }}
+                  style={{ transformOrigin: "left" }}
                   transition={{ duration: 1.2, delay: 0.7, ease: [0.16, 1, 0.3, 1] }}
                   viewport={{ once: true }}
-                  className="h-[2px] bg-white/40"
+                  className="h-[2px] w-16 bg-white/40"
                 />
                 <span className="text-white/50 text-[10px] font-bold uppercase tracking-[1em]">UAE Advisory Division</span>
               </motion.div>

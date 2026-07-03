@@ -134,7 +134,7 @@ export default function HeroCinematic() {
                 fill 
                 className="object-cover opacity-60" 
                 priority 
-                quality={60}
+                quality={50}
                 sizes="(max-width: 768px) 100vw, 100vw" 
               />
             </div>
