@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
-import { writeFile, mkdir } from 'fs/promises';
-import path from 'path';
+import { supabase } from '@/lib/supabase';
 
 export async function POST(request: Request) {
   try {
@@ -19,20 +18,27 @@ export async function POST(request: Request) {
     const filename = file.name.replace(/[^a-zA-Z0-9.-]/g, '');
     const finalFilename = `${uniqueSuffix}-${filename}`;
     
-    // Path to save the file
-    const uploadDir = path.join(process.cwd(), 'public', 'uploads');
-    
-    try {
-      await mkdir(uploadDir, { recursive: true });
-    } catch (e) {
-      // ignore if already exists
+    // Upload to Supabase Storage bucket named 'uploads'
+    const { data: uploadData, error } = await supabase
+      .storage
+      .from('uploads')
+      .upload(finalFilename, buffer, {
+        contentType: file.type,
+        upsert: false
+      });
+
+    if (error) {
+      console.error('Supabase upload error:', error);
+      throw error;
     }
 
-    const filepath = path.join(uploadDir, finalFilename);
-    await writeFile(filepath, buffer);
+    // Get public URL
+    const { data: { publicUrl } } = supabase
+      .storage
+      .from('uploads')
+      .getPublicUrl(finalFilename);
 
-    // Return the URL for the frontend
-    return NextResponse.json({ url: `/uploads/${finalFilename}` });
+    return NextResponse.json({ url: publicUrl });
   } catch (error) {
     console.error('Error uploading file:', error);
     return NextResponse.json({ error: 'Failed to upload file' }, { status: 500 });
