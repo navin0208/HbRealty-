@@ -1,8 +1,5 @@
 import { NextResponse } from 'next/server';
-import fs from 'fs/promises';
-import path from 'path';
-
-const dataFilePath = path.join(process.cwd(), 'data', 'blogs.json');
+import { supabase } from '@/lib/supabase';
 
 export async function GET(
   request: Request,
@@ -12,11 +9,13 @@ export async function GET(
     const resolvedParams = await params;
     const { id } = resolvedParams;
 
-    const fileContents = await fs.readFile(dataFilePath, 'utf8');
-    const blogs = JSON.parse(fileContents);
-    const blog = blogs.find((b: any) => b.id === id);
+    const { data: blog, error } = await supabase
+      .from('blogs')
+      .select('*')
+      .eq('id', id)
+      .single();
 
-    if (!blog) {
+    if (error || !blog) {
       return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
     }
 
@@ -34,21 +33,13 @@ export async function DELETE(
     const resolvedParams = await params;
     const { id } = resolvedParams;
 
-    let blogs = [];
-    try {
-      const fileContents = await fs.readFile(dataFilePath, 'utf8');
-      blogs = JSON.parse(fileContents);
-    } catch (e) {
-      return NextResponse.json({ error: 'Blog data file not found' }, { status: 404 });
-    }
+    const { error } = await supabase
+      .from('blogs')
+      .delete()
+      .eq('id', id);
 
-    const filteredBlogs = blogs.filter((b: any) => b.id !== id);
+    if (error) throw error;
 
-    if (blogs.length === filteredBlogs.length) {
-      return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
-    }
-
-    await fs.writeFile(dataFilePath, JSON.stringify(filteredBlogs, null, 2), 'utf8');
     return NextResponse.json({ success: true, message: `Blog ${id} deleted successfully` });
   } catch (error) {
     return NextResponse.json({ error: 'Failed to delete blog' }, { status: 500 });
@@ -64,28 +55,17 @@ export async function PATCH(
     const { id } = resolvedParams;
     const body = await request.json();
 
-    let blogs = [];
-    try {
-      const fileContents = await fs.readFile(dataFilePath, 'utf8');
-      blogs = JSON.parse(fileContents);
-    } catch (e) {
-      return NextResponse.json({ error: 'Blog data file not found' }, { status: 404 });
+    const { data: updatedBlog, error } = await supabase
+      .from('blogs')
+      .update(body)
+      .eq('id', id)
+      .select()
+      .single();
+
+    if (error || !updatedBlog) {
+      return NextResponse.json({ error: 'Failed to update blog or not found' }, { status: 404 });
     }
 
-    let updatedBlog = null;
-    const updatedBlogs = blogs.map((b: any) => {
-      if (b.id === id) {
-        updatedBlog = { ...b, ...body };
-        return updatedBlog;
-      }
-      return b;
-    });
-
-    if (!updatedBlog) {
-      return NextResponse.json({ error: 'Blog not found' }, { status: 404 });
-    }
-
-    await fs.writeFile(dataFilePath, JSON.stringify(updatedBlogs, null, 2), 'utf8');
     return NextResponse.json(updatedBlog);
   } catch (error) {
     return NextResponse.json({ error: 'Failed to update blog' }, { status: 500 });
