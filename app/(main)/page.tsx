@@ -15,6 +15,7 @@ import TrustedPartners from "@/components/sections/TrustedPartners";
 import Testimonials from "@/components/sections/Testimonials";
 import { projects as portfolioProjects } from "./portfolio/page";
 import LazyVideo from "@/components/LazyVideo";
+import MobilePromoPopup from "@/components/MobilePromoPopup";
 
 const SCROLL_REVEAL_OFFSET: ElementScrollOffset = ["start 0.9", "start 0.4"];
 const WAREHOUSE_SCROLL_OFFSET: ElementScrollOffset = ["start end", "end start"];
@@ -177,6 +178,8 @@ export default function Home() {
   return (
     <main className="relative min-h-screen w-full bg-white font-sans scroll-smooth overflow-x-hidden selection:bg-[#062B4A] selection:text-white">
       <HeroCinematic />
+
+      <MobilePromoPopup />
 
       <StatsSection />
 

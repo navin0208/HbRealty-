@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 
 export default function WhatsAppButton() {
   return (
-    <div className="fixed bottom-6 right-6 md:bottom-10 md:right-10 z-[100]">
+    <div className="fixed bottom-30 right-6 md:bottom-10 md:right-10 z-[100]">
       <a href="https://wa.me/919175848355" target="_blank" rel="noopener noreferrer" className="block relative group">
         <motion.div
           initial={{ scale: 0, opacity: 0 }}
