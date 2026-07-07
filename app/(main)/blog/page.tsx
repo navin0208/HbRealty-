@@ -16,12 +16,23 @@ interface BlogPost {
   date: string;
 }
 
-// Helper to calculate read time
 const calculateReadTime = (text: string) => {
   const wordsPerMinute = 200;
   const words = text ? text.split(/\s+/).length : 0;
   const minutes = Math.ceil(words / wordsPerMinute);
   return `${minutes} min`;
+};
+
+// Helper to strip HTML tags for plain text preview
+const stripHtml = (html: string) => {
+  if (!html) return "";
+  return html.replace(/<[^>]*>?/gm, '').trim();
+};
+
+const truncateText = (text: string, length: number = 150) => {
+  if (!text) return "";
+  if (text.length <= length) return text;
+  return text.substring(0, length) + "...";
 };
 
 export default function BlogPage() {
@@ -104,7 +115,7 @@ export default function BlogPage() {
                   <span className="flex items-center gap-2"><Clock size={12} /> {calculateReadTime(featuredPost.content)}</span>
                 </div>
                 <h2 className="text-3xl md:text-5xl font-medium text-white tracking-tight leading-[1.1] mb-6 group-hover:text-[#A98B55]/80 transition-colors">{featuredPost.title}</h2>
-                <p className="text-white/50 font-light text-lg leading-relaxed mb-8 hidden md:block max-w-xl line-clamp-3">{featuredPost.content}</p>
+                <p className="text-white/50 font-light text-lg leading-relaxed mb-8 hidden md:block max-w-xl">{truncateText(stripHtml(featuredPost.content), 200)}</p>
                 <div className="text-white/50 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4">
                   <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Read Article</span>
                   <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />
@@ -141,7 +152,7 @@ export default function BlogPage() {
                 <span className="flex items-center gap-2"><Clock size={12} className="text-[#062B4A]/30" /> {calculateReadTime(post.content)}</span>
               </div>
               <h3 className="text-2xl font-medium text-[#062B4A] leading-[1.2] mb-4 group-hover:text-[#A98B55]/70 transition-colors tracking-tight">{post.title}</h3>
-              <p className="text-[#062B4A]/50 text-base font-light leading-relaxed mb-8 flex-1 line-clamp-3">{post.content}</p>
+              <p className="text-[#062B4A]/50 text-base font-light leading-relaxed mb-8 flex-1">{truncateText(stripHtml(post.content), 120)}</p>
               <div className="text-[#062B4A]/50 group-hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 mt-auto">
                 <span className="text-[11px] font-medium uppercase tracking-[0.2em]">Read Article</span>
                 <ArrowRight size={14} className="group-hover:translate-x-2 transition-transform ease-cinematic" />

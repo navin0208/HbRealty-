@@ -118,9 +118,8 @@ export default function SingleBlogPage({ params }: { params: Promise<{ id: strin
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="prose prose-lg md:prose-xl max-w-none prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-[#062B4A] prose-p:text-[#062B4A]/70 prose-p:font-light prose-p:leading-relaxed prose-a:text-[#A98B55] prose-strong:text-[#062B4A] whitespace-pre-wrap"
-        >
-          {post.content}
-        </motion.div>
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
       </section>
 
       {/* ═══ FOOTER CTA ═══ */}
