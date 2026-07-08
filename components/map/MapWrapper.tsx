@@ -54,8 +54,8 @@ export default function MapWrapper() {
             ? 'border-[#A98B55] bg-gradient-to-b from-[#A98B55]/10 to-white shadow-[0_0_40px_rgba(169,139,85,0.4)] scale-[1.02]' 
             : 'border-[#062B4A] bg-white shadow-2xl scale-[1.02]' 
           : prop.isPremium
-            ? 'border-[#A98B55]/30 bg-gradient-to-b from-[#A98B55]/5 to-white/90 hover:bg-white hover:border-[#A98B55]/60 hover:shadow-[0_10px_30px_rgba(169,139,85,0.15)]'
-            : 'border-black/5 bg-white/90 hover:bg-white hover:border-black/10 hover:shadow-xl'
+            ? 'border-[#A98B55]/30 bg-gradient-to-b from-white to-white hover:bg-white hover:border-[#A98B55]/60 hover:shadow-[0_10px_30px_rgba(169,139,85)]'
+            : 'border-black/5 bg-white hover:border-black/10 hover:shadow-xl'
       }`}
     >
       <div className="h-[140px] md:h-[160px] w-full relative">

@@ -1,18 +1,51 @@
-"use client";
+import { Metadata, ResolvingMetadata } from 'next';
+import Link from 'next/link';
+import Image from 'next/image';
+import { ArrowLeft, ArrowRight, Clock, User, Calendar } from 'lucide-react';
+import { supabase } from '@/lib/supabase';
+import { notFound } from 'next/navigation';
 
-import { useEffect, useState, use } from "react";
-import Link from "next/link";
-import Image from "next/image";
-import { ArrowLeft, ArrowRight, Clock, User, Calendar } from "lucide-react";
-import { motion } from "framer-motion";
+// SEO: Generate dynamic metadata for the blog post
+export async function generateMetadata(
+  { params }: { params: Promise<{ id: string }> },
+  parent: ResolvingMetadata
+): Promise<Metadata> {
+  const resolvedParams = await params;
+  const { id } = resolvedParams;
 
-interface BlogPost {
-  id: string;
-  title: string;
-  content: string;
-  image: string;
-  author: string;
-  date: string;
+  const { data: post } = await supabase
+    .from('blogs')
+    .select('*')
+    .eq('id', id)
+    .single();
+
+  if (!post) {
+    return {
+      title: 'Post Not Found | HB Realty',
+    };
+  }
+
+  // Strip HTML for the meta description (limit 160 chars)
+  const plainTextDescription = post.content.replace(/<[^>]*>?/gm, '').trim().substring(0, 160) + '...';
+
+  return {
+    title: `${post.title} | HB Realty Insights`,
+    description: plainTextDescription,
+    openGraph: {
+      title: post.title,
+      description: plainTextDescription,
+      images: [post.image],
+      type: 'article',
+      publishedTime: post.date,
+      authors: [post.author],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: post.title,
+      description: plainTextDescription,
+      images: [post.image],
+    }
+  };
 }
 
 const calculateReadTime = (text: string) => {
@@ -22,66 +55,55 @@ const calculateReadTime = (text: string) => {
   return `${minutes} min`;
 };
 
-export default function SingleBlogPage({ params }: { params: Promise<{ id: string }> }) {
-  const resolvedParams = use(params);
+export default async function SingleBlogPage({ params }: { params: Promise<{ id: string }> }) {
+  const resolvedParams = await params;
   const { id } = resolvedParams;
 
-  const [post, setPost] = useState<BlogPost | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  useEffect(() => {
-    fetch(`/api/blogs/${id}`)
-      .then(res => {
-        if (!res.ok) throw new Error("Not found");
-        return res.json();
-      })
-      .then(data => {
-        setPost(data);
-        setLoading(false);
-      })
-      .catch(err => {
-        console.error(err);
-        setError(true);
-        setLoading(false);
-      });
-  }, [id]);
-
-  if (loading) {
-    return (
-      <main className="min-h-screen bg-[#FAF9F6] flex items-center justify-center">
-        <div className="w-8 h-8 rounded-full border-2 border-[#062B4A]/10 border-t-[#062B4A] animate-spin" />
-      </main>
-    );
-  }
+  // Server-side fetching for SEO!
+  const { data: post, error } = await supabase
+    .from('blogs')
+    .select('*')
+    .eq('id', id)
+    .single();
 
   if (error || !post) {
-    return (
-      <main className="min-h-screen bg-[#FAF9F6] flex flex-col items-center justify-center gap-6 text-[#062B4A]">
-        <h1 className="text-4xl font-medium tracking-tight">Article not found</h1>
-        <p className="text-[#062B4A]/50">The blog post you're looking for doesn't exist or was removed.</p>
-        <Link href="/blog" className="text-[11px] font-bold uppercase tracking-[0.2em] border-b border-[#062B4A] pb-1 hover:text-[#A98B55] hover:border-[#A98B55] transition-colors">
-          Return to Journal
-        </Link>
-      </main>
-    );
+    notFound();
   }
+
+  // JSON-LD for Google Rich Results (SEO)
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BlogPosting',
+    headline: post.title,
+    image: post.image,
+    author: {
+      '@type': 'Person',
+      name: post.author,
+    },
+    datePublished: post.date,
+    description: post.content.replace(/<[^>]*>?/gm, '').trim().substring(0, 160) + '...',
+  };
 
   return (
     <main className="min-h-screen bg-[#FAF9F6] font-sans selection:bg-[#062B4A] selection:text-white overflow-x-hidden">
-      
+      {/* Inject JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       {/* ═══ HERO SECTION ═══ */}
       <section className="relative h-[60vh] md:h-[80vh] min-h-[500px] w-full flex items-end pb-12 md:pb-24 px-6 md:px-12 bg-[#06111C]">
         <Image 
           src={post.image} 
           alt={post.title} 
           fill 
-          className="object-cover opacity-40" 
+          className="object-cover opacity-40 animate-fade-in" 
           priority
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#06111C] via-[#06111C]/60 to-transparent" />
         
-        <div className="relative z-10 max-w-[1000px] mx-auto w-full">
+        <div className="relative z-10 max-w-[1000px] mx-auto w-full animate-fade-up">
           <Link href="/blog" className="inline-flex items-center gap-3 text-white/60 hover:text-white transition-colors mb-8 group">
             <ArrowLeft size={16} className="group-hover:-translate-x-1 transition-transform" />
             <span className="text-[10px] font-bold uppercase tracking-widest">Back to Insights</span>
@@ -111,19 +133,25 @@ export default function SingleBlogPage({ params }: { params: Promise<{ id: strin
         </div>
       </section>
 
-      {/* ═══ CONTENT SECTION ═══ */}
-      <section className="py-20 md:py-16 px-6 md:px-12 max-w-[900px] mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="prose prose-lg md:prose-xl max-w-none prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-[#062B4A] prose-p:text-[#062B4A]/70 prose-p:font-light prose-p:leading-relaxed prose-a:text-[#A98B55] prose-strong:text-[#062B4A] whitespace-pre-wrap"
+      {/* ═══ CONTENT SECTION (BEAUTIFULLY FORMATTED) ═══ */}
+      <section className="py-20 md:py-24 px-6 md:px-12 max-w-[900px] mx-auto bg-white shadow-2xl rounded-t-3xl md:rounded-t-[60px] -mt-10 relative z-20 border border-[#062B4A]/5">
+        <div 
+          className="prose prose-lg md:prose-xl max-w-none 
+          prose-headings:font-medium prose-headings:tracking-tight prose-headings:text-[#062B4A] prose-headings:mb-6
+          prose-p:text-[#062B4A]/80 prose-p:font-light prose-p:leading-loose prose-p:mb-8
+          prose-a:text-[#A98B55] prose-a:underline prose-a:underline-offset-4 hover:prose-a:text-[#062B4A] transition-colors
+          prose-strong:text-[#062B4A] prose-strong:font-bold 
+          prose-ul:list-disc prose-ol:list-decimal prose-li:text-[#062B4A]/80 prose-li:marker:text-[#A98B55]
+          prose-blockquote:border-l-4 prose-blockquote:border-[#A98B55] prose-blockquote:bg-[#FAF9F6] prose-blockquote:p-6 prose-blockquote:italic prose-blockquote:text-[#062B4A]/70 prose-blockquote:rounded-r-2xl
+          prose-img:rounded-3xl prose-img:shadow-2xl prose-img:my-12
+          first-letter:text-7xl first-letter:font-bold first-letter:text-[#A98B55] first-letter:mr-3 first-letter:float-left first-letter:leading-none
+          whitespace-pre-wrap text-[#062B4A] [&_*]:!text-[#062B4A]"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
       </section>
 
       {/* ═══ FOOTER CTA ═══ */}
-      <section className="py-12 border-t border-[#062B4A]/10 bg-[#062B4A]/5 text-center px-6">
+      <section className="py-16 border-t border-[#062B4A]/10 bg-[#062B4A]/5 text-center px-6">
         <h3 className="text-2xl md:text-4xl font-medium text-[#062B4A] tracking-tight mb-6">Enjoyed this article?</h3>
         <p className="text-[#062B4A]/60 font-light max-w-lg mx-auto mb-10">Read more insights on our blog or get in touch with our team for expert real estate guidance.</p>
         <Link href="/blog" className="inline-flex items-center gap-4 bg-[#062B4A] text-white px-8 py-4 rounded-full text-[11px] font-bold uppercase tracking-widest hover:bg-[#A98B55] transition-colors duration-500">
