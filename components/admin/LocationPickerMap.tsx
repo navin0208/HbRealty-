@@ -53,6 +53,7 @@ function MapController({ center }: { center: [number, number] | null }) {
 export default function LocationPickerMap({ onLocationSelect, location }: LocationPickerProps) {
   const [activeLayer, setActiveLayer] = useState<keyof typeof MAP_LAYERS>("satellite");
   const [layersOpen, setLayersOpen] = useState(false);
+  const [mapKey] = useState(() => Math.random().toString(36).substr(2, 9));
 
   const defaultCenter = location || [19.9975, 73.7898]; // Default Nashik
   const position = location ? new L.LatLng(location[0], location[1]) : null;
@@ -64,6 +65,7 @@ export default function LocationPickerMap({ onLocationSelect, location }: Locati
   return (
     <div className="w-full h-full relative z-0 group">
       <MapContainer 
+        key={mapKey}
         center={defaultCenter} 
         zoom={12} 
         scrollWheelZoom={true} 

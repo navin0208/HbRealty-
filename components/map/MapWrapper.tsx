@@ -256,31 +256,50 @@ export default function MapWrapper() {
                   </div>
 
                   <h3 className="text-[#062B4A] text-xs font-bold uppercase tracking-widest mb-5 flex items-center gap-2"><Sparkles size={14} className="text-[#A98B55]" /> Property Details</h3>
-                  <div className="grid grid-cols-2 gap-y-5 gap-x-6 mb-8 bg-white p-5 rounded-2xl border border-[#062B4A]/5 shadow-[0_4px_20px_rgba(6,43,74,0.03)]">
-                    <div>
-                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Transaction</p>
-                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.transactionType || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Ownership</p>
-                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.ownership || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Road Width</p>
-                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.roadWidth || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Possession</p>
-                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.possessionType || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Open Sides</p>
-                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.openSides || 'N/A'}</p>
-                    </div>
-                    <div>
-                      <p className="text-[#062B4A]/40 text-[9px] uppercase tracking-widest font-bold">Boundary Wall</p>
-                      <p className="text-[#062B4A] text-sm font-medium mt-1">{selectedProperty.boundaryWall ? 'Yes' : 'No'}</p>
-                    </div>
+                  <div className="space-y-6 mb-8 bg-white p-5 md:p-6 rounded-2xl border border-[#062B4A]/5 shadow-[0_4px_20px_rgba(6,43,74,0.03)]">
+                    {selectedProperty.locationConnectivity && (
+                      <div>
+                        <p className="text-[#A98B55] text-[10px] uppercase tracking-widest font-bold mb-2">Location & Connectivity</p>
+                        <ul className="list-disc pl-4 space-y-1.5 text-[#062B4A]/80 text-xs md:text-sm font-medium">
+                          {selectedProperty.locationConnectivity.split('\n').filter(Boolean).map((item, i) => (
+                            <li key={i}>{item.trim()}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {selectedProperty.siteFeatures && (
+                      <div>
+                        <p className="text-[#A98B55] text-[10px] uppercase tracking-widest font-bold mb-2">Site Features</p>
+                        <ul className="list-disc pl-4 space-y-1.5 text-[#062B4A]/80 text-xs md:text-sm font-medium">
+                          {selectedProperty.siteFeatures.split('\n').filter(Boolean).map((item, i) => (
+                            <li key={i}>{item.trim()}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {selectedProperty.opportunity && (
+                      <div>
+                        <p className="text-[#A98B55] text-[10px] uppercase tracking-widest font-bold mb-2">Opportunity</p>
+                        <ul className="list-disc pl-4 space-y-1.5 text-[#062B4A]/80 text-xs md:text-sm font-medium">
+                          {selectedProperty.opportunity.split('\n').filter(Boolean).map((item, i) => (
+                            <li key={i}>{item.trim()}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
+
+                    {selectedProperty.thingsToKnow && (
+                      <div>
+                        <p className="text-[#A98B55] text-[10px] uppercase tracking-widest font-bold mb-2">Things to Know</p>
+                        <ul className="list-disc pl-4 space-y-1.5 text-[#062B4A]/80 text-xs md:text-sm font-medium">
+                          {selectedProperty.thingsToKnow.split('\n').filter(Boolean).map((item, i) => (
+                            <li key={i}>{item.trim()}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    )}
                   </div>
 
                   {selectedProperty.description && (

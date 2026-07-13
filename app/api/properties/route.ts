@@ -25,7 +25,11 @@ export async function GET() {
       address: p.address,
       description: p.description,
       features: p.features || [],
-      possessionType: p.possession_type
+      possessionType: p.possession_type,
+      locationConnectivity: p.location_connectivity,
+      siteFeatures: p.site_features,
+      opportunity: p.opportunity,
+      thingsToKnow: p.things_to_know
     }));
 
     return NextResponse.json(formattedProperties);
@@ -88,7 +92,11 @@ export async function POST(request: Request) {
       address: formData.get("address") as string || null,
       description: formData.get("description") as string || null,
       features: formData.get("features") ? (formData.get("features") as string).split(',').map(f => f.trim()).filter(Boolean) : [],
-      possession_type: formData.get("possessionType") as string || null
+      possession_type: formData.get("possessionType") as string || null,
+      location_connectivity: formData.get("locationConnectivity") as string || null,
+      site_features: formData.get("siteFeatures") as string || null,
+      opportunity: formData.get("opportunity") as string || null,
+      things_to_know: formData.get("thingsToKnow") as string || null
     };
 
     const { error } = await supabase
