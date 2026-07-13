@@ -19,6 +19,16 @@ export default function MapWrapper() {
   const dragControls = useDragControls();
 
   useEffect(() => {
+    // If the URL has ?view=list, open the mobile list automatically
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get("view") === "list") {
+        setIsMobileListOpen(true);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
     fetch('/api/properties')
       .then(res => res.json())
       .then(data => {
