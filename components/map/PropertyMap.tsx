@@ -47,6 +47,10 @@ export interface Property {
   isVerified?: boolean;
   isPremium?: boolean;
   mapLink?: string;
+  locationConnectivity?: string;
+  siteFeatures?: string;
+  opportunity?: string;
+  thingsToKnow?: string;
 }
 
 const MAP_LAYERS = {
