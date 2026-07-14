@@ -53,19 +53,30 @@ export default function ProposalPage() {
     if (!property) return;
     setIsDownloading(true);
     try {
-      // Dynamically import to avoid SSR window issues
-      const html2pdf = (await import('html2pdf.js')).default;
       const element = document.getElementById('proposal-document')!;
       
-      const opt: any = {
-        margin: 0,
-        filename: `${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`,
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2, useCORS: true, logging: false },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-      };
+      // Dynamically import to avoid SSR issues
+      const htmlToImage = await import('html-to-image');
+      const { jsPDF } = await import('jspdf');
 
-      await html2pdf().set(opt).from(element).save();
+      const dataUrl = await htmlToImage.toJpeg(element, { 
+        quality: 0.98, 
+        pixelRatio: 2,
+        // Wait a bit for fonts/images to be fully ready
+        skipFonts: false
+      });
+      
+      const pdf = new jsPDF({
+        orientation: 'portrait',
+        unit: 'mm',
+        format: 'a4'
+      });
+      
+      const pdfWidth = pdf.internal.pageSize.getWidth();
+      const pdfHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
+      
+      pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.save(`${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`);
     } catch (err) {
       console.error("PDF generation failed:", err);
       alert("Failed to generate PDF.");
