@@ -59,11 +59,26 @@ export default function ProposalPage() {
       const htmlToImage = await import('html-to-image');
       const { jsPDF } = await import('jspdf');
 
+      // A4 at 96 DPI is 794 x 1123 pixels
+      const A4_WIDTH = 794;
+      const A4_HEIGHT = 1123;
+
       const dataUrl = await htmlToImage.toJpeg(element, { 
         quality: 0.98, 
         pixelRatio: 2,
-        // Wait a bit for fonts/images to be fully ready
-        skipFonts: false
+        skipFonts: false,
+        width: A4_WIDTH,
+        height: A4_HEIGHT,
+        style: {
+          margin: '0',
+          padding: '0',
+          width: `${A4_WIDTH}px`,
+          height: `${A4_HEIGHT}px`,
+          minWidth: `${A4_WIDTH}px`,
+          maxWidth: `${A4_WIDTH}px`,
+          transform: 'none',
+          boxShadow: 'none'
+        }
       });
       
       const pdf = new jsPDF({
@@ -72,10 +87,7 @@ export default function ProposalPage() {
         format: 'a4'
       });
       
-      const pdfWidth = pdf.internal.pageSize.getWidth();
-      const pdfHeight = (element.offsetHeight * pdfWidth) / element.offsetWidth;
-      
-      pdf.addImage(dataUrl, 'JPEG', 0, 0, pdfWidth, pdfHeight);
+      pdf.addImage(dataUrl, 'JPEG', 0, 0, 210, 297);
       pdf.save(`${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`);
     } catch (err) {
       console.error("PDF generation failed:", err);
