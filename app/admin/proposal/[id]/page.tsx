@@ -55,7 +55,7 @@ export default function ProposalPage() {
     try {
       // Dynamically import to avoid SSR window issues
       const html2pdf = (await import('html2pdf.js')).default;
-      const element = document.getElementById('proposal-document');
+      const element = document.getElementById('proposal-document')!;
       
       const opt: any = {
         margin: 0,
