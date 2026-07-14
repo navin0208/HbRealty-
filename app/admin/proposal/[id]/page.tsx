@@ -57,7 +57,7 @@ export default function ProposalPage() {
       const html2pdf = (await import('html2pdf.js')).default;
       const element = document.getElementById('proposal-document');
       
-      const opt = {
+      const opt: any = {
         margin: 0,
         filename: `${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`,
         image: { type: 'jpeg', quality: 0.98 },
