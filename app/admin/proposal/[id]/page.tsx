@@ -63,6 +63,19 @@ export default function ProposalPage() {
       const A4_WIDTH = 794;
       const A4_HEIGHT = 1123;
 
+      // BYPASS MOBILE VIEWPORT CLIPPING BUG:
+      // Safari/iOS will clip any rendering outside the visible viewport.
+      // We temporarily scale the element to fit ENTIRELY inside the screen so the browser doesn't clip it.
+      const scale = Math.min(window.innerWidth / A4_WIDTH, 1);
+      const originalTransform = element.style.transform;
+      const originalTransformOrigin = element.style.transformOrigin;
+      
+      element.style.transform = `scale(${scale})`;
+      element.style.transformOrigin = 'top left';
+      
+      // Wait for DOM to paint the scaled version
+      await new Promise(resolve => setTimeout(resolve, 150));
+
       const dataUrl = await htmlToImage.toJpeg(element, { 
         quality: 0.98, 
         pixelRatio: 2,
@@ -76,10 +89,15 @@ export default function ProposalPage() {
           height: `${A4_HEIGHT}px`,
           minWidth: `${A4_WIDTH}px`,
           maxWidth: `${A4_WIDTH}px`,
-          transform: 'none',
+          transform: 'scale(1)',
+          transformOrigin: 'top left',
           boxShadow: 'none'
         }
       });
+      
+      // Restore original view
+      element.style.transform = originalTransform;
+      element.style.transformOrigin = originalTransformOrigin;
       
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -91,6 +109,11 @@ export default function ProposalPage() {
       pdf.save(`${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`);
     } catch (err) {
       console.error("PDF generation failed:", err);
+      // Restore on error just in case
+      const element = document.getElementById('proposal-document');
+      if (element) {
+        element.style.transform = 'none';
+      }
       alert("Failed to generate PDF.");
     } finally {
       setIsDownloading(false);
@@ -139,7 +162,8 @@ export default function ProposalPage() {
       </div>
 
       {/* ═══ PRINTABLE A4 DOCUMENT ═══ */}
-      <div id="proposal-document" className="w-full max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-2xl print:shadow-none print:w-full print:h-screen relative overflow-hidden">
+      <div className="w-full overflow-x-auto pb-8 flex justify-start md:justify-center">
+        <div id="proposal-document" className="w-[794px] min-w-[794px] h-[1123px] min-h-[1123px] shrink-0 mx-auto bg-white shadow-2xl relative overflow-hidden">
         
         {/* Watermark */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0 opacity-10">
@@ -364,6 +388,7 @@ export default function ProposalPage() {
             body { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
           }
         `}} />
+      </div>
       </div>
     </div>
   );
