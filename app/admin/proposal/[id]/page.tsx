@@ -23,6 +23,7 @@ export default function ProposalPage() {
   const router = useRouter();
   const [property, setProperty] = useState<Property | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isDownloading, setIsDownloading] = useState(false);
 
   // Editable fields state
   const [clientName, setClientName] = useState("Valued Client");
@@ -48,8 +49,29 @@ export default function ProposalPage() {
     }
   }, [params.id]);
 
-  const handlePrint = () => {
-    window.print();
+  const handleDownload = async () => {
+    if (!property) return;
+    setIsDownloading(true);
+    try {
+      // Dynamically import to avoid SSR window issues
+      const html2pdf = (await import('html2pdf.js')).default;
+      const element = document.getElementById('proposal-document');
+      
+      const opt = {
+        margin: 0,
+        filename: `${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`,
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2, useCORS: true, logging: false },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      await html2pdf().set(opt).from(element).save();
+    } catch (err) {
+      console.error("PDF generation failed:", err);
+      alert("Failed to generate PDF.");
+    } finally {
+      setIsDownloading(false);
+    }
   };
 
   if (loading) {
@@ -80,10 +102,12 @@ export default function ProposalPage() {
           <ArrowLeft size={16} /> Back
         </button>
         <button 
-          onClick={handlePrint}
-          className="flex items-center gap-2 bg-[#062B4A] text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-[#A98B55] transition-colors shadow-lg"
+          onClick={handleDownload}
+          disabled={isDownloading}
+          className="flex items-center gap-2 bg-[#062B4A] text-white px-6 py-3 rounded-lg text-sm font-bold uppercase tracking-wider hover:bg-[#A98B55] transition-colors shadow-lg disabled:opacity-50"
         >
-          <Printer size={16} /> Download PDF
+          {isDownloading ? <Loader2 size={16} className="animate-spin" /> : <Printer size={16} />} 
+          {isDownloading ? "Generating PDF..." : "Download PDF"}
         </button>
       </div>
 
@@ -92,7 +116,7 @@ export default function ProposalPage() {
       </div>
 
       {/* ═══ PRINTABLE A4 DOCUMENT ═══ */}
-      <div className="w-full max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-2xl print:shadow-none print:w-full print:h-screen relative overflow-hidden">
+      <div id="proposal-document" className="w-full max-w-[210mm] min-h-[297mm] mx-auto bg-white shadow-2xl print:shadow-none print:w-full print:h-screen relative overflow-hidden">
         
         {/* Watermark */}
         <div className="absolute inset-0 pointer-events-none flex items-center justify-center z-0 opacity-10">
