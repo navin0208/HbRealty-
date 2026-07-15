@@ -169,27 +169,27 @@ export default function ContactPage() {
                     <form onSubmit={handleSubmit} className="space-y-8">
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-3">
-                          <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">First Name</label>
-                          <input name="firstName" required type="text" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="First Name" />
+                          <label className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">First Name</label>
+                          <input name="firstName" required type="text" className="w-full bg-transparent border-b border-white/30 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/60" placeholder="First Name" />
                         </div>
                         <div className="space-y-3">
-                          <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Last Name</label>
-                          <input name="lastName" required type="text" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="Last Name" />
+                          <label className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">Last Name</label>
+                          <input name="lastName" required type="text" className="w-full bg-transparent border-b border-white/30 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/60" placeholder="Last Name" />
                         </div>
                       </div>
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                         <div className="space-y-3">
-                          <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Email Address</label>
-                          <input name="email" required type="email" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="Email Address" />
+                          <label className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">Email Address</label>
+                          <input name="email" required type="email" className="w-full bg-transparent border-b border-white/30 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/60" placeholder="Email Address" />
                         </div>
                         <div className="space-y-3">
-                          <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Phone Number</label>
-                          <input name="phone" type="tel" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/30" placeholder="+91 XXXXX XXXXX" />
+                          <label className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">Phone Number</label>
+                          <input name="phone" type="tel" className="w-full bg-transparent border-b border-white/30 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors placeholder:text-white/60" placeholder="+91 XXXXX XXXXX" />
                         </div>
                       </div>
                       <div className="space-y-3">
-                        <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Interest</label>
-                        <select name="interest" className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white/60 text-base focus:outline-none focus:border-white/40 transition-colors appearance-none">
+                        <label className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">Interest</label>
+                        <select name="interest" className="w-full bg-transparent border-b border-white/30 px-0 py-3 text-white/60 text-base focus:outline-none focus:border-white/40 transition-colors appearance-none">
                           <option value="" className="bg-[#062B4A] text-white">Select your interest</option>
                           <option value="warehousing" className="bg-[#062B4A] text-white">Warehousing Solutions</option>
                           <option value="land" className="bg-[#062B4A] text-white">Land Development</option>
@@ -200,8 +200,8 @@ export default function ContactPage() {
                         </select>
                       </div>
                       <div className="space-y-3">
-                        <label className="text-white/40 text-[10px] font-bold uppercase tracking-[0.2em]">Message</label>
-                        <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-white/10 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors resize-none placeholder:text-white/30" placeholder="Tell us about your project requirements..." />
+                        <label className="text-white/70 text-[10px] font-bold uppercase tracking-[0.2em]">Message</label>
+                        <textarea name="message" required rows={4} className="w-full bg-transparent border-b border-white/30 px-0 py-3 text-white text-base focus:outline-none focus:border-white/40 transition-colors resize-none placeholder:text-white/60" placeholder="Tell us about your project requirements..." />
                       </div>
                       <button disabled={loading} type="submit" className="text-white/70 hover:text-[#A98B55] transition-colors duration-500 flex items-center gap-4 group pt-8 disabled:opacity-50 disabled:cursor-not-allowed">
                         <span className="text-[11px] font-bold uppercase tracking-[0.2em]">{loading ? "Sending..." : "Send Message"}</span>

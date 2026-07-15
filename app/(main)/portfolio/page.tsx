@@ -30,6 +30,23 @@ export const projects = [
     completion: "Dec 2025",
   },
   {
+    id: "osiyan-phase2",
+    title: "Osiyan Warehouse - Phase 2",
+    subtitle: "Modern Grade-A Compliant Warehousing",
+    category: "Warehousing",
+    location: "Akrale MIDC, Nashik",
+    area: "108,000+ sq.ft",
+    details: "Phase 2 Expansion",
+    overview: "Following the success of Phase 1, Osiyan Warehouse is scaling further with Phase 2. This phase brings an additional 108,000+ sq. ft. of modern, Grade-A compliant warehousing space to Nashik. Designed with a focus on flexibility, efficiency, and sustainability. With smart design and automation readiness, Phase 2 ensures that Osiyan Warehouse is not only meeting today's storage needs but also preparing businesses for the logistics demands of tomorrow.",
+    highlights: ["Grade-A Infrastructure", "Wide Internal Roads", "Fire & Safety Systems", "24/7 Security", "Future-Ready Design", "Energy-Efficient Lighting", "Location Advantage"],
+    image: "/Warehouse p3.jpg",
+    hasBrochure: false,
+    featured: true,
+    status: "Upcoming",
+    units: "Phase-2",
+    completion: "Dec 2026",
+  },
+  {
     id: "vinyasa",
     title: "Vinyasa",
     subtitle: "Wellness Premium Community",
@@ -207,9 +224,61 @@ export default function PortfolioPage() {
             transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
             className={`grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-12 gap-8 lg:gap-12 xl:gap-24 items-center ${index % 2 !== 0 ? 'lg:flex-row-reverse' : ''}`}
           >
-            {/* Image Block */}
-            <div className={`xl:col-span-7 relative h-[400px] md:h-[500px] xl:h-[700px] w-full overflow-hidden group ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'}`}>
-              <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-[20s] ease-out group-hover:scale-105 grayscale-[20%]" />
+            {/* Image or Features Block */}
+            <div className={`xl:col-span-7 relative w-full overflow-hidden group ${index % 2 !== 0 ? 'lg:order-2' : 'lg:order-1'} ${project.id === "osiyan-phase2" ? "h-auto lg:h-[700px]" : "h-[400px] md:h-[500px] xl:h-[700px]"}`}>
+              {project.id === "osiyan-phase2" ? (
+                <div className="h-full w-full bg-[#062B4A]/5 p-8 md:p-12 xl:p-16 rounded-3xl flex flex-col justify-center">
+                  <h3 className="text-[#062B4A] font-bold uppercase tracking-[0.3em] text-xs mb-10 flex items-center gap-4">
+                    <div className="w-12 h-px bg-[#062B4A]/20" /> Key Features
+                  </h3>
+                  <ul className="space-y-6">
+                    <li className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#A98B55] mt-2.5 shrink-0" />
+                      <div>
+                        <strong className="text-[#062B4A] block mb-1 tracking-wide">Grade-A Infrastructure:</strong>
+                        <span className="text-[#062B4A]/60 text-sm font-light leading-relaxed">Built with high-quality materials, durable flooring, and efficient layouts.</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#A98B55] mt-2.5 shrink-0" />
+                      <div>
+                        <strong className="text-[#062B4A] block mb-1 tracking-wide">Wide Internal Roads:</strong>
+                        <span className="text-[#062B4A]/60 text-sm font-light leading-relaxed">Smooth truck movement and circulation for hassle-free logistics.</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#A98B55] mt-2.5 shrink-0" />
+                      <div>
+                        <strong className="text-[#062B4A] block mb-1 tracking-wide">International Fire & Safety Systems:</strong>
+                        <span className="text-[#062B4A]/60 text-sm font-light leading-relaxed">Equipped with hydrants, sprinklers, and alarms for complete compliance.</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#A98B55] mt-2.5 shrink-0" />
+                      <div>
+                        <strong className="text-[#062B4A] block mb-1 tracking-wide">24/7 Security:</strong>
+                        <span className="text-[#062B4A]/60 text-sm font-light leading-relaxed">CCTV surveillance and round-the-clock monitoring.</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#A98B55] mt-2.5 shrink-0" />
+                      <div>
+                        <strong className="text-[#062B4A] block mb-1 tracking-wide">Future-Ready Design:</strong>
+                        <span className="text-[#062B4A]/60 text-sm font-light leading-relaxed">Built to adapt to evolving warehousing and logistics demands.</span>
+                      </div>
+                    </li>
+                    <li className="flex items-start gap-4">
+                      <div className="w-1.5 h-1.5 rounded-full bg-[#A98B55] mt-2.5 shrink-0" />
+                      <div>
+                        <strong className="text-[#062B4A] block mb-1 tracking-wide">Energy-Efficient Lighting:</strong>
+                        <span className="text-[#062B4A]/60 text-sm font-light leading-relaxed">Sustainable, cost-effective, and eco-friendly operations.</span>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <Image src={project.image} alt={project.title} fill className="object-cover transition-transform duration-[20s] ease-out group-hover:scale-105 grayscale-[20%]" />
+              )}
             </div>
 
             {/* Text Block */}

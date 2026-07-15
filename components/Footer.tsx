@@ -163,7 +163,7 @@ export default function Footer() {
           <p className="text-white/20 text-xs">
             © {new Date().getFullYear()} HB Realty India. All rights reserved.
           </p>
-          <div className="flex gap-8 text-white/30 text-xs">
+          <div className="flex gap-8 text-white/80 text-xs font-medium tracking-wide">
             <Link href="/contact" className="hover:text-[#A98B55] transition-colors">Privacy Policy</Link>
             <a href="https://www.linkedin.com/company/hb-realty-india/?originalSubdomain=in" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">LinkedIn</a>
             <a href="https://www.instagram.com/hbrealtyindia/" target="_blank" rel="noopener noreferrer" className="hover:text-[#A98B55] transition-colors">Instagram</a>

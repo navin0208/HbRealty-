@@ -64,17 +64,16 @@ export default function ProposalPage() {
       const A4_HEIGHT = 1123;
 
       // BYPASS MOBILE VIEWPORT CLIPPING BUG:
-      // Safari/iOS will clip any rendering outside the visible viewport.
-      // We temporarily scale the element to fit ENTIRELY inside the screen so the browser doesn't clip it.
-      const scale = Math.min(window.innerWidth / A4_WIDTH, 1);
-      const originalTransform = element.style.transform;
-      const originalTransformOrigin = element.style.transformOrigin;
+      // Safari/iOS clips off-screen content. We dynamically force the viewport to desktop width
+      // so the browser naturally fits the A4 document without any scaling hacks.
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      const originalViewport = viewportMeta?.getAttribute('content');
+      if (viewportMeta) {
+        viewportMeta.setAttribute('content', `width=${A4_WIDTH}, maximum-scale=1.0`);
+      }
       
-      element.style.transform = `scale(${scale})`;
-      element.style.transformOrigin = 'top left';
-      
-      // Wait for DOM to paint the scaled version
-      await new Promise(resolve => setTimeout(resolve, 150));
+      // Wait for the browser to re-layout the page at the new viewport size
+      await new Promise(resolve => setTimeout(resolve, 300));
 
       const dataUrl = await htmlToImage.toJpeg(element, { 
         quality: 0.98, 
@@ -89,15 +88,15 @@ export default function ProposalPage() {
           height: `${A4_HEIGHT}px`,
           minWidth: `${A4_WIDTH}px`,
           maxWidth: `${A4_WIDTH}px`,
-          transform: 'scale(1)',
-          transformOrigin: 'top left',
+          transform: 'none',
           boxShadow: 'none'
         }
       });
       
-      // Restore original view
-      element.style.transform = originalTransform;
-      element.style.transformOrigin = originalTransformOrigin;
+      // Restore the viewport to mobile responsive mode
+      if (viewportMeta && originalViewport) {
+        viewportMeta.setAttribute('content', originalViewport);
+      }
       
       const pdf = new jsPDF({
         orientation: 'portrait',
@@ -109,10 +108,10 @@ export default function ProposalPage() {
       pdf.save(`${property.title.replace(/[^a-z0-9]/gi, '_').toLowerCase()}_proposal.pdf`);
     } catch (err) {
       console.error("PDF generation failed:", err);
-      // Restore on error just in case
-      const element = document.getElementById('proposal-document');
-      if (element) {
-        element.style.transform = 'none';
+      // Ensure viewport is restored even if it fails
+      const viewportMeta = document.querySelector('meta[name="viewport"]');
+      if (viewportMeta) {
+        viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1');
       }
       alert("Failed to generate PDF.");
     } finally {
