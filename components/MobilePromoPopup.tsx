@@ -11,11 +11,7 @@ export default function MobilePromoPopup() {
   useEffect(() => {
     // Show after 2.5 seconds
     const timer = setTimeout(() => {
-      // Check if user previously closed it in this session
-      const hasClosed = sessionStorage.getItem("promo_closed");
-      if (!hasClosed) {
-        setIsVisible(true);
-      }
+      setIsVisible(true);
     }, 2500);
 
     return () => clearTimeout(timer);
@@ -25,7 +21,6 @@ export default function MobilePromoPopup() {
     e.preventDefault();
     e.stopPropagation();
     setIsVisible(false);
-    sessionStorage.setItem("promo_closed", "true");
   };
 
   return (
@@ -36,7 +31,7 @@ export default function MobilePromoPopup() {
           animate={{ y: 0, opacity: 1 }}
           exit={{ y: 150, opacity: 0 }}
           transition={{ type: "spring", damping: 20, stiffness: 300 }}
-          className="fixed bottom-4 left-4 right-4 z-[99] md:hidden"
+          className="fixed bottom-8 left-4 right-4 z-[9999] md:hidden"
         >
           <Link href="/properties?view=list" className="block relative bg-[#062B4A] rounded-[18px] overflow-hidden shadow-2xl border border-white/10 group">
             

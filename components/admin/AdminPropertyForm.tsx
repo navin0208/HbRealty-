@@ -155,7 +155,7 @@ export default function AdminPropertyForm({ initialData }: { initialData?: Prope
             <div className="space-y-2">
               <label className="text-[#062B4A]/50 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2">Listing Intent</label>
               <select name="intent" defaultValue={initialData?.intent || "Buy"} className="w-full bg-[#FAF9F6] border border-[#062B4A]/10 rounded-xl px-4 py-3.5 text-[#062B4A]/80 focus:outline-none focus:border-[#062B4A]/40 transition-colors appearance-none">
-                <option value="Buy" className="bg-white text-[#062B4A]">For Sale (Buy)</option>
+                <option value="Buy" className="bg-white text-[#062B4A]">For Sell (Buy)</option>
                 <option value="Rent" className="bg-white text-[#062B4A]">On Rent</option>
                 <option value="Lease" className="bg-white text-[#062B4A]">On Lease</option>
               </select>
