@@ -96,9 +96,14 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="text-white/60 shrink-0 mt-1" />
-                <span className="text-white/80 text-sm leading-relaxed">
+                <a 
+                  href="https://www.google.com/maps/place/HB+REALTY+INDIA/@20.0119541,73.7432815,1168m/data=!3m2!1e3!4b1!4m6!3m5!1s0x3bddedce7594e6dd:0xf954b4e2fa7ab3c9!8m2!3d20.0119541!4d73.7458564!16s%2Fg%2F11vrckwv8k?entry=ttu&g_ep=EgoyMDI2MDcxMy4wIKXMDSoASAFQAw%3D%3D"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white/80 text-sm leading-relaxed hover:text-[#A98B55] transition-colors"
+                >
                   Office no 501, Samrat Qubism, Gangapur Road, near Veg Aroma Hotel, Nashik, Maharashtra 422013
-                </span>
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <Phone size={16} className="text-white/60 shrink-0" />
@@ -116,9 +121,14 @@ export default function Footer() {
 
             <div className="mt-8 pt-6 border-t border-white/5">
               <h5 className="text-white/80 text-[10px] font-bold uppercase tracking-[0.3em] mb-3">Osiyan Warehousing</h5>
-              <p className="text-white/80 text-xs leading-relaxed">
+              <a 
+                href="https://www.google.com/maps/place/Osiyan+Warehousing+By+HB+Realty/@20.1257101,73.8145611,724m/data=!3m1!1e3!4m6!3m5!1s0x3bdde9c316c24c2d:0xae5b4de9c512cbb0!8m2!3d20.1257675!4d73.8168143!16s%2Fg%2F11w220hxlh?entry=ttu&g_ep=EgoyMDI2MDcxMy4wIKXMDSoASAFQAw%3D%3D"
+                target="_blank" 
+                rel="noopener noreferrer"
+                className="text-white/80 text-xs leading-relaxed hover:text-[#A98B55] transition-colors block"
+              >
                 Gat.No-179/3, Kathwad Phata, Talegaon Dindori, Tal. Dindori, Dist. Nashik, Maharashtra
-              </p>
+              </a>
             </div>
           </motion.address>
         </div>
