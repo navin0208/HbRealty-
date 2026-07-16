@@ -1,5 +1,6 @@
 import { NextResponse } from 'next/server';
 import nodemailer from 'nodemailer';
+import { supabase } from '@/lib/supabase';
 
 // Configure Nodemailer transporter
 const transporter = nodemailer.createTransport({
@@ -35,6 +36,27 @@ export async function POST(request: Request) {
     const propertyImages = formData.getAll('propertyImages') as File[];
 
     console.log('Received Inquiry from:', name, email);
+
+    // Insert into Supabase inquiries table
+    const { error: dbError } = await supabase.from('inquiries').insert({
+      name,
+      email,
+      phone,
+      property_type: propertyType,
+      location,
+      size,
+      details,
+      inquiry_type: inquiryType,
+      rate,
+      highway_distance: highwayDistance,
+      legal_status: legalStatus,
+      road_size: roadSize,
+      status: 'New'
+    });
+
+    if (dbError) {
+      console.error('Error saving inquiry to database:', dbError);
+    }
 
     // Prepare attachments for Nodemailer
     const attachments = [];
