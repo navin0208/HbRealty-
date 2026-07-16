@@ -223,10 +223,10 @@ export default function InquiriesDashboard() {
                     <Phone size={16} className="text-[#A98B55]" />
                     <a href={`tel:${inq.phone}`} className="hover:text-[#062B4A] transition-colors">{inq.phone}</a>
                   </div>
-                  {(inq.location || inq.property_type) && (
+                  {(inq.location || inq.intent) && (
                     <div className="flex items-center gap-3 text-sm text-[#062B4A]/70 md:col-span-2">
                       <MapPin size={16} className="text-[#A98B55]" />
-                      <span>{inq.property_type} in {inq.location} {inq.size ? `(${inq.size})` : ''}</span>
+                      <span>{inq.intent} in {inq.location} {inq.size ? `(${inq.size})` : ''}</span>
                     </div>
                   )}
                 </div>
@@ -236,21 +236,16 @@ export default function InquiriesDashboard() {
                   {inq.rate && (
                     <div><span className="text-[#062B4A]/40 block text-[10px] font-bold uppercase tracking-wider mb-1">Rate</span><span className="text-[#062B4A] font-medium">{inq.rate}</span></div>
                   )}
-                  {inq.highway_distance && (
-                    <div><span className="text-[#062B4A]/40 block text-[10px] font-bold uppercase tracking-wider mb-1">Highway Distance</span><span className="text-[#062B4A] font-medium">{inq.highway_distance}</span></div>
-                  )}
-                  {inq.legal_status && (
-                    <div><span className="text-[#062B4A]/40 block text-[10px] font-bold uppercase tracking-wider mb-1">Legal Status</span><span className="text-[#062B4A] font-medium">{inq.legal_status}</span></div>
-                  )}
-                  {inq.road_size && (
-                    <div><span className="text-[#062B4A]/40 block text-[10px] font-bold uppercase tracking-wider mb-1">Road Size</span><span className="text-[#062B4A] font-medium">{inq.road_size}</span></div>
+                  {inq.highwaydistance && (
+                    <div><span className="text-[#062B4A]/40 block text-[10px] font-bold uppercase tracking-wider mb-1">Highway Distance</span><span className="text-[#062B4A] font-medium">{inq.highwaydistance}</span></div>
                   )}
                 </div>
 
                 {/* Message */}
-                {inq.details && (
-                  <div className="mb-6 bg-[#062B4A]/5 border border-[#062B4A]/5 p-4 rounded-xl text-sm text-[#062B4A]/80 leading-relaxed italic shadow-inner">
-                    "{inq.details}"
+                {inq.message && (
+                  <div className="mt-auto pt-6 border-t border-[#062B4A]/10">
+                    <span className="text-[#062B4A]/40 block text-[10px] font-bold uppercase tracking-wider mb-3">Additional Details</span>
+                    <p className="text-[#062B4A]/70 text-sm leading-relaxed whitespace-pre-wrap">{inq.message}</p>
                   </div>
                 )}
 

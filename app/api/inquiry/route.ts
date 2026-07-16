@@ -37,20 +37,24 @@ export async function POST(request: Request) {
 
     console.log('Received Inquiry from:', name, email);
 
-    // Insert into Supabase inquiries table
+    // Insert into Supabase inquiries table using existing columns in supabase-setup.sql
+    const fullMessage = [
+      details,
+      legalStatus ? `Legal Status: ${legalStatus}` : '',
+      roadSize ? `Road Size: ${roadSize}` : ''
+    ].filter(Boolean).join('\n');
+
     const { error: dbError } = await supabase.from('inquiries').insert({
       name,
       email,
       phone,
-      property_type: propertyType,
+      intent: propertyType,
       location,
       size,
-      details,
+      message: fullMessage,
       inquiry_type: inquiryType,
       rate,
-      highway_distance: highwayDistance,
-      legal_status: legalStatus,
-      road_size: roadSize,
+      highwaydistance: highwayDistance,
       status: 'New'
     });
 
