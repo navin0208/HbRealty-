@@ -129,7 +129,7 @@ export default function PropertiesPage() {
               className="w-full h-full"
             >
               {activeTab === "buy" && (
-                <div className="w-full h-full md:min-h-[600px]">
+                <div className="w-full h-[60vh] md:h-[70vh] max-h-[700px] rounded-3xl overflow-hidden shadow-2xl relative">
                   <MapWrapper />
                 </div>
               )}

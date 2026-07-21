@@ -13,6 +13,7 @@ export async function GET() {
     // Map the database columns back to the frontend expected format
     const formattedProperties = properties.map(p => ({
       ...p,
+      image: p.image || "/default-property.jpg",
       location: [p.location_lat, p.location_lng],
       isVerified: p.isverified,
       isPremium: p.ispremium,
@@ -79,7 +80,7 @@ export async function POST(request: Request) {
       size: formData.get("size") as string,
       location_lat: location[0],
       location_lng: location[1],
-      image: imageUrl || "https://images.unsplash.com/photo-1512453979798-5ea266f8880c?auto=format&fit=crop&q=80&w=400",
+      image: imageUrl || "/default-property.jpg",
       status: (formData.get("status") as string) || 'available',
       intent: (formData.get("intent") as string) || 'Buy',
       isverified: formData.get("isVerified") === "true",

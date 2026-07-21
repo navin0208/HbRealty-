@@ -157,7 +157,7 @@ export default function Home() {
 
   // Auto-play for Services Carousel (Slower cycle for readability)
   useEffect(() => {
-    const duration = 8000;
+    const duration = 10000;
     const interval = 50;
     let elapsed = 0;
 

@@ -48,6 +48,7 @@ export async function GET(
 
     const formattedProperty = {
       ...p,
+      image: p.image || "/default-property.jpg",
       location: [p.location_lat, p.location_lng],
       isVerified: p.isverified,
       isPremium: p.ispremium,
